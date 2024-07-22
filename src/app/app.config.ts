@@ -5,7 +5,6 @@ import {routes} from './app.routes';
 import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
 import {getAuth, provideAuth} from '@angular/fire/auth';
 import {getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService} from '@angular/fire/analytics';
-import {initializeAppCheck, provideAppCheck, ReCaptchaEnterpriseProvider} from '@angular/fire/app-check';
 import {getFirestore, provideFirestore} from '@angular/fire/firestore';
 import {getDatabase, provideDatabase} from '@angular/fire/database';
 import {getFunctions, provideFunctions} from '@angular/fire/functions';
@@ -17,9 +16,18 @@ import {getVertexAI, provideVertexAI} from '@angular/fire/vertexai-preview';
 import {environment} from "../environments/environment";
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), provideAuth(() => getAuth()), provideAnalytics(() => getAnalytics()), ScreenTrackingService, UserTrackingService, provideAppCheck(() => {
-    // TODO only testkey
-    const provider = new ReCaptchaEnterpriseProvider('6Lc7dhUqAAAAAJb7NKODzk5ho0IQmVQIdG-qe9vN');
-    return initializeAppCheck(undefined, {provider, isTokenAutoRefreshEnabled: true});
-  }), provideFirestore(() => getFirestore()), provideDatabase(() => getDatabase()), provideFunctions(() => getFunctions()), provideMessaging(() => getMessaging()), providePerformance(() => getPerformance()), provideStorage(() => getStorage()), provideRemoteConfig(() => getRemoteConfig()), provideVertexAI(() => getVertexAI())]
+  providers: [provideRouter(routes),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideAuth(() => getAuth()),
+    provideAnalytics(() => getAnalytics()),
+    ScreenTrackingService,
+    UserTrackingService,
+    provideFirestore(() => getFirestore()),
+    provideDatabase(() => getDatabase()),
+    provideFunctions(() => getFunctions()),
+    provideMessaging(() => getMessaging()),
+    providePerformance(() => getPerformance()),
+    provideStorage(() => getStorage()),
+    provideRemoteConfig(() => getRemoteConfig()),
+    provideVertexAI(() => getVertexAI())]
 };

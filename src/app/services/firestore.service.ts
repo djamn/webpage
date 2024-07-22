@@ -1,13 +1,34 @@
-import { Injectable } from '@angular/core';
-import {collection, collectionData, deleteDoc, doc, Firestore, setDoc, updateDoc} from "@angular/fire/firestore";
+import {Injectable} from "@angular/core";
+import {
+  collection,
+  collectionData,
+  deleteDoc,
+  doc,
+  Firestore,
+  getDoc,
+  setDoc,
+  updateDoc
+} from "@angular/fire/firestore";
 import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-export class TestService {
+export class FirestoreService {
 
-  constructor(private firestore: Firestore) { }
+  constructor(private firestore: Firestore) {
+  }
+
+  async incrementNumber(collectionName: string, docId: string, fieldName: string): Promise<void> {
+    const docRef = doc(this.firestore, `${collectionName}/${docId}`);
+    const docSnapshot = await getDoc(docRef);
+    if (docSnapshot.exists()) {
+      const currentNumber = docSnapshot.data()[fieldName] || 0;
+      await updateDoc(docRef, {[fieldName]: currentNumber + 1});
+    } else {
+      await updateDoc(docRef, {[fieldName]: 1});
+    }
+  }
 
   getCollection(collectionName: string): Observable<any[]> {
     const collectionRef = collection(this.firestore, collectionName);

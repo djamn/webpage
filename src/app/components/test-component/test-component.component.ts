@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./test-component.component.css']
 })
 export class TestComponentComponent {
-
+  testButton(): void {
+    console.log("Output")
+  }
 }

@@ -17,8 +17,8 @@ import { getVertexAI, provideVertexAI } from '@angular/fire/vertexai-preview';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), provideFirebaseApp(() => initializeApp({"projectId":"djamn-webpage","appId":"1:531743368185:web:a4d9585e29026474f3d328","databaseURL":"https://djamn-webpage-default-rtdb.europe-west1.firebasedatabase.app","storageBucket":"djamn-webpage.appspot.com","apiKey":"AIzaSyCdjdSNH1KjIQA2Gz-83UeBFHfEwrxnzA4","authDomain":"djamn-webpage.firebaseapp.com","messagingSenderId":"531743368185","measurementId":"G-YMX72W5GVH"})), provideAuth(() => getAuth()), provideAnalytics(() => getAnalytics()), ScreenTrackingService, UserTrackingService, provideAppCheck(() => {
-  // TODO get a reCAPTCHA Enterprise here https://console.cloud.google.com/security/recaptcha?project=_
-  const provider = new ReCaptchaEnterpriseProvider(/* reCAPTCHA Enterprise site key */);
+  // TODO only testkey
+  const provider = new ReCaptchaEnterpriseProvider('6Lc7dhUqAAAAAJb7NKODzk5ho0IQmVQIdG-qe9vN');
   return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
 }), provideFirestore(() => getFirestore()), provideDatabase(() => getDatabase()), provideFunctions(() => getFunctions()), provideMessaging(() => getMessaging()), providePerformance(() => getPerformance()), provideStorage(() => getStorage()), provideRemoteConfig(() => getRemoteConfig()), provideVertexAI(() => getVertexAI())]
 };

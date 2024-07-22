@@ -20,13 +20,11 @@ export class TestComponentComponent implements OnInit {
   ngOnInit(): void {
     this.firebaseService.getCollection('button-clicks').subscribe(data => {
       this.data = data;
-      console.log(data[0].counter);
       this.counter = data[0].counter;
     })
   }
 
   testButton(): void {
-    console.log("Incrementing Button")
     this.firebaseService.incrementNumber('button-clicks', this.docId, this.fieldName).then(() => {
       console.log("Number successfully incremented")
     })

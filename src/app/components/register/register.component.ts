@@ -13,8 +13,14 @@ export class RegisterComponent {
   @Input()
   imageSrc: string = "/assets/no-image.svg";
 
+  @Input()
+  registerAccountHint: string =
+    'By clicking Register you accept the HOST Terms of Use and acknowledge the Privacy Statement and Cookie Policy'
+
   readonly email = new FormControl('', [Validators.required, Validators.email]);
-  errorMessage = signal('');
+  readonly username = new FormControl('', [Validators.required]);
+  errorMessageEmail = signal('');
+  errorMessageUsername = signal('');
 
   @Input()
   registerInputPlaceholderPassword: string = 'Enter your password'
@@ -26,9 +32,15 @@ export class RegisterComponent {
   registerInputPlaceholderUsername: string = 'Enter your username'
 
   hide = signal(true);
+  hideConfirm = signal(true);
 
-  clickEvent(event: MouseEvent) {
+  clickEventPassword(event: MouseEvent) {
     this.hide.set(!this.hide());
+    event.stopPropagation();
+  }
+
+  clickEventPasswordConfirm(event: MouseEvent) {
+    this.hideConfirm.set(!this.hideConfirm());
     event.stopPropagation();
   }
 
@@ -42,14 +54,25 @@ export class RegisterComponent {
     console.log("Hallo")
   }
 
+  // TODO recode
   updateErrorMessage() {
     if (this.email.hasError('required')) {
-      console.log("??")
-      this.errorMessage.set('You must enter a value');
+      this.errorMessageEmail.set('You must enter a value');
+
     } else if (this.email.hasError('email')) {
-      this.errorMessage.set('Not a valid email');
-    } else {
-      this.errorMessage.set('');
+      this.errorMessageEmail.set('Not a valid email');
+    } else if(this.username.hasError('required')){
+      this.errorMessageUsername.set('You must enter a value');
+    }else {
+      this.errorMessageEmail.set('');
     }
   }
 }
+
+/*
+Todos morgen
+Register implementieren & weiterleiten => + Errorhandling
+Checks implementieren (siehe github)
+Host Terms?
+
+ */

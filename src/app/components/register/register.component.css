@@ -12,7 +12,7 @@ html, body {
   background-color: white;
 
   width: 370px;
-  height: 570px;
+  height: 620px;
   display: flex;
   position: relative;
   align-items: center;
@@ -74,6 +74,16 @@ html, body {
   /*padding: 0 var(--dl-space-space-unit)*/
 
 }
+
+.register-component-text {
+  color: gray;
+  font-size: 15px;
+  font-style: normal;
+  text-align: justify;
+  font-weight: 400;
+  margin-top: var(--dl-space-space-halfunit);
+}
+
 
 
 /*

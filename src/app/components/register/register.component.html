@@ -1,4 +1,4 @@
-<!--TODO-->
+<!--TODO https://github.com/PranavBhatia/ng-crypto/blob/Firebase-Authentication-Password-Reset/src/app/auth/signup/signup-form/signup-form.component.ts-->
 <img class="background-image"
      [attr.src]="imageSrc"
      [attr.alt]=""
@@ -20,7 +20,7 @@
           required
         />
         @if (email.invalid) {
-          <mat-error>{{ errorMessage() }}</mat-error>
+          <mat-error>{{ errorMessageEmail() }}</mat-error>
         }
       </mat-form-field>
     </p>
@@ -31,10 +31,13 @@
           class="register-input"
           matInput
           placeholder="john"
-          [formControl]="email"
+          [formControl]="username"
           (blur)="updateErrorMessage()"
           required
         />
+        @if (username.invalid) {
+          <mat-error>{{ errorMessageUsername() }}</mat-error>
+        }
       </mat-form-field>
     </p>
 
@@ -45,11 +48,12 @@
           matInput
           placeholder="*******"
           [type]="hide() ? 'password' : 'text'"
+          (blur)="updateErrorMessage()"
           class="register-input"/>
         <button
           mat-icon-button
           matSuffix
-          (click)="clickEvent($event)"
+          (click)="clickEventPassword($event)"
           [attr.aria-label]="'Hide password'"
           [attr.aria-pressed]="hide()"
         >
@@ -64,16 +68,16 @@
         <input
           matInput
           placeholder="*******"
-          [type]="hide() ? 'password' : 'text'"
+          [type]="hideConfirm() ? 'password' : 'text'"
           class="register-input"/>
         <button
           mat-icon-button
           matSuffix
-          (click)="clickEvent($event)"
+          (click)="clickEventPasswordConfirm($event)"
           [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hide()"
+          [attr.aria-pressed]="hideConfirm()"
         >
-          <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+          <mat-icon>{{ hideConfirm() ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
       </mat-form-field>
     </p>
@@ -81,6 +85,6 @@
     <div class="confirm-button-container">
       <button class="confirm-button button-general button-blue" type="submit">Register</button>
     </div>
-
+    <span class="register-component-text">{{ registerAccountHint }}</span>
   </form>
 </div>

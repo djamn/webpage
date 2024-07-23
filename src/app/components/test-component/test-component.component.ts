@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FirestoreService} from "../../services/firestore.service";
 import {AuthService} from "../../services/auth.service";
-import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 
 @Component({
   selector: 'app-test-component',

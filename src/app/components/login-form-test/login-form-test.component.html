@@ -1,31 +1,28 @@
-<p>test-component works!</p>
-
-<mat-slide-toggle>Test</mat-slide-toggle>
-
-<app-login-form-test></app-login-form-test>
-
-<form (ngSubmit)="login(email.value, username.value, password.value)" class="main-container">
+<form (ngSubmit)="login(mail.value, username.value, password.value)" class="main-container">
   <div class="login-container">
     <div class="login-container-items">
-      <span class="login-text">Email</span>
-      <input
-        #email="ngModel"
-        [attr.placeholder]="loginInputPlaceholderEmail"
-        class="login-input"
-        id="login-email-input"
-        name="email"
-        ngModel
-        required="true"
-        type="text"
-      />
+      <mat-form-field>
+        <mat-label>Enter your email</mat-label>
+        <input
+          class="login-input"
+          matInput
+          placeholder="pat@example.com"
+          [formControl]="mail"
+          (blur)="updateErrorMessage()"
+          required
+        />
+        @if (mail.invalid) {
+          <mat-error>{{ errorMessage() }}</mat-error>
+        }
+      </mat-form-field>
     </div>
+
     <div class="login-container-items">
       <span class="login-text">Username</span>
       <input
         #username="ngModel"
         [attr.placeholder]="loginInputPlaceholderUsername"
         class="login-input"
-        id="login-username-input"
         name="username"
         ngModel
         required="true"
@@ -38,7 +35,6 @@
         #password="ngModel"
         [attr.placeholder]="loginInputPlaceholderPassword"
         class="login-input"
-        id="login-password-input"
         name="password"
         ngModel
         required="true"
@@ -50,12 +46,3 @@
     <button class="confirm-button" type="submit">Register</button>
   </div>
 </form>
-
-<br><br>
-
-<app-login-test></app-login-test>
-
-
-<button (click)="testButton()">Click Me</button>
-<br><br>
-<span>Total Clicks: {{ counter }} </span>

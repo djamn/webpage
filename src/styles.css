@@ -9,6 +9,86 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+:root {
+  --dl-size-size-xsmall: 16px;
+  --dl-size-size-small: 48px;
+  --dl-size-size-medium: 96px;
+  --dl-size-size-large: 144px;
+  --dl-size-size-xlarge: 192px;
+  --dl-size-size-xxlarge: 288px;
+
+  --dl-space-space-halfunit: 8px;
+  --dl-space-space-unit: 16px;
+  --dl-space-space-oneandhalfunits: 24px;
+  --dl-space-space-twounits: 32px;
+  --dl-space-space-threeunits: 48px;
+  --dl-space-space-fourunits: 64px;
+  --dl-space-space-fiveunits: 80px;
+  --dl-space-space-sixunits: 96px;
+}
+
+.button-blue {
+  color: white;
+  font-size: 17px;
+  transition: 0.3s;
+  border-color: black;
+  border-width: 1px;
+  border-radius: 4px;
+  background-color: #1f75cb;
+}
+
+.button-blue:hover {
+  color: white;
+  background: #084f9e;
+}
+
+.button-disabled {
+  color: white;
+  font-size: 17px;
+  transition: 0.3s;
+  border-color: black;
+  border-width: 1px;
+  border-radius: 4px;
+  background-color: #878787;
+}
+
+.button-red {
+  color: white;
+  font-size: 17px;
+  transition: 0.3s;
+  border-color: black;
+  border-width: 1px;
+  border-radius: 4px;
+  background-color: #c91313;
+}
+
+.button-red:hover {
+  background-color: #a20b0b;
+}
+
+.button-green {
+  color: white;
+  font-size: 17px;
+  transition: 0.3s;
+  border-color: black;
+  border-width: 1px;
+  border-radius: 4px;
+  background-color: #1b831a;
+}
+
+.button-green:hover {
+  background-color: #0c6f0b;
+}
+
+.button-general {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  transition: 0.3s;
+}
+
+
 mat-form-field.small {
   --mat-form-field-container-height: 40px;
   --mat-form-field-container-vertical-padding: 8px;

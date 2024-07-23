@@ -1,0 +1,61 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.main-register-container {
+  /*border: 1px solid green;*/
+
+  /*TODO evaluieren, zB ob auch mit gray background gut aussieht*/
+  border-radius: 10px;
+  background-color: white;
+
+  width: 370px;
+  height: 500px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0 var(--dl-space-space-halfunit);
+
+}
+
+.register-image-container {
+  width: 80%;
+  margin-top: var(--dl-space-space-unit);
+  margin-bottom: var(--dl-space-space-twounits)
+}
+
+.register-component-form {
+  border: 1px solid red;
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: var(--dl-space-space-threeunits);
+  flex-direction: column;
+  /*padding-left: var(--dl-space-space-unit);*/
+  /*padding-right: var(--dl-space-space-unit);*/
+}
+
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+
+/*
+body {
+    background-image: url("background-file.jpg");
+    background-size: cover;
+    background-position: center top;
+}
+*/

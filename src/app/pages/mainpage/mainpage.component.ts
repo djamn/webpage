@@ -4,7 +4,7 @@ import {NgIf} from "@angular/common";
 import {Meta, Title} from "@angular/platform-browser";
 
 @Component({
-  selector: 'app-mainpage',
+  selector: 'mainpage',
   standalone: true,
   imports: [ComponentsModule, NgIf],
   templateUrl: 'mainpage.component.html',

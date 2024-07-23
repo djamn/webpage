@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
-  selector: 'app-login-register-image',
+  selector: 'login-register-image-component',
   templateUrl: './login-register-image.component.html',
   styleUrl: './login-register-image.component.css'
 })
 export class LoginRegisterImageComponent {
-
+  @Input()
+  imageAlt: string = ""
+  imageSrc: string = "/assets/no-image.svg"
 }

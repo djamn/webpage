@@ -1,8 +1,9 @@
 <form (ngSubmit)="login(mail.value, username.value, password.value)" class="main-container">
-  <div class="login-container">
-    <div class="login-container-items">
-      <mat-form-field>
-        <mat-label>Enter your email</mat-label>
+  <p>
+<!--    standard, fill, outline, legacy-->
+    <mat-form-field class="small small-form-field" appearance="outline">
+<!--      Mit input-label und global css kann man size ändern-->
+        <mat-label class="input-label">Enter your email</mat-label>
         <input
           class="login-input"
           matInput
@@ -15,7 +16,8 @@
           <mat-error>{{ errorMessage() }}</mat-error>
         }
       </mat-form-field>
-    </div>
+  </p>
+<!--    </div>-->
 
     <div class="login-container-items">
       <span class="login-text">Username</span>
@@ -41,7 +43,7 @@
         type="password"
       />
     </div>
-  </div>
+<!--  </div>-->
   <div class="confirm-button-container">
     <button class="confirm-button" type="submit">Register</button>
   </div>

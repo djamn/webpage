@@ -1,4 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-form-field.small {
+  --mat-form-field-container-height: 40px;
+  --mat-form-field-container-vertical-padding: 8px;
+  --mat-form-field-container-text-size: 10px;
+  --mat-form-field-subscript-text-size: 10px;
+}
+
+/*Changes asterix*/
+.mdc-floating-label--required:not(.mdc-floating-label--hide-required-marker)::after, .input-label {
+  font-size: 12px !important;
+}

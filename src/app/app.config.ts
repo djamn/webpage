@@ -14,6 +14,7 @@ import {getStorage, provideStorage} from '@angular/fire/storage';
 import {getRemoteConfig, provideRemoteConfig} from '@angular/fire/remote-config';
 import {getVertexAI, provideVertexAI} from '@angular/fire/vertexai-preview';
 import {environment} from "../environments/environment";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
@@ -29,5 +30,5 @@ export const appConfig: ApplicationConfig = {
     providePerformance(() => getPerformance()),
     provideStorage(() => getStorage()),
     provideRemoteConfig(() => getRemoteConfig()),
-    provideVertexAI(() => getVertexAI())]
+    provideVertexAI(() => getVertexAI()), provideAnimationsAsync()]
 };

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FirestoreService} from "../../services/firestore.service";
 import {AuthService} from "../../services/auth.service";
+import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 
 @Component({
   selector: 'app-test-component',
@@ -45,6 +46,6 @@ export class TestComponentComponent implements OnInit {
   // login, logout, register: https://firebase.google.com/docs/auth/web/password-auth?authuser=0&hl=de#web-modular-api
 
   login(email: string, username: string, password: string) {
-    this.authService.register(email, username, password);
+    this.authService.register(email, username, password).then(r => console.log(r));
   }
 }

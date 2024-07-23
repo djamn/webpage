@@ -59,3 +59,7 @@
   font-size: 12px;
   background-color: #1f75cb;
 }
+
+.confirm-button:hover {
+  background-color: #09529b;
+}

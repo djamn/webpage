@@ -1,3 +1,4 @@
+<!--TODO-->
 <img class="background-image"
      [attr.src]="imageSrc"
      [attr.alt]=""
@@ -8,9 +9,78 @@
 
   <form (ngSubmit)="register()" class="register-component-form">
     <p>
-      <!--    TODO -->
+      <mat-form-field class="small small-form-field" appearance="outline">
+        <mat-label class="input-label">Your Email</mat-label>
+        <input
+          class="register-input"
+          matInput
+          placeholder="john@example.com"
+          [formControl]="email"
+          (blur)="updateErrorMessage()"
+          required
+        />
+        @if (email.invalid) {
+          <mat-error>{{ errorMessage() }}</mat-error>
+        }
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="small small-form-field" appearance="outline">
+        <mat-label class="input-label">Your Username</mat-label>
+        <input
+          class="register-input"
+          matInput
+          placeholder="john"
+          [formControl]="email"
+          (blur)="updateErrorMessage()"
+          required
+        />
+      </mat-form-field>
     </p>
 
+    <p>
+      <mat-form-field class="small small-form-field" appearance="outline">
+        <mat-label class="input-label">Enter Password</mat-label>
+        <input
+          matInput
+          placeholder="*******"
+          [type]="hide() ? 'password' : 'text'"
+          class="register-input"/>
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="clickEvent($event)"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide()"
+        >
+          <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field class="small small-form-field" appearance="outline">
+        <mat-label class="input-label">Confirm Password</mat-label>
+        <input
+          matInput
+          placeholder="*******"
+          [type]="hide() ? 'password' : 'text'"
+          class="register-input"/>
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="clickEvent($event)"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide()"
+        >
+          <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </p>
+
+    <div class="confirm-button-container">
+      <button class="confirm-button button-general button-blue" type="submit">Register</button>
+    </div>
 
   </form>
 </div>

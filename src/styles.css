@@ -90,13 +90,13 @@ body {
 
 
 mat-form-field.small {
-  --mat-form-field-container-height: 40px;
-  --mat-form-field-container-vertical-padding: 8px;
-  --mat-form-field-container-text-size: 10px;
-  --mat-form-field-subscript-text-size: 10px;
+  /*--mat-form-field-container-height: 30px;*/
+  /*--mat-form-field-container-vertical-padding: 5px;*/
+  /*--mat-form-field-container-text-size: 15px;*/
+  /*--mat-form-field-subscript-text-size: 13px;*/
 }
 
 /*Changes asterix*/
 .mdc-floating-label--required:not(.mdc-floating-label--hide-required-marker)::after, .input-label {
-  font-size: 12px !important;
+  /*font-size: 15px !important;*/
 }

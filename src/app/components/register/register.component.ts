@@ -1,33 +1,31 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {CrossFieldErrorMatcher} from "./cross-field-error-matcher";
 import {confirmPasswordValidator} from "./confirm-password.validator";
 import {firstValueFrom} from "rxjs";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {ConfigService} from "../../services/config.service";
 
 @Component({
   selector: 'register-component',
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
+  hidePassword = true;
+  hideConfirmPassword = true;
+  // config: any;
+  errorMatcher = new CrossFieldErrorMatcher();
+  signupForm!: UntypedFormGroup;
+
+
   @Input()
   imageSrc: string = "/assets/no-image.svg";
 
   @Input()
   registerAccountHint: string =
     'By clicking Register you accept the HOST Terms of Use and acknowledge the Privacy Statement and Cookie Policy'
-
-  errorMatcher = new CrossFieldErrorMatcher();
-  signupForm: UntypedFormGroup = new UntypedFormGroup({
-      username: new UntypedFormControl('', [Validators.required]),
-      email: new UntypedFormControl('', [Validators.required, Validators.email]),
-      password: new UntypedFormControl('', [Validators.required, Validators.minLength(5)]),
-      confirmPassword: new UntypedFormControl('', [Validators.required])
-    },
-    {validators: confirmPasswordValidator}
-  )
 
   @Input()
   registerInputPlaceholderPassword: string = 'Enter your password'
@@ -38,8 +36,28 @@ export class RegisterComponent {
   @Input()
   registerInputPlaceholderUsername: string = 'Enter your username'
 
-  hidePassword = true;
-  hideConfirmPassword = true;
+  constructor(private authService: AuthService, private snackBar: MatSnackBar, private configService: ConfigService) {
+  }
+
+  ngOnInit() {
+    // this.config = this.configService.getConfig();
+
+    this.signupForm = new UntypedFormGroup({
+      username: new UntypedFormControl('', [
+        Validators.required,
+        Validators.maxLength(5)
+      ]),
+      email: new UntypedFormControl('', [
+        Validators.required,
+        Validators.email
+      ]),
+      password: new UntypedFormControl('', [
+        Validators.required,
+        Validators.minLength(5)
+      ]),
+      confirmPassword: new UntypedFormControl('', [Validators.required])
+    }, {validators: confirmPasswordValidator});
+  }
 
   togglePasswordVisibility(event: MouseEvent): void {
     event.stopPropagation();
@@ -51,8 +69,6 @@ export class RegisterComponent {
     this.hideConfirmPassword = !this.hideConfirmPassword;
   }
 
-  constructor(private authService: AuthService, private snackBar: MatSnackBar) {
-  }
 
   async register() {
     if (!this.signupForm.valid) {
@@ -117,7 +133,7 @@ export class RegisterComponent {
 /*
 Todos morgen
 Register implementieren & weiterleiten => + Errorhandling
-Checks implementieren (siehe github)
+
 Host Terms?
 
  */

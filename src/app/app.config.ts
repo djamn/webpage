@@ -1,4 +1,4 @@
-import {ApplicationConfig} from '@angular/core';
+import {APP_INITIALIZER, ApplicationConfig} from '@angular/core';
 import {provideRouter} from '@angular/router';
 
 import {routes} from './app.routes';
@@ -16,6 +16,8 @@ import {getVertexAI, provideVertexAI} from '@angular/fire/vertexai-preview';
 import {environment} from "../environments/environment";
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {FIREBASE_OPTIONS} from "@angular/fire/compat";
+import {ConfigService} from "./services/config.service";
+import {provideHttpClient} from "@angular/common/http";
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
@@ -32,5 +34,13 @@ export const appConfig: ApplicationConfig = {
     providePerformance(() => getPerformance()),
     provideStorage(() => getStorage()),
     provideRemoteConfig(() => getRemoteConfig()),
-    provideVertexAI(() => getVertexAI()), provideAnimationsAsync()]
+    provideVertexAI(() => getVertexAI()), provideAnimationsAsync(),
+    // {
+    //   provide: APP_INITIALIZER,
+    //   useFactory: initializeApp,
+    //   deps: [ConfigService],
+    //   multi: true
+    // },
+    provideHttpClient(),
+  ]
 };

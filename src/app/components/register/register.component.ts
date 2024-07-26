@@ -1,8 +1,10 @@
-import {Component, Input, signal} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {CrossFieldErrorMatcher} from "./cross-field-error-matcher";
 import {confirmPasswordValidator} from "./confirm-password.validator";
+import {firstValueFrom} from "rxjs";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'register-component',
@@ -48,13 +50,66 @@ export class RegisterComponent {
     event.stopPropagation();
     this.hideConfirmPassword = !this.hideConfirmPassword;
   }
-  constructor(private authService: AuthService) {
+
+  constructor(private authService: AuthService, private snackBar: MatSnackBar) {
   }
 
-  register() {
-    console.log(this.signupForm.get('confirmPassword'))
-    console.log(this.signupForm.value);
-    console.log(this.signupForm.valid);
+  async register() {
+    if (!this.signupForm.valid) {
+      this.showSnackbar('Your form is not valid!', 'error-snackbar', 2000);
+      console.log("Form invalid");
+      return;
+    }
+
+    try {
+      const emailExists = await this.checkEmailExists(this.signupForm.value.email);
+      if (emailExists) {
+        this.showSnackbar('Email already exists!', 'error-snackbar', 1500);
+        console.log("Email exists - True");
+        return;
+      }
+
+      const usernameExists = await this.checkUsernameExists(this.signupForm.value.username);
+      if (usernameExists) {
+        this.showSnackbar('Username already exists!', 'error-snackbar', 2000);
+        console.log("Username exists - True");
+        return;
+      }
+
+
+      //Registration Logic
+      // TODO
+
+
+    } catch (err) {
+      console.error("Registration error:", err);
+      this.showSnackbar('An error occurred during registration. Please try again.', 'error-snackbar', 2000);
+    }
+  }
+
+  async checkUsernameExists(username: string) {
+    const exists = await firstValueFrom(this.authService.checkUsernameExists(username));
+    if (exists) this.signupForm.get('username')?.setErrors({usernameTaken: true});
+    else this.signupForm.get('username')?.setErrors(null);
+
+    return exists;
+  }
+
+  async checkEmailExists(email: string) {
+    const exists = await firstValueFrom(this.authService.checkEmailExists(email));
+    if (exists) this.signupForm.get('email')?.setErrors({emailTaken: true});
+    else this.signupForm.get('email')?.setErrors(null);
+
+    return exists;
+  }
+
+  private showSnackbar(message: string, panelClass: string, duration: number) {
+    this.snackBar.open(message, 'Ok', {
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      panelClass: [panelClass],
+      duration: duration
+    });
   }
 
 }

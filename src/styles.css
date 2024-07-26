@@ -25,6 +25,13 @@ body {
   --dl-space-space-fourunits: 64px;
   --dl-space-space-fiveunits: 80px;
   --dl-space-space-sixunits: 96px;
+
+  --primary-color: #153d77;
+  --secondary-color: #6c757d;
+  --white-color: #fff;
+  --success-color: #198754;
+  --error-color: #dc505e;
+  --background-color: #f2f2f2;
 }
 
 .button-blue {
@@ -87,6 +94,40 @@ body {
   text-align: center;
   transition: 0.3s;
 }
+
+.success-snackbar {
+  color: white;
+  --mdc-snackbar-container-color: var(--success-color);
+
+  .mat-simple-snackbar-action {
+    color: white;
+  }
+}
+
+.error-snackbar {
+  --mdc-snackbar-container-color: var(--error-color);
+  --mdc-snackbar-supporting-text-color: white !important;
+
+  .mat-mdc-button {
+    color: white !important;
+  }
+}
+
+.success-snackbar {
+  --mdc-snackbar-container-color: var(--success-color);
+  --mdc-snackbar-supporting-text-color: white !important;
+
+  .mat-mdc-button {
+    color: white !important;
+  }
+}
+
+/*.success-snackbar {
+  --mdc-snackbar-container-color: var(--success-color) !important;
+  --mdc-snackbar-supporting-text-color: white !important;
+  --mat-mdc-snack-bar-button-color: white !important;
+  white-space: pre-wrap
+}*/
 
 
 mat-form-field.small {

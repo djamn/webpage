@@ -21,6 +21,7 @@
         />
         <mat-error *ngIf="signupForm.get('email')?.hasError('required')">Email is required</mat-error>
         <mat-error *ngIf="signupForm.get('email')?.hasError('email')">Email is not valid</mat-error>
+        <mat-error *ngIf="signupForm.get('email')?.hasError('emailTaken')">This email is already taken</mat-error>
       </mat-form-field>
     </p>
     <p>
@@ -35,7 +36,7 @@
           placeholder="john"
         />
         <mat-error *ngIf="signupForm.get('username')?.hasError('required')">Username is required</mat-error>
-        <mat-error *ngIf="signupForm.get('username')?.hasError('')">TODO</mat-error>
+        <mat-error *ngIf="signupForm.get('username')?.hasError('usernameTaken')">This username is already taken</mat-error>
       </mat-form-field>
     </p>
 

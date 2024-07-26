@@ -14,11 +14,13 @@ import {getStorage, provideStorage} from '@angular/fire/storage';
 import {getRemoteConfig, provideRemoteConfig} from '@angular/fire/remote-config';
 import {getVertexAI, provideVertexAI} from '@angular/fire/vertexai-preview';
 import {environment} from "../environments/environment";
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
+import {FIREBASE_OPTIONS} from "@angular/fire/compat";
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    {provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig},    // Needed for AngularFirestore
     provideAuth(() => getAuth()),
     provideAnalytics(() => getAnalytics()),
     ScreenTrackingService,

@@ -1,15 +1,6 @@
 import {Component, Input, signal} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
-import {merge} from "rxjs";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {
-  AbstractControl,
-  FormControl,
-  UntypedFormControl,
-  UntypedFormGroup,
-  ValidatorFn,
-  Validators
-} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {CrossFieldErrorMatcher} from "./cross-field-error-matcher";
 import {confirmPasswordValidator} from "./confirm-password.validator";
 
@@ -36,11 +27,6 @@ export class RegisterComponent {
     {validators: confirmPasswordValidator}
   )
 
-  // readonly email = new FormControl('', [Validators.required, Validators.email]);
-  // readonly username = new FormControl('', [Validators.required]);
-  // errorMessageEmail = signal('');
-  // errorMessageUsername = signal('');
-
   @Input()
   registerInputPlaceholderPassword: string = 'Enter your password'
 
@@ -50,42 +36,25 @@ export class RegisterComponent {
   @Input()
   registerInputPlaceholderUsername: string = 'Enter your username'
 
-  hide = signal(true);
-  hideConfirm = signal(true);
+  hidePassword = true;
+  hideConfirmPassword = true;
 
-  clickEventPassword(event: MouseEvent) {
-    this.hide.set(!this.hide());
+  togglePasswordVisibility(event: MouseEvent): void {
     event.stopPropagation();
+    this.hidePassword = !this.hidePassword;
   }
 
-  clickEventPasswordConfirm(event: MouseEvent) {
-    this.hideConfirm.set(!this.hideConfirm());
+  toggleConfirmPasswordVisibility(event: MouseEvent): void {
     event.stopPropagation();
+    this.hideConfirmPassword = !this.hideConfirmPassword;
   }
-
   constructor(private authService: AuthService) {
-    // merge(this.email.statusChanges, this.email.valueChanges)
-    //   .pipe(takeUntilDestroyed())
-    //   .subscribe(() => this.updateErrorMessage());
   }
 
   register() {
-    console.log("Hallo")
+    console.log(this.signupForm.get('confirmPassword'))
     console.log(this.signupForm.value);
-  }
-
-  // TODO recode
-  updateErrorMessage() {
-    // if (this.email.hasError('required')) {
-    //   this.errorMessageEmail.set('You must enter a value');
-    //
-    // } else if (this.email.hasError('email')) {
-    //   this.errorMessageEmail.set('Not a valid email');
-    // } else if (this.username.hasError('required')) {
-    //   this.errorMessageUsername.set('You must enter a value');
-    // } else {
-    //   this.errorMessageEmail.set('');
-    // }
+    console.log(this.signupForm.valid);
   }
 
 }

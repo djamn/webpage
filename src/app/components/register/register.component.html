@@ -47,16 +47,17 @@
           formControlName="password"
           autocomplete="new-password"
           placeholder="*******"
-          [type]="hide() ? 'password' : 'text'"
+          [type]="hidePassword ? 'password' : 'text'"
           class="register-input"/>
         <button
+          type="button"
           mat-icon-button
           matSuffix
-          (click)="clickEventPassword($event)"
+          (click)="togglePasswordVisibility($event)"
           [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hide()"
+          [attr.aria-pressed]="hidePassword"
         >
-          <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
         <mat-error *ngIf="signupForm.get('password')?.hasError('required')">Password is required</mat-error>
         <mat-error *ngIf="signupForm.get('password')?.hasError('minlength')">Password should be at least x characters
@@ -73,16 +74,17 @@
           autocomplete="new-password"
           placeholder="*******"
           [errorStateMatcher]="errorMatcher"
-          [type]="hideConfirm() ? 'password' : 'text'"
+          [type]="hideConfirmPassword ? 'password' : 'text'"
           class="register-input"/>
         <button
+          type="button"
           mat-icon-button
           matSuffix
-          (click)="clickEventPasswordConfirm($event)"
+          (click)="toggleConfirmPasswordVisibility($event)"
           [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hideConfirm()"
+          [attr.aria-pressed]="hideConfirmPassword"
         >
-          <mat-icon>{{ hideConfirm() ? 'visibility_off' : 'visibility' }}</mat-icon>
+          <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
         <mat-error *ngIf="signupForm.get('confirmPassword')?.hasError('required')">Password confirmation is required
         </mat-error>
@@ -97,4 +99,4 @@
   </form>
 </div>
 
-<!--Beide Passwortbuttons lösen aus, Usernamechecking, Email existiert checking-->
+<!-- Usernamechecking, Email existiert checking-->

@@ -10,7 +10,7 @@ import {catchError, map, Observable, of} from "rxjs";
 })
 export class AuthService {
 
-  constructor(private firestoreService: FirestoreService, private firestore : AngularFirestore) {
+  constructor(private firestoreService: FirestoreService, private firestore: AngularFirestore) {
   }
 
   checkUsernameExists(username: string): Observable<boolean> {
@@ -37,14 +37,10 @@ export class AuthService {
       await createUserWithEmailAndPassword(auth, email, password).then(async (userCredential) => {
         const user = userCredential.user;
 
-        if (user) {
-          await this.firestoreService.registerUser(user.uid, email, username);
-          console.log('User created:', user);
-          // this.router.navigate(['/dashboard']); // Navigate to dashboard or another route after successful login
-        }
+        if (user) await this.firestoreService.registerUser(user.uid, email, username);
       })
     } catch (err) {
-      console.error('Error creating user:', err);
+      throw err; // Rethrow Error
     }
   }
 }

@@ -31,7 +31,7 @@ export class FirestoreService {
 
   async registerUser(userId: string, email: string, username: string): Promise<void> {
     const userRef = doc(this.firestore, `users/${userId}`);
-    await setDoc(userRef, { uid: userId, email, username });
+    await setDoc(userRef, { uid: userId, email, username, is_admin: false });
   }
 
   getCollection(collectionName: string): Observable<any[]> {

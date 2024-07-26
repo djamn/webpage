@@ -6,6 +6,7 @@ import {confirmPasswordValidator} from "./confirm-password.validator";
 import {firstValueFrom} from "rxjs";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ConfigService} from "../../services/config.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'register-component',
@@ -36,7 +37,7 @@ export class RegisterComponent implements OnInit {
   @Input()
   registerInputPlaceholderUsername: string = 'Enter your username'
 
-  constructor(private authService: AuthService, private snackBar: MatSnackBar, private configService: ConfigService) {
+  constructor(private authService: AuthService, private snackBar: MatSnackBar, private configService: ConfigService, private router: Router) {
   }
 
   ngOnInit() {
@@ -45,7 +46,7 @@ export class RegisterComponent implements OnInit {
     this.signupForm = new UntypedFormGroup({
       username: new UntypedFormControl('', [
         Validators.required,
-        Validators.maxLength(5)
+        Validators.maxLength(10)
       ]),
       email: new UntypedFormControl('', [
         Validators.required,
@@ -53,7 +54,7 @@ export class RegisterComponent implements OnInit {
       ]),
       password: new UntypedFormControl('', [
         Validators.required,
-        Validators.minLength(5)
+        Validators.minLength(6)
       ]),
       confirmPassword: new UntypedFormControl('', [Validators.required])
     }, {validators: confirmPasswordValidator});
@@ -78,25 +79,25 @@ export class RegisterComponent implements OnInit {
     }
 
     try {
-      const emailExists = await this.checkEmailExists(this.signupForm.value.email);
+      const email = this.signupForm.value.email.trim().toLowerCase();
+      const emailExists = await this.checkEmailExists(email);
       if (emailExists) {
         this.showSnackbar('Email already exists!', 'error-snackbar', 1500);
-        console.log("Email exists - True");
         return;
       }
 
-      const usernameExists = await this.checkUsernameExists(this.signupForm.value.username);
+      const username = this.signupForm.value.username.trim().toLowerCase();
+      const usernameExists = await this.checkUsernameExists(username);
       if (usernameExists) {
         this.showSnackbar('Username already exists!', 'error-snackbar', 2000);
-        console.log("Username exists - True");
         return;
       }
 
+      await this.authService.register(email, username, this.signupForm.value.password);
+      this.showSnackbar('Successfully created account!', 'success-snackbar', 1500);
+      this.signupForm.reset();
 
-      //Registration Logic
-      // TODO
-
-
+      await this.router.navigate(['/login'])
     } catch (err) {
       console.error("Registration error:", err);
       this.showSnackbar('An error occurred during registration. Please try again.', 'error-snackbar', 2000);
@@ -129,11 +130,3 @@ export class RegisterComponent implements OnInit {
   }
 
 }
-
-/*
-Todos morgen
-Register implementieren & weiterleiten => + Errorhandling
-
-Host Terms?
-
- */

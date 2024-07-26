@@ -2,7 +2,16 @@ import {Component, Input, signal} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {merge} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {FormControl, Validators} from "@angular/forms";
+import {
+  AbstractControl,
+  FormControl,
+  UntypedFormControl,
+  UntypedFormGroup,
+  ValidatorFn,
+  Validators
+} from "@angular/forms";
+import {CrossFieldErrorMatcher} from "./cross-field-error-matcher";
+import {confirmPasswordValidator} from "./confirm-password.validator";
 
 @Component({
   selector: 'register-component',
@@ -17,10 +26,20 @@ export class RegisterComponent {
   registerAccountHint: string =
     'By clicking Register you accept the HOST Terms of Use and acknowledge the Privacy Statement and Cookie Policy'
 
-  readonly email = new FormControl('', [Validators.required, Validators.email]);
-  readonly username = new FormControl('', [Validators.required]);
-  errorMessageEmail = signal('');
-  errorMessageUsername = signal('');
+  errorMatcher = new CrossFieldErrorMatcher();
+  signupForm: UntypedFormGroup = new UntypedFormGroup({
+      username: new UntypedFormControl('', [Validators.required]),
+      email: new UntypedFormControl('', [Validators.required, Validators.email]),
+      password: new UntypedFormControl('', [Validators.required, Validators.minLength(5)]),
+      confirmPassword: new UntypedFormControl('', [Validators.required])
+    },
+    {validators: confirmPasswordValidator}
+  )
+
+  // readonly email = new FormControl('', [Validators.required, Validators.email]);
+  // readonly username = new FormControl('', [Validators.required]);
+  // errorMessageEmail = signal('');
+  // errorMessageUsername = signal('');
 
   @Input()
   registerInputPlaceholderPassword: string = 'Enter your password'
@@ -45,28 +64,30 @@ export class RegisterComponent {
   }
 
   constructor(private authService: AuthService) {
-    merge(this.email.statusChanges, this.email.valueChanges)
-      .pipe(takeUntilDestroyed())
-      .subscribe(() => this.updateErrorMessage());
+    // merge(this.email.statusChanges, this.email.valueChanges)
+    //   .pipe(takeUntilDestroyed())
+    //   .subscribe(() => this.updateErrorMessage());
   }
 
   register() {
     console.log("Hallo")
+    console.log(this.signupForm.value);
   }
 
   // TODO recode
   updateErrorMessage() {
-    if (this.email.hasError('required')) {
-      this.errorMessageEmail.set('You must enter a value');
-
-    } else if (this.email.hasError('email')) {
-      this.errorMessageEmail.set('Not a valid email');
-    } else if(this.username.hasError('required')){
-      this.errorMessageUsername.set('You must enter a value');
-    }else {
-      this.errorMessageEmail.set('');
-    }
+    // if (this.email.hasError('required')) {
+    //   this.errorMessageEmail.set('You must enter a value');
+    //
+    // } else if (this.email.hasError('email')) {
+    //   this.errorMessageEmail.set('Not a valid email');
+    // } else if (this.username.hasError('required')) {
+    //   this.errorMessageUsername.set('You must enter a value');
+    // } else {
+    //   this.errorMessageEmail.set('');
+    // }
   }
+
 }
 
 /*

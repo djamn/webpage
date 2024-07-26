@@ -7,37 +7,35 @@
 <div class="main-register-container">
   <login-register-image-component class="register-image-container"></login-register-image-component>
 
-  <form (ngSubmit)="register()" class="register-component-form">
+  <form (ngSubmit)="register()" [formGroup]="signupForm" class="register-component-form">
     <p>
       <mat-form-field class="small small-form-field" appearance="outline">
         <mat-label class="input-label">Your Email</mat-label>
         <input
-          class="register-input"
           matInput
+          type="email"
+          formControlName="email"
+          class="register-input"
           placeholder="john@example.com"
-          [formControl]="email"
-          (blur)="updateErrorMessage()"
-          required
+          autocomplete="email"
         />
-        @if (email.invalid) {
-          <mat-error>{{ errorMessageEmail() }}</mat-error>
-        }
+        <mat-error *ngIf="signupForm.get('email')?.hasError('required')">Email is required</mat-error>
+        <mat-error *ngIf="signupForm.get('email')?.hasError('email')">Email is not valid</mat-error>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field class="small small-form-field" appearance="outline">
         <mat-label class="input-label">Your Username</mat-label>
         <input
-          class="register-input"
           matInput
+          type="text"
+          autocomplete="username"
+          formControlName="username"
+          class="register-input"
           placeholder="john"
-          [formControl]="username"
-          (blur)="updateErrorMessage()"
-          required
         />
-        @if (username.invalid) {
-          <mat-error>{{ errorMessageUsername() }}</mat-error>
-        }
+        <mat-error *ngIf="signupForm.get('username')?.hasError('required')">Username is required</mat-error>
+        <mat-error *ngIf="signupForm.get('username')?.hasError('')">TODO</mat-error>
       </mat-form-field>
     </p>
 
@@ -46,9 +44,10 @@
         <mat-label class="input-label">Enter Password</mat-label>
         <input
           matInput
+          formControlName="password"
+          autocomplete="new-password"
           placeholder="*******"
           [type]="hide() ? 'password' : 'text'"
-          (blur)="updateErrorMessage()"
           class="register-input"/>
         <button
           mat-icon-button
@@ -59,6 +58,9 @@
         >
           <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
+        <mat-error *ngIf="signupForm.get('password')?.hasError('required')">Password is required</mat-error>
+        <mat-error *ngIf="signupForm.get('password')?.hasError('minlength')">Password should be at least x characters
+        </mat-error>
       </mat-form-field>
     </p>
 
@@ -67,7 +69,10 @@
         <mat-label class="input-label">Confirm Password</mat-label>
         <input
           matInput
+          formControlName="confirmPassword"
+          autocomplete="new-password"
           placeholder="*******"
+          [errorStateMatcher]="errorMatcher"
           [type]="hideConfirm() ? 'password' : 'text'"
           class="register-input"/>
         <button
@@ -79,6 +84,9 @@
         >
           <mat-icon>{{ hideConfirm() ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
+        <mat-error *ngIf="signupForm.get('confirmPassword')?.hasError('required')">Password confirmation is required
+        </mat-error>
+        <mat-error *ngIf="signupForm.hasError('passwordMismatch')">Password is not the same</mat-error>
       </mat-form-field>
     </p>
 
@@ -88,3 +96,5 @@
     <span class="register-component-text">{{ registerAccountHint }}</span>
   </form>
 </div>
+
+<!--Beide Passwortbuttons lösen aus, Usernamechecking, Email existiert checking-->

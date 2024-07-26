@@ -16,7 +16,6 @@
             "outputPath": "dist/web-frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "baseHref": "/tests/webpage/",
             "polyfills": [
               "zone.js"
             ],

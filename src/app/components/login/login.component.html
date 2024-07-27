@@ -1,4 +1,5 @@
 <div class="main-login-container">
+<div class="login-container">
   <login-register-image-component class="login-image-container"></login-register-image-component>
   <form (ngSubmit)="login()" [formGroup]="loginForm" class="login-component-form">
     <p>
@@ -65,4 +66,5 @@
     <span class="info-text-font login-register-hint">Don't have an account yet?</span>
     <a class="login-register-link link-text-font" routerLink="/register">Click here to register</a>
   </form>
+</div>
 </div>

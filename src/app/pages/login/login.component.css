@@ -4,7 +4,7 @@
 
 .login-main-container {
   justify-content: center;
-  /*  TODO background*/
+  background-color: var(--dl-color-gray-900); /*TODO evaluieren, ob gray background oder image*/
 }
 
 .login-container {

@@ -1,42 +1,35 @@
 html, body {
   height: 100%;
   margin: 0;
-  /*background-color: black !important;*/
 }
 
-.main-login-container {
+.login-container {
   /*border: 1px solid green;*/
-
-  /*TODO evaluieren, zB ob auch mit gray background gut aussieht*/
   border-radius: 10px;
   background-color: white;
-
   width: 370px;
-  height: 620px;
+  height: 520px;
   display: flex;
   position: relative;
   align-items: center;
   flex-direction: column;
   justify-content: flex-start;
   padding: 0 var(--dl-space-space-unit);
-
 }
 
 .login-image-container {
   width: 100%;
-  /*padding: 0 var(--dl-space-space-unit);*/
   margin-top: var(--dl-space-space-unit);
   margin-bottom: var(--dl-space-space-twounits)
 }
 
 .login-component-form {
   /*border: 1px solid red;*/
-
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
-  margin-bottom: var(--dl-space-space-threeunits);
+  margin-bottom: var(--dl-space-space-unit);
   flex-direction: column;
 }
 
@@ -74,17 +67,24 @@ html, body {
 }
 
 .login-register-hint {
+  margin-top: var(--dl-space-space-halfunit);
   color: var(--dl-color-gray-500);
 }
 
 @media (max-width: 479px) {
-  .main-login-container {
-    width: 100vw;
+  .login-container {
+    width: 95%;
+    height: auto;
     padding: var(--dl-space-space-halfunit);
   }
 
   .small-form-field {
-    width: 95vw !important;
+    width: 90vw !important;
   }
 
+  .main-login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

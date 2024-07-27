@@ -1,0 +1,134 @@
+:host {
+  display: contents;
+}
+
+.main-footer-container {
+  width: 100%;
+  display: flex;
+  max-width: var(--dl-size-size-maxwidth);
+  margin-top: auto;
+  max-height: auto;
+  align-items: center;
+  padding: var(--dl-space-space-twounits) var(--dl-space-space-threeunits) var(--dl-space-space-unit) var(--dl-space-space-threeunits);
+  justify-content: space-between;
+}
+
+.footer-logo-container {
+  display: contents;
+}
+
+.footer-logo {
+  height: 2rem;
+  object-fit: cover;
+  text-decoration: none;
+}
+
+.footer-content-container {
+  flex: 0 0 auto;
+  width: 300px;
+  height: auto;
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+}
+
+.footer-content-container-sub {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  padding-bottom: var(--dl-space-space-halfunit);
+  justify-content: center;
+}
+
+.footer-content {
+  text-decoration: none;
+  font-style: normal;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.footer-content:hover{
+  color: var(--dl-color-gray-500);
+}
+
+.footer-content-nav1 {
+  padding-right: var(--dl-space-space-twounits);
+}
+
+.footer-content-nav2 {
+  padding-left: var(--dl-space-space-twounits);
+}
+
+.footer-copyright-container {
+  flex: 0 0 auto;
+  height: auto;
+  display: flex;
+  align-self: stretch;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.footer-copyright-text {
+  height: auto;
+  align-self: stretch;
+  text-align: center;
+}
+
+.footer-icon-group {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.footer-icon-1 {
+  width: 30px;
+  height: 30px;
+  margin-right: var(--dl-space-space-twounits);
+}
+
+.footer-icon-2 {
+  width: 30px;
+  height: 30px;
+}
+
+
+@media (max-width: 767px) {
+  .footer-footer {
+    padding-left: var(--dl-space-space-twounits);
+    padding-right: var(--dl-space-space-twounits);
+  }
+
+  .footer-text {
+    text-align: center;
+    margin-left: var(--dl-space-space-unit);
+    margin-right: var(--dl-space-space-unit);
+  }
+
+  .footer-icon {
+    margin-right: var(--dl-space-space-halfunit);
+  }
+}
+
+@media (max-width: 479px) {
+  .main-footer-container {
+    padding: var(--dl-space-space-unit);
+    flex-direction: column;
+  }
+
+  .footer-logo {
+    margin-bottom: var(--dl-space-space-unit);
+  }
+
+  .footer-copyright-text {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: var(--dl-space-space-unit);
+  }
+
+  .footer-icon-1 {
+    margin-right: var(--dl-space-space-twounits);
+  }
+}

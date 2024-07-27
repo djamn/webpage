@@ -30,7 +30,7 @@ html, body {
 }
 
 .login-component-form {
-  border: 1px solid red;
+  /*border: 1px solid red;*/
 
   width: 100%;
   height: 100%;
@@ -51,15 +51,30 @@ html, body {
 
 .forgot-password {
   margin-top: -35px;
-  margin-bottom: var(--dl-space-space-twounits);
+  margin-bottom: var(--dl-space-space-unit);
   text-align: end;
   width: 100%;
   font-size: 14px;
+  text-decoration: none;
+  font-style: normal;
+  z-index: 1000;
+}
+
+.remember-me-container {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  margin-bottom: var(--dl-space-space-unit);
+}
+
+.remember-me-text {
+  color: var(--text-info-color);
+  font-size: 15px;
+  font-weight: 400;
 }
 
 @media (max-width: 479px) {
   .main-login-container {
-    border: 1px solid red;
     width: 100vw;
     padding: var(--dl-space-space-halfunit);
   }

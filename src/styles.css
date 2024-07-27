@@ -33,7 +33,10 @@ body {
   --error-color: #dc505e;
   --background-color: #f2f2f2;
 
-  --color-blue: #1f75cb;
+  --text-info-color: gray;
+  --blue-color: #1f75cb;
+  --blue-color-hover: #084f9e;
+
   /*--color-success:*/
   /*-- color-error:*/
 }
@@ -45,12 +48,12 @@ body {
   border-color: black;
   border-width: 1px;
   border-radius: 4px;
-  background-color: #1f75cb;
+  background-color: var(--blue-color);
 }
 
 .button-blue:hover {
   color: white;
-  background: #084f9e;
+  background: var(--blue-color-hover);
 }
 
 .button-disabled {
@@ -128,7 +131,19 @@ body {
 
 .link-text-font {
   font-weight: 500;
-  color: var(--color-blue);
+  color: var(--blue-color);
+}
+
+.link-text-font:hover {
+  color: var(--blue-color-hover);
+}
+
+.checkbox-style {
+  width: 30px;
+  border: 2px solid #555;
+  cursor: pointer;
+  height: 30px;
+  padding: 2px;
 }
 
 /*.success-snackbar {

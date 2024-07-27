@@ -4,6 +4,7 @@ import {AuthService} from "../../services/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ConfigService} from "../../services/config.service";
 import {Router} from "@angular/router";
+import {MatCheckboxChange} from "@angular/material/checkbox";
 
 @Component({
   selector: 'login-component',
@@ -27,6 +28,10 @@ export class LoginComponent implements OnInit{
   togglePasswordVisibility(event: MouseEvent): void {
     event.stopPropagation();
     this.hidePassword = !this.hidePassword;
+  }
+
+  updateCheckbox(event: boolean) {
+    console.log("Check")
   }
 
   async login() {

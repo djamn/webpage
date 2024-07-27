@@ -40,7 +40,20 @@
       </mat-form-field>
     </p>
 
-    <span class="forgot-password link-text-font">Forgot your password?</span>
+    <a
+      class="forgot-password link-text-font"
+      routerLink="/reset-password">
+      Forgot your password?
+    </a>
+    <div class="remember-me-container">
+      <mat-checkbox
+        class="mat-checkbox"
+        [checked]=""
+        (change)="updateCheckbox($event.checked)"
+      ></mat-checkbox>
+
+      <span class="remember-me-text">Remember me</span>
+    </div>
 
     <div class="confirm-button-container">
       <button class="confirm-button button-general button-blue" type="submit">Login</button>

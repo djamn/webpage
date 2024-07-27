@@ -7,6 +7,7 @@ import {firstValueFrom} from "rxjs";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ConfigService} from "../../services/config.service";
 import {Router} from "@angular/router";
+import {Snackbar} from "../../utility/snackbar";
 
 @Component({
   selector: 'register-component',
@@ -37,7 +38,7 @@ export class RegisterComponent implements OnInit {
   @Input()
   registerInputPlaceholderUsername: string = 'Enter your username'
 
-  constructor(private authService: AuthService, private snackBar: MatSnackBar, private configService: ConfigService, private router: Router) {
+  constructor(private authService: AuthService, private configService: ConfigService, private router: Router, private snackbar : Snackbar) {
   }
 
   ngOnInit() {
@@ -73,7 +74,7 @@ export class RegisterComponent implements OnInit {
 
   async register() {
     if (!this.signupForm.valid) {
-      this.showSnackbar('Your form is not valid!', 'error-snackbar', 2000);
+      this.snackbar.showSnackbar('Your form is not valid!', 'error-snackbar', 2000);
       console.log("Form invalid");
       return;
     }
@@ -82,25 +83,25 @@ export class RegisterComponent implements OnInit {
       const email = this.signupForm.value.email.trim().toLowerCase();
       const emailExists = await this.checkEmailExists(email);
       if (emailExists) {
-        this.showSnackbar('Email already exists!', 'error-snackbar', 1500);
+        this.snackbar.showSnackbar('Email already exists!', 'error-snackbar', 1500);
         return;
       }
 
       const username = this.signupForm.value.username.trim().toLowerCase();
       const usernameExists = await this.checkUsernameExists(username);
       if (usernameExists) {
-        this.showSnackbar('Username already exists!', 'error-snackbar', 2000);
+        this.snackbar.showSnackbar('Username already exists!', 'error-snackbar', 2000);
         return;
       }
 
       await this.authService.register(email, username, this.signupForm.value.password);
-      this.showSnackbar('Successfully created account!', 'success-snackbar', 1500);
+      this.snackbar.showSnackbar('Successfully created account!', 'success-snackbar', 1500);
       this.signupForm.reset();
 
       await this.router.navigate(['/login'])
     } catch (err) {
       console.error("Registration error:", err);
-      this.showSnackbar('An error occurred during registration. Please try again.', 'error-snackbar', 2000);
+      this.snackbar.showSnackbar('An error occurred during registration. Please try again.', 'error-snackbar', 2000);
     }
   }
 
@@ -119,14 +120,4 @@ export class RegisterComponent implements OnInit {
 
     return exists;
   }
-
-  private showSnackbar(message: string, panelClass: string, duration: number) {
-    this.snackBar.open(message, 'Ok', {
-      verticalPosition: 'top',
-      horizontalPosition: 'center',
-      panelClass: [panelClass],
-      duration: duration
-    });
-  }
-
 }

@@ -38,8 +38,6 @@
           <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
         <mat-error *ngIf="loginForm.get('password')?.hasError('required')">This field is required!</mat-error>
-<!--        <mat-error *ngIf="loginForm.get('password')?.hasError('invalid')">Invalid login data</mat-error>-->
-<!--        <mat-error *ngIf="loginForm.get('password')?.hasError('error')">An error occurred</mat-error>-->
       </mat-form-field>
     </p>
 
@@ -64,7 +62,7 @@
 
     <span class="hint-text-font">By signing in you accept the Terms of Use and acknowledge the Privacy Statement and Cookie Policy.</span>
 
-    <span class="info-text-font">Don't have an account yet?</span>
+    <span class="info-text-font login-register-hint">Don't have an account yet?</span>
     <a class="login-register-link link-text-font" routerLink="/register">Click here to register</a>
   </form>
 </div>

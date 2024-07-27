@@ -2,12 +2,12 @@
   display: contents;
 }
 
-.register-container {
-  width: 100%;
-  overflow: auto;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
+.register-main-container {
   justify-content: center;
 /*  TODO background*/
+}
+
+.register-container {
+  margin-top: 5%;
+  height: auto;
 }

@@ -2,12 +2,11 @@
   display: contents;
 }
 
-.login-container {
-  width: 100%;
-  overflow: auto;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
+.login-main-container {
   justify-content: center;
   /*  TODO background*/
+}
+
+.login-container {
+  margin-top: 8%;
 }

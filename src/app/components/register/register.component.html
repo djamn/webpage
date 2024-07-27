@@ -1,9 +1,11 @@
+<div class="main-register-container">
+
 <img class="background-image"
      [attr.src]="imageSrc"
      [attr.alt]=""
 >
 
-<div class="main-register-container">
+<div class="register-container">
   <login-register-image-component class="register-image-container"></login-register-image-component>
 
   <form (ngSubmit)="register()" [formGroup]="signupForm" class="register-component-form">
@@ -101,5 +103,4 @@
     <span class="hint-text-font">{{ registerAccountHint }}</span>
   </form>
 </div>
-
-<!-- Usernamechecking -->
+</div>

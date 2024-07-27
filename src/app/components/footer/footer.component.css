@@ -7,7 +7,6 @@
   display: flex;
   max-width: var(--dl-size-size-maxwidth);
   margin-top: auto;
-  max-height: auto;
   align-items: center;
   padding: var(--dl-space-space-twounits) var(--dl-space-space-threeunits) var(--dl-space-space-unit) var(--dl-space-space-threeunits);
   justify-content: space-between;

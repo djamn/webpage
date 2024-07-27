@@ -61,6 +61,7 @@ html, body {
 
 .confirm-button {
   width: 100%;
+  margin-bottom: var(--dl-space-space-halfunit);
 }
 
 .confirm-button-container {
@@ -68,15 +69,6 @@ html, body {
   width: 100%;
   /*padding: 0 var(--dl-space-space-unit)*/
 
-}
-
-.register-component-text {
-  color: var(--text-hint-color);
-  font-size: 15px;
-  font-style: normal;
-  text-align: justify;
-  font-weight: 400;
-  margin-top: var(--dl-space-space-halfunit);
 }
 
 

@@ -74,8 +74,7 @@ export class RegisterComponent implements OnInit {
 
   async register() {
     if (!this.signupForm.valid) {
-      this.snackbar.showSnackbar('Your form is not valid!', 'error-snackbar', 2000);
-      console.log("Form invalid");
+      console.debug("Register Form invalid");
       return;
     }
 

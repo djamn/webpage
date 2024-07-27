@@ -12,6 +12,8 @@
           placeholder="Your username/email"
           autocomplete="username"
         />
+
+        <mat-error *ngIf="loginForm.get('usernameOrEmail')?.hasError('required')">This field is required!</mat-error>
       </mat-form-field>
     </p>
 
@@ -35,8 +37,9 @@
         >
           <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
-        <mat-error *ngIf="loginForm.get('password')?.hasError('invalid')">Invalid login data</mat-error>
-        <mat-error *ngIf="loginForm.get('password')?.hasError('error')">An error occurred</mat-error>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">This field is required!</mat-error>
+<!--        <mat-error *ngIf="loginForm.get('password')?.hasError('invalid')">Invalid login data</mat-error>-->
+<!--        <mat-error *ngIf="loginForm.get('password')?.hasError('error')">An error occurred</mat-error>-->
       </mat-form-field>
     </p>
 

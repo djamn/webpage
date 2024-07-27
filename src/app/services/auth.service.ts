@@ -1,9 +1,15 @@
 import {Injectable} from '@angular/core';
 import {getAuth} from "firebase/auth";
-import {createUserWithEmailAndPassword} from "@angular/fire/auth";
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "@angular/fire/auth";
 import {FirestoreService} from "./firestore.service";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {catchError, map, Observable, of} from "rxjs";
+import {catchError, firstValueFrom, map, Observable, of} from "rxjs";
+
+interface User {
+  email: string;
+  username: string;
+  // Add any other fields you have in your user documents
+}
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +48,27 @@ export class AuthService {
     } catch (err) {
       throw err; // Rethrow Error
     }
+  }
+
+  async login(emailOrUsername: string, password: string) {
+    try {
+      const email = emailOrUsername;
+      const auth = getAuth();
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user; // TODO
+    } catch (err) {
+      throw err; // rethrow error
+    }
+  }
+
+  async fetchEmailByUsername(username: string) {
+    const userDoc = this.firestore.collection('users', ref => ref.where('username', '==', username)).get();
+    const userSnapshot = await firstValueFrom(userDoc);
+    if (!userSnapshot.empty) {
+      const user = userSnapshot.docs[0].data() as User;
+      return user.email;
+    }
+    throw new Error('auth/invalid-credential');
   }
 }
 

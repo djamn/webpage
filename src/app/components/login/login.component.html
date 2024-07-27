@@ -1,1 +1,49 @@
-<p>login works!</p>
+<div class="main-login-container">
+  <login-register-image-component class="login-image-container"></login-register-image-component>
+  <form (ngSubmit)="login()" [formGroup]="loginForm" class="login-component-form">
+    <p>
+      <mat-form-field class="small small-form-field" appearance="outline">
+        <mat-label class="input-label">Enter Username or Email</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="usernameOrEmail"
+          class="login-input"
+          placeholder="Your username/email"
+          autocomplete="username"
+        />
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field class="small small-form-field" appearance="outline">
+        <mat-label class="input-label">Enter Password</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          autocomplete="new-password"
+          placeholder="*******"
+          [type]="hidePassword ? 'password' : 'text'"
+          class="login-input"/>
+        <button
+          type="button"
+          mat-icon-button
+          matSuffix
+          (click)="togglePasswordVisibility($event)"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hidePassword"
+        >
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('invalid')">Invalid login data</mat-error>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('error')">An error occurred</mat-error>
+      </mat-form-field>
+    </p>
+
+    <span class="forgot-password link-text-font">Forgot your password?</span>
+
+    <div class="confirm-button-container">
+      <button class="confirm-button button-general button-blue" type="submit">Login</button>
+    </div>
+  </form>
+</div>

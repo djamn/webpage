@@ -56,12 +56,7 @@ html, body {
 
 .small-form-field {
   margin-bottom: var(--dl-space-space-unit);
-}
-
-.small-form-field {
-  /*margin-bottom: 0px;*/
   width: 337px;
-  /*width: 350px;*/
 }
 
 .confirm-button {

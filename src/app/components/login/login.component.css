@@ -1,0 +1,71 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  /*background-color: black !important;*/
+}
+
+.main-login-container {
+  /*border: 1px solid green;*/
+
+  /*TODO evaluieren, zB ob auch mit gray background gut aussieht*/
+  border-radius: 10px;
+  background-color: white;
+
+  width: 370px;
+  height: 620px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0 var(--dl-space-space-unit);
+
+}
+
+.login-image-container {
+  width: 100%;
+  /*padding: 0 var(--dl-space-space-unit);*/
+  margin-top: var(--dl-space-space-unit);
+  margin-bottom: var(--dl-space-space-twounits)
+}
+
+.login-component-form {
+  border: 1px solid red;
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--dl-space-space-threeunits);
+  flex-direction: column;
+}
+
+.small-form-field {
+  margin-bottom: var(--dl-space-space-unit);
+  width: 337px;
+}
+
+.confirm-button, .confirm-button-container {
+  width: 100%;
+}
+
+.forgot-password {
+  margin-top: -35px;
+  margin-bottom: var(--dl-space-space-twounits);
+  text-align: end;
+  width: 100%;
+  font-size: 14px;
+}
+
+@media (max-width: 479px) {
+  .main-login-container {
+    border: 1px solid red;
+    width: 100vw;
+    padding: var(--dl-space-space-halfunit);
+  }
+
+  .small-form-field {
+    width: 95vw !important;
+  }
+
+}

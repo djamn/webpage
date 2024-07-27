@@ -52,11 +52,16 @@
         (change)="updateCheckbox($event.checked)"
       ></mat-checkbox>
 
-      <span class="remember-me-text">Remember me</span>
+      <span class="hint-text-font">Remember me</span>
     </div>
 
     <div class="confirm-button-container">
       <button class="confirm-button button-general button-blue" type="submit">Login</button>
     </div>
+
+    <span class="hint-text-font">By signing in you accept the Terms of Use and acknowledge the Privacy Statement and Cookie Policy.</span>
+
+    <span class="info-text-font">Don't have an account yet?</span>
+    <a class="login-register-link link-text-font" routerLink="/register">Click here to register</a>
   </form>
 </div>

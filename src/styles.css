@@ -33,7 +33,7 @@ body {
   --error-color: #dc505e;
   --background-color: #f2f2f2;
 
-  --text-info-color: gray;
+  --text-hint-color: gray;
   --blue-color: #1f75cb;
   --blue-color-hover: #084f9e;
 
@@ -132,11 +132,30 @@ body {
 .link-text-font {
   font-weight: 500;
   color: var(--blue-color);
+  z-index: 1000;
+  text-decoration: none;
+  font-style: normal;
 }
 
 .link-text-font:hover {
   color: var(--blue-color-hover);
 }
+
+.hint-text-font {
+  color: var(--text-hint-color);
+  font-size: 15px;
+  font-weight: 400;
+  text-align: justify;
+}
+
+.info-text-font {
+  color: black;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: justify;
+}
+
+
 
 .checkbox-style {
   width: 30px;

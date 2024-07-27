@@ -71,7 +71,7 @@ html, body {
 }
 
 .register-component-text {
-  color: var(--text-info-color);
+  color: var(--text-hint-color);
   font-size: 15px;
   font-style: normal;
   text-align: justify;

@@ -17,7 +17,7 @@ import {Snackbar} from "../../utility/snackbar";
 export class RegisterComponent implements OnInit {
   hidePassword = true;
   hideConfirmPassword = true;
-  // config: any;
+  config: any;
   errorMatcher = new CrossFieldErrorMatcher();
   signupForm!: UntypedFormGroup;
 
@@ -42,12 +42,12 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.config = this.configService.getConfig();
+    this.config = this.configService.getConfig();
 
     this.signupForm = new UntypedFormGroup({
       username: new UntypedFormControl('', [
         Validators.required,
-        Validators.maxLength(10)
+        Validators.maxLength(this.config.usernameMaxLength)
       ]),
       email: new UntypedFormControl('', [
         Validators.required,
@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
       ]),
       password: new UntypedFormControl('', [
         Validators.required,
-        Validators.minLength(6)
+        Validators.minLength(this.config.passwordMinLength)
       ]),
       confirmPassword: new UntypedFormControl('', [Validators.required])
     }, {validators: confirmPasswordValidator});

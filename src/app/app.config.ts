@@ -19,7 +19,7 @@ import {FIREBASE_OPTIONS} from "@angular/fire/compat";
 import {ConfigService} from "./services/config.service";
 import {HttpClient, provideHttpClient} from "@angular/common/http";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
-import {HttpLoaderFactory} from "../main";
+import {HttpLoaderFactory, initApp} from "../main";
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
@@ -47,12 +47,12 @@ export const appConfig: ApplicationConfig = {
         },
       })
     ),
-    // {
-    //   provide: APP_INITIALIZER,
-    //   useFactory: initializeApp,
-    //   deps: [ConfigService],
-    //   multi: true
-    // },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initApp,
+      deps: [ConfigService],
+      multi: true
+    },
     provideHttpClient(),
   ]
 };

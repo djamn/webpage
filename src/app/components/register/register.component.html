@@ -1,106 +1,111 @@
 <div class="main-register-container">
 
-<img class="background-image"
-     [attr.src]="imageSrc"
-     [attr.alt]=""
->
+  <img class="background-image"
+       [attr.src]="imageSrc"
+       [attr.alt]=""
+  >
 
-<div class="register-container">
-  <login-register-image-component class="register-image-container"></login-register-image-component>
+  <div class="register-container">
+    <login-register-image-component class="register-image-container"></login-register-image-component>
 
-  <form (ngSubmit)="register()" [formGroup]="signupForm" class="register-component-form">
-    <p>
-      <mat-form-field class="small small-form-field" appearance="outline">
-        <mat-label class="input-label">Your Email</mat-label>
-        <input
-          matInput
-          type="email"
-          formControlName="email"
-          class="register-input"
-          placeholder="john@example.com"
-          autocomplete="email"
-        />
-        <mat-error *ngIf="signupForm.get('email')?.hasError('required')">Email is required</mat-error>
-        <mat-error *ngIf="signupForm.get('email')?.hasError('email')">Email is not valid</mat-error>
-        <mat-error *ngIf="signupForm.get('email')?.hasError('emailTaken')">This email is already taken</mat-error>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field class="small small-form-field" appearance="outline">
-        <mat-label class="input-label">Your Username</mat-label>
-        <input
-          matInput
-          type="text"
-          autocomplete="username"
-          formControlName="username"
-          class="register-input"
-          placeholder="john"
-        />
-        <mat-error *ngIf="signupForm.get('username')?.hasError('required')">Username is required</mat-error>
-        <mat-error *ngIf="signupForm.get('username')?.hasError('maxlength')">Username can only have x characters
-        </mat-error>
-        <mat-error *ngIf="signupForm.get('username')?.hasError('usernameTaken')">This username is already taken
-        </mat-error>
-      </mat-form-field>
-    </p>
+    <form (ngSubmit)="register()" [formGroup]="signupForm" class="register-component-form">
+      <p>
+        <mat-form-field class="small small-form-field" appearance="outline">
+          <mat-label class="input-label">Your Email</mat-label>
+          <input
+            matInput
+            type="email"
+            formControlName="email"
+            class="register-input"
+            placeholder="john@example.com"
+            autocomplete="email"
+          />
+          <mat-error *ngIf="signupForm.get('email')?.hasError('required')">Email is required</mat-error>
+          <mat-error *ngIf="signupForm.get('email')?.hasError('email')">Email is not valid</mat-error>
+          <mat-error *ngIf="signupForm.get('email')?.hasError('emailTaken')">This email is already taken</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="small small-form-field" appearance="outline">
+          <mat-label class="input-label">Your Username</mat-label>
+          <input
+            matInput
+            type="text"
+            autocomplete="username"
+            formControlName="username"
+            class="register-input"
+            placeholder="john"
+          />
+          <mat-error *ngIf="signupForm.get('username')?.hasError('required')">Username is required</mat-error>
+          <mat-error *ngIf="signupForm.get('username')?.hasError('maxlength')">Username can only
+            have {{ config.usernameMaxLength }} characters
+          </mat-error>
+          <!--        <mat-error *ngIf="signupForm.get('username')?.hasError('maxlength')">
+            {{ 'ERRORS.USERNAME_MAX_LENGTH' | translate: { usernameMaxLength: config.usernameMaxLength } }}
+          </mat-error>-->
+          <mat-error *ngIf="signupForm.get('username')?.hasError('usernameTaken')">This username is already taken
+          </mat-error>
+        </mat-form-field>
+      </p>
 
-    <p>
-      <mat-form-field class="small small-form-field" appearance="outline">
-        <mat-label class="input-label">Enter Password</mat-label>
-        <input
-          matInput
-          formControlName="password"
-          autocomplete="new-password"
-          placeholder="*******"
-          [type]="hidePassword ? 'password' : 'text'"
-          class="register-input"/>
-        <button
-          type="button"
-          mat-icon-button
-          matSuffix
-          (click)="togglePasswordVisibility($event)"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hidePassword"
-        >
-          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-        </button>
-        <mat-error *ngIf="signupForm.get('password')?.hasError('required')">Password is required</mat-error>
-        <mat-error *ngIf="signupForm.get('password')?.hasError('minlength')">Password should be at least x characters
-        </mat-error>
-      </mat-form-field>
-    </p>
+      <p>
+        <mat-form-field class="small small-form-field" appearance="outline">
+          <mat-label class="input-label">Enter Password</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            autocomplete="new-password"
+            placeholder="*******"
+            [type]="hidePassword ? 'password' : 'text'"
+            class="register-input"/>
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="togglePasswordVisibility($event)"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword"
+          >
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          <mat-error *ngIf="signupForm.get('password')?.hasError('required')">Password is required</mat-error>
+          <mat-error *ngIf="signupForm.get('password')?.hasError('minlength')">Password should be at
+            least {{ config.passwordMinLength }} characters
+          </mat-error>
+        </mat-form-field>
+      </p>
 
-    <p>
-      <mat-form-field class="small small-form-field" appearance="outline">
-        <mat-label class="input-label">Confirm Password</mat-label>
-        <input
-          matInput
-          formControlName="confirmPassword"
-          autocomplete="new-password"
-          placeholder="*******"
-          [errorStateMatcher]="errorMatcher"
-          [type]="hideConfirmPassword ? 'password' : 'text'"
-          class="register-input"/>
-        <button
-          type="button"
-          mat-icon-button
-          matSuffix
-          (click)="toggleConfirmPasswordVisibility($event)"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hideConfirmPassword"
-        >
-          <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-        </button>
-        <mat-error *ngIf="signupForm.get('confirmPassword')?.hasError('required')">Password confirmation is required
-        </mat-error>
-        <mat-error *ngIf="signupForm.hasError('passwordMismatch')">Password is not the same</mat-error>
-      </mat-form-field>
-    </p>
+      <p>
+        <mat-form-field class="small small-form-field" appearance="outline">
+          <mat-label class="input-label">Confirm Password</mat-label>
+          <input
+            matInput
+            formControlName="confirmPassword"
+            autocomplete="new-password"
+            placeholder="*******"
+            [errorStateMatcher]="errorMatcher"
+            [type]="hideConfirmPassword ? 'password' : 'text'"
+            class="register-input"/>
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="toggleConfirmPasswordVisibility($event)"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hideConfirmPassword"
+          >
+            <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          <mat-error *ngIf="signupForm.get('confirmPassword')?.hasError('required')">Password confirmation is required
+          </mat-error>
+          <mat-error *ngIf="signupForm.hasError('passwordMismatch')">Password is not the same</mat-error>
+        </mat-form-field>
+      </p>
 
-    <div class="confirm-button-container">
-      <button class="confirm-button button-general button-blue" type="submit">Register</button>
-    </div>
-    <span class="hint-text-font">{{ registerAccountHint }}</span>
-  </form>
-</div>
+      <div class="confirm-button-container">
+        <button class="confirm-button button-general button-blue" type="submit">Register</button>
+      </div>
+      <span class="hint-text-font">{{ registerAccountHint }}</span>
+    </form>
+  </div>
 </div>

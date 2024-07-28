@@ -1,0 +1,31 @@
+{
+  "REGISTER": {
+    "EMAIL": "Your Email",
+    "USERNAME": "Your Username",
+    "PASSWORD": "Enter Password",
+    "CONFIRM_PASSWORD": "Confirm Password",
+    "EMAIL_PLACEHOLDER": "john@example.com",
+    "USERNAME_PLACEHOLDER": "john",
+    "PASSWORD_PLACEHOLDER": "*******",
+    "CONFIRM_PASSWORD_PLACEHOLDER": "*******",
+    "REGISTER_BUTTON": "Register",
+    "REGISTER_HINT": "By clicking Register you accept the HOST Terms of Use and acknowledge the Privacy Statement and Cookie Policy",
+    "FORM_INVALID": "Your form is not valid!",
+    "EMAIL_EXISTS": "Email already exists!",
+    "USERNAME_EXISTS": "Username already exists!",
+    "ERROR": "An error occurred during registration. Please try again.",
+    "EMAIL_REQUIRED": "Email is required",
+    "EMAIL_INVALID": "Email is not valid",
+    "EMAIL_TAKEN": "This email is already taken",
+    "USERNAME_REQUIRED": "Username is required",
+    "USERNAME_TAKEN": "This username is already taken",
+    "PASSWORD_REQUIRED": "Password is required",
+    "PASSWORD_MINLENGTH": "Password should be at least 5 characters",
+    "CONFIRM_PASSWORD_REQUIRED": "Password confirmation is required",
+    "PASSWORD_MISMATCH": "Passwords do not match"
+  },
+  "HOME": {
+    "TITLE": "Hello Angular with ngx-translate!",
+    "SELECT": "Change language"
+  }
+}

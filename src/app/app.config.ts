@@ -1,4 +1,4 @@
-import {APP_INITIALIZER, ApplicationConfig} from '@angular/core';
+import {APP_INITIALIZER, ApplicationConfig, importProvidersFrom} from '@angular/core';
 import {provideRouter} from '@angular/router';
 
 import {routes} from './app.routes';
@@ -17,7 +17,9 @@ import {environment} from "../environments/environment";
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {FIREBASE_OPTIONS} from "@angular/fire/compat";
 import {ConfigService} from "./services/config.service";
-import {provideHttpClient} from "@angular/common/http";
+import {HttpClient, provideHttpClient} from "@angular/common/http";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {HttpLoaderFactory} from "../main";
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
@@ -35,6 +37,16 @@ export const appConfig: ApplicationConfig = {
     provideStorage(() => getStorage()),
     provideRemoteConfig(() => getRemoteConfig()),
     provideVertexAI(() => getVertexAI()), provideAnimationsAsync(),
+    provideHttpClient(),
+    importProvidersFrom(
+      TranslateModule.forRoot({
+        loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient],
+        },
+      })
+    ),
     // {
     //   provide: APP_INITIALIZER,
     //   useFactory: initializeApp,

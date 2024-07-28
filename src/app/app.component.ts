@@ -1,14 +1,27 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {Component} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {RouterLink, RouterOutlet} from '@angular/router';
+import {TranslateModule, TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink],
+  imports: [CommonModule, RouterOutlet, RouterLink, TranslateModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
+// TODO move service in mainpage
 export class AppComponent {
+  constructor(public translate: TranslateService) {
+    translate.addLangs(['en', 'de']);
+    translate.setDefaultLang('en');
+
+    const browserLang = translate.getBrowserLang();
+    const lang = browserLang!.match(/en|de/) ? browserLang : 'en'
+    if (lang) translate.use(lang);
+    else translate.use('en');
+  }
+
   title = 'web-frontend';
 }

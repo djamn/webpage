@@ -1,0 +1,31 @@
+{
+  "REGISTER": {
+    "EMAIL": "Ihre Email",
+    "USERNAME": "Ihr Benutzername",
+    "PASSWORD": "Passwort eingeben",
+    "CONFIRM_PASSWORD": "Passwort bestätigen",
+    "EMAIL_PLACEHOLDER": "john@example.com",
+    "USERNAME_PLACEHOLDER": "john",
+    "PASSWORD_PLACEHOLDER": "*******",
+    "CONFIRM_PASSWORD_PLACEHOLDER": "*******",
+    "REGISTER_BUTTON": "Registrieren",
+    "REGISTER_HINT": "Mit dem Klicken auf Registrieren akzeptieren Sie die HOST-Nutzungsbedingungen und erkennen die Datenschutzerklärung und Cookie-Richtlinie an.",
+    "FORM_INVALID": "Ihr Formular ist nicht gültig!",
+    "EMAIL_EXISTS": "E-Mail existiert bereits!",
+    "USERNAME_EXISTS": "Benutzername existiert bereits!",
+    "ERROR": "Bei der Registrierung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+    "EMAIL_REQUIRED": "E-Mail ist erforderlich",
+    "EMAIL_INVALID": "E-Mail ist nicht gültig",
+    "EMAIL_TAKEN": "Diese E-Mail ist bereits vergeben",
+    "USERNAME_REQUIRED": "Benutzername ist erforderlich",
+    "USERNAME_TAKEN": "Dieser Benutzername ist bereits vergeben",
+    "PASSWORD_REQUIRED": "Passwort ist erforderlich",
+    "PASSWORD_MINLENGTH": "Passwort sollte mindestens 5 Zeichen lang sein",
+    "CONFIRM_PASSWORD_REQUIRED": "Passwortbestätigung ist erforderlich",
+    "PASSWORD_MISMATCH": "Passwörter stimmen nicht überein"
+  },
+  "HOME": {
+    "TITLE": "Hsdohnrtgkjbnghfello Angular with ngx-translate!",
+    "SELECT": "Change languagföplmte"
+  }
+}

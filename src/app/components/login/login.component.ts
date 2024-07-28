@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
         this.snackbar.showSnackbar(this.translate.instant('LOGIN.INVALID_CREDENTIALS'), 'error-snackbar', 2000);
       } else {
         this.snackbar.showSnackbar(this.translate.instant('LOGIN.UNEXPECTED_ERROR'), 'error-snackbar', 2000);
-        console.log("Unexpected error occurred in login():", err)
+        console.error("Unexpected error occurred in login():", err)
       }
     }
   }

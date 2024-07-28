@@ -38,6 +38,9 @@
     "CONFIRM_PASSWORD_REQUIRED": "Password confirmation is required",
     "PASSWORD_MISMATCH": "Passwords do not match"
   },
+  "SNACKBAR": {
+    "CONFIRM_BUTTON": "Ok"
+  },
   "HOME": {
     "TITLE": "Hello Angular with ngx-translate!",
     "SELECT": "Change language"

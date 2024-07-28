@@ -10,6 +10,7 @@ import {RegisterComponent} from "./register/register.component";
 import {ResetPasswordComponent} from "./reset-password/reset-password.component";
 import {LoginRegisterImageComponent} from "./login-register-image/login-register-image.component";
 import {FooterComponent} from "./footer/footer.component";
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import {FooterComponent} from "./footer/footer.component";
     LoginRegisterImageComponent,
     FooterComponent,
   ],
-  imports: [CommonModule, RouterModule, FormsModule, MaterialModule, ReactiveFormsModule],
+    imports: [CommonModule, RouterModule, FormsModule, MaterialModule, ReactiveFormsModule, TranslateModule],
   exports: [
     TestComponentComponent,
     LoginComponent,

@@ -1,4 +1,7 @@
 {
+  "LOGIN": {
+    "INVALID_CREDENTIALS": "Falsche Logindaten!"
+  },
   "REGISTER": {
     "EMAIL": "Ihre Email",
     "USERNAME": "Ihr Benutzername",

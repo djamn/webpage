@@ -4,6 +4,7 @@ import {AuthService} from "../../services/auth.service";
 import {ConfigService} from "../../services/config.service";
 import {Router} from "@angular/router";
 import {Snackbar} from "../../utility/snackbar";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'login-component',
@@ -14,7 +15,11 @@ export class LoginComponent implements OnInit {
   hidePassword = true;
   loginForm!: UntypedFormGroup;
 
-  constructor(private authService: AuthService, private snackbar: Snackbar, private configService: ConfigService, private router: Router) {
+  constructor(private authService: AuthService,
+              private snackbar: Snackbar,
+              private configService: ConfigService,
+              private router: Router,
+              private translate: TranslateService) {
   }
 
   ngOnInit() {
@@ -51,13 +56,15 @@ export class LoginComponent implements OnInit {
     } catch (err) {
       // TODO recode
       if (this.isFirebaseError(err) && err.code === 'auth/invalid-credential' || err instanceof Error && err.message === 'auth/invalid-credential') {
-        this.snackbar.showSnackbar('Invalid login data!', 'error-snackbar', 2000);
+        this.snackbar.showSnackbar(this.translate.instant('LOGIN.INVALID_CREDENTIALS'), 'error-snackbar', 2000);
       } else {
-        this.snackbar.showSnackbar('An unexpected error occurred', 'error-snackbar', 2000);
+        this.snackbar.showSnackbar(this.translate.instant('LOGIN.UNEXPECTED_ERROR'), 'error-snackbar', 2000);
         console.log("Unexpected error occurred in login():", err)
       }
     }
   }
+
+  // Invalid login data!
 
   // Type guard to check if error is a Firebase error
   private isFirebaseError(err: any): err is { code: string } {

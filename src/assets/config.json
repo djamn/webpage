@@ -3,5 +3,6 @@
   "PASSWORD_MIN_LENGTH": 6,
   "REGISTER_POSSIBLE": true,
   "REGISTER_BACKGROUND_IMAGE_SRC": "/assets/no-image.svg",
-  "FOOTER_LOGO_IMAGE_SRC": "/assets/no-image.svg"
+  "FOOTER_LOGO_IMAGE_SRC": "/assets/no-image.svg",
+  "LOGIN_REGISTER_LOGO_IMAGE_SRC": "/assets/no-image.svg"
 }

@@ -1,12 +1,18 @@
-import {Component, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ConfigService} from "../../services/config.service";
 
 @Component({
   selector: 'login-register-image-component',
   templateUrl: './login-register-image.component.html',
   styleUrl: './login-register-image.component.css'
 })
-export class LoginRegisterImageComponent {
-  @Input()
-  imageAlt: string = ""
-  imageSrc: string = "/assets/no-image.svg"
+export class LoginRegisterImageComponent implements OnInit {
+  config: any;
+
+  constructor(private configService: ConfigService) {
+  }
+
+  ngOnInit() {
+    this.config = this.configService.getConfig();
+  }
 }

@@ -1,23 +1,23 @@
 <footer class="main-footer-container">
   <a class="footer-logo-container" routerLink="/">
     <img
-      [attr.alt]="imageAlt"
-      [attr.src]="footerImageSrc"
+      [attr.alt]=""
+      [attr.src]="config.FOOTER_LOGO_IMAGE_SRC"
       class="footer-logo"
     />
   </a>
   <div class="footer-content-container">
     <div class="footer-content-container-sub">
       <a class="footer-content footer-content-nav1" routerLink="/imprint">
-        {{ footerImprint }}
+        {{ 'FOOTER.IMPRINT' | translate }}
       </a>
       <a class="footer-content footer-content-nav2" routerLink="/data-privacy">
-        {{ footerDataPrivacy }}
+        {{ 'FOOTER.DATA_PRIVACY' | translate }}
       </a>
     </div>
     <div class="footer-copyright-container">
       <span class="footer-copyright-text">
-        {{ footerCopyrightInformation }}
+        {{ 'FOOTER.COPYRIGHT_INFORMATION' | translate: {currentYear: currentYear} }}
       </span>
     </div>
   </div>

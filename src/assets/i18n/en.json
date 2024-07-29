@@ -43,6 +43,11 @@
   "SNACKBAR": {
     "CONFIRM_BUTTON": "Ok"
   },
+  "FOOTER": {
+    "IMPRINT": "Imprint",
+    "DATA_PRIVACY": "Data Privacy",
+    "COPYRIGHT_INFORMATION": "© {{currentYear}} Jamnig.net, All Rights Reserved."
+  },
   "HOME": {
     "TITLE": "Hello Angular with ngx-translate!",
     "SELECT": "Change language"

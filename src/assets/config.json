@@ -2,5 +2,6 @@
   "USERNAME_MAX_LENGTH": 5,
   "PASSWORD_MIN_LENGTH": 6,
   "REGISTER_POSSIBLE": true,
-  "REGISTER_BACKGROUND_IMAGE_SRC": "/assets/no-image.svg"
+  "REGISTER_BACKGROUND_IMAGE_SRC": "/assets/no-image.svg",
+  "FOOTER_LOGO_IMAGE_SRC": "/assets/no-image.svg"
 }

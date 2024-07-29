@@ -103,7 +103,13 @@
       </p>
 
       <div class="confirm-button-container">
-        <button class="confirm-button button-general button-blue" type="submit">Register</button>
+        <button
+          class="confirm-button button-general"
+          [ngClass]="{'button-blue': config.registerPossible, 'button-disabled': !config.registerPossible}"
+          [attr.title]="config.registerPossible ? '' : ('REGISTER.NO_REGISTRATION_POSSIBLE_HINT' | translate)"
+          type="submit">
+          Register
+        </button>
       </div>
       <span class="hint-text-font">{{ registerAccountHint }}</span>
     </form>

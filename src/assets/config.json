@@ -1,4 +1,5 @@
 {
   "usernameMaxLength": 5,
-  "passwordMinLength": 6
+  "passwordMinLength": 6,
+  "registerPossible": false
 }

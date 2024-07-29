@@ -4,10 +4,10 @@ import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {CrossFieldErrorMatcher} from "./cross-field-error-matcher";
 import {confirmPasswordValidator} from "./confirm-password.validator";
 import {firstValueFrom} from "rxjs";
-import {MatSnackBar} from "@angular/material/snack-bar";
 import {ConfigService} from "../../services/config.service";
 import {Router} from "@angular/router";
 import {Snackbar} from "../../utility/snackbar";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'register-component',
@@ -38,26 +38,34 @@ export class RegisterComponent implements OnInit {
   @Input()
   registerInputPlaceholderUsername: string = 'Enter your username'
 
-  constructor(private authService: AuthService, private configService: ConfigService, private router: Router, private snackbar : Snackbar) {
+  constructor(
+    private authService: AuthService,
+    private configService: ConfigService,
+    private router: Router,
+    private snackbar: Snackbar,
+    private translate: TranslateService) {
   }
 
   ngOnInit() {
     this.config = this.configService.getConfig();
 
     this.signupForm = new UntypedFormGroup({
-      username: new UntypedFormControl('', [
-        Validators.required,
-        Validators.maxLength(this.config.usernameMaxLength)
-      ]),
-      email: new UntypedFormControl('', [
+      email: new UntypedFormControl({value: '', disabled: !this.config.registerPossible}, [
         Validators.required,
         Validators.email
       ]),
-      password: new UntypedFormControl('', [
+      username: new UntypedFormControl({value: '', disabled: !this.config.registerPossible}, [
+        Validators.required,
+        Validators.maxLength(this.config.usernameMaxLength)
+      ]),
+      password: new UntypedFormControl({value: '', disabled: !this.config.registerPossible}, [
         Validators.required,
         Validators.minLength(this.config.passwordMinLength)
       ]),
-      confirmPassword: new UntypedFormControl('', [Validators.required])
+      confirmPassword: new UntypedFormControl({
+        value: '',
+        disabled: !this.config.registerPossible
+      }, [Validators.required])
     }, {validators: confirmPasswordValidator});
   }
 
@@ -73,6 +81,11 @@ export class RegisterComponent implements OnInit {
 
 
   async register() {
+    if (!this.config.registerPossible) {
+      this.snackbar.showSnackbar('Currently not possible to register', 'error-snackbar', 2000);
+      return;
+    }
+
     if (!this.signupForm.valid) {
       console.debug("Register Form invalid");
       return;

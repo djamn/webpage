@@ -54,6 +54,7 @@ body {
 }
 
 .button-blue {
+  cursor: pointer;
   color: white;
   font-size: 17px;
   transition: 0.3s;
@@ -69,6 +70,7 @@ body {
 }
 
 .button-disabled {
+  cursor: not-allowed;
   color: white;
   font-size: 17px;
   transition: 0.3s;
@@ -79,6 +81,7 @@ body {
 }
 
 .button-red {
+  cursor: pointer;
   color: white;
   font-size: 17px;
   transition: 0.3s;
@@ -93,6 +96,7 @@ body {
 }
 
 .button-green {
+  cursor: pointer;
   color: white;
   font-size: 17px;
   transition: 0.3s;
@@ -107,7 +111,6 @@ body {
 }
 
 .button-general {
-  cursor: pointer;
   display: inline-block;
   padding: 0.5rem 1rem;
   text-align: center;

@@ -1,5 +1,6 @@
 {
-  "usernameMaxLength": 5,
-  "passwordMinLength": 6,
-  "registerPossible": true
+  "USERNAME_MAX_LENGTH": 5,
+  "PASSWORD_MIN_LENGTH": 6,
+  "REGISTER_POSSIBLE": true,
+  "REGISTER_BACKGROUND_IMAGE_SRC": "/assets/no-image.svg"
 }

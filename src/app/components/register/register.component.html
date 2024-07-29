@@ -1,7 +1,7 @@
 <div class="main-register-container">
 
   <img class="background-image"
-       [attr.src]="imageSrc"
+       [attr.src]="config.REGISTER_BACKGROUND_IMAGE_SRC"
        [attr.alt]=""
   >
 
@@ -45,7 +45,7 @@
             *ngIf="signupForm.get('username')?.hasError('required')">{{ 'REGISTER.ERRORS.ERRORS.REQUIRED_FIELD'| translate }}
           </mat-error>
           <mat-error
-            *ngIf="signupForm.get('username')?.hasError('maxlength')">{{ 'REGISTER.ERRORS.USERNAME_MAX_LENGTH'| translate: {usernameMaxLength: config.usernameMaxLength} }}
+            *ngIf="signupForm.get('username')?.hasError('maxlength')">{{ 'REGISTER.ERRORS.USERNAME_MAX_LENGTH'| translate: {maxLength: config.USERNAME_MAX_LENGTH} }}
           </mat-error>
           <mat-error
             *ngIf="signupForm.get('username')?.hasError('usernameTaken')">{{ 'REGISTER.ERRORS.USERNAME_TAKEN'| translate }}
@@ -77,7 +77,7 @@
             *ngIf="signupForm.get('password')?.hasError('required')">{{ 'REGISTER.ERRORS.ERRORS.REQUIRED_FIELD'| translate }}
           </mat-error>
           <mat-error
-            *ngIf="signupForm.get('password')?.hasError('minlength')">{{ 'REGISTER.ERRORS.PASSWORD_MINLENGTH'| translate: {minLength: config.passwordMinLength} }}
+            *ngIf="signupForm.get('password')?.hasError('minlength')">{{ 'REGISTER.ERRORS.PASSWORD_MINLENGTH'| translate: {minLength: config.PASSWORD_MIN_LENGTH} }}
           </mat-error>
         </mat-form-field>
       </p>
@@ -115,8 +115,8 @@
       <div class="confirm-button-container">
         <button
           class="confirm-button button-general"
-          [ngClass]="{'button-blue': config.registerPossible, 'button-disabled': !config.registerPossible}"
-          [attr.title]="config.registerPossible ? '' : ('REGISTER.NO_REGISTRATION_POSSIBLE_HINT' | translate)"
+          [ngClass]="{'button-blue': config.REGISTER_POSSIBLE, 'button-disabled': !config.REGISTER_POSSIBLE}"
+          [attr.title]="config.REGISTER_POSSIBLE ? '' : ('REGISTER.NO_REGISTRATION_POSSIBLE_HINT' | translate)"
           type="submit">
           {{ 'REGISTER.REGISTER_BUTTON'| translate }}
         </button>

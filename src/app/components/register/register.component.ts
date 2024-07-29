@@ -21,9 +21,6 @@ export class RegisterComponent implements OnInit {
   errorMatcher = new CrossFieldErrorMatcher();
   signupForm!: UntypedFormGroup;
 
-  @Input()
-  imageSrc: string = "/assets/no-image.svg";
-
   constructor(
     private authService: AuthService,
     private configService: ConfigService,
@@ -36,21 +33,21 @@ export class RegisterComponent implements OnInit {
     this.config = this.configService.getConfig();
 
     this.signupForm = new UntypedFormGroup({
-      email: new UntypedFormControl({value: '', disabled: !this.config.registerPossible}, [
+      email: new UntypedFormControl({value: '', disabled: !this.config.REGISTER_POSSIBLE}, [
         Validators.required,
         Validators.email
       ]),
-      username: new UntypedFormControl({value: '', disabled: !this.config.registerPossible}, [
+      username: new UntypedFormControl({value: '', disabled: !this.config.REGISTER_POSSIBLE}, [
         Validators.required,
-        Validators.maxLength(this.config.usernameMaxLength)
+        Validators.maxLength(this.config.USERNAME_MAX_LENGTH)
       ]),
-      password: new UntypedFormControl({value: '', disabled: !this.config.registerPossible}, [
+      password: new UntypedFormControl({value: '', disabled: !this.config.REGISTER_POSSIBLE}, [
         Validators.required,
-        Validators.minLength(this.config.passwordMinLength)
+        Validators.minLength(this.config.PASSWORD_MIN_LENGTH)
       ]),
       confirmPassword: new UntypedFormControl({
         value: '',
-        disabled: !this.config.registerPossible
+        disabled: !this.config.REGISTER_POSSIBLE
       }, [Validators.required])
     }, {validators: confirmPasswordValidator});
   }
@@ -67,7 +64,7 @@ export class RegisterComponent implements OnInit {
 
 
   async register() {
-    if (!this.config.registerPossible) {
+    if (!this.config.REGISTER_POSSIBLE) {
       this.snackbar.showSnackbar(this.translate.instant('REGISTER.ERRORS.NO_REGISTRATION_POSSIBLE_HINT'), 'error-snackbar', 2000);
       return;
     }

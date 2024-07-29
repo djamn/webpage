@@ -30,7 +30,7 @@
       "FORM_INVALID": "Your form is not valid!",
       "EMAIL_EXISTS": "Email already exists!",
       "EMAIL_INVALID": "Email is not valid!",
-      "USERNAME_MAX_LENGTH": "Username can only have {{usernameMaxLength}} characters!",
+      "USERNAME_MAX_LENGTH": "Username can only have {{maxLength}} characters!",
       "USERNAME_TAKEN": "This username is already taken!",
       "PASSWORD_MINLENGTH": "Password should be at least {{minLength}} characters!",
       "CONFIRM_PASSWORD_REQUIRED": "Password confirmation is required!",

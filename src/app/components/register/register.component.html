@@ -21,7 +21,7 @@
             autocomplete="email"
           />
           <mat-error
-            *ngIf="signupForm.get('email')?.hasError('required')">{{ 'REGISTER.ERRORS.REQUIRED_FIELD'| translate }}
+            *ngIf="signupForm.get('email')?.hasError('required')">{{ 'REGISTER.ERRORS.ERRORS.REQUIRED_FIELD'| translate }}
           </mat-error>
           <mat-error *ngIf="signupForm.get('email')?.hasError('email')">{{ 'REGISTER.ERRORS.EMAIL_INVALID'| translate }}
           </mat-error>
@@ -42,7 +42,7 @@
             placeholder="{{'REGISTER.USERNAME_PLACEHOLDER'| translate}}"
           />
           <mat-error
-            *ngIf="signupForm.get('username')?.hasError('required')">{{ 'REGISTER.ERRORS.REQUIRED_FIELD'| translate }}
+            *ngIf="signupForm.get('username')?.hasError('required')">{{ 'REGISTER.ERRORS.ERRORS.REQUIRED_FIELD'| translate }}
           </mat-error>
           <mat-error
             *ngIf="signupForm.get('username')?.hasError('maxlength')">{{ 'REGISTER.ERRORS.USERNAME_MAX_LENGTH'| translate: {usernameMaxLength: config.usernameMaxLength} }}
@@ -74,7 +74,7 @@
             <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
           </button>
           <mat-error
-            *ngIf="signupForm.get('password')?.hasError('required')">{{ 'REGISTER.ERRORS.REQUIRED_FIELD'| translate }}
+            *ngIf="signupForm.get('password')?.hasError('required')">{{ 'REGISTER.ERRORS.ERRORS.REQUIRED_FIELD'| translate }}
           </mat-error>
           <mat-error
             *ngIf="signupForm.get('password')?.hasError('minlength')">{{ 'REGISTER.ERRORS.PASSWORD_MINLENGTH'| translate: {minLength: config.passwordMinLength} }}

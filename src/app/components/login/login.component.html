@@ -14,7 +14,7 @@
           autocomplete="username"
         />
 
-        <mat-error *ngIf="loginForm.get('usernameOrEmail')?.hasError('required')">{{'LOGIN.REQUIRED_FIELD' | translate}}</mat-error>
+        <mat-error *ngIf="loginForm.get('usernameOrEmail')?.hasError('required')">{{'LOGIN.ERRORS.REQUIRED_FIELD' | translate}}</mat-error>
       </mat-form-field>
     </p>
 
@@ -38,7 +38,7 @@
         >
           <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
-        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">{{'LOGIN.REQUIRED_FIELD' | translate}}</mat-error>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">{{'LOGIN.ERRORS.REQUIRED_FIELD' | translate}}</mat-error>
       </mat-form-field>
     </p>
 

@@ -56,9 +56,9 @@ export class LoginComponent implements OnInit {
     } catch (err) {
       // TODO recode
       if (this.isFirebaseError(err) && err.code === 'auth/invalid-credential' || err instanceof Error && err.message === 'auth/invalid-credential') {
-        this.snackbar.showSnackbar(this.translate.instant('LOGIN.INVALID_CREDENTIALS'), 'error-snackbar', 2000);
+        this.snackbar.showSnackbar(this.translate.instant('LOGIN.ERRORS.INVALID_CREDENTIALS'), 'error-snackbar', 2000);
       } else {
-        this.snackbar.showSnackbar(this.translate.instant('LOGIN.UNEXPECTED_ERROR'), 'error-snackbar', 2000);
+        this.snackbar.showSnackbar(this.translate.instant('LOGIN.ERRORS.UNEXPECTED_ERROR'), 'error-snackbar', 2000);
         console.error("Unexpected error occurred in login():", err)
       }
     }

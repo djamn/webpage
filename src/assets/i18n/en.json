@@ -1,9 +1,7 @@
 {
   "LOGIN": {
-    "INVALID_CREDENTIALS": "Invalid login data!",
-    "UNEXPECTED_ERROR": "An unexpected error occurred",
     "USERNAME_OR_EMAIL_LABEL": "Enter Username or Email",
-    "USERNAME_OR_EMAIL_PLACEHOLDER": "Your username/email",
+    "USERNAME_OR_EMAIL_PLACEHOLDER": "Your username or email",
     "PASSWORD_LABEL": "Enter Password",
     "PASSWORD_PLACEHOLDER": "*******",
     "FORGOT_PASSWORD_LINK_TEXT": "Forgot your password?",
@@ -11,7 +9,11 @@
     "PRIVACY_HINT": "By signing in you accept the Terms of Use and acknowledge the Privacy Statement and Cookie Policy.",
     "NO_ACCOUNT_HINT": "Don't have an account yet?",
     "REGISTER_LINK_TEXT": "Click here to register",
-    "REQUIRED_FIELD": "This field is required!"
+    "ERRORS": {
+      "INVALID_CREDENTIALS": "Invalid login data!",
+      "UNEXPECTED_ERROR": "An error occurred during login. Please try again.",
+      "REQUIRED_FIELD": "This field is required!"
+    }
   },
   "REGISTER": {
     "EMAIL": "Your Email",

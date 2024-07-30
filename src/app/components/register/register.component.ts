@@ -39,7 +39,8 @@ export class RegisterComponent implements OnInit {
       ]),
       username: new UntypedFormControl({value: '', disabled: !this.config.REGISTER_POSSIBLE}, [
         Validators.required,
-        Validators.maxLength(this.config.USERNAME_MAX_LENGTH)
+        Validators.maxLength(this.config.USERNAME_MAX_LENGTH),
+        Validators.pattern(this.config.USERNAME_CHARACTER_PATTERN)
       ]),
       password: new UntypedFormControl({value: '', disabled: !this.config.REGISTER_POSSIBLE}, [
         Validators.required,

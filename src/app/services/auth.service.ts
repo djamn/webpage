@@ -50,9 +50,8 @@ export class AuthService {
     }
   }
 
-  async login(emailOrUsername: string, password: string) {
+  async login(email: string, password: string) {
     try {
-      const email = emailOrUsername;
       const auth = getAuth();
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user; // TODO

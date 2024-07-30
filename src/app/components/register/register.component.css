@@ -7,7 +7,7 @@ html, body {
   /*border: 1px solid green;*/
   border-radius: 10px;
   background-color: white;
-  width: 370px;
+  width: 450px;
   height: 640px;
   display: flex;
   position: relative;
@@ -46,7 +46,7 @@ html, body {
 
 .small-form-field {
   margin-bottom: var(--dl-space-space-unit);
-  width: 337px;
+  width: 420px;
 }
 
 .confirm-button {

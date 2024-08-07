@@ -1,57 +1,8 @@
-<p>test-component works!</p>
-
-<mat-slide-toggle>Test</mat-slide-toggle>
-
-<form (ngSubmit)="login(email.value, username.value, password.value)" class="main-container">
-  <div class="login-container">
-    <div class="login-container-items">
-      <span class="login-text">Email</span>
-      <input
-        #email="ngModel"
-        [attr.placeholder]="loginInputPlaceholderEmail"
-        class="login-input"
-        id="login-email-input"
-        name="email"
-        ngModel
-        required="true"
-        type="text"
-      />
-    </div>
-    <div class="login-container-items">
-      <span class="login-text">Username</span>
-      <input
-        #username="ngModel"
-        [attr.placeholder]="loginInputPlaceholderUsername"
-        class="login-input"
-        id="login-username-input"
-        name="username"
-        ngModel
-        required="true"
-        type="text"
-      />
-    </div>
-    <div class="login-container-items">
-      <span class="login-text">Password</span>
-      <input
-        #password="ngModel"
-        [attr.placeholder]="loginInputPlaceholderPassword"
-        class="login-input"
-        id="login-password-input"
-        name="password"
-        ngModel
-        required="true"
-        type="password"
-      />
-    </div>
-  </div>
-  <div class="confirm-button-container">
-    <button class="confirm-button" type="submit">Register</button>
-  </div>
-</form>
-
-<br><br>
-
+Testing Page
 
 <button class="button-general button-red" (click)="testButton()">Click Me</button>
+<button class="button-general button-red" (click)="logout()">Log Out</button>
+<button class="button-general button-blue" (click)="login()">Switch to Login</button>
 <br><br>
-<span>Total Clicks: {{ counter }} </span>
+<span>Total Clicks: {{ counter }} </span><br>
+<span>You are currently logged in as: {{getAuth().currentUser?.uid ? getAuth().currentUser?.uid : "Not logged in" }}</span>

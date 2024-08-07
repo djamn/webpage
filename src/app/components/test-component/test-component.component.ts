@@ -1,6 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FirestoreService} from "../../services/firestore.service";
 import {AuthService} from "../../services/auth.service";
+import {getAuth} from "firebase/auth";
+import {signOut} from "@angular/fire/auth";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-test-component',
@@ -23,7 +26,7 @@ export class TestComponentComponent implements OnInit {
   fieldName = 'counter';
   counter: number = -1;
 
-  constructor(private firebaseService: FirestoreService, private authService: AuthService) {
+  constructor(private firebaseService: FirestoreService, private authService: AuthService, private router: Router) {
     this.data = [];
   }
 
@@ -38,13 +41,31 @@ export class TestComponentComponent implements OnInit {
     this.firebaseService.incrementNumber('button-clicks', this.docId, this.fieldName).then(() => {
       console.log("Number successfully incremented")
     })
+
+    const auth = getAuth();
+    console.log("AUTH: ", auth.currentUser)
+  }
+
+  logout() {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      console.log("Signout Successful")
+    }).catch((error) => {
+      // An error happened.
+    });
+  }
+
+  async login() {
+    await this.router.navigate(['/login']);
   }
 
   // Change enforcement: https://cloud.google.com/identity-platform/docs/password-policy
   // https://www.youtube.com/watch?v=Ru-FaifP4mM&list=PL-Ps9kYNdYBzorz7yEx0SlbDOeXsEXkeG&index=3
   // login, logout, register: https://firebase.google.com/docs/auth/web/password-auth?authuser=0&hl=de#web-modular-api
 
-  login(email: string, username: string, password: string) {
-    this.authService.register(email, username, password).then(r => console.log(r));
+  register(email: string, username: string, password: string) {
+    // this.authService.register(email, username, password).then(r => console.log(r));
   }
+
+  protected readonly getAuth = getAuth;
 }

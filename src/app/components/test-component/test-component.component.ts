@@ -4,6 +4,7 @@ import {AuthService} from "../../services/auth.service";
 import {getAuth} from "firebase/auth";
 import {signOut} from "@angular/fire/auth";
 import {Router} from "@angular/router";
+import {map, Observable} from "rxjs";
 
 @Component({
   selector: 'app-test-component',
@@ -11,6 +12,9 @@ import {Router} from "@angular/router";
   styleUrls: ['./test-component.component.css']
 })
 export class TestComponentComponent implements OnInit {
+  isAdmin$: Observable<boolean> | undefined;
+  userRole$: Observable<string | null> | undefined;
+
   @Input()
   loginInputPlaceholderPassword: string = 'Enter your password'
 
@@ -31,6 +35,12 @@ export class TestComponentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isAdmin$ = this.authService.getUserRole().pipe(
+      map(role => role === 'admin')
+    );
+
+    this.userRole$ = this.authService.getUserRole();
+
     this.firebaseService.getCollection('button-clicks').subscribe(data => {
       this.data = data;
       this.counter = data[0].counter;

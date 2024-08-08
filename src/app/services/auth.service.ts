@@ -3,10 +3,12 @@ import {getAuth} from "firebase/auth";
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from "@angular/fire/auth";
 import {FirestoreService} from "./firestore.service";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {catchError, firstValueFrom, map, Observable, of} from "rxjs";
+import {catchError, firstValueFrom, map, Observable, of, switchMap} from "rxjs";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
 
 // TODO
 interface User {
+  uid: string;
   email: string;
   username: string;
   role: string;
@@ -16,8 +18,23 @@ interface User {
   providedIn: 'root'
 })
 export class AuthService {
+  user$: Observable<User | null | undefined>;
+  userRole$: Observable<string | null>;
 
-  constructor(private firestoreService: FirestoreService, private firestore: AngularFirestore) {
+  constructor(private firestoreService: FirestoreService, private firestore: AngularFirestore, private fireAuth: AngularFireAuth) {
+    this.user$ = this.fireAuth.authState.pipe(
+      switchMap(user => {
+        if (user) {
+          return this.firestore.doc<User>(`users/${user.uid}`).valueChanges();
+        } else {
+          return new Observable<User | null>(observer => observer.next(null));
+        }
+      })
+    );
+
+    this.userRole$ = this.user$.pipe(
+      map(user => user ? user.role : 'guest')
+    );
   }
 
   checkUsernameExists(username: string): Observable<boolean> {
@@ -40,8 +57,7 @@ export class AuthService {
 
   async register(email: string, username: string, password: string) {
     try {
-      const auth = getAuth();
-      await createUserWithEmailAndPassword(auth, email, password).then(async (userCredential) => {
+      await this.fireAuth.createUserWithEmailAndPassword(email, password).then(async (userCredential) => {
         const user = userCredential.user;
 
         if (user) await this.firestoreService.registerUser(user.uid, email, username);
@@ -53,31 +69,23 @@ export class AuthService {
 
   async login(email: string, password: string) {
     try {
-      const auth = getAuth();
-
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      const uid = user.uid;
-      localStorage.setItem('userUID', uid);
-
-      const role = await this.fetchUserRole(uid);
-      localStorage.setItem('userRole', role);
-
+      await this.fireAuth.signInWithEmailAndPassword(email, password);
     } catch (err) {
       throw err; // rethrow error
     }
   }
 
-  logout() {
-    signOut(getAuth()).then(() => {
-      localStorage.removeItem('userUID');
-      localStorage.removeItem('userRole');
-    }).catch((err) => {
-      console.error("Sign out failed:", err);
-    })
+  async logout() {
+    await this.fireAuth.signOut();
+    // todo router
+  }
+
+  getUserRole(): Observable<string | null> {
+    return this.userRole$;
   }
 
   // TODO move to user role service?
+  // TODO deprecated
   async fetchUserRole(uid: string) {
     try {
       const userDoc = this.firestore.doc(`users/${uid}`).get();

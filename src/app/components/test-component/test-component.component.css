@@ -63,3 +63,7 @@
 .confirm-button:hover {
   background-color: #09529b;
 }
+
+.general {
+  margin-left: 5px;
+}

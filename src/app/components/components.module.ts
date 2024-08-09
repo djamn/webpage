@@ -11,6 +11,8 @@ import {ResetPasswordComponent} from "./reset-password/reset-password.component"
 import {LoginRegisterImageComponent} from "./login-register-image/login-register-image.component";
 import {FooterComponent} from "./footer/footer.component";
 import {TranslateModule} from "@ngx-translate/core";
+import {GuestbookMainComponent} from "./guestbook-main-component/guestbook-main-component.component";
+import {GuestbookEntryComponent} from "./guestbook-entry-component/guestbook-entry-component.component";
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import {TranslateModule} from "@ngx-translate/core";
     ResetPasswordComponent,
     LoginRegisterImageComponent,
     FooterComponent,
+    GuestbookMainComponent,
+    GuestbookEntryComponent
   ],
     imports: [CommonModule, RouterModule, FormsModule, MaterialModule, ReactiveFormsModule, TranslateModule],
   exports: [
@@ -29,6 +33,8 @@ import {TranslateModule} from "@ngx-translate/core";
     ResetPasswordComponent,
     LoginRegisterImageComponent,
     FooterComponent,
+    GuestbookMainComponent,
+    GuestbookEntryComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

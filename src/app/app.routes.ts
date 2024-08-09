@@ -4,6 +4,7 @@ import {Register} from "./pages/register/register.component";
 import {Login} from "./pages/login/login.component";
 import {ResetPasswordComponent} from "./components/reset-password/reset-password.component";
 import {AuthGuard} from "./guards/auth.guard";
+import {Guestbook} from "./pages/guestbook/guestbook.component";
 
 export const routes: Routes = [
   {path: '', component: MainPage, pathMatch: 'full'},
@@ -13,6 +14,7 @@ export const routes: Routes = [
     path: 'reset-password',
     component: ResetPasswordComponent,
     canActivate: [AuthGuard]
-  }
+  },
+  {path: 'guestbook', component: Guestbook},
 
 ];

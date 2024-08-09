@@ -9,16 +9,115 @@ html, body {
 
 .main-guestbook-entry-container {
   border: 1px solid red;
+  height: 200px;
+/*  TODO*/
 }
 
-.entry-container {
+.guestbook-entry-container {
   border: 1px solid green;
   flex: 0 0 auto;
   border-radius: 10px;
   background-color: white;
   width: 100%;
+  height: auto;
   display: flex;
   box-shadow: 0 3px 2px -2px gray;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
+  padding: var(--dl-space-space-halfunit);
 }
+
+.guestbook-container-1 {
+  border: 1px solid rebeccapurple;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  margin-bottom: var(--dl-space-space-unit);
+  flex: 0 0 auto;
+  align-items: flex-start;
+  height: auto;
+}
+
+.guestbook-container-1-sub-1-container{
+  border: 1px solid orange;
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+}
+
+.guestbook-container-1-sub-1 {
+  width: 100%;
+}
+
+.guestbook-container-1-sub-1-hidden-hint {
+  width: 100%;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--hint-color)
+}
+
+.guestbook-container-1-sub-2-container {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}
+
+.guestbook-container-1-sub-2 {
+  width: 100%;
+}
+
+.guestbook-container-1-sub-2-status {
+  width: 100%;
+}
+
+.guestbook-main-text {
+  border: 1px solid darkred;
+  width: 100%;
+}
+
+.guestbook-admin-text-container{
+  border: 1px solid blue;
+  width: 100%;
+  margin-top: var(--dl-space-space-unit);
+}
+
+.guestbook-admin-text-title {
+  font-weight: 550;
+}
+
+.guestbook-admin-text {
+  font-style: italic;
+}
+
+
+@media (max-width: 767px) {
+
+}
+
+@media (max-width: 479px) {
+  .guestbook-container-1{
+    flex-direction: column;
+  }
+
+  .guestbook-container-1-sub-1-container {
+    width: 100%;
+    text-align: center;
+  }
+
+  .guestbook-container-1-sub-2-container {
+    flex-direction: row;
+    width: 100%;
+
+  }
+
+  .guestbook-container-1-sub-2 {
+    width: 50%;
+    text-align: right;;
+  }
+
+  .guestbook-container-1-sub-2-status {
+    width: 50%;
+  }
+}
+

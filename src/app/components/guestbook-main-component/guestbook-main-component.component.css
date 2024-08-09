@@ -1,0 +1,8 @@
+:host {
+  display: contents;
+}
+
+.main-guestbook-container {
+  border: 1px solid green;
+  margin-bottom: var(--dl-space-space-unit)
+}

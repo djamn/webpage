@@ -117,6 +117,17 @@ body {
   transition: 0.3s;
 }
 
+.main-component-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  position: relative;
+  align-items: center;
+  margin-bottom: var(--dl-space-space-twounits);
+  flex-direction: row;
+  justify-content: center;
+}
+
 .success-snackbar {
   color: white;
   --mdc-snackbar-container-color: var(--success-color);
@@ -169,7 +180,6 @@ body {
   font-weight: 400;
   text-align: justify;
 }
-
 
 
 .checkbox-style {

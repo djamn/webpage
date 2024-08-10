@@ -68,6 +68,7 @@ html, body {
 
 .guestbook-container-1-sub-2-status {
   width: 100%;
+  align-self: center;
 }
 
 .guestbook-main-text {
@@ -89,12 +90,39 @@ html, body {
   font-style: italic;
 }
 
-
-@media (max-width: 767px) {
-
+.guestbook-entry-icons-container {
+  border: 1px solid gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@media (max-width: 479px) {
+.guestbook-admin-icons {
+  width: 30px;
+  height: 30px;
+  margin-left: var(--dl-space-space-halfunit);
+  margin-right: var(--dl-space-space-halfunit);
+}
+
+#visible-icon {
+  /*margin-left: var(--dl-space-space-unit);*/
+  /*margin-right: var(--dl-space-space-unit);*/
+}
+
+#comment-icon {
+  /*margin-right: var(--dl-space-space-unit);*/
+}
+
+#edit-icon {
+  /*margin-right: var(--dl-space-space-unit);*/
+}
+
+#delete-icon {
+  /*margin-right: var(--dl-space-space-unit);*/
+}
+
+
+@media (max-width: 767px) {
   .guestbook-container-1{
     flex-direction: column;
   }
@@ -117,6 +145,32 @@ html, body {
 
   .guestbook-container-1-sub-2-status {
     width: 50%;
+  }
+
+
+  .guestbook-admin-icons {
+    width: 25px;
+    height: 25px;
+    /*margin-left: var(--dl-space-space-halfunit);*/
+    /*margin-right: var(--dl-space-space-halfunit);*/
+  }
+
+  * {
+      background-color: #0c6f0b;
+    }
+}
+/*TODO status mittig machen*/
+
+@media (max-width: 479px) {
+  * {
+    background-color: #1f75cb;
+  }
+
+  .guestbook-admin-icons {
+    width: 17px;
+    height: 17px;
+    /*margin-left: var(--dl-space-space-halfunit);*/
+    /*margin-right: var(--dl-space-space-halfunit);*/
   }
 }
 

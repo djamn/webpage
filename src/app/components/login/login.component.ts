@@ -14,6 +14,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class LoginComponent implements OnInit {
   hidePassword = true;
   loginForm!: UntypedFormGroup;
+  config: any;
 
   constructor(private authService: AuthService,
               private snackbar: Snackbar,
@@ -56,9 +57,9 @@ export class LoginComponent implements OnInit {
     } catch (err) {
       // TODO recode
       if (this.isFirebaseError(err) && err.code === 'auth/invalid-credential' || err instanceof Error && err.message === 'auth/invalid-credential') {
-        this.snackbar.showSnackbar(this.translate.instant('LOGIN.ERRORS.INVALID_CREDENTIALS'), 'error-snackbar', 2000);
+        this.snackbar.showSnackbar(this.translate.instant('LOGIN.ERRORS.INVALID_CREDENTIALS'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
       } else {
-        this.snackbar.showSnackbar(this.translate.instant('LOGIN.ERRORS.UNEXPECTED_ERROR'), 'error-snackbar', 2000);
+        this.snackbar.showSnackbar(this.translate.instant('LOGIN.ERRORS.UNEXPECTED_ERROR'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
         console.error("Unexpected error occurred in login():", err)
       }
     }

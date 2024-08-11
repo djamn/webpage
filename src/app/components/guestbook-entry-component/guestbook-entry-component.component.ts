@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {GuestbookService} from "../../services/guestbook.service";
 import {Snackbar} from "../../utility/snackbar";
+import {ConfigService} from "../../services/config.service";
 
 @Component({
   selector: 'guestbook-entry-component',
@@ -13,11 +14,13 @@ export class GuestbookEntryComponent implements OnInit {
   formattedDate: string = "";
   hours: string = "";
   minutes: string = "";
+  config: any;
 
-  constructor(private translate: TranslateService, private guestbookService: GuestbookService, private snackbar : Snackbar) {
+  constructor(private translate: TranslateService, private guestbookService: GuestbookService, private snackbar: Snackbar, private configService: ConfigService) {
   }
 
   ngOnInit() {
+    this.config = this.configService.loadConfig()
     this.processTimestamp(this.entry.timestamp);
   }
 
@@ -38,7 +41,7 @@ export class GuestbookEntryComponent implements OnInit {
       .then(success => {
         if (success) {
           this.entry.is_visible = newVisibility;
-          this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.VISIBILITY_UPDATED_SUCCESS'), 'success-snackbar', 2000);
+          this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.VISIBILITY_UPDATED_SUCCESS'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
         }
       })
   }

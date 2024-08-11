@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {CrossFieldErrorMatcher} from "./cross-field-error-matcher";
@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
 
   async register() {
     if (!this.config.REGISTER_POSSIBLE) {
-      this.snackbar.showSnackbar(this.translate.instant('REGISTER.ERRORS.NO_REGISTRATION_POSSIBLE_HINT'), 'error-snackbar', 2000);
+      this.snackbar.showSnackbar(this.translate.instant('REGISTER.ERRORS.NO_REGISTRATION_POSSIBLE_HINT'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
       return;
     }
 
@@ -79,25 +79,26 @@ export class RegisterComponent implements OnInit {
       const email = this.signupForm.value.email.trim().toLowerCase();
       const emailExists = await this.checkEmailExists(email);
       if (emailExists) {
-        this.snackbar.showSnackbar(this.translate.instant('REGISTER.ERRORS.EMAIL_EXISTS'), 'error-snackbar', 1500);
+        this.snackbar.showSnackbar(this.translate.instant('REGISTER.ERRORS.EMAIL_EXISTS'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
         return;
       }
 
       const username = this.signupForm.value.username.trim().toLowerCase();
       const usernameExists = await this.checkUsernameExists(username);
       if (usernameExists) {
-        this.snackbar.showSnackbar(this.translate.instant('REGISTER.ERRORS.USERNAME_TAKEN'), 'error-snackbar', 2000);
+        this.snackbar.showSnackbar(this.translate.instant('REGISTER.ERRORS.USERNAME_TAKEN'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
         return;
+
       }
 
       await this.authService.register(email, username, this.signupForm.value.password);
-      this.snackbar.showSnackbar(this.translate.instant('REGISTER.REGISTRATION_SUCCESSFUL'), 'success-snackbar', 2000);
+      this.snackbar.showSnackbar(this.translate.instant('REGISTER.REGISTRATION_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
       this.signupForm.reset();
 
       await this.router.navigate(['/login'])
     } catch (err) {
       console.error("Registration error:", err);
-      this.snackbar.showSnackbar(this.translate.instant('REGISTER.ERRORS.UNEXPECTED_ERROR'), 'error-snackbar', 2000);
+      this.snackbar.showSnackbar(this.translate.instant('REGISTER.ERRORS.UNEXPECTED_ERROR'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
     }
   }
 

@@ -29,6 +29,7 @@ export class GuestbookComponent implements OnInit{
   }
 
   performSearch(searchTerm: string) {
+    this.filteredGuestBookEntries = this.guestBookEntries;
     console.warn("Search not implemented");
   }
 

@@ -52,5 +52,11 @@
   "HOME": {
     "TITLE": "Hello Angular with ngx-translate!",
     "SELECT": "Change language"
+  },
+  "GUESTBOOK": {
+    "ENTRY_TITLE": "{{username}} wrote on {{date}} ({{hour}}:{{minute}} o'clock)",
+    "COMMENT_TITLE": "Comment: ",
+    "ENTRY_STATUS": "Status: {{status}}",
+    "ENTRY_IS_INVISIBLE_HINT": "Hint: This entry is currently invisible!"
   }
 }

@@ -1,17 +1,26 @@
-<div class="main-component-container main-guestbook-entry-container">
+<div *ngIf="entry.is_visible || !entry.isvisible && hasPermission()" class="main-component-container main-guestbook-entry-container">
   <div class="guestbook-entry-container">
     <div class="guestbook-container-1">
-      <div class="guestbook-container-1-sub-1-container">
+      <div class="guestbook-container-1-sub-1-container" [class.container-full-width]="!hasPermission()"
+           [class.container-partial-width]="hasPermission()">
         <div class="guestbook-container-1-sub-1">
-          %s schrieb am %s (%s%s:%s%s Uhr)
+          <span class="username-style">{{ entry.username }}</span>
+          {{
+            'GUESTBOOK.ENTRY_TITLE' | translate: {
+              username: '',
+              date: formattedDate,
+              hour: hours,
+              minute: minutes
+            }
+          }}
         </div>
-        <div class="guestbook-container-1-sub-1-hidden-hint">
-          Hinweis: Dieser Beitrag ist derzeit unsichtbar!
+        <div *ngIf="!entry.is_visible" class="guestbook-container-1-sub-1-hidden-hint">
+          {{ "GUESTBOOK.ENTRY_IS_INVISIBLE_HINT" | translate }}
         </div>
       </div>
-      <div class="guestbook-container-1-sub-2-container">
+      <div *ngIf="hasPermission()" class="guestbook-container-1-sub-2-container">
         <div class="guestbook-container-1-sub-2-status">
-          Status: %s
+          {{ "GUESTBOOK.ENTRY_STATUS" | translate: {status: entry.status} }}
         </div>
         <div class="guestbook-container-1-sub-2">
           <!--          <div (click)="deleteRating()" *ngIf="AuthService.getRole() === 'admin'">-->
@@ -58,15 +67,15 @@
     </div>
 
     <span class="guestbook-main-text">
-      Hier steht der Text
+      {{ entry.entry_text }}
     </span>
 
-    <div class="guestbook-admin-text-container">
+    <div *ngIf="entry.comment" class="guestbook-admin-text-container">
     <span class="guestbook-admin-text-title">
-      Kommentar:
+      {{ "GUESTBOOK.COMMENT_TITLE" | translate }}
     </span>
       <span class="guestbook-admin-text">
-      HIER STEHT TEXT
+      {{ entry.comment }}
     </span>
     </div>
 

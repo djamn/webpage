@@ -1,8 +1,17 @@
 <div class="main-component-container main-guestbook-container">
   <div class="guestbook-container-1">
-  <guestbook-main-component></guestbook-main-component>
-  <guestbook-entry-component></guestbook-entry-component>
-  <guestbook-page-component></guestbook-page-component>
+    <guestbook-main-component></guestbook-main-component>
+
+    <guestbook-entry-component
+      *ngFor="let guestBookEntry of filteredGuestBookEntries"
+      [entry]="guestBookEntry"
+    ></guestbook-entry-component>
+
+    <div *ngIf="guestBookEntries.length == 0">
+      <no-entries-component></no-entries-component>
+    </div>
+
+    <guestbook-page-component></guestbook-page-component>
   </div>
 </div>
 

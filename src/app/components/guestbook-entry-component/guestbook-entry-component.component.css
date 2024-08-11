@@ -37,10 +37,17 @@ html, body {
   height: auto;
 }
 
-.guestbook-container-1-sub-1-container{
+.guestbook-container-1-sub-1-container {
   border: 1px solid orange;
   display: flex;
   flex-direction: column;
+}
+
+.container-full-width {
+  width: 100%;
+}
+
+.container-partial-width {
   width: 75%;
 }
 
@@ -67,6 +74,7 @@ html, body {
 }
 
 .guestbook-container-1-sub-2-status {
+  border: 1px solid red;
   width: 100%;
   align-self: center;
 }
@@ -76,7 +84,7 @@ html, body {
   width: 100%;
 }
 
-.guestbook-admin-text-container{
+.guestbook-admin-text-container {
   border: 1px solid blue;
   width: 100%;
   margin-top: var(--dl-space-space-unit);
@@ -104,26 +112,12 @@ html, body {
   margin-right: var(--dl-space-space-halfunit);
 }
 
-#visible-icon {
-  /*margin-left: var(--dl-space-space-unit);*/
-  /*margin-right: var(--dl-space-space-unit);*/
+.username-style {
+  font-weight: 500;
 }
-
-#comment-icon {
-  /*margin-right: var(--dl-space-space-unit);*/
-}
-
-#edit-icon {
-  /*margin-right: var(--dl-space-space-unit);*/
-}
-
-#delete-icon {
-  /*margin-right: var(--dl-space-space-unit);*/
-}
-
 
 @media (max-width: 767px) {
-  .guestbook-container-1{
+  .guestbook-container-1 {
     flex-direction: column;
   }
 
@@ -135,42 +129,51 @@ html, body {
   .guestbook-container-1-sub-2-container {
     flex-direction: row;
     width: 100%;
-
   }
 
   .guestbook-container-1-sub-2 {
     width: 50%;
-    text-align: right;;
+    text-align: right;
   }
 
   .guestbook-container-1-sub-2-status {
     width: 50%;
   }
 
-
   .guestbook-admin-icons {
     width: 24px;
     height: 24px;
-    /*margin-left: var(--dl-space-space-halfunit);*/
-    /*margin-right: var(--dl-space-space-halfunit);*/
   }
 
   * {
-      background-color: #0c6f0b;
-    }
+    /*background-color: #0c6f0b;*/
+  }
 }
-/*TODO status mittig machen*/
 
 @media (max-width: 479px) {
   * {
-    background-color: #1f75cb;
+    /*background-color: #1f75cb;*/
+  }
+
+  .guestbook-container-1-sub-2 {
+    width: 100%;
+  }
+
+  .guestbook-container-1-sub-2-status {
+    width: 100%;
+    text-align: left;
+  }
+
+  .guestbook-container-1-sub-2-container {
+    flex-direction: column;
+    align-items: center;
   }
 
   .guestbook-admin-icons {
-    width: 17px;
-    height: 17px;
-    /*margin-left: var(--dl-space-space-halfunit);*/
-    /*margin-right: var(--dl-space-space-halfunit);*/
+    width: 20px;
+    height: 20px;
+    margin-left: var(--dl-space-space-unit);
+    margin-right: var(--dl-space-space-unit);
   }
 }
 

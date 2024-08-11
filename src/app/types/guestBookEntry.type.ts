@@ -2,7 +2,9 @@ import {Timestamp} from "rxjs";
 
 export interface GuestBookEntry {
   entry_id: number;
-  date: Timestamp<any>;
+  username: string;
+  timestamp: Timestamp<any>;
+  status: string;
   is_visible: boolean;
   entry_text: string;
   comment: string;

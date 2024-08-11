@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.config = this.configService.getConfig();
     this.loginForm = new UntypedFormGroup({
       usernameOrEmail: new UntypedFormControl('', [Validators.required]),
       password: new UntypedFormControl('', [Validators.required]),

@@ -16,11 +16,15 @@ export class GuestbookEntryComponent implements OnInit {
   minutes: string = "";
   config: any;
 
-  constructor(private translate: TranslateService, private guestbookService: GuestbookService, private snackbar: Snackbar, private configService: ConfigService) {
+  constructor(
+    private translate: TranslateService,
+    private guestbookService: GuestbookService,
+    private snackbar: Snackbar,
+    private configService: ConfigService) {
   }
 
   ngOnInit() {
-    this.config = this.configService.loadConfig()
+    this.config = this.configService.getConfig()
     this.processTimestamp(this.entry.timestamp);
   }
 
@@ -41,6 +45,7 @@ export class GuestbookEntryComponent implements OnInit {
       .then(success => {
         if (success) {
           this.entry.is_visible = newVisibility;
+          console.log(this.config.SNACKBAR_SUCCESS_DURATION)
           this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.VISIBILITY_UPDATED_SUCCESS'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
         }
       })

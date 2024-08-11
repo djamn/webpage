@@ -14,6 +14,7 @@ import {TranslateModule} from "@ngx-translate/core";
 import {GuestbookMainComponent} from "./guestbook-main-component/guestbook-main-component.component";
 import {GuestbookEntryComponent} from "./guestbook-entry-component/guestbook-entry-component.component";
 import {GuestbookPageComponent} from "./guestbook-page-component/guestbook-page-component.component";
+import {GuestbookComponent} from "./guestbook-component/guestbook-component.component";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {GuestbookPageComponent} from "./guestbook-page-component/guestbook-page-
     GuestbookMainComponent,
     GuestbookEntryComponent,
     GuestbookPageComponent,
+    GuestbookComponent,
   ],
     imports: [CommonModule, RouterModule, FormsModule, MaterialModule, ReactiveFormsModule, TranslateModule],
   exports: [
@@ -38,6 +40,7 @@ import {GuestbookPageComponent} from "./guestbook-page-component/guestbook-page-
     GuestbookMainComponent,
     GuestbookEntryComponent,
     GuestbookPageComponent,
+    GuestbookComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

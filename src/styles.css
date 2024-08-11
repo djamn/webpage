@@ -125,7 +125,7 @@ body {
   position: relative;
   align-items: center;
   margin-bottom: var(--dl-space-space-twounits);
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
 }
 

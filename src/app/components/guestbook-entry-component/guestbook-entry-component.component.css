@@ -103,6 +103,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
+  user-select: none;
 }
 
 .guestbook-admin-icons {
@@ -110,6 +111,7 @@ html, body {
   height: 24px;
   margin-left: var(--dl-space-space-halfunit);
   margin-right: var(--dl-space-space-halfunit);
+  cursor: pointer;
 }
 
 .username-style {

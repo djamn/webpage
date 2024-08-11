@@ -9,12 +9,12 @@ export class Snackbar {
   constructor(private snackBar: MatSnackBar, private translate: TranslateService) {
   }
 
-  showSnackbar(message: string, panelClass: string, duration: number) {
+  showSnackbar(message: string, styleClass: string, durationMs: number) {
     this.snackBar.open(message, this.translate.instant('SNACKBAR.CONFIRM_BUTTON'), {
       verticalPosition: 'top',
       horizontalPosition: 'center',
-      panelClass: [panelClass],
-      duration: duration
+      panelClass: [styleClass],
+      duration: durationMs
     });
   }
 }

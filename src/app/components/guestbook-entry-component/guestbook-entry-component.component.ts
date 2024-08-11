@@ -1,19 +1,20 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {GuestBookEntry} from "../../types/guestBookEntry.type";
 import {TranslateService} from "@ngx-translate/core";
+import {GuestbookService} from "../../services/guestbook.service";
+import {Snackbar} from "../../utility/snackbar";
 
 @Component({
   selector: 'guestbook-entry-component',
   templateUrl: './guestbook-entry-component.component.html',
   styleUrl: './guestbook-entry-component.component.css'
 })
-export class GuestbookEntryComponent implements OnInit{
+export class GuestbookEntryComponent implements OnInit {
   @Input() entry: any;
   formattedDate: string = "";
   hours: string = "";
   minutes: string = "";
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private guestbookService: GuestbookService, private snackbar : Snackbar) {
   }
 
   ngOnInit() {
@@ -29,5 +30,16 @@ export class GuestbookEntryComponent implements OnInit{
 
   hasPermission() {
     return true;
+  }
+
+  toggleEntryVisibility() {
+    const newVisibility = !this.entry.is_visible
+    this.guestbookService.toggleVisibility(this.entry.id, newVisibility)
+      .then(success => {
+        if (success) {
+          this.entry.is_visible = newVisibility;
+          this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.VISIBILITY_UPDATED_SUCCESS'), 'success-snackbar', 2000);
+        }
+      })
   }
 }

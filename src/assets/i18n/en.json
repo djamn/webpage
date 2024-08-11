@@ -57,6 +57,8 @@
     "ENTRY_TITLE": "{{username}} wrote on {{date}} ({{hour}}:{{minute}} o'clock)",
     "COMMENT_TITLE": "Comment: ",
     "ENTRY_STATUS": "Status: {{status}}",
-    "ENTRY_IS_INVISIBLE_HINT": "Hint: This entry is currently invisible!"
+    "VISIBILITY_UPDATED_SUCCESS": "Visibility updated successfully!",
+    "ENTRY_IS_INVISIBLE_HINT": "Hint: This entry is currently invisible!",
+    "UNEXPECTED_ERROR": "An unexpected error occurred. Check console and try again."
   }
 }

@@ -1,18 +1,9 @@
 import {Injectable} from '@angular/core';
-import {getAuth} from "firebase/auth";
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from "@angular/fire/auth";
 import {FirestoreService} from "./firestore.service";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {catchError, firstValueFrom, map, Observable, of, switchMap} from "rxjs";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
-
-// TODO
-interface User {
-  uid: string;
-  email: string;
-  username: string;
-  role: string;
-}
+import {User} from "../types/user.type";
 
 @Injectable({
   providedIn: 'root'

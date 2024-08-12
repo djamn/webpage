@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './guestbook-main-component.component.css'
 })
 export class GuestbookMainComponent {
-
+    hasPermission() {
+      return true;
+    }
 }

@@ -1,6 +1,18 @@
 <div class="main-component-container main-guestbook-container">
-  <div class="guestbook-sub-container">
-    Main Container
+  <div class="guestbook-container">
+    <div class="guestbook-title-container">
+      <span id="guestbook-title">Gästebuch</span>
+      <div class="guestbook-subtitle-container">
+        <span *ngIf="!hasPermission()" class="guestbook-subtitle-1">Einträge: %s</span>
+        <span *ngIf="hasPermission()" class="guestbook-subtitle-1">Einträge: %s (versteckt: %s)</span>
+        <span id="guestbook-subtitle-2">Besucher: %s</span>
+      </div>
+    </div>
 
+    <div class="guestbook-links-container">
+      <span id="guestbook-entry"><< Eintragen</span>
+      <span id="guestbook-homepage">Homepage >></span>
+    </div>
+<!--TODO mobile compatibility-->
   </div>
 </div>

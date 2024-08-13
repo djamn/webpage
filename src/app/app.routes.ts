@@ -2,9 +2,9 @@ import {Routes} from '@angular/router';
 import {MainPage} from "./pages/mainpage/mainpage.component";
 import {Register} from "./pages/register/register.component";
 import {Login} from "./pages/login/login.component";
-import {ResetPasswordComponent} from "./components/reset-password/reset-password.component";
 import {AuthGuard} from "./guards/auth.guard";
 import {Guestbook} from "./pages/guestbook/guestbook.component";
+import {ResetPassword} from "./pages/reset-password/reset-password.component";
 
 export const routes: Routes = [
   {path: '', component: MainPage, pathMatch: 'full'},
@@ -12,7 +12,7 @@ export const routes: Routes = [
   {path: 'login', component: Login},
   {
     path: 'reset-password',
-    component: ResetPasswordComponent,
+    component: ResetPassword,
     canActivate: [AuthGuard]
   },
   {path: 'guestbook', component: Guestbook},

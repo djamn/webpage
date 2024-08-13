@@ -5,16 +5,16 @@ import {CommonModule} from '@angular/common'
 import {TestComponentComponent} from './test-component/test-component.component'
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MaterialModule} from "../material-module";
-import {LoginComponent} from "./login/login.component";
-import {RegisterComponent} from "./register/register.component";
-import {ResetPasswordComponent} from "./reset-password/reset-password.component";
-import {LoginRegisterImageComponent} from "./login-register-image/login-register-image.component";
+import {LoginComponent} from "./authentication/login/login.component";
+import {RegisterComponent} from "./authentication/register/register.component";
+import {ResetPasswordComponent} from "./authentication/reset-password/reset-password.component";
+import {LoginRegisterImageComponent} from "./authentication/login-register-image/login-register-image.component";
 import {FooterComponent} from "./footer/footer.component";
 import {TranslateModule} from "@ngx-translate/core";
-import {GuestbookMainComponent} from "./guestbook-main-component/guestbook-main-component.component";
-import {GuestbookEntryComponent} from "./guestbook-entry-component/guestbook-entry-component.component";
-import {GuestbookPageComponent} from "./guestbook-page-component/guestbook-page-component.component";
-import {GuestbookComponent} from "./guestbook-component/guestbook-component.component";
+import {GuestbookMainComponent} from "./guestbook/guestbook-main-component/guestbook-main-component.component";
+import {GuestbookEntryComponent} from "./guestbook/guestbook-entry-component/guestbook-entry-component.component";
+import {GuestbookPageComponent} from "./guestbook/guestbook-page-component/guestbook-page-component.component";
+import {GuestbookComponent} from "./guestbook/guestbook-component/guestbook-component.component";
 import {NoEntriesComponentComponent} from "./no-entries-component/no-entries-component.component";
 
 @NgModule({

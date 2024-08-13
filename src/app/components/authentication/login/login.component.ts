@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../services/auth.service";
-import {ConfigService} from "../../services/config.service";
+import {AuthService} from "../../../services/auth.service";
+import {ConfigService} from "../../../services/config.service";
 import {Router} from "@angular/router";
-import {Snackbar} from "../../utility/snackbar";
+import {Snackbar} from "../../../utility/snackbar";
 import {TranslateService} from "@ngx-translate/core";
 
 @Component({

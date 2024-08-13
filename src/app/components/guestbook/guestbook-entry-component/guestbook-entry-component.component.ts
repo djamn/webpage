@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
-import {GuestbookService} from "../../services/guestbook.service";
-import {Snackbar} from "../../utility/snackbar";
-import {ConfigService} from "../../services/config.service";
+import {GuestbookService} from "../../../services/guestbook.service";
+import {Snackbar} from "../../../utility/snackbar";
+import {ConfigService} from "../../../services/config.service";
 import { Timestamp } from 'firebase/firestore';
 
 @Component({

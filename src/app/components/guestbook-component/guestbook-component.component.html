@@ -1,6 +1,9 @@
 <div class="main-component-container main-guestbook-container">
   <div class="guestbook-container-1">
-    <guestbook-main-component></guestbook-main-component>
+    <guestbook-main-component
+      [visibleEntriesCount]="visibleEntriesCount"
+      [hiddenEntriesCount]="hiddenEntriesCount"
+    ></guestbook-main-component>
 
     <guestbook-entry-component
       *ngFor="let guestBookEntry of filteredGuestBookEntries"

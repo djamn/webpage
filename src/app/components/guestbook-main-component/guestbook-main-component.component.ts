@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'guestbook-main-component',
@@ -6,6 +6,12 @@ import { Component } from '@angular/core';
   styleUrl: './guestbook-main-component.component.css'
 })
 export class GuestbookMainComponent {
+  @Input()
+  visibleEntriesCount: number = 0;
+
+  @Input()
+  hiddenEntriesCount: number = 0;
+
     hasPermission() {
       return true;
     }

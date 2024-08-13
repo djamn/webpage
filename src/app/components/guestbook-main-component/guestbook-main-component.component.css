@@ -45,7 +45,11 @@
   margin-bottom: var(--dl-space-space-halfunit);
 }
 
-.guestbook-subtitle-1 {
+#guestbook-subtitle-1 {
+  margin-right: var(--dl-space-space-unit)
+}
+
+#guestbook-subtitle-1-admin {
   margin-right: var(--dl-space-space-unit)
 }
 

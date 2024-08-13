@@ -16,6 +16,7 @@ import {GuestbookEntryComponent} from "./guestbook/guestbook-entry-component/gue
 import {GuestbookPageComponent} from "./guestbook/guestbook-page-component/guestbook-page-component.component";
 import {GuestbookComponent} from "./guestbook/guestbook-component/guestbook-component.component";
 import {NoEntriesComponentComponent} from "./no-entries-component/no-entries-component.component";
+import {GuestbookCreateEntryComponent} from "./guestbook/guestbook-create-entry/guestbook-create-entry.component";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {NoEntriesComponentComponent} from "./no-entries-component/no-entries-com
     GuestbookPageComponent,
     GuestbookComponent,
     NoEntriesComponentComponent,
+    GuestbookCreateEntryComponent
   ],
     imports: [CommonModule, RouterModule, FormsModule, MaterialModule, ReactiveFormsModule, TranslateModule],
   exports: [
@@ -44,6 +46,7 @@ import {NoEntriesComponentComponent} from "./no-entries-component/no-entries-com
     GuestbookPageComponent,
     GuestbookComponent,
     NoEntriesComponentComponent,
+    GuestbookCreateEntryComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -5,6 +5,7 @@ import {Login} from "./pages/login/login.component";
 import {AuthGuard} from "./guards/auth.guard";
 import {Guestbook} from "./pages/guestbook/guestbook.component";
 import {ResetPassword} from "./pages/reset-password/reset-password.component";
+import {GuestbookCreateEntry} from "./pages/guestbook-create-entry/guestbook-create-entry.component";
 
 export const routes: Routes = [
   {path: '', component: MainPage, pathMatch: 'full'},
@@ -16,5 +17,6 @@ export const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {path: 'guestbook', component: Guestbook},
+  {path: 'guestbook/create', component: GuestbookCreateEntry},
 
 ];

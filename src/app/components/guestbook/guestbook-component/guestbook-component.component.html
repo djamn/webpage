@@ -10,7 +10,8 @@
       [entry]="guestBookEntry"
     ></guestbook-entry-component>
 
-    <div *ngIf="guestBookEntries.length == 0">
+<!--    TODO-->
+    <div *ngIf="visibleEntriesCount == 0">
       <no-entries-component></no-entries-component>
     </div>
 

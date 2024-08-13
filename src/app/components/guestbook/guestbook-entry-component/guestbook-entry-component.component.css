@@ -145,6 +145,8 @@ html, body {
   .guestbook-admin-icons {
     width: 24px;
     height: 24px;
+    margin-left: var(--dl-space-space-unit);
+    margin-right: var(--dl-space-space-unit);
   }
 
   * {

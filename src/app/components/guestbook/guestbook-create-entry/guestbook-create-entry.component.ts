@@ -30,6 +30,9 @@ export class GuestbookCreateEntryComponent implements OnInit {
         Validators.required,
         Validators.maxLength(this.config.GUESTBOOK_USERNAME_MAX_LENGTH),
         Validators.pattern(this.config.GUESTBOOK_USERNAME_CHARACTER_PATTERN)
+      ]),
+      entry_message: new UntypedFormControl({value: '', disabled: !this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE}, [
+        Validators.required,
       ])
     })
   }

@@ -32,6 +32,26 @@
         </div>
       </div>
 
+      <label for="entry-text" class="input-label">Your message</label>
+      <textarea
+        id="entry-text"
+        class="textarea-style"
+        [ngClass]="{'textarea-error': isControlInvalid(this.createEntryForm, 'entry_message')}"
+        placeholder="Enter your message*"
+        formControlName="entry_message">
+      </textarea>
+
+      <div
+        class="input-error-message"
+        [ngStyle]="{
+        opacity: isControlInvalid(createEntryForm, 'entry_message') ? '1' : '0',
+        visibility: isControlInvalid(createEntryForm, 'entry_message') ? 'visible' : 'hidden'
+        }">
+        <div *ngIf="createEntryForm.get('entry_message')?.hasError('required')">
+          This field is required
+        </div>
+      </div>
+
 
     </form>
     Entry works

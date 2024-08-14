@@ -199,7 +199,7 @@ body {
 /*
 INPUT STYLES
  */
-.input-style {
+.input-style, .textarea-style {
   cursor: auto;
   color: var(--dl-color-black);
   padding: 0.5rem 1rem;
@@ -213,21 +213,26 @@ INPUT STYLES
   transition: border-color 0.2s;
 }
 
-.input-style:focus {
+.textarea-style{
+  max-width: 100%;
+  min-width: 50%;
+}
+
+.input-style:focus, .textarea-style:focus {
   margin: -1px; /*Due to bigger border*/
   border: 2px solid var(--blue-color);
 }
 
-.input-error {
+.input-error, .textarea-error {
   border-color: var(--error-color);
 }
 
-.input-error:focus {
+.input-error:focus, .textarea-error:focus {
   margin: -1px; /*Due to bigger border*/
   border: 2px solid var(--error-color)
 }
 
-.input-error::placeholder {
+.input-error::placeholder, .textarea-error::placeholder {
   color: var(--error-color);
   opacity: 1; /* Firefox */
 }

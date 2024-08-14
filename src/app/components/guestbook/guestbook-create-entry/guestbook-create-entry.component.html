@@ -1,11 +1,11 @@
 <div class="main-component-container main-create-entry-container">
   <div class="guestbook-entry-container">
     <div class="guestbook-create-entry-title-container">
-      <span id="guestbook-create-entry-title">Create guestbook entry</span>
+      <span id="guestbook-create-entry-title">Create Guestbook Entry</span>
     </div>
     <!--    Change to normal TODO with transition -->
     <form (ngSubmit)="createEntry()" [formGroup]="createEntryForm" class="guestbook-create-entry-form">
-      <label for="username" class="input-label">Your username</label>
+      <label for="username" class="input-label">Your Username</label>
       <input
         type="text"
         id="username"
@@ -32,7 +32,8 @@
         </div>
       </div>
 
-      <label for="entry-text" class="input-label">Your message</label>
+<!--      TODO WHOLE TEXTEDITOR-->
+      <label for="entry-text" class="input-label">Your Message</label>
       <textarea
         id="entry-text"
         class="textarea-style"
@@ -51,6 +52,31 @@
           This field is required
         </div>
       </div>
+
+      <div class="emojis-container">
+        <span id="emojis-not-available">Emojis are currently not available</span>
+      </div>
+
+      <label for="captcha-text" class="input-label">Enter Captcha</label>
+      <input
+        id="captcha-text"
+        class="input-style captcha-input"
+        [ngClass]="{'textarea-error': isControlInvalid(this.createEntryForm, 'entry_message')}"
+        placeholder="Captcha*"
+        formControlName="entry_message">
+
+      <div
+        class="input-error-message"
+        [ngStyle]="{
+        opacity: isControlInvalid(createEntryForm, 'entry_message') ? '1' : '0',
+        visibility: isControlInvalid(createEntryForm, 'entry_message') ? 'visible' : 'hidden'
+        }">
+        <div *ngIf="createEntryForm.get('entry_message')?.hasError('required')">
+          This field is required
+        </div>
+      </div>
+
+
 
 
     </form>

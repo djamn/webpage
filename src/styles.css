@@ -243,6 +243,7 @@ INPUT STYLES
   font-size: 13px;
   margin-top: 4px;
   transition: all 0.3s;
+  margin-bottom: var(--dl-space-space-halfunit);
 }
 
 .input-label {

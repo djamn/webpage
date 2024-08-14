@@ -53,3 +53,20 @@
   width: 100%;
   height: 250px
 }
+
+.emojis-container {
+  width: 100%;
+  border: 1px solid green;
+  margin-bottom: var(--dl-space-space-unit);
+}
+
+#emojis-not-available {
+  font-style: italic;
+  color: var(--dl-color-gray-700);
+  font-weight: 500;
+}
+
+/*TODO MOBILE*/
+.captcha-input {
+  width: 25%;
+}

@@ -17,9 +17,19 @@
 
       <div
         class="error-message"
-        [style.opacity]="isControlInvalid(this.createEntryForm,'username') && createEntryForm.get('username')?.hasError('required') ? '1' : '0'"
-        [style.visibility]="isControlInvalid(this.createEntryForm, 'username') && createEntryForm.get('username')?.hasError('required') ? 'visible' : 'hidden'">
-        This field is required!
+        [ngStyle]="{
+        opacity: isControlInvalid(createEntryForm, 'username') ? '1' : '0',
+        visibility: isControlInvalid(createEntryForm, 'username') ? 'visible' : 'hidden'
+        }">
+        <div *ngIf="createEntryForm.get('username')?.hasError('required')">
+          This field is required!
+        </div>
+        <div *ngIf="createEntryForm.get('username')?.hasError('maxLength')">
+          Max length!
+        </div>
+        <div *ngIf="createEntryForm.get('username')?.hasError('pattern')">
+          Pattern!
+        </div>
       </div>
 
 

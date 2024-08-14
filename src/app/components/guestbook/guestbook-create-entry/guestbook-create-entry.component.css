@@ -2,7 +2,6 @@
   display: contents;
 }
 
-
 .main-create-entry-container {
   border: 1px solid red;
   height: auto;
@@ -43,11 +42,6 @@
   flex-direction: column;
 }
 
-.small-form-field {
-  margin-bottom: var(--dl-space-space-unit);
-  /*width: 96vw;*/
-}
-
 .input-style {
   cursor: auto;
   color: var(--dl-color-black);
@@ -58,17 +52,14 @@
   background-color: var(--dl-color-white);
   outline: none;
   box-sizing: border-box;
-  /*-webkit-transition: 0.2s;*/
-  /*transition: 0.2s;*/
   border-style: solid;
-  transition: border-color 0.2s, margin 0.2s;
+  transition: border-color 0.2s;
 
   width: 100%;
 }
 
 .input-style:focus {
-  /*padding: calc(0.5rem - 1px) calc(1rem - 1px);*/
-  margin: -1.2px; /*Due to bigger border*/
+  margin: -1px; /*Due to bigger border*/
   border: 2px solid var(--blue-color);
 }
 
@@ -77,14 +68,13 @@
 }
 
 .input-error:focus {
-  margin: -1.2px; /*Due to bigger border*/
+  margin: -1px; /*Due to bigger border*/
   border: 2px solid var(--error-color)
 }
 
 .input-error::placeholder {
   color: var(--error-color);
   opacity: 1; /* Firefox */
-
 }
 
 .error-message {
@@ -92,9 +82,6 @@
   margin-left: var(--dl-space-space-unit);
   font-size: 13px;
   margin-top: 4px;
-
-  opacity: 0;
-  transition: opacity 0.2s;
 }
 
 .input-label {
@@ -103,14 +90,6 @@
   font-style: normal;
   text-align: center;
   font-weight: 500;
-}
-
-.input-style-error {
-  color: var(--error-color)
-}
-
-.input-style:focus{
-  /*border: 5px solid var(--dl-color-gray-900);*/
 }
 
 

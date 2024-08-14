@@ -27,9 +27,7 @@ body {
   --dl-space-space-fiveunits: 80px;
   --dl-space-space-sixunits: 96px;
 
-  --dl-color-gray-500: #595959;
-  --dl-color-gray-700: #999999;
-  --dl-color-gray-900: #D9D9D9;
+
 
   --success-color: #198754;
   --hint-color: #dc505e;
@@ -39,6 +37,13 @@ body {
   --text-hint-color: gray;
   --blue-color: #1f75cb;
   --blue-color-hover: #084f9e;
+
+  --dl-color-gray-500: #595959;
+  --dl-color-gray-700: #999999;
+  --dl-color-gray-900: #D9D9D9;
+
+  --dl-color-black: #000000;
+  --dl-color-white: #FFFFFF;
 
   /*--color-success:*/
   /*-- color-error:*/

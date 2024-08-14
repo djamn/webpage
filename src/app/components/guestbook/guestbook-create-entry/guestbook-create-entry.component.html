@@ -1,5 +1,26 @@
 <div class="main-component-container main-create-entry-container">
   <div class="guestbook-entry-container">
+    <div class="guestbook-create-entry-title-container">
+      <span id="guestbook-create-entry-title">Create guestbook entry</span>
+    </div>
+    <!--    Change to normal TODO with transition -->
+    <form (ngSubmit)="createEntry()" [formGroup]="createEntryForm" class="guestbook-create-entry-form">
+      <label for="username" class="input-label">Your username</label>
+      <input
+        type="text"
+        id="username"
+        class="input-style"
+        [ngClass]="{'input-error': isControlInvalid('username')}"
+        placeholder="Username"
+        formControlName="username"
+      />
+
+      <div class="error-message" *ngIf="isControlInvalid('username') && createEntryForm.get('username')?.hasError('required')">
+        This field is required!
+      </div>
+
+
+    </form>
     Entry works
   </div>
 </div>

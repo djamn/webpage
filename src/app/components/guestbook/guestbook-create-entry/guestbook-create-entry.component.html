@@ -32,7 +32,7 @@
         </div>
       </div>
 
-<!--      TODO WHOLE TEXTEDITOR-->
+      <!--      TODO WHOLE TEXTEDITOR-->
       <label for="entry-text" class="input-label">Your Message</label>
       <textarea
         id="entry-text"
@@ -57,26 +57,25 @@
         <span id="emojis-not-available">Emojis are currently not available</span>
       </div>
 
+      <!--      TODO FIX-->
       <label for="captcha-text" class="input-label">Enter Captcha</label>
-      <input
+      <re-captcha
         id="captcha-text"
-        class="input-style captcha-input"
-        [ngClass]="{'textarea-error': isControlInvalid(this.createEntryForm, 'entry_message')}"
-        placeholder="Captcha*"
-        formControlName="entry_message">
+        formControlName="recaptcha"
+        siteKey="6Ld5CCcqAAAAAA9sHd_VcNvUMLXQbWNgeTYaNb6W"
+        (resolved)="onCaptchaResolved($event)">
+      </re-captcha>
 
       <div
         class="input-error-message"
         [ngStyle]="{
-        opacity: isControlInvalid(createEntryForm, 'entry_message') ? '1' : '0',
-        visibility: isControlInvalid(createEntryForm, 'entry_message') ? 'visible' : 'hidden'
+        opacity: isControlInvalid(createEntryForm, 'recaptcha') ? '1' : '0',
+        visibility: isControlInvalid(createEntryForm, 'recaptcha') ? 'visible' : 'hidden'
         }">
-        <div *ngIf="createEntryForm.get('entry_message')?.hasError('required')">
+        <div *ngIf="createEntryForm.get('entry_message')?.hasError('recaptcha')">
           This field is required
         </div>
       </div>
-
-
 
 
     </form>

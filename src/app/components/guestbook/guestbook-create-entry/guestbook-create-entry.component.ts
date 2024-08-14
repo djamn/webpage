@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import {FormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {ConfigService} from "../../../services/config.service";
 import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
@@ -19,11 +19,18 @@ export class GuestbookCreateEntryComponent implements OnInit {
     private configService: ConfigService,
     private router: Router,
     private translate: TranslateService,
-    private snackbar: Snackbar) {
+    private snackbar: Snackbar,
+    private fb: FormBuilder) {
   }
 
   ngOnInit() {
     this.config = this.configService.getConfig();
+
+/*    this.createEntryForm = this.fb.group({
+      username: [{value: '', disabled: !this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE}, Validators.required],
+      entry_message: ['', Validators.required],
+      recaptcha: ['', Validators.required] // reCAPTCHA form control
+    });*/
 
     this.createEntryForm = new UntypedFormGroup({
       username: new UntypedFormControl({value: '', disabled: !this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE}, [
@@ -33,12 +40,19 @@ export class GuestbookCreateEntryComponent implements OnInit {
       ]),
       entry_message: new UntypedFormControl({value: '', disabled: !this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE}, [
         Validators.required,
+      ]),
+      recaptcha: new UntypedFormControl({value: '', disabled: !this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE}, [
+        Validators.required,
       ])
     })
   }
 
   createEntry() {
     console.log(true)
+  }
+
+  onCaptchaResolved(event: any) {
+
   }
 
   protected readonly isControlInvalid = isControlInvalid;

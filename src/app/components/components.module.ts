@@ -18,6 +18,7 @@ import {GuestbookComponent} from "./guestbook/guestbook-component/guestbook-comp
 import {NoEntriesComponentComponent} from "./no-entries-component/no-entries-component.component";
 import {GuestbookCreateEntryComponent} from "./guestbook/guestbook-create-entry/guestbook-create-entry.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {RecaptchaModule} from "ng-recaptcha";
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MaterialModule,
     ReactiveFormsModule,
     TranslateModule,
+    RecaptchaModule,
   ],
   exports: [
     TestComponentComponent,

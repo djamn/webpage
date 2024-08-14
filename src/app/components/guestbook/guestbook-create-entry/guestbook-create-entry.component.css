@@ -43,56 +43,8 @@
 }
 
 .input-style {
-  cursor: auto;
-  color: var(--dl-color-black);
-  padding: 0.5rem 1rem;
-  border-color: var(--dl-color-gray-700);
-  border-width: 1px;
-  border-radius: 3px;
-  background-color: var(--dl-color-white);
-  outline: none;
-  box-sizing: border-box;
-  border-style: solid;
-  transition: border-color 0.2s;
-
   width: 100%;
 }
-
-.input-style:focus {
-  margin: -1px; /*Due to bigger border*/
-  border: 2px solid var(--blue-color);
-}
-
-.input-error {
-  border-color: var(--error-color);
-}
-
-.input-error:focus {
-  margin: -1px; /*Due to bigger border*/
-  border: 2px solid var(--error-color)
-}
-
-.input-error::placeholder {
-  color: var(--error-color);
-  opacity: 1; /* Firefox */
-}
-
-.error-message {
-  color: var(--error-color);
-  margin-left: var(--dl-space-space-unit);
-  font-size: 13px;
-  margin-top: 4px;
-  transition: all 0.3s;
-}
-
-.input-label {
-  font-size: 18px;
-  align-self: flex-start;
-  font-style: normal;
-  text-align: center;
-  font-weight: 500;
-}
-
 
 /*.textarea {*/
 /*  color: var(--dl-color-gray-black);*/

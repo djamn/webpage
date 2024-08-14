@@ -196,20 +196,60 @@ body {
   padding: 2px;
 }
 
-/*.success-snackbar {
-  --mdc-snackbar-container-color: var(--success-color) !important;
-  --mdc-snackbar-supporting-text-color: white !important;
-  --mat-mdc-snack-bar-button-color: white !important;
-  white-space: pre-wrap
-}*/
-
-
-mat-form-field.small {
-  /*--mat-form-field-container-height: 30px;*/
-  /*--mat-form-field-container-vertical-padding: 5px;*/
-  /*--mat-form-field-container-text-size: 15px;*/
-  /*--mat-form-field-subscript-text-size: 13px;*/
+/*
+INPUT STYLES
+ */
+.input-style {
+  cursor: auto;
+  color: var(--dl-color-black);
+  padding: 0.5rem 1rem;
+  border-color: var(--dl-color-gray-700);
+  border-width: 1px;
+  border-radius: 3px;
+  background-color: var(--dl-color-white);
+  outline: none;
+  box-sizing: border-box;
+  border-style: solid;
+  transition: border-color 0.2s;
 }
+
+.input-style:focus {
+  margin: -1px; /*Due to bigger border*/
+  border: 2px solid var(--blue-color);
+}
+
+.input-error {
+  border-color: var(--error-color);
+}
+
+.input-error:focus {
+  margin: -1px; /*Due to bigger border*/
+  border: 2px solid var(--error-color)
+}
+
+.input-error::placeholder {
+  color: var(--error-color);
+  opacity: 1; /* Firefox */
+}
+
+.input-error-message {
+  color: var(--error-color);
+  margin-left: var(--dl-space-space-unit);
+  font-size: 13px;
+  margin-top: 4px;
+  transition: all 0.3s;
+}
+
+.input-label {
+  font-size: 18px;
+  align-self: flex-start;
+  font-style: normal;
+  text-align: center;
+  font-weight: 500;
+}
+
+
+
 
 /*Changes asterix*/
 .mdc-floating-label--required:not(.mdc-floating-label--hide-required-marker)::after, .input-label {

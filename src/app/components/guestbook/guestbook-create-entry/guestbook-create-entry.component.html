@@ -11,12 +11,12 @@
         id="username"
         class="input-style"
         [ngClass]="{'input-error': isControlInvalid(this.createEntryForm, 'username')}"
-        placeholder="Username"
+        placeholder="Username*"
         formControlName="username"
       />
 
       <div
-        class="error-message"
+        class="input-error-message"
         [ngStyle]="{
         opacity: isControlInvalid(createEntryForm, 'username') ? '1' : '0',
         visibility: isControlInvalid(createEntryForm, 'username') ? 'visible' : 'hidden'

@@ -4,6 +4,7 @@ import {ConfigService} from "../../../services/config.service";
 import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
 import {Snackbar} from "../../../utility/snackbar";
+import {isControlInvalid} from "../../../utility/form-utils";
 
 @Component({
   selector: 'guestbook-create-entry-component',
@@ -37,8 +38,5 @@ export class GuestbookCreateEntryComponent implements OnInit {
     console.log(true)
   }
 
-  isControlInvalid(controlName: string): boolean {
-    const control = this.createEntryForm.get(controlName)!;
-    return control && control.invalid && (control.dirty || control.touched);
-  }
+  protected readonly isControlInvalid = isControlInvalid;
 }

@@ -82,6 +82,7 @@
   margin-left: var(--dl-space-space-unit);
   font-size: 13px;
   margin-top: 4px;
+  transition: all 0.3s;
 }
 
 .input-label {

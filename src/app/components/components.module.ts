@@ -17,6 +17,7 @@ import {GuestbookPageComponent} from "./guestbook/guestbook-page-component/guest
 import {GuestbookComponent} from "./guestbook/guestbook-component/guestbook-component.component";
 import {NoEntriesComponentComponent} from "./no-entries-component/no-entries-component.component";
 import {GuestbookCreateEntryComponent} from "./guestbook/guestbook-create-entry/guestbook-create-entry.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,14 @@ import {GuestbookCreateEntryComponent} from "./guestbook/guestbook-create-entry/
     NoEntriesComponentComponent,
     GuestbookCreateEntryComponent
   ],
-    imports: [CommonModule, RouterModule, FormsModule, MaterialModule, ReactiveFormsModule, TranslateModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    TranslateModule,
+  ],
   exports: [
     TestComponentComponent,
     LoginComponent,

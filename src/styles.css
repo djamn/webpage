@@ -178,6 +178,7 @@ body {
   font-size: 15px;
   font-weight: 400;
   text-align: justify;
+  font-style: italic;
 }
 
 .info-text-font {
@@ -189,10 +190,10 @@ body {
 
 
 .checkbox-style {
-  width: 30px;
+  width: 20px;
   border: 2px solid #555;
   cursor: pointer;
-  height: 30px;
+  height: 20px;
   padding: 2px;
 }
 
@@ -253,6 +254,7 @@ INPUT STYLES
   text-align: center;
   font-weight: 500;
 }
+
 
 
 

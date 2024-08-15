@@ -26,11 +26,11 @@ export class GuestbookCreateEntryComponent implements OnInit {
   ngOnInit() {
     this.config = this.configService.getConfig();
 
-/*    this.createEntryForm = this.fb.group({
-      username: [{value: '', disabled: !this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE}, Validators.required],
-      entry_message: ['', Validators.required],
-      recaptcha: ['', Validators.required] // reCAPTCHA form control
-    });*/
+    /*    this.createEntryForm = this.fb.group({
+          username: [{value: '', disabled: !this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE}, Validators.required],
+          entry_message: ['', Validators.required],
+          recaptcha: ['', Validators.required] // reCAPTCHA form control
+        });*/
 
     this.createEntryForm = new UntypedFormGroup({
       username: new UntypedFormControl({value: '', disabled: !this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE}, [
@@ -53,6 +53,12 @@ export class GuestbookCreateEntryComponent implements OnInit {
 
   onCaptchaResolved(event: any) {
 
+  }
+
+  async abort(event: MouseEvent) {
+    event.stopPropagation();
+    this.createEntryForm.reset();
+    await this.router.navigate(['../'], ) // TODO hierarchy
   }
 
   protected readonly isControlInvalid = isControlInvalid;

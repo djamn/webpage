@@ -77,6 +77,19 @@
         </div>
       </div>
 
+      <!--      TODO CHECK -->
+      <div class="privacy-confirmation">
+        <input type="checkbox" class="checkbox-style">
+        <span id="privacy-confirmation-text" class="hint-text-font">Hiermit willige ich ein, dass meine Angaben gegebenenfalls beständig im Gästebuch gespeichert werden</span>
+      </div>
+
+      <div class="buttons-container">
+        <button class="button-general button-green guestbook-confirm-button" type="submit">Absenden</button>
+        <button class="button-general button-red guestbook-abort-button" type="button" (click)="abort($event)">
+          Abbrechen
+        </button>
+      </div>
+
 
     </form>
     Entry works

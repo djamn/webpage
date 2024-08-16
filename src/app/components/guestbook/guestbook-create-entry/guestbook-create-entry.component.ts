@@ -49,6 +49,10 @@ export class GuestbookCreateEntryComponent implements OnInit {
   }
 
   createEntry() {
+    if(!this.createEntryForm.valid) {
+      console.log(false);
+      return;
+    }
     console.log(true)
   }
 

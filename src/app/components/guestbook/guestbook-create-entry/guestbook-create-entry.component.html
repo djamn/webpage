@@ -3,7 +3,7 @@
     <div class="guestbook-create-entry-title-container">
       <span id="guestbook-create-entry-title">Create Guestbook Entry</span>
     </div>
-    <!--    Change to normal TODO with transition -->
+
     <form (ngSubmit)="createEntry()" [formGroup]="createEntryForm" class="guestbook-create-entry-form">
       <label for="username" class="input-label">Your Username</label>
       <input
@@ -60,6 +60,7 @@
       <!--      TODO EXPIRED CAPTCHA-->
       <label for="captcha-text" class="input-label">Enter Captcha</label>
       <re-captcha
+        required
         id="captcha-text"
         formControlName="recaptcha"
         siteKey="6LfvFicqAAAAABsPWbfE71zc7iXy-Ic-MfkWR4tb"
@@ -79,7 +80,7 @@
 
       <!--      TODO CHECK -->
       <div class="privacy-confirmation">
-        <input type="checkbox" class="checkbox-style">
+        <input type="checkbox" class="checkbox-style" required>
         <span id="privacy-confirmation-text" class="hint-text-font">Hiermit willige ich ein, dass meine Angaben gegebenenfalls beständig im Gästebuch gespeichert werden</span>
       </div>
 

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {ConfigService} from "../../../services/config.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
 import {Snackbar} from "../../../utility/snackbar";
 import {isControlInvalid} from "../../../utility/form-utils";
@@ -20,6 +20,7 @@ export class GuestbookCreateEntryComponent implements OnInit {
     private router: Router,
     private translate: TranslateService,
     private snackbar: Snackbar,
+    private route : ActivatedRoute,
     private fb: FormBuilder) {
   }
 
@@ -58,7 +59,7 @@ export class GuestbookCreateEntryComponent implements OnInit {
   async abort(event: MouseEvent) {
     event.stopPropagation();
     this.createEntryForm.reset();
-    await this.router.navigate(['../'], ) // TODO hierarchy
+    await this.router.navigate(['../'], { relativeTo: this.route });
   }
 
   protected readonly isControlInvalid = isControlInvalid;

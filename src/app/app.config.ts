@@ -17,7 +17,7 @@ import {environment} from "../environments/environment";
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {FIREBASE_OPTIONS} from "@angular/fire/compat";
 import {ConfigService} from "./services/config.service";
-import {HttpClient, provideHttpClient} from "@angular/common/http";
+import { HttpClient, provideHttpClient } from "@angular/common/http";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {HttpLoaderFactory, initApp} from "../main";
 

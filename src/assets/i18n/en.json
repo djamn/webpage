@@ -47,7 +47,11 @@
   "FOOTER": {
     "IMPRINT": "Imprint",
     "DATA_PRIVACY": "Data Privacy",
-    "COPYRIGHT_INFORMATION": "© {{currentYear}} Jamnig.net, All Rights Reserved."
+    "COPYRIGHT_INFORMATION": "© {{currentYear}} Jamnig.net, All Rights Reserved.",
+    "INSTAGRAM": "You will be forwarded to Instagram",
+    "YOUTUBE": "You will be forwarded to YouTube",
+    "LINKEDIN": "You will be forwarded to LinkedIn",
+    "DISCORD": "You will be forwarded to Discord"
   },
   "HOME": {
     "TITLE": "Hello Angular with ngx-translate!",

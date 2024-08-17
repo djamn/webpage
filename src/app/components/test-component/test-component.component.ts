@@ -71,6 +71,11 @@ export class TestComponentComponent implements OnInit {
     await this.router.navigate(['/login']);
   }
 
+  async guestbook() {
+    await this.router.navigate(['/guestbook']);
+  }
+
+
   // Change enforcement: https://cloud.google.com/identity-platform/docs/password-policy
   // https://www.youtube.com/watch?v=Ru-FaifP4mM&list=PL-Ps9kYNdYBzorz7yEx0SlbDOeXsEXkeG&index=3
   // login, logout, register: https://firebase.google.com/docs/auth/web/password-auth?authuser=0&hl=de#web-modular-api

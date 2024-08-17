@@ -2,6 +2,7 @@
 <button class="button-general button-red general" (click)="testButton()">Click Me</button>
 <button class="button-general button-red general" (click)="logout()">Log Out</button>
 <button class="button-general button-blue general" (click)="login()">Switch to Login</button>
+<button class="button-general button-blue general" (click)="guestbook()">Guestbook</button>
 <br><br>
 <span>Total Clicks: {{ counter }} </span><br>
 <span>You are currently logged in as: {{getAuth().currentUser?.uid ? getAuth().currentUser?.uid : "Not logged in" }}</span><br>

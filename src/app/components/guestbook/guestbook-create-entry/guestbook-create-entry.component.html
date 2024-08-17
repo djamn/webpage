@@ -11,7 +11,7 @@
         id="username"
         class="input-style"
         [ngClass]="{'input-error': isControlInvalid(this.createEntryForm, 'username')}"
-        placeholder='{{"GUESTBOOK.CREATE.USERNAME_PLACEHOLDER" | translate}}'
+        [placeholder]="'GUESTBOOK.CREATE.USERNAME_PLACEHOLDER' | translate"
         formControlName="username"
       />
 

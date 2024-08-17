@@ -17,7 +17,7 @@
             type="email"
             formControlName="email"
             class="register-input"
-            placeholder="{{'REGISTER.EMAIL_PLACEHOLDER'| translate}}"
+            [placeholder]="'REGISTER.EMAIL_PLACEHOLDER' | translate"
             autocomplete="email"
           />
           <mat-error
@@ -39,7 +39,7 @@
             autocomplete="username"
             formControlName="username"
             class="register-input"
-            placeholder="{{'REGISTER.USERNAME_PLACEHOLDER'| translate}}"
+            [placeholder]="'REGISTER.USERNAME_PLACEHOLDER' | translate"
           />
           <mat-error
             *ngIf="signupForm.get('username')?.hasError('required')">{{ 'REGISTER.ERRORS.REQUIRED_FIELD'| translate }}
@@ -63,7 +63,7 @@
             matInput
             formControlName="password"
             autocomplete="new-password"
-            placeholder="{{'REGISTER.PASSWORD_PLACEHOLDER'| translate}}"
+            [placeholder]="'REGISTER.PASSWORD_PLACEHOLDER' | translate"
             [type]="hidePassword ? 'password' : 'text'"
             class="register-input"/>
           <button
@@ -92,7 +92,7 @@
             matInput
             formControlName="confirmPassword"
             autocomplete="new-password"
-            placeholder="{{'REGISTER.PASSWORD_PLACEHOLDER'| translate}}"
+            [placeholder]="'REGISTER.PASSWORD_PLACEHOLDER' | translate"
             [errorStateMatcher]="errorMatcher"
             [type]="hideConfirmPassword ? 'password' : 'text'"
             class="register-input"/>

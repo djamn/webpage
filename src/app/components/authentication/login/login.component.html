@@ -10,7 +10,7 @@
           type="text"
           formControlName="usernameOrEmail"
           class="login-input"
-          placeholder="{{'LOGIN.USERNAME_OR_EMAIL_PLACEHOLDER' | translate}}"
+          [placeholder]="'LOGIN.USERNAME_OR_EMAIL_PLACEHOLDER' | translate"
           autocomplete="username"
         />
 
@@ -25,7 +25,7 @@
           matInput
           formControlName="password"
           autocomplete="new-password"
-          placeholder="{{'LOGIN.PASSWORD_PLACEHOLDER' | translate}}"
+          [placeholder]="'LOGIN.PASSWORD_PLACEHOLDER' | translate"
           [type]="hidePassword ? 'password' : 'text'"
           class="login-input"/>
         <button

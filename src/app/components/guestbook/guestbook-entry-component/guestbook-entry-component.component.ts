@@ -47,7 +47,6 @@ export class GuestbookEntryComponent implements OnInit {
       .then(success => {
         if (success) {
           this.entry.is_visible = newVisibility;
-          console.log(this.config.SNACKBAR_SUCCESS_DURATION)
           this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.VISIBILITY_UPDATED_SUCCESS'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
         }
       })

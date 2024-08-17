@@ -60,6 +60,10 @@
     "VISIBILITY_UPDATED_SUCCESS": "Visibility updated successfully!",
     "ENTRY_IS_INVISIBLE_HINT": "Hint: This entry is currently invisible!",
     "UNEXPECTED_ERROR": "An unexpected error occurred. Check console and try again.",
+    "CHANGE_VISIBILITY_ENTRY_DESC": "Change visibility of this entry",
+    "COMMENT_ENTRY_DESC": "Add a comment to this entry",
+    "EDIT_ENTRY_DESC": "Edit this entry",
+    "DELETE_ENTRY_DESC": "Delete this entry permanently",
     "CREATE": {
       "CREATE_ENTRY_TITLE": "Create Guestbook Entry",
       "USERNAME_LABEL": "Your Username",

@@ -49,6 +49,9 @@ export class LoginComponent implements OnInit {
     let usernameOrEmail = this.loginForm.value.usernameOrEmail.trim().toLowerCase();
 
     try {
+      // Slow down bruteforce attacks
+      await new Promise(resolve => setTimeout(resolve, this.config.LOGIN_SLOW_DOWN_DURATION));
+
       const isEmail = usernameOrEmail.includes('@');
       if (!isEmail) usernameOrEmail = await this.authService.fetchEmailByUsername(usernameOrEmail);
 

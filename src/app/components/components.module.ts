@@ -19,6 +19,7 @@ import {NoEntriesComponentComponent} from "./no-entries-component/no-entries-com
 import {GuestbookCreateEntryComponent} from "./guestbook/guestbook-create-entry/guestbook-create-entry.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {RecaptchaFormsModule, RecaptchaModule} from "ng-recaptcha";
+import {QuillModule} from "ngx-quill";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {RecaptchaFormsModule, RecaptchaModule} from "ng-recaptcha";
     ReactiveFormsModule,
     TranslateModule,
     RecaptchaModule,
-    RecaptchaFormsModule
+    RecaptchaFormsModule,
+    QuillModule.forRoot(),
   ],
   exports: [
     TestComponentComponent,

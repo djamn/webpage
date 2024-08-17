@@ -32,15 +32,30 @@
         </div>
       </div>
 
-      <!--      TODO WHOLE TEXTEDITOR-->
-      <label for="entry-text" class="input-label">Your Message</label>
-      <textarea
-        id="entry-text"
-        class="textarea-style"
-        [ngClass]="{'textarea-error': isControlInvalid(this.createEntryForm, 'entry_message')}"
-        placeholder="Enter your message*"
-        formControlName="entry_message">
-      </textarea>
+      <!--      https://quilljs.com/docs/formats-->
+      <!--      https://quilljs.com/docs/modules/toolbar-->
+      <div class="editor-container">
+        <label for="entry-text" class="input-label">Your Message</label>
+        <quill-editor
+          class="quill-editor-style"
+          id="entry-text"
+          formControlName="entry_message"
+          [theme]="'snow'"
+          [modules]="{
+          toolbar: [
+            [{ 'font': [] }],
+            ['bold', 'italic', 'underline'],
+            ['blockquote', 'code-block'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'script': 'sub'}, { 'script': 'super' }],
+            [{ 'indent': '-1'}, { 'indent': '+1' }],
+            [{ 'color': [] }, { 'background': [] }],
+            [{ 'align': [] }],
+            ['clean']
+          ]
+        }">
+        </quill-editor>
+      </div>
 
       <div
         class="input-error-message"

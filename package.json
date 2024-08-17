@@ -27,6 +27,7 @@
     "ng-recaptcha": "^13.2.1",
     "ngx-quill": "^25.3.2",
     "quill": "^2.0.2",
+    "quill2-emoji": "^0.1.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"

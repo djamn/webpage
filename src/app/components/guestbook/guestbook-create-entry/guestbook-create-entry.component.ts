@@ -7,6 +7,10 @@ import {Snackbar} from "../../../utility/snackbar";
 import {isControlInvalid} from "../../../utility/form-utils";
 import {addWarning} from "@angular-devkit/build-angular/src/utils/webpack-diagnostics";
 import {GuestbookService} from "../../../services/guestbook.service";
+import Quill from "quill";
+// @ts-ignore
+import * as Emoji from 'quill2-emoji'
+Quill.register("modules/emoji", Emoji);
 
 @Component({
   selector: 'guestbook-create-entry-component',
@@ -53,6 +57,20 @@ export class GuestbookCreateEntryComponent implements OnInit {
       ])
     })
   }
+
+  quillModules = {
+    toolbar: [
+      [{ 'font': [] }],
+      ['bold', 'italic', 'underline'],
+      ['code-block'],
+      [{ 'list': 'ordered' }],
+      [{ 'script': 'sub' }, { 'script': 'super' }],
+      [{ 'color': [] }, { 'background': [] }],
+      ['clean'],
+      ['emoji']  // Add emoji to the toolbar
+    ],
+    'emoji-toolbar': true,
+  };
 
   async createEntry() {
     if (!this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE) {

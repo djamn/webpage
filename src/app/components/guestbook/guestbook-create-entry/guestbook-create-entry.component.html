@@ -43,18 +43,8 @@
           formControlName="entry_message"
           [theme]="'snow'"
           [placeholder]="'GUESTBOOK.CREATE.MESSAGE_PLACEHOLDER' | translate"
-          [modules]="{
-          toolbar: [
-            [{ 'font': [] }],
-            ['bold', 'italic', 'underline'],
-            ['code-block'],
-            [{ 'list': 'ordered'}],
-            [{ 'script': 'sub'}, { 'script': 'super' }],
-            [{ 'color': [] }, { 'background': [] }],
-            ['clean']
-          ]
-        }"
-          [formats]=" [ 'header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'indent', 'link', 'image', 'align' ]">
+          [modules]="quillModules"
+          [formats]="['header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'indent', 'link', 'image', 'align', 'emoji', 'script', 'code-block', 'color', 'background', 'font']">
         </quill-editor>
       </div>
 

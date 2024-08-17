@@ -28,7 +28,6 @@ body {
   --dl-space-space-sixunits: 96px;
 
 
-
   --success-color: #198754;
   --hint-color: #dc505e;
   --error-color: #dc505e;
@@ -214,7 +213,7 @@ INPUT STYLES
   transition: border-color 0.2s;
 }
 
-.textarea-style{
+.textarea-style {
   max-width: 100%;
   min-width: 50%;
 }
@@ -262,9 +261,6 @@ INPUT STYLES
   color: var(--dl-color-black);
   background-color: var(--dl-color-white);
 }
-
-
-
 
 
 /*Changes asterix*/

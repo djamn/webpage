@@ -56,6 +56,8 @@ export class GuestbookCreateEntryComponent implements OnInit {
 
   async createEntry() {
     console.log(this.createEntryForm.value)
+    console.log(this.createEntryForm.get('username'))
+
     if (!this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE) {
       this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ERRORS.NO_CREATION_POSSIBLE_HINT'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
       return;

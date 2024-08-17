@@ -1,17 +1,17 @@
 <div class="main-component-container main-create-entry-container">
   <div class="guestbook-entry-container">
     <div class="guestbook-create-entry-title-container">
-      <span id="guestbook-create-entry-title">Create Guestbook Entry</span>
+      <span id="guestbook-create-entry-title">{{ "GUESTBOOK.CREATE.CREATE_ENTRY_TITLE" | translate }}</span>
     </div>
 
     <form (ngSubmit)="createEntry()" [formGroup]="createEntryForm" class="guestbook-create-entry-form">
-      <label for="username" class="input-label">Your Username</label>
+      <label for="username" class="input-label">{{ "GUESTBOOK.CREATE.USERNAME_LABEL" | translate }}</label>
       <input
         type="text"
         id="username"
         class="input-style"
         [ngClass]="{'input-error': isControlInvalid(this.createEntryForm, 'username')}"
-        placeholder="Username*"
+        placeholder='{{"GUESTBOOK.CREATE.USERNAME_PLACEHOLDER" | translate}}'
         formControlName="username"
       />
 
@@ -22,26 +22,27 @@
         visibility: isControlInvalid(createEntryForm, 'username') ? 'visible' : 'hidden'
         }">
         <div *ngIf="createEntryForm.get('username')?.hasError('required')">
-          This field is required!
+          {{ "GUESTBOOK.CREATE.ERRORS.REQUIRED_FIELD" | translate }}
         </div>
-        <div *ngIf="createEntryForm.get('username')?.hasError('maxLength')">
-          Max length!
+        <div *ngIf="createEntryForm.get('username')?.hasError('maxlength')">
+          {{ "GUESTBOOK.CREATE.ERRORS.USERNAME_MAX_LENGTH" | translate: {maxLength: config.GUESTBOOK_USERNAME_MAX_LENGTH} }}
         </div>
-        <div *ngIf="createEntryForm.get('username')?.hasError('pattern')">
-          Pattern!
+        <div
+          *ngIf="createEntryForm.get('username')?.hasError('pattern')">
+          {{ 'REGISTER.ERRORS.INVALID_USERNAME_PATTERN'| translate }}
         </div>
       </div>
 
       <!--      https://quilljs.com/docs/formats-->
       <!--      https://quilljs.com/docs/modules/toolbar-->
       <div class="editor-container">
-        <label for="entry-text" class="input-label">Your Message</label>
+        <label for="entry-text" class="input-label">{{ "GUESTBOOK.CREATE.MESSAGE_LABEL" | translate }}</label>
         <quill-editor
           class="quill-editor-style"
           id="entry-text"
           formControlName="entry_message"
           [theme]="'snow'"
-          [placeholder]="'Deine Nachricht ...'"
+          [placeholder]="'GUESTBOOK.CREATE.MESSAGE_PLACEHOLDER' | translate"
           [modules]="{
           toolbar: [
             [{ 'font': [] }],
@@ -64,16 +65,15 @@
         visibility: isControlInvalid(createEntryForm, 'entry_message') ? 'visible' : 'hidden'
         }">
         <div *ngIf="createEntryForm.get('entry_message')?.hasError('required')">
-          This field is required
+          {{ "GUESTBOOK.CREATE.ERRORS.REQUIRED_FIELD" | translate }}
         </div>
       </div>
 
       <div class="emojis-container">
-        <span id="emojis-not-available">Emojis are currently not available</span>
+        <span id="emojis-not-available">{{ "GUESTBOOK.CREATE.ERRORS.EMOJIS_NOT_AVAILABLE" | translate }}</span>
       </div>
 
-      <!--      TODO EXPIRED CAPTCHA-->
-      <label for="captcha-text" class="input-label">Enter Captcha</label>
+      <label for="captcha-text" class="input-label">{{ "GUESTBOOK.CREATE.CAPTCHA_LABEL" | translate }}</label>
       <re-captcha
         required
         id="captcha-text"
@@ -88,8 +88,8 @@
         opacity: isControlInvalid(createEntryForm, 'recaptcha') ? '1' : '0',
         visibility: isControlInvalid(createEntryForm, 'recaptcha') ? 'visible' : 'hidden'
         }">
-        <div *ngIf="createEntryForm.get('entry_message')?.hasError('required')">
-          This field is required
+        <div *ngIf="createEntryForm.get('recaptcha')?.hasError('required')">
+          {{ "GUESTBOOK.CREATE.ERRORS.REQUIRED_FIELD" | translate }}
         </div>
       </div>
 
@@ -99,7 +99,8 @@
           type="checkbox"
           class="checkbox-style"
           formControlName="confirmation_checkbox">
-        <span id="privacy-confirmation-text" class="hint-text-font">Hiermit willige ich ein, dass meine Angaben gegebenenfalls beständig im Gästebuch gespeichert werden</span>
+        <span id="privacy-confirmation-text"
+              class="hint-text-font">{{ "GUESTBOOK.CREATE.DATA_PRIVACY_CONFIRMATION" | translate }}</span>
       </div>
 
       <div class="buttons-container">
@@ -109,15 +110,12 @@
           [ngClass]="{'button-green': config.GUESTBOOK_ENTRY_CREATION_POSSIBLE, 'button-disabled': !config.GUESTBOOK_ENTRY_CREATION_POSSIBLE}"
           [attr.title]="config.GUESTBOOK_ENTRY_CREATION_POSSIBLE ? '' : ('REGISTER.ERRORS.NO_REGISTRATION_POSSIBLE_HINT' | translate)"
           type="submit">
-          Absenden
+          {{ "GUESTBOOK.CREATE.BUTTON_SEND" | translate }}
         </button>
         <button class="button-general button-red guestbook-abort-button" type="button" (click)="abort($event)">
-          Abbrechen
+          {{ "GUESTBOOK.CREATE.BUTTON_ABORT" | translate }}
         </button>
       </div>
-
-
     </form>
-    Entry works
   </div>
 </div>

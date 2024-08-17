@@ -61,8 +61,21 @@
     "ENTRY_IS_INVISIBLE_HINT": "Hint: This entry is currently invisible!",
     "UNEXPECTED_ERROR": "An unexpected error occurred. Check console and try again.",
     "CREATE": {
+      "CREATE_ENTRY_TITLE": "Create Guestbook Entry",
+      "USERNAME_LABEL": "Your Username",
+      "USERNAME_PLACEHOLDER": "Enter username...",
       "ENTRY_CREATED_SUCCESSFUL": "Entry successfully created!",
+      "MESSAGE_LABEL": "Your Message",
+      "MESSAGE_PLACEHOLDER": "Your message...",
+      "CAPTCHA_LABEL": "Enter ReCAPTCHA",
+      "DATA_PRIVACY_CONFIRMATION": "I hereby agree that my details may be stored permanently in the guestbook",
+      "BUTTON_SEND": "Create Entry",
+      "BUTTON_ABORT": "Discard Entry",
       "ERRORS": {
+        "REQUIRED_FIELD": "This field is required!",
+        "INVALID_USERNAME_PATTERN": "Username can only contain letters and numbers!",
+        "USERNAME_MAX_LENGTH": "Username can only have {{maxLength}} characters!",
+        "EMOJIS_NOT_AVAILABLE": "Emojis are currently not available.",
         "NO_CREATION_POSSIBLE_HINT": "Entry creation is currently disabled.",
         "RECAPTCHA_EXPIRED": "ReCAPTCHA is expired, please redo it!",
         "MISSING_REQUIRED": "Please fill out all required fields!"

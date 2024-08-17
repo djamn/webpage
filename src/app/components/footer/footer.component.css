@@ -82,13 +82,13 @@
   justify-content: space-between;
 }
 
-.footer-icon-1 {
+.footer-icon {
   width: 30px;
   height: 30px;
   margin-right: var(--dl-space-space-twounits);
 }
 
-.footer-icon-2 {
+.footer-icon-last {
   width: 30px;
   height: 30px;
 }
@@ -107,7 +107,7 @@
   }
 
   .footer-icon {
-    margin-right: var(--dl-space-space-halfunit);
+    margin-right: var(--dl-space-space-unit);
   }
 }
 
@@ -127,7 +127,7 @@
     margin-bottom: var(--dl-space-space-unit);
   }
 
-  .footer-icon-1 {
+  .footer-icon {
     margin-right: var(--dl-space-space-twounits);
   }
 }

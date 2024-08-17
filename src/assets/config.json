@@ -1,4 +1,8 @@
 {
+  "FOOTER_INSTAGRAM_LINK": "https://www.instagram.com/david.jamnig/",
+  "FOOTER_YOUTUBE_LINK": "https://www.youtube.com/@dajamnig",
+  "FOOTER_LINKEDIN_LINK": "https://www.linkedin.com/in/david-jamnig-899644269/",
+  "FOOTER_DISCORD_LINK": "",
   "USERNAME_MAX_LENGTH": 5,
   "PASSWORD_MIN_LENGTH": 6,
   "REGISTER_POSSIBLE": true,

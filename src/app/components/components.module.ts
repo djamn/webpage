@@ -17,9 +17,12 @@ import {GuestbookPageComponent} from "./guestbook/guestbook-page-component/guest
 import {GuestbookComponent} from "./guestbook/guestbook-component/guestbook-component.component";
 import {NoEntriesComponentComponent} from "./no-entries-component/no-entries-component.component";
 import {GuestbookCreateEntryComponent} from "./guestbook/guestbook-create-entry/guestbook-create-entry.component";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {RecaptchaFormsModule, RecaptchaModule} from "ng-recaptcha";
 import {QuillModule} from "ngx-quill";
+import * as Emoji from 'quill2-emoji'
+import Quill from "quill";
+
+Quill.register("modules/emoji", Emoji);
 
 @NgModule({
   declarations: [

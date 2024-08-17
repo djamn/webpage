@@ -7,10 +7,6 @@ import {Snackbar} from "../../../utility/snackbar";
 import {isControlInvalid} from "../../../utility/form-utils";
 import {addWarning} from "@angular-devkit/build-angular/src/utils/webpack-diagnostics";
 import {GuestbookService} from "../../../services/guestbook.service";
-import Quill from "quill";
-// @ts-ignore
-import * as Emoji from 'quill2-emoji'
-Quill.register("modules/emoji", Emoji);
 
 @Component({
   selector: 'guestbook-create-entry-component',

@@ -46,15 +46,14 @@
           toolbar: [
             [{ 'font': [] }],
             ['bold', 'italic', 'underline'],
-            ['blockquote', 'code-block'],
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            ['code-block'],
+            [{ 'list': 'ordered'}],
             [{ 'script': 'sub'}, { 'script': 'super' }],
-            [{ 'indent': '-1'}, { 'indent': '+1' }],
             [{ 'color': [] }, { 'background': [] }],
-            [{ 'align': [] }],
             ['clean']
           ]
-        }">
+        }"
+          [formats]=" [ 'header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'indent', 'link', 'image', 'align' ]">
         </quill-editor>
       </div>
 

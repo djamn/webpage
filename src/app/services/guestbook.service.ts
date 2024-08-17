@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {map, Timestamp} from "rxjs";
+import {map} from "rxjs";
 import {GuestBookEntry} from "../types/guestBookEntry.type";
 import {Snackbar} from "../utility/snackbar";
 import {TranslateService} from "@ngx-translate/core";
-import {Time} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
@@ -14,19 +13,19 @@ export class GuestbookService {
   constructor(private firestore: AngularFirestore, private snackbar: Snackbar, private translate: TranslateService) {
   }
 
-  addEntry(username: string, timestamp: number, status: string, isVisible: boolean, entryText: string) {
+  async addEntry(username: string, timestamp: number, status: string, isVisible: boolean, entryMessage: string) {
     this.firestore.collection('guestbook-entries').add({
       username: username,
       timestamp: timestamp,
       status: status,
       is_visible: isVisible,
-      entry_text: entryText,
+      entry_message: entryMessage,
       comment: null
     }).then(() => {
-      // TODO
+      // TODO better to handle snackbar & co here?
       console.log('New entry added successfully');
     }).catch((error) => {
-      console.error('Error adding new entry: ', error);
+      throw error;
     });
   }
 
@@ -38,7 +37,7 @@ export class GuestbookService {
           return actions.map(a => {
             const data = a.payload.doc.data() as GuestBookEntry;
             const id = a.payload.doc.id;
-            return { id, ...data };
+            return {id, ...data};
           });
         })
       );

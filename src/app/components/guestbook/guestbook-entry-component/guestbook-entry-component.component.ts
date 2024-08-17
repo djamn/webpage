@@ -3,7 +3,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {GuestbookService} from "../../../services/guestbook.service";
 import {Snackbar} from "../../../utility/snackbar";
 import {ConfigService} from "../../../services/config.service";
-import { Timestamp } from 'firebase/firestore';
+import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 
 @Component({
   selector: 'guestbook-entry-component',
@@ -21,7 +21,8 @@ export class GuestbookEntryComponent implements OnInit {
     private translate: TranslateService,
     private guestbookService: GuestbookService,
     private snackbar: Snackbar,
-    private configService: ConfigService) {
+    private configService: ConfigService,
+    private sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
@@ -52,7 +53,11 @@ export class GuestbookEntryComponent implements OnInit {
       })
   }
 
-  createEntry() {
-    this.guestbookService.addEntry("user", Date.now(), "test", true, "Hallo hier steht was2")
+  sanitizeHtml(html: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(html);
+  }
+
+  editEntry() {
+
   }
 }

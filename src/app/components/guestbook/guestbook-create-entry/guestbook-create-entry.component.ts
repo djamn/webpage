@@ -6,6 +6,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {Snackbar} from "../../../utility/snackbar";
 import {isControlInvalid} from "../../../utility/form-utils";
 import {addWarning} from "@angular-devkit/build-angular/src/utils/webpack-diagnostics";
+import {GuestbookService} from "../../../services/guestbook.service";
 
 @Component({
   selector: 'guestbook-create-entry-component',
@@ -22,6 +23,7 @@ export class GuestbookCreateEntryComponent implements OnInit {
     private translate: TranslateService,
     private snackbar: Snackbar,
     private route : ActivatedRoute,
+    private guestbookService: GuestbookService,
     private fb: FormBuilder) {
   }
 
@@ -77,7 +79,8 @@ export class GuestbookCreateEntryComponent implements OnInit {
     }
 
     try {
-      // handling
+      const entry = this.createEntryForm.value;
+      await this.guestbookService.addEntry(entry.username.trim(), Date.now(), 'visible', true, entry.entry_message)
       this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ENTRY_CREATED_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION)
       this.createEntryForm.reset();
       await this.router.navigate(['../'], { relativeTo: this.route });

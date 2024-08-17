@@ -80,6 +80,7 @@
       "BUTTON_SEND": "Create Entry",
       "BUTTON_ABORT": "Discard Entry",
       "ERRORS": {
+        "CHECKBOX_REQUIRED": "(required)",
         "REQUIRED_FIELD": "This field is required!",
         "INVALID_USERNAME_PATTERN": "Username can only contain letters and numbers!",
         "USERNAME_MAX_LENGTH": "Username can only have {{maxLength}} characters!",

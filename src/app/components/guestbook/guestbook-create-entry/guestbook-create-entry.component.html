@@ -73,14 +73,16 @@
         <span id="emojis-not-available">{{ "GUESTBOOK.CREATE.ERRORS.EMOJIS_NOT_AVAILABLE" | translate }}</span>
       </div>
 
-      <label for="captcha-text" class="input-label">{{ "GUESTBOOK.CREATE.CAPTCHA_LABEL" | translate }}</label>
-      <re-captcha
-        required
-        id="captcha-text"
-        formControlName="recaptcha"
-        siteKey="6LfvFicqAAAAABsPWbfE71zc7iXy-Ic-MfkWR4tb"
-        (resolved)="onCaptchaResolved($event)">
-      </re-captcha>
+      <div class="captcha-container" *ngIf="config.GUESTBOOK_ENTRY_CREATION_POSSIBLE">
+        <label for="captcha-text" class="input-label">{{ "GUESTBOOK.CREATE.CAPTCHA_LABEL" | translate }}</label>
+        <re-captcha
+          required
+          id="captcha-text"
+          formControlName="recaptcha"
+          siteKey="6LfvFicqAAAAABsPWbfE71zc7iXy-Ic-MfkWR4tb"
+          (resolved)="onCaptchaResolved($event)">
+        </re-captcha>
+      </div>
 
       <div
         class="input-error-message"

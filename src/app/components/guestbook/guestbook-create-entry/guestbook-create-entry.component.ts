@@ -55,9 +55,6 @@ export class GuestbookCreateEntryComponent implements OnInit {
   }
 
   async createEntry() {
-    console.log(this.createEntryForm.value)
-    console.log(this.createEntryForm.get('username'))
-
     if (!this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE) {
       this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ERRORS.NO_CREATION_POSSIBLE_HINT'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
       return;
@@ -71,11 +68,10 @@ export class GuestbookCreateEntryComponent implements OnInit {
           control.markAsTouched({ onlySelf: true });
         }
       });
-      this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ERRORS.MISSING_REQUIRED'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+      this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ERRORS.FIELDS_HAVE_ERRORS'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
       return;
     }
 
-    console.log("Recaptcha:", this.createEntryForm.value.recaptcha)
     if(!this.createEntryForm.value.recaptcha) {
       this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ERRORS.RECAPTCHA_EXPIRED'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
     }
@@ -90,8 +86,6 @@ export class GuestbookCreateEntryComponent implements OnInit {
       console.error("Guestbook entry creation error:", e);
       this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.UNEXPECTED_ERROR'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
     }
-
-    console.log(true)
   }
 
   onCaptchaResolved(event: any) {

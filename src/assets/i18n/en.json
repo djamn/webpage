@@ -78,7 +78,7 @@
         "EMOJIS_NOT_AVAILABLE": "Emojis are currently not available.",
         "NO_CREATION_POSSIBLE_HINT": "Entry creation is currently disabled.",
         "RECAPTCHA_EXPIRED": "ReCAPTCHA is expired, please redo it!",
-        "MISSING_REQUIRED": "Please fill out all required fields!"
+        "FIELDS_HAVE_ERRORS": "Please fix all errors before creating entry!"
       }
     }
   }

@@ -44,15 +44,32 @@ export class GuestbookCreateEntryComponent implements OnInit {
       ]),
       recaptcha: new UntypedFormControl({value: '', disabled: !this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE}, [
         Validators.required,
+      ]),
+      confirmation_checkbox: new UntypedFormControl({value: '', disabled: !this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE}, [
+        Validators.requiredTrue,
       ])
     })
   }
 
   createEntry() {
-    if(!this.createEntryForm.valid) {
-      console.log(false);
+    console.log(this.createEntryForm.value)
+    if (!this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE) {
+      this.snackbar.showSnackbar(this.translate.instant(''), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
       return;
     }
+
+
+
+    if (this.createEntryForm.invalid) {
+      Object.keys(this.createEntryForm.controls).forEach(field => {
+        const control = this.createEntryForm.get(field);
+        if (control) {
+          control.markAsTouched({ onlySelf: true });
+        }
+      });
+      return;
+    }
+
     console.log(true)
   }
 

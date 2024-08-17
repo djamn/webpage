@@ -41,6 +41,7 @@
           id="entry-text"
           formControlName="entry_message"
           [theme]="'snow'"
+          [placeholder]="'Deine Nachricht ...'"
           [modules]="{
           toolbar: [
             [{ 'font': [] }],
@@ -88,19 +89,30 @@
         opacity: isControlInvalid(createEntryForm, 'recaptcha') ? '1' : '0',
         visibility: isControlInvalid(createEntryForm, 'recaptcha') ? 'visible' : 'hidden'
         }">
-        <div *ngIf="createEntryForm.get('entry_message')?.hasError('recaptcha')">
+        <div *ngIf="createEntryForm.get('entry_message')?.hasError('required')">
           This field is required
         </div>
       </div>
 
       <!--      TODO CHECK -->
       <div class="privacy-confirmation">
-        <input type="checkbox" class="checkbox-style" required>
+        <input
+          type="checkbox"
+          class="checkbox-style"
+          formControlName="confirmation_checkbox">
         <span id="privacy-confirmation-text" class="hint-text-font">Hiermit willige ich ein, dass meine Angaben gegebenenfalls beständig im Gästebuch gespeichert werden</span>
       </div>
 
       <div class="buttons-container">
-        <button class="button-general button-green guestbook-confirm-button" type="submit">Absenden</button>
+        <button
+          class="button-general
+
+          guestbook-confirm-button"
+          [ngClass]="{'button-green': config.GUESTBOOK_ENTRY_CREATION_POSSIBLE, 'button-disabled': !config.GUESTBOOK_ENTRY_CREATION_POSSIBLE}"
+          [attr.title]="config.GUESTBOOK_ENTRY_CREATION_POSSIBLE ? '' : ('REGISTER.ERRORS.NO_REGISTRATION_POSSIBLE_HINT' | translate)"
+          type="submit">
+          Absenden
+        </button>
         <button class="button-general button-red guestbook-abort-button" type="button" (click)="abort($event)">
           Abbrechen
         </button>

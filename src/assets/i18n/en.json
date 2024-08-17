@@ -59,6 +59,14 @@
     "ENTRY_STATUS": "Status: {{status}}",
     "VISIBILITY_UPDATED_SUCCESS": "Visibility updated successfully!",
     "ENTRY_IS_INVISIBLE_HINT": "Hint: This entry is currently invisible!",
-    "UNEXPECTED_ERROR": "An unexpected error occurred. Check console and try again."
+    "UNEXPECTED_ERROR": "An unexpected error occurred. Check console and try again.",
+    "CREATE": {
+      "ENTRY_CREATED_SUCCESSFUL": "Entry successfully created!",
+      "ERRORS": {
+        "NO_CREATION_POSSIBLE_HINT": "Entry creation is currently disabled.",
+        "RECAPTCHA_EXPIRED": "ReCAPTCHA is expired, please redo it!",
+        "MISSING_REQUIRED": "Please fill out all required fields!"
+      }
+    }
   }
 }

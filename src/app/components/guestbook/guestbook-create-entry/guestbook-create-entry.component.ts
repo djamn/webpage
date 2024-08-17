@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
 import {Snackbar} from "../../../utility/snackbar";
 import {isControlInvalid} from "../../../utility/form-utils";
+import {addWarning} from "@angular-devkit/build-angular/src/utils/webpack-diagnostics";
 
 @Component({
   selector: 'guestbook-create-entry-component',
@@ -51,15 +52,14 @@ export class GuestbookCreateEntryComponent implements OnInit {
     })
   }
 
-  createEntry() {
+  async createEntry() {
     console.log(this.createEntryForm.value)
     if (!this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE) {
-      this.snackbar.showSnackbar(this.translate.instant(''), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+      this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ERRORS.NO_CREATION_POSSIBLE_HINT'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
       return;
     }
 
-
-
+    // Show field is required hint
     if (this.createEntryForm.invalid) {
       Object.keys(this.createEntryForm.controls).forEach(field => {
         const control = this.createEntryForm.get(field);
@@ -67,7 +67,23 @@ export class GuestbookCreateEntryComponent implements OnInit {
           control.markAsTouched({ onlySelf: true });
         }
       });
+      this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ERRORS.MISSING_REQUIRED'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
       return;
+    }
+
+    console.log("Recaptcha:", this.createEntryForm.value.recaptcha)
+    if(!this.createEntryForm.value.recaptcha) {
+      this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ERRORS.RECAPTCHA_EXPIRED'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+    }
+
+    try {
+      // handling
+      this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ENTRY_CREATED_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION)
+      this.createEntryForm.reset();
+      await this.router.navigate(['../'], { relativeTo: this.route });
+    } catch (e) {
+      console.error("Guestbook entry creation error:", e);
+      this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.UNEXPECTED_ERROR'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
     }
 
     console.log(true)

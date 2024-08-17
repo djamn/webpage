@@ -106,7 +106,6 @@
       <div class="buttons-container">
         <button
           class="button-general
-
           guestbook-confirm-button"
           [ngClass]="{'button-green': config.GUESTBOOK_ENTRY_CREATION_POSSIBLE, 'button-disabled': !config.GUESTBOOK_ENTRY_CREATION_POSSIBLE}"
           [attr.title]="config.GUESTBOOK_ENTRY_CREATION_POSSIBLE ? '' : ('REGISTER.ERRORS.NO_REGISTRATION_POSSIBLE_HINT' | translate)"

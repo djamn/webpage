@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {GuestBookEntry} from "../../../types/guestBookEntry.type";
+import {GuestBookEntry} from "../../../types/guestbook.entry.type";
 import {Router} from "@angular/router";
 import {GuestbookService} from "../../../services/guestbook.service";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";

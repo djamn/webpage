@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {map} from "rxjs";
-import {GuestBookEntry} from "../types/guestBookEntry.type";
+import {GuestBookEntry} from "../types/guestbook.entry.type";
 import {Snackbar} from "../utility/snackbar";
 import {TranslateService} from "@ngx-translate/core";
 

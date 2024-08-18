@@ -1,5 +1,3 @@
-import {Timestamp} from "rxjs";
-
 export interface GuestBookEntry {
   entry_id: number;
   username: string;

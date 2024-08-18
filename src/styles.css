@@ -262,6 +262,40 @@ INPUT STYLES
   background-color: var(--dl-color-white);
 }
 
+.popup-heading {
+  color: var(--dl-color-black);
+  font-size: 2.3em;
+  align-self: center;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: var(--dl-space-space-oneandhalfunits);
+}
+
+.popup-text {
+  font-size: 18px;
+  text-align: center;
+}
+
+.popup-container {
+  height: auto;
+  display: flex;
+  padding: var(--dl-space-space-halfunit);
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+
+/*TODO heading und co auch mobil definieren*/
+@media (max-width: 479px) {
+  .popup-heading {
+    font-size: 2.1em;
+    margin-bottom: var(--dl-space-space-oneandhalfunits);
+  }
+}
+
+
 
 /*Changes asterix*/
 .mdc-floating-label--required:not(.mdc-floating-label--hide-required-marker)::after, .input-label {

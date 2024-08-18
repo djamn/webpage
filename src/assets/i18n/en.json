@@ -90,5 +90,9 @@
         "FIELDS_HAVE_ERRORS": "Please fix all errors before creating entry!"
       }
     }
+  },
+  "BUTTONS": {
+    "BUTTON_YES": "Yes",
+    "BUTTON_CANCEL": "Cancel"
   }
 }

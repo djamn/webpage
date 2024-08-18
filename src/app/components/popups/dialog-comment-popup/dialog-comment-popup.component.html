@@ -13,9 +13,7 @@
         opacity: isControlInvalid(commentForm, 'comment') ? '1' : '0',
         visibility: isControlInvalid(commentForm, 'comment') ? 'visible' : 'hidden'
         }">
-      <div *ngIf="commentForm.get('comment')?.hasError('required')">
-        {{ "DIALOG.REQUIRED_FIELD" | translate }}
-      </div>
+      {{ "DIALOG.REQUIRED_FIELD" | translate }}
     </div>
   </form>
   <button-save-cancel-component (cancel)="cancel()" (confirm)="confirm()"></button-save-cancel-component>

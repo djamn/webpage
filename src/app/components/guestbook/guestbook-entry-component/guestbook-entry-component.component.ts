@@ -59,11 +59,17 @@ export class GuestbookEntryComponent implements OnInit {
   }
 
   addComment() {
-    this.popupService.openCommentPopup(this.translate.instant('DIALOG.DESCRIPTION_ADD_GUESTBOOK_COMMENT')).subscribe(result => {
-      if (result) {
-        console.log("Works!")
+    this.popupService.openCommentPopup(this.translate.instant('DIALOG.DESCRIPTION_ADD_GUESTBOOK_COMMENT')).subscribe(async comment => {
+      if (comment) {
+        try {
+          await this.guestbookService.addComment(this.entry.id, comment);
+          this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.COMMENT_CREATION_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
+        } catch (err) {
+          console.error('Error commenting on entry:', err);
+          this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ERRORS.COMMENT_CREATION_FAILED'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+        }
       }
-    })
+    });
   }
 
   editEntry() {

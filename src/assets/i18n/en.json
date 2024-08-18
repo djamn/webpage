@@ -79,6 +79,7 @@
       "DATA_PRIVACY_CONFIRMATION": "I hereby agree that my details may be stored permanently in the guestbook",
       "BUTTON_SEND": "Create Entry",
       "BUTTON_ABORT": "Discard Entry",
+      "COMMENT_CREATION_SUCCESSFUL": "Comment was created successfully!",
       "ERRORS": {
         "CHECKBOX_REQUIRED": "(required)",
         "REQUIRED_FIELD": "This field is required!",
@@ -87,13 +88,13 @@
         "EMOJIS_NOT_AVAILABLE": "Emojis are currently not available.",
         "NO_CREATION_POSSIBLE_HINT": "Entry creation is currently disabled.",
         "RECAPTCHA_EXPIRED": "ReCAPTCHA is expired, please redo it!",
-        "FIELDS_HAVE_ERRORS": "Please fix all errors before creating entry!"
+        "FIELDS_HAVE_ERRORS": "Please fix all errors before creating entry!",
+        "COMMENT_CREATION_FAILED": "There was an error adding the comment. Please try again."
       }
     },
     "DELETE": {
       "ENTRY_DELETED_SUCCESSFUL": "Entry was deleted successfully!",
       "ENTRY_DELETION_FAILED": "There was an error deleting the entry. Please try again."
-
     }
   },
   "BUTTONS": {

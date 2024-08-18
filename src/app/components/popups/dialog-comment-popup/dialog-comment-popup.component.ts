@@ -23,7 +23,6 @@ export class DialogCommentPopupComponent {
 
   confirm() {
     // Show field is required hint
-    console.log(this.commentForm)
     if (this.commentForm.invalid) {
       Object.keys(this.commentForm.controls).forEach(field => {
         const control = this.commentForm.get(field);
@@ -32,7 +31,7 @@ export class DialogCommentPopupComponent {
       return;
     }
 
-    this.dialogRef.close(true); // TODO
+    this.dialogRef.close(this.commentForm.value.comment);
     this.commentForm.reset();
   }
 

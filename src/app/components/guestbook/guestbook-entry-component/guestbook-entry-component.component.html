@@ -14,6 +14,7 @@
               minute: minutes
             }
           }}
+          <span *ngIf="entry.edited && !entry.silent_edit" class="edited-style">{{ 'GUESTBOOK.ENTRY_EDITED' | translate}}</span>
         </div>
         <div *ngIf="!entry.is_visible" class="guestbook-container-1-sub-1-hidden-hint">
           {{ "GUESTBOOK.ENTRY_IS_INVISIBLE_HINT" | translate }}

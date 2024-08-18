@@ -23,7 +23,9 @@ export class GuestbookService {
         status: status,
         is_visible: isVisible,
         entry_message: entryMessage,
-        comment: null
+        comment: null,
+        edited: false,
+        silent_edit: false
       })
       console.debug("Entry created successfully!")
     } catch (error) {
@@ -31,10 +33,12 @@ export class GuestbookService {
     }
   }
 
-  async updateEntry(id: string, username: string, timestamp: number, entryMessage: string) {
+  async updateEntry(id: string, username: string, timestamp: number, silentEdit: boolean, entryMessage: string) {
     try {
       await this.firestore.collection(guestbookCollectionName).doc(id).update({
         username: username,
+        edited: true,
+        silent_edit: silentEdit,
         entry_message: entryMessage,
       });
       console.debug('Entry updated successfully');

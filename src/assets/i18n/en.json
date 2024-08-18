@@ -60,6 +60,7 @@
   "GUESTBOOK": {
     "ENTRY_TITLE": "{{username}} wrote on {{date}} ({{hour}}:{{minute}} o'clock)",
     "COMMENT_TITLE": "Comment: ",
+    "ENTRY_EDITED": "(edited)",
     "ENTRY_STATUS": "Status: {{status}}",
     "VISIBILITY_UPDATED_SUCCESS": "Visibility updated successfully!",
     "ENTRY_IS_INVISIBLE_HINT": "Hint: This entry is currently invisible!",

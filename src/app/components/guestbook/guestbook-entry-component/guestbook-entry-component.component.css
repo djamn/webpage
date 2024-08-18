@@ -134,6 +134,10 @@ html, body {
   font-weight: 500;
 }
 
+.edited-style {
+  color: var(--dl-color-gray-700)
+}
+
 @media (max-width: 767px) {
   .guestbook-container-1 {
     flex-direction: column;

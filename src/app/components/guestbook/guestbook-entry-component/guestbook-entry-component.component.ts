@@ -5,6 +5,7 @@ import {Snackbar} from "../../../utility/snackbar";
 import {ConfigService} from "../../../services/config.service";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import {PopupService} from "../../../services/popup.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'guestbook-entry-component',
@@ -23,6 +24,7 @@ export class GuestbookEntryComponent implements OnInit {
     private guestbookService: GuestbookService,
     private snackbar: Snackbar,
     private configService: ConfigService,
+    private router: Router,
     private sanitizer: DomSanitizer,
     private popupService: PopupService) {
   }
@@ -73,7 +75,11 @@ export class GuestbookEntryComponent implements OnInit {
   }
 
   editEntry() {
-    console.log("TODO not implemented")
+    this.router.navigate(["guestbook/update"], {
+      state: {
+        entry: this.entry
+      }
+    }).then(r => console.log("Success"))
   }
 
   async deleteEntry() {

@@ -18,5 +18,6 @@ export const routes: Routes = [
   },
   {path: 'guestbook', component: Guestbook},
   {path: 'guestbook/create', component: GuestbookCreateEntry},
+  {path: 'guestbook/update', component: GuestbookCreateEntry}, // TODO authguard
 
 ];

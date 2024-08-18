@@ -2,7 +2,7 @@
   display: contents;
 }
 
-.main-create-entry-container {
+.main-entry-container {
   border: 1px solid red;
   height: auto;
 }
@@ -20,7 +20,7 @@
   padding: var(--dl-space-space-halfunit);
 }
 
-.guestbook-create-entry-title-container {
+.guestbook-entry-title-container {
   border: 1px solid rebeccapurple;
   display: flex;
   width: 100%;
@@ -32,7 +32,7 @@
   height: auto;
 }
 
-.guestbook-create-entry-form {
+.guestbook-entry-form {
   border: 1px solid red;
   width: 100%;
   height: 100%;
@@ -66,9 +66,8 @@
   font-weight: 500;
 }
 
-/*TODO MOBILE*/
-.captcha-input {
-  width: 25%;
+.guestbook-entry-title {
+
 }
 
 .privacy-confirmation{

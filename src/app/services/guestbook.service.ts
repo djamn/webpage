@@ -31,16 +31,16 @@ export class GuestbookService {
     });
   }
 
-  async updateEntry(id: string, username: string, timestamp: number, entryMessage: string, comment: string) {
-    this.firestore.collection(guestbookCollectionName).doc(id).update({
-      username: username,
-      entry_message: entryMessage,
-      comment: comment
-    }).then(() => {
+  async updateEntry(id: string, username: string, timestamp: number, entryMessage: string) {
+    try {
+      await this.firestore.collection(guestbookCollectionName).doc(id).update({
+        username: username,
+        entry_message: entryMessage,
+      });
       console.debug('Entry updated successfully');
-    }).catch((error) => {
+    } catch (error) {
       throw error;
-    });
+    }
   }
 
   getEntries() {

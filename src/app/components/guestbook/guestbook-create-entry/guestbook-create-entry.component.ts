@@ -15,6 +15,8 @@ import {GuestbookService} from "../../../services/guestbook.service";
 export class GuestbookCreateEntryComponent implements OnInit {
   createEntryForm!: UntypedFormGroup;
   config: any;
+  entryId: string | null = null;
+  isEditMode: boolean = false;
 
   constructor(
     private configService: ConfigService,
@@ -48,6 +50,19 @@ export class GuestbookCreateEntryComponent implements OnInit {
         Validators.requiredTrue,
       ])
     })
+
+    // TODO handle permission
+    if (history.state && history.state.entry) {
+      const entry = history.state.entry;
+      this.entryId = entry.id;
+      this.isEditMode = true;
+      this.createEntryForm.get('recaptcha')?.disable();
+      this.createEntryForm.get('confirmation_checkbox')?.disable();
+      this.createEntryForm.patchValue({
+        username: entry.username,
+        entry_message: entry.entry_message,
+      })
+    }
   }
 
   // TODO rework
@@ -66,8 +81,7 @@ export class GuestbookCreateEntryComponent implements OnInit {
   };
 
   async createEntry() {
-    console.log(this.createEntryForm.get('confirmation_checkbox'))
-    if (!this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE) {
+    if (!this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE && !this.isEditMode) {
       this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ERRORS.NO_CREATION_POSSIBLE_HINT'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
       return;
     }
@@ -84,24 +98,26 @@ export class GuestbookCreateEntryComponent implements OnInit {
       return;
     }
 
-    if (!this.createEntryForm.value.recaptcha) {
-      this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ERRORS.RECAPTCHA_EXPIRED'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
-    }
-
     try {
-      const entry = this.createEntryForm.value;
-      await this.guestbookService.addEntry(entry.username.trim(), Date.now(), 'visible', true, entry.entry_message)
-      this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ENTRY_CREATED_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION)
+      const formEntry = this.createEntryForm.value;
+      const trimmedUsername = formEntry.username.trim();
+
+      if (this.isEditMode) {
+        await this.guestbookService.updateEntry(this.entryId!, trimmedUsername, Date.now(), formEntry.entry_message);
+        this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ENTRY_CREATED_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION)
+      } else {
+        await this.guestbookService.addEntry(trimmedUsername, Date.now(), 'visible', true, formEntry.entry_message);
+        this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ENTRY_CREATED_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION)
+      }
+
       this.createEntryForm.reset();
       await this.router.navigate(['../'], {relativeTo: this.route});
+
+
     } catch (e) {
       console.error("Guestbook entry creation error:", e);
       this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.UNEXPECTED_ERROR'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
     }
-  }
-
-  onCaptchaResolved(event: any) {
-
   }
 
   async abort(event: MouseEvent) {

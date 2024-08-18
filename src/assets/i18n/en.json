@@ -71,6 +71,7 @@
     "DELETE_COMMENT_DESC": "Delete this comment permanently",
     "CREATE": {
       "CREATE_ENTRY_TITLE": "Create Guestbook Entry",
+      "UPDATE_ENTRY_TITLE": "Update Guestbook Entry",
       "USERNAME_LABEL": "Your Username",
       "USERNAME_PLACEHOLDER": "Enter username...",
       "ENTRY_CREATED_SUCCESSFUL": "Entry successfully created!",
@@ -80,6 +81,7 @@
       "DATA_PRIVACY_CONFIRMATION": "I hereby agree that my details may be stored permanently in the guestbook",
       "BUTTON_SEND": "Create Entry",
       "BUTTON_ABORT": "Discard Entry",
+      "BUTTON_UPDATE": "Update Entry",
       "COMMENT_CREATION_SUCCESSFUL": "Comment was created successfully!",
       "ERRORS": {
         "CHECKBOX_REQUIRED": "(required)",

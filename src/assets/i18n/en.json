@@ -68,6 +68,7 @@
     "COMMENT_ENTRY_DESC": "Add a comment to this entry",
     "EDIT_ENTRY_DESC": "Edit this entry",
     "DELETE_ENTRY_DESC": "Delete this entry permanently",
+    "DELETE_COMMENT_DESC": "Delete this comment permanently",
     "CREATE": {
       "CREATE_ENTRY_TITLE": "Create Guestbook Entry",
       "USERNAME_LABEL": "Your Username",
@@ -94,7 +95,9 @@
     },
     "DELETE": {
       "ENTRY_DELETED_SUCCESSFUL": "Entry was deleted successfully!",
-      "ENTRY_DELETION_FAILED": "There was an error deleting the entry. Please try again."
+      "COMMENT_DELETED_SUCCESSFUL": "Comment was deleted successfully!",
+      "ENTRY_DELETION_FAILED": "There was an error deleting the entry. Please try again.",
+      "COMMENT_DELETION_FAILED": "There was an error deleting the comment. Please try again."
     }
   },
   "BUTTONS": {
@@ -107,6 +110,7 @@
     "COMMENT_TITLE": "Add comment",
     "DESCRIPTION_DELETE_GUESTBOOK_ENTRY": "Do you really want to delete the entry of user \"{{username}}\" permanently?",
     "DESCRIPTION_ADD_GUESTBOOK_COMMENT": "Type in your comment you want to add to this entry:",
+    "DESCRIPTION_DELETE_GUESTBOOK_COMMENT": "Do you really want to delete the comment?",
     "REQUIRED_FIELD": "This field is required!"
   }
 }

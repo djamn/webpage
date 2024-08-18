@@ -89,4 +89,18 @@ export class GuestbookEntryComponent implements OnInit {
       }
     });
   }
+
+  async deleteComment() {
+    this.popupService.openPopup(this.translate.instant('DIALOG.DESCRIPTION_DELETE_GUESTBOOK_COMMENT', {})).subscribe(async (result) => {
+      if (result) {
+        try {
+          await this.guestbookService.deleteComment(this.entry.id);
+          this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.DELETE.COMMENT_DELETED_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
+        } catch (err) {
+          console.error('Error deleting comment:', err);
+          this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.DELETE.COMMENT_DELETED_SUCCESSFUL'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+        }
+      }
+    });
+  }
 }

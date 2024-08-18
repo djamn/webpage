@@ -55,6 +55,18 @@ export class GuestbookService {
       })
   }
 
+  async deleteComment(id: string) {
+    this.firestore.collection(guestbookCollectionName).doc(id).update({
+      comment: null
+    })
+      .then(() => {
+        console.debug("Entry deleted successfully");
+      })
+      .catch((error) => {
+        throw error;
+      })
+  }
+
   async addComment(id: string, comment: string) {
     this.firestore.collection(guestbookCollectionName).doc(id).update({
       comment: comment

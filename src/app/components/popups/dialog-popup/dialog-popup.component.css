@@ -8,7 +8,7 @@
 
 .dialog-popup-text-1 {
   width: auto;
-  margin-bottom: var(--dl-space-space-oneandhalfunits);
+  margin-bottom: var(--dl-space-space-unit);
 }
 
 @media (max-width: 767px) {

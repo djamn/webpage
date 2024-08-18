@@ -7,7 +7,7 @@
 }
 
 .dialog-popup-text-1 {
-  margin-bottom: var(--dl-space-space-twounits);
+  margin-bottom: var(--dl-space-space-oneandhalfunits);
 }
 
 @media (max-width: 767px) {

@@ -23,7 +23,7 @@ export class GuestbookService {
       comment: null
     }).then(() => {
       // TODO better to handle snackbar & co here?
-      console.log('New entry added successfully');
+      console.debug('New entry added successfully');
     }).catch((error) => {
       throw error;
     });
@@ -41,6 +41,16 @@ export class GuestbookService {
           });
         })
       );
+  }
+
+  async deleteEntry(id: string) {
+    this.firestore.collection('guestbook-entries').doc(id).delete()
+      .then(() => {
+        console.debug("Entry deleted successfully");
+      })
+      .catch((error) => {
+        throw error;
+      })
   }
 
   async toggleVisibility(id: string, newVisibility: boolean): Promise<boolean> {

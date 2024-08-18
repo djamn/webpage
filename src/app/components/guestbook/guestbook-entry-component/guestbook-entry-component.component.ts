@@ -5,7 +5,6 @@ import {Snackbar} from "../../../utility/snackbar";
 import {ConfigService} from "../../../services/config.service";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import {PopupService} from "../../../services/popup.service";
-import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 
 @Component({
   selector: 'guestbook-entry-component',
@@ -71,11 +70,17 @@ export class GuestbookEntryComponent implements OnInit {
 
   }
 
-  deleteEntry() {
-    this.popupService.openPopup(this.translate.instant('DIALOG.DESCRIPTION_DELETE_GUESTBOOK_ENTRY', {username: this.entry.username})).subscribe(result => {
+  async deleteEntry() {
+    this.popupService.openPopup(this.translate.instant('DIALOG.DESCRIPTION_DELETE_GUESTBOOK_ENTRY', {username: this.entry.username})).subscribe(async (result) => {
       if (result) {
-        console.log("Works")
+        try {
+          await this.guestbookService.deleteEntry(this.entry.id);
+          this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.DELETE.ENTRY_DELETED_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
+        } catch (err) {
+          console.error('Error deleting entry:', err);
+          this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.DELETE.ENTRY_DELETION_FAILED'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+        }
       }
-    })
+    });
   }
 }

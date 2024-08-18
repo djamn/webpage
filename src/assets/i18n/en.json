@@ -89,6 +89,11 @@
         "RECAPTCHA_EXPIRED": "ReCAPTCHA is expired, please redo it!",
         "FIELDS_HAVE_ERRORS": "Please fix all errors before creating entry!"
       }
+    },
+    "DELETE": {
+      "ENTRY_DELETED_SUCCESSFUL": "Entry was deleted successfully!",
+      "ENTRY_DELETION_FAILED": "There was an error deleting the entry. Please try again."
+
     }
   },
   "BUTTONS": {

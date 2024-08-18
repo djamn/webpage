@@ -31,6 +31,18 @@ export class GuestbookService {
     });
   }
 
+  async updateEntry(id: string, username: string, timestamp: number, entryMessage: string, comment: string) {
+    this.firestore.collection(guestbookCollectionName).doc(id).update({
+      username: username,
+      entry_message: entryMessage,
+      comment: comment
+    }).then(() => {
+      console.debug('Entry updated successfully');
+    }).catch((error) => {
+      throw error;
+    });
+  }
+
   getEntries() {
     return this.firestore.collection(guestbookCollectionName, ref => ref.orderBy('timestamp', 'desc'))
       .snapshotChanges()

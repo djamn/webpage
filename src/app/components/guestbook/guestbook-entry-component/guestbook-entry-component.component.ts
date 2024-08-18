@@ -73,7 +73,7 @@ export class GuestbookEntryComponent implements OnInit {
   }
 
   editEntry() {
-
+    console.log("TODO not implemented")
   }
 
   async deleteEntry() {

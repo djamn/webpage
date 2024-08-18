@@ -4,6 +4,8 @@ import {GuestbookService} from "../../../services/guestbook.service";
 import {Snackbar} from "../../../utility/snackbar";
 import {ConfigService} from "../../../services/config.service";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
+import {PopupService} from "../../../services/popup.service";
+import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 
 @Component({
   selector: 'guestbook-entry-component',
@@ -22,7 +24,8 @@ export class GuestbookEntryComponent implements OnInit {
     private guestbookService: GuestbookService,
     private snackbar: Snackbar,
     private configService: ConfigService,
-    private sanitizer: DomSanitizer) {
+    private sanitizer: DomSanitizer,
+    private popupService: PopupService) {
   }
 
   ngOnInit() {
@@ -56,7 +59,23 @@ export class GuestbookEntryComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 
+  addComment() {
+    this.popupService.openCommentPopup("Comment").subscribe(result => {
+      if (result) {
+        console.log("Works!")
+      }
+    })
+  }
+
   editEntry() {
 
+  }
+
+  deleteEntry() {
+    this.popupService.openPopup("Comment2").subscribe(result => {
+      if (result) {
+        console.log("Works")
+      }
+    })
   }
 }

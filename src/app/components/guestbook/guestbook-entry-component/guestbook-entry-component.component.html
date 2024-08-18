@@ -40,6 +40,7 @@
               ></path>
             </svg>
             <svg
+              (click)="addComment()"
               class="guestbook-admin-icons"
               id="comment-icon"
               viewBox="0 0 1024 1024">
@@ -49,9 +50,9 @@
               ></path>
             </svg>
             <svg
+              (click)="editEntry()"
               class="guestbook-admin-icons"
               id="edit-icon"
-              (click)="editEntry()"
               viewBox="0 0 877.7142857142857 1024">
               <title>{{'GUESTBOOK.EDIT_ENTRY_DESC' | translate }}</title>
               <path
@@ -59,6 +60,7 @@
               ></path>
             </svg>
             <svg
+              (click)="deleteEntry()"
               class="guestbook-admin-icons"
               id="delete-icon"
               viewBox="0 0 804.5714285714286 1024">

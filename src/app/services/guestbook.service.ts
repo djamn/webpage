@@ -16,19 +16,19 @@ export class GuestbookService {
   }
 
   async addEntry(username: string, timestamp: number, status: string, isVisible: boolean, entryMessage: string) {
-    this.firestore.collection(guestbookCollectionName).add({
-      username: username,
-      timestamp: timestamp,
-      status: status,
-      is_visible: isVisible,
-      entry_message: entryMessage,
-      comment: null
-    }).then(() => {
-      // TODO better to handle snackbar & co here?
-      console.debug('New entry added successfully');
-    }).catch((error) => {
+    try {
+      await this.firestore.collection(guestbookCollectionName).add({
+        username: username,
+        timestamp: timestamp,
+        status: status,
+        is_visible: isVisible,
+        entry_message: entryMessage,
+        comment: null
+      })
+      console.debug("Entry created successfully!")
+    } catch (error) {
       throw error;
-    });
+    }
   }
 
   async updateEntry(id: string, username: string, timestamp: number, entryMessage: string) {
@@ -58,39 +58,33 @@ export class GuestbookService {
   }
 
   async deleteEntry(id: string) {
-    this.firestore.collection(guestbookCollectionName).doc(id).delete()
-      .then(() => {
-        console.debug("Entry deleted successfully");
-      })
-      .catch((error) => {
-        throw error;
-      })
+    try {
+      await this.firestore.collection(guestbookCollectionName).doc(id).delete();
+      console.debug("Entry deleted successfully");
+    } catch (error) {
+      throw error;
+    }
   }
 
   async deleteComment(id: string) {
-    this.firestore.collection(guestbookCollectionName).doc(id).update({
-      comment: null
-    })
-      .then(() => {
-        console.debug("Entry deleted successfully");
-      })
-      .catch((error) => {
-        throw error;
-      })
+    try {
+      await this.firestore.collection(guestbookCollectionName).doc(id).update({comment: null});
+      console.debug("Entry deleted successfully");
+    } catch (error) {
+      throw error;
+    }
   }
 
   async addComment(id: string, comment: string) {
-    this.firestore.collection(guestbookCollectionName).doc(id).update({
-      comment: comment
-    })
-      .then(() => {
-        console.debug("Comment successfully added!");
-      })
-      .catch((error) => {
-        throw error;
-      })
+    try {
+      await this.firestore.collection(guestbookCollectionName).doc(id).update({comment: comment})
+      console.debug("Comment successfully added!");
+    } catch (error) {
+      throw error;
+    }
   }
 
+  // TODO rework to await
   async toggleVisibility(id: string, newVisibility: boolean): Promise<boolean> {
     return this.firestore.collection(guestbookCollectionName).doc(id).update({
       is_visible: newVisibility,

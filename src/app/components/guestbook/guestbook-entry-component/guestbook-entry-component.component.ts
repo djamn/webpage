@@ -74,12 +74,12 @@ export class GuestbookEntryComponent implements OnInit {
     });
   }
 
-  editEntry() {
-    this.router.navigate(["guestbook/update"], {
+  async editEntry() {
+    await this.router.navigate(["guestbook/update"], {
       state: {
         entry: this.entry
       }
-    }).then(r => console.log("Success"))
+    })
   }
 
   async deleteEntry() {

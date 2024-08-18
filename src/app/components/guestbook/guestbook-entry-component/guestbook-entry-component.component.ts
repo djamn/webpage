@@ -59,7 +59,7 @@ export class GuestbookEntryComponent implements OnInit {
   }
 
   addComment() {
-    this.popupService.openCommentPopup("Comment").subscribe(result => {
+    this.popupService.openCommentPopup(this.translate.instant('DIALOG.DESCRIPTION_ADD_GUESTBOOK_COMMENT')).subscribe(result => {
       if (result) {
         console.log("Works!")
       }

@@ -5,6 +5,8 @@ import {GuestBookEntry} from "../types/guestbook.entry.type";
 import {Snackbar} from "../utility/snackbar";
 import {TranslateService} from "@ngx-translate/core";
 
+const guestbookCollectionName: string = 'guestbook-entries'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +16,7 @@ export class GuestbookService {
   }
 
   async addEntry(username: string, timestamp: number, status: string, isVisible: boolean, entryMessage: string) {
-    this.firestore.collection('guestbook-entries').add({
+    this.firestore.collection(guestbookCollectionName).add({
       username: username,
       timestamp: timestamp,
       status: status,
@@ -30,7 +32,7 @@ export class GuestbookService {
   }
 
   getEntries() {
-    return this.firestore.collection('guestbook-entries', ref => ref.orderBy('timestamp', 'desc'))
+    return this.firestore.collection(guestbookCollectionName, ref => ref.orderBy('timestamp', 'desc'))
       .snapshotChanges()
       .pipe(
         map(actions => {
@@ -44,7 +46,7 @@ export class GuestbookService {
   }
 
   async deleteEntry(id: string) {
-    this.firestore.collection('guestbook-entries').doc(id).delete()
+    this.firestore.collection(guestbookCollectionName).doc(id).delete()
       .then(() => {
         console.debug("Entry deleted successfully");
       })
@@ -53,8 +55,20 @@ export class GuestbookService {
       })
   }
 
+  async addComment(id: string, comment: string) {
+    this.firestore.collection(guestbookCollectionName).doc(id).update({
+      comment: comment
+    })
+      .then(() => {
+        console.debug("Comment successfully added!");
+      })
+      .catch((error) => {
+        throw error;
+      })
+  }
+
   async toggleVisibility(id: string, newVisibility: boolean): Promise<boolean> {
-    return this.firestore.collection('guestbook-entries').doc(id).update({
+    return this.firestore.collection(guestbookCollectionName).doc(id).update({
       is_visible: newVisibility,
       status: newVisibility ? 'visible' : 'invisible'
     }).then(() => {

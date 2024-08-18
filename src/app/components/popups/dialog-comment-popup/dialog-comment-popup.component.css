@@ -1,0 +1,37 @@
+:host {
+  display: contents;
+}
+
+.dialog-popup-component-container {
+  width: 450px;
+}
+
+.dialog-popup-text-1 {
+  width: auto;
+  margin-bottom: var(--dl-space-space-oneandhalfunits);
+}
+
+.textarea-container {
+  width: 100%;
+  margin-bottom: var(--dl-space-space-unit);
+}
+
+.popup-textarea {
+  width: 100%;
+  min-height: 50px;
+  height: 100px;
+  max-height: 150px;
+}
+
+.comment-error-message {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  text-align: start;
+}
+
+@media (max-width: 767px) {
+  .dialog-popup-component-container {
+    width: 100%;
+  }
+}

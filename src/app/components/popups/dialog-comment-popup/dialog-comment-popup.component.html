@@ -1,1 +1,22 @@
-<p>dialog-comment-popup works!</p>
+<div class="dialog-popup-component-container popup-container">
+  <span class="popup-heading">{{ 'DIALOG.COMMENT_TITLE' | translate }}</span>
+  <span class="dialog-popup-text-1 popup-text">{{ dialogPopupDescription }}</span>
+  <form (ngSubmit)="confirm()" [formGroup]="commentForm" class="textarea-container">
+    <textarea
+      formControlName="comment"
+      class="textarea-style popup-textarea"
+      [ngClass]="{'textarea-error': isControlInvalid(this.commentForm, 'comment')}">
+    </textarea>
+    <div
+      class="input-error-message comment-error-message"
+      [ngStyle]="{
+        opacity: isControlInvalid(commentForm, 'comment') ? '1' : '0',
+        visibility: isControlInvalid(commentForm, 'comment') ? 'visible' : 'hidden'
+        }">
+      <div *ngIf="commentForm.get('comment')?.hasError('required')">
+        {{ "DIALOG.REQUIRED_FIELD" | translate }}
+      </div>
+    </div>
+  </form>
+  <button-save-cancel-component (cancel)="cancel()" (confirm)="confirm()"></button-save-cancel-component>
+</div>

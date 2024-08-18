@@ -1,0 +1,20 @@
+<div class="button-save-cancel-container">
+  <div class="button-save-cancel-button-1">
+    <button
+      (click)="onConfirm()"
+      class="button-general button-green"
+      type="button"
+    >
+      {{ 'BUTTONS.BUTTON_SAVE' | translate }}
+    </button>
+  </div>
+  <div class="button-save-cancel-button-2">
+    <button
+      (click)="onCancel()"
+      class="button-general button-red"
+      type="button"
+    >
+      {{ 'BUTTONS.BUTTON_CANCEL' | translate }}
+    </button>
+  </div>
+</div>

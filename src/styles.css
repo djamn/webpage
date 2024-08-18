@@ -264,7 +264,7 @@ INPUT STYLES
 
 .popup-heading {
   color: var(--dl-color-black);
-  font-size: 2.3em;
+  font-size: 25px;
   align-self: center;
   text-align: center;
   font-weight: 700;
@@ -290,7 +290,7 @@ INPUT STYLES
 /*TODO heading und co auch mobil definieren*/
 @media (max-width: 479px) {
   .popup-heading {
-    font-size: 2.1em;
+    font-size: 22px;
     margin-bottom: var(--dl-space-space-oneandhalfunits);
   }
 }

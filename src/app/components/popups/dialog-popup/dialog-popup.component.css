@@ -3,10 +3,11 @@
 }
 
 .dialog-popup-component-container {
-  width: 500px;
+  width: 350px;
 }
 
 .dialog-popup-text-1 {
+  width: auto;
   margin-bottom: var(--dl-space-space-oneandhalfunits);
 }
 

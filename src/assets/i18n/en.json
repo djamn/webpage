@@ -98,11 +98,14 @@
   },
   "BUTTONS": {
     "BUTTON_YES": "Yes",
+    "BUTTON_SAVE": "Save",
     "BUTTON_CANCEL": "Cancel"
   },
   "DIALOG": {
     "TITLE": "Are you sure?",
+    "COMMENT_TITLE": "Add comment",
     "DESCRIPTION_DELETE_GUESTBOOK_ENTRY": "Do you really want to delete the entry of user \"{{username}}\" permanently?",
-    "DESCRIPTION_ADD_GUESTBOOK_COMMENT": "Type in your comment you want to add to this entry!"
+    "DESCRIPTION_ADD_GUESTBOOK_COMMENT": "Type in your comment you want to add to this entry:",
+    "REQUIRED_FIELD": "This field is required!"
   }
 }

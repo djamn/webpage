@@ -24,6 +24,7 @@ import Quill from "quill";
 import {DialogCommentPopupComponent} from "./popups/dialog-comment-popup/dialog-comment-popup.component";
 import {DialogPopupComponent} from "./popups/dialog-popup/dialog-popup.component";
 import {ButtonYesCancelComponent} from "./button-yes-cancel/button-yes-cancel.component";
+import {ButtonSaveCancelComponent} from "./button-save-cancel/button-yes-cancel.component";
 
 Quill.register("modules/emoji", Emoji);
 
@@ -43,7 +44,8 @@ Quill.register("modules/emoji", Emoji);
     GuestbookCreateEntryComponent,
     DialogCommentPopupComponent,
     DialogPopupComponent,
-    ButtonYesCancelComponent
+    ButtonYesCancelComponent,
+    ButtonSaveCancelComponent
   ],
   imports: [
     CommonModule,
@@ -71,7 +73,8 @@ Quill.register("modules/emoji", Emoji);
     GuestbookCreateEntryComponent,
     DialogCommentPopupComponent,
     DialogPopupComponent,
-    ButtonYesCancelComponent
+    ButtonYesCancelComponent,
+    ButtonSaveCancelComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -96,6 +96,7 @@
     "BUTTON_CANCEL": "Cancel"
   },
   "DIALOG": {
-    "TITLE": "Are you sure?"
+    "TITLE": "Are you sure?",
+    "DESCRIPTION_DELETE_GUESTBOOK_ENTRY": "Do you really want to delete the entry of user \"{{username}}\" permanently?"
   }
 }

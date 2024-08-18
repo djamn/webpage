@@ -72,7 +72,7 @@ export class GuestbookEntryComponent implements OnInit {
   }
 
   deleteEntry() {
-    this.popupService.openPopup("Comment2").subscribe(result => {
+    this.popupService.openPopup(this.translate.instant('DIALOG.DESCRIPTION_DELETE_GUESTBOOK_ENTRY', {username: this.entry.username})).subscribe(result => {
       if (result) {
         console.log("Works")
       }

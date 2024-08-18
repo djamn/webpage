@@ -1,1 +1,5 @@
-<p>dialog-popup works!</p>
+<div class="dialog-popup-component-container popup-container">
+  <span class="popup-heading">{{ 'DIALOG.TITLE' | translate }}</span>
+  <span class="dialog-popup-text-1 popup-text">{{ dialogPopupDescription }}</span>
+  <button-yes-cancel-component (cancel)="cancel()" (confirm)="confirm()"></button-yes-cancel-component>
+</div>

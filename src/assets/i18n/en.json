@@ -94,5 +94,8 @@
   "BUTTONS": {
     "BUTTON_YES": "Yes",
     "BUTTON_CANCEL": "Cancel"
+  },
+  "DIALOG": {
+    "TITLE": "Are you sure?"
   }
 }

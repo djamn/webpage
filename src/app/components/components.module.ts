@@ -23,6 +23,7 @@ import * as Emoji from 'quill2-emoji'
 import Quill from "quill";
 import {DialogCommentPopupComponent} from "./popups/dialog-comment-popup/dialog-comment-popup.component";
 import {DialogPopupComponent} from "./popups/dialog-popup/dialog-popup.component";
+import {ButtonYesCancelComponent} from "./button-yes-cancel/button-yes-cancel.component";
 
 Quill.register("modules/emoji", Emoji);
 
@@ -41,7 +42,8 @@ Quill.register("modules/emoji", Emoji);
     NoEntriesComponentComponent,
     GuestbookCreateEntryComponent,
     DialogCommentPopupComponent,
-    DialogPopupComponent
+    DialogPopupComponent,
+    ButtonYesCancelComponent
   ],
   imports: [
     CommonModule,
@@ -68,7 +70,8 @@ Quill.register("modules/emoji", Emoji);
     NoEntriesComponentComponent,
     GuestbookCreateEntryComponent,
     DialogCommentPopupComponent,
-    DialogPopupComponent
+    DialogPopupComponent,
+    ButtonYesCancelComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

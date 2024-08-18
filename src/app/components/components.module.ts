@@ -21,6 +21,8 @@ import {RecaptchaFormsModule, RecaptchaModule} from "ng-recaptcha";
 import {QuillModule} from "ngx-quill";
 import * as Emoji from 'quill2-emoji'
 import Quill from "quill";
+import {DialogCommentPopupComponent} from "./popups/dialog-comment-popup/dialog-comment-popup.component";
+import {DialogPopupComponent} from "./popups/dialog-popup/dialog-popup.component";
 
 Quill.register("modules/emoji", Emoji);
 
@@ -37,7 +39,9 @@ Quill.register("modules/emoji", Emoji);
     GuestbookPageComponent,
     GuestbookComponent,
     NoEntriesComponentComponent,
-    GuestbookCreateEntryComponent
+    GuestbookCreateEntryComponent,
+    DialogCommentPopupComponent,
+    DialogPopupComponent
   ],
   imports: [
     CommonModule,
@@ -62,7 +66,9 @@ Quill.register("modules/emoji", Emoji);
     GuestbookPageComponent,
     GuestbookComponent,
     NoEntriesComponentComponent,
-    GuestbookCreateEntryComponent
+    GuestbookCreateEntryComponent,
+    DialogCommentPopupComponent,
+    DialogPopupComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

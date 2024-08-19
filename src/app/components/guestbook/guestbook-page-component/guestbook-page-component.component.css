@@ -6,3 +6,26 @@
   border: 1px solid green;
   margin-bottom: var(--dl-space-space-unit)
 }
+
+.guestbook-sub-container {
+  border: 1px solid green;
+  flex: 0 0 auto;
+  border-radius: 10px;
+  background-color: white;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: var(--dl-space-space-halfunit);
+}
+
+.page-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: var(--dl-space-space-halfunit);
+}
+
+.page-buttons {
+  align-self: center;
+}

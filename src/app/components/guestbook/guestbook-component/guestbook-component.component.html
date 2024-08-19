@@ -6,16 +6,22 @@
     ></guestbook-main-component>
 
     <guestbook-entry-component
-      *ngFor="let guestBookEntry of filteredGuestBookEntries"
+      *ngFor="let guestBookEntry of paginatedEntries"
       [entry]="guestBookEntry"
     ></guestbook-entry-component>
 
-<!--    TODO-->
+    <!--    TODO-->
     <div *ngIf="visibleEntriesCount == 0">
       <no-entries-component></no-entries-component>
     </div>
 
-    <guestbook-page-component></guestbook-page-component>
+    <guestbook-page-component
+      [totalPages]="totalPages"
+      [currentPage]="currentPage"
+      (pageChange)="changePage($event)"
+      (pageNext)="nextPage()"
+      (pagePrevious)="previousPage()"
+    ></guestbook-page-component>
   </div>
 </div>
 

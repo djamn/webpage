@@ -1,6 +1,16 @@
 <div class="main-component-container main-guestbook-page-container">
   <div class="guestbook-sub-container">
-    Page Container
-
+    <div class="page-container">
+      <span>Seite {{currentPage}} von {{totalPages}}</span>
+    </div>
+    <div class="page-buttons">
+      <button (click)="previousPage()">Previous</button>
+      <button *ngFor="let page of [].constructor(totalPages); let i = index"
+              (click)="changePage(i + 1)"
+              [disabled]="i + 1 === currentPage">
+        {{ i + 1 }}
+      </button>
+      <button (click)="nextPage()">Next</button>
+    </div>
   </div>
 </div>

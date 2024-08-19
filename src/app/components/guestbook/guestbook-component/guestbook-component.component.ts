@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {GuestBookEntry} from "../../../types/guestbook.entry.type";
 import {Router} from "@angular/router";
 import {GuestbookService} from "../../../services/guestbook.service";
-import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 
 @Component({
   selector: 'guestbook-component',
@@ -14,6 +13,9 @@ export class GuestbookComponent implements OnInit {
   filteredGuestBookEntries: GuestBookEntry[] = [];
   hiddenEntriesCount: number = 0;
   visibleEntriesCount: number = 0;
+
+  currentPage: number = 1;
+  entriesPerPage: number = 5; // todo
 
   constructor(
     private router: Router,
@@ -38,6 +40,29 @@ export class GuestbookComponent implements OnInit {
   performSearch(searchTerm: string) {
     this.filteredGuestBookEntries = this.guestBookEntries;
     console.warn("Search not implemented");
+  }
+
+  changePage(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+    }
+  }
+
+  nextPage() {
+    this.changePage(this.currentPage + 1);
+  }
+
+  previousPage() {
+    this.changePage(this.currentPage - 1);
+  }
+
+  get totalPages(): number {
+    return Math.ceil(this.filteredGuestBookEntries.length / this.entriesPerPage);
+  }
+
+  get paginatedEntries(): any[] {
+    const startIndex = (this.currentPage - 1) * this.entriesPerPage;
+    return this.filteredGuestBookEntries.slice(startIndex, startIndex + this.entriesPerPage);
   }
 
 }

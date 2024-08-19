@@ -5,10 +5,10 @@
     </div>
     <div class="page-buttons">
       <button (click)="previousPage()">Previous</button>
-      <button *ngFor="let page of [].constructor(totalPages); let i = index"
-              (click)="changePage(i + 1)"
-              [disabled]="i + 1 === currentPage">
-        {{ i + 1 }}
+      <button *ngFor="let page of getPageNumbers()"
+              (click)="page !== '...' ? changePage(page) : null"
+              [disabled]="page === '...' || page === currentPage">
+        {{ page }}
       </button>
       <button (click)="nextPage()">Next</button>
     </div>

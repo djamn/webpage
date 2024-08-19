@@ -15,7 +15,7 @@ export class GuestbookComponent implements OnInit {
   visibleEntriesCount: number = 0;
 
   currentPage: number = 1;
-  entriesPerPage: number = 5; // todo
+  entriesPerPage: number = 2; // todo
 
   constructor(
     private router: Router,

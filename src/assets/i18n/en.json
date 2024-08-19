@@ -101,6 +101,11 @@
       "COMMENT_DELETED_SUCCESSFUL": "Comment was deleted successfully!",
       "ENTRY_DELETION_FAILED": "There was an error deleting the entry. Please try again.",
       "COMMENT_DELETION_FAILED": "There was an error deleting the comment. Please try again."
+    },
+    "PAGE": {
+      "PAGES": "Page {{currentPage}} of {{totalPages}}",
+      "BUTTON_PREVIOUS": "Previous",
+      "BUTTON_NEXT": "Next"
     }
   },
   "BUTTONS": {

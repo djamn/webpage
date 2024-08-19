@@ -1,16 +1,16 @@
 <div class="main-component-container main-guestbook-page-container">
   <div class="guestbook-sub-container">
     <div class="page-container">
-      <span>Seite {{currentPage}} von {{totalPages}}</span>
+      <span>{{'GUESTBOOK.PAGE.PAGES' | translate: {currentPage: currentPage, totalPages: totalPages}  }}</span>
     </div>
     <div class="page-buttons">
-      <button (click)="previousPage()">Previous</button>
+      <button (click)="previousPage()">{{'GUESTBOOK.PAGE.BUTTON_PREVIOUS' | translate}}</button>
       <button *ngFor="let page of getPageNumbers()"
               (click)="page !== '...' ? changePage(page) : null"
               [disabled]="page === '...' || page === currentPage">
         {{ page }}
       </button>
-      <button (click)="nextPage()">Next</button>
+      <button (click)="nextPage()">{{'GUESTBOOK.PAGE.BUTTON_NEXT' | translate}}</button>
     </div>
   </div>
 </div>

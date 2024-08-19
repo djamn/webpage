@@ -66,6 +66,7 @@
         <span id="emojis-not-available">{{ "GUESTBOOK.CREATE.ERRORS.EMOJIS_NOT_AVAILABLE" | translate }}</span>
       </div>
 
+<!--      TODO add error to captcha container-->
       <div *ngIf="!isEditMode">
         <div class="captcha-container" *ngIf="config.GUESTBOOK_ENTRY_CREATION_POSSIBLE">
           <label for="captcha-text" class="input-label">{{ "GUESTBOOK.CREATE.CAPTCHA_LABEL" | translate }}</label>
@@ -90,24 +91,22 @@
         </div>
       </div>
 
-      <div *ngIf="!isEditMode">
-        <div class="privacy-confirmation">
-          <input
-            type="checkbox"
-            class="checkbox-style"
-            formControlName="confirmation_checkbox">
-          <span id="privacy-confirmation-text"
-                class="hint-text-font">{{ "GUESTBOOK.CREATE.DATA_PRIVACY_CONFIRMATION" | translate }}</span>
-          <div
-            class="checkbox-required"
-            [ngStyle]="{
+      <div *ngIf="!isEditMode" class="privacy-confirmation">
+        <input
+          type="checkbox"
+          class="checkbox-style"
+          formControlName="confirmation_checkbox">
+        <span id="privacy-confirmation-text"
+              class="hint-text-font">{{ "GUESTBOOK.CREATE.DATA_PRIVACY_CONFIRMATION" | translate }}</span>
+        <div
+          class="checkbox-required"
+          [ngStyle]="{
         opacity: isControlInvalid(createEntryForm, 'confirmation_checkbox') ? '1' : '0',
         visibility: isControlInvalid(createEntryForm, 'confirmation_checkbox') ? 'visible' : 'hidden'
         }">
         <span
           *ngIf="isControlInvalid(createEntryForm, 'confirmation_checkbox') && createEntryForm.get('confirmation_checkbox')?.hasError('required')"
         >{{ 'GUESTBOOK.CREATE.ERRORS.CHECKBOX_REQUIRED' | translate }}</span>
-          </div>
         </div>
       </div>
 

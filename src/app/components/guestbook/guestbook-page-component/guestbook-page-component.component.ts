@@ -13,7 +13,7 @@ export class GuestbookPageComponent {
   @Output() pageNext: EventEmitter<number> = new EventEmitter<number>();
 
   changePage(page: number | string) {
-    if(typeof page === 'number') {
+    if (typeof page === 'number') {
       this.pageChange.emit(page);
     }
   }

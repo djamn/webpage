@@ -10,7 +10,7 @@ import {User} from "../types/user.type";
 })
 export class AuthService {
   user$: Observable<User | null | undefined>;
-  userRole$: Observable<string | null>;
+  userRole$: Observable<string>;
 
   constructor(private firestoreService: FirestoreService, private firestore: AngularFirestore, private fireAuth: AngularFireAuth) {
     this.user$ = this.fireAuth.authState.pipe(
@@ -71,8 +71,12 @@ export class AuthService {
     // todo router
   }
 
-  getUserRole(): Observable<string | null> {
+  getUserRole(): Observable<string> {
     return this.userRole$;
+  }
+
+  getUser(): Observable<User | null | undefined> {
+    return this.user$;
   }
 
   // TODO move to user role service?

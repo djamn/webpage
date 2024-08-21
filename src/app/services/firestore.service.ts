@@ -29,29 +29,8 @@ export class FirestoreService {
     }
   }
 
-  async registerUser(userId: string, email: string, username: string): Promise<void> {
-    const userRef = doc(this.firestore, `users/${userId}`);
-    await setDoc(userRef, { uid: userId, email, username, role: 'user' });
-  }
-
   getCollection(collectionName: string): Observable<any[]> {
     const collectionRef = collection(this.firestore, collectionName);
     return collectionData(collectionRef);
-  }
-
-  addDocument(collectionName: string, data: any): Promise<void> {
-    const collectionRef = collection(this.firestore, collectionName);
-    const docRef = doc(collectionRef);
-    return setDoc(docRef, data);
-  }
-
-  updateDocument(collectionName: string, docId: string, data: any): Promise<void> {
-    const docRef = doc(this.firestore, `${collectionName}/${docId}`);
-    return updateDoc(docRef, data);
-  }
-
-  deleteDocument(collectionName: string, docId: string): Promise<void> {
-    const docRef = doc(this.firestore, `${collectionName}/${docId}`);
-    return deleteDoc(docRef);
   }
 }

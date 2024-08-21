@@ -13,7 +13,7 @@ import {map, Observable} from "rxjs";
 })
 export class TestComponentComponent implements OnInit {
   isAdmin$: Observable<boolean> | undefined;
-  userRole$: Observable<string | null> | undefined;
+  userRole$: Observable<string[]> | undefined;
 
   @Input()
   loginInputPlaceholderPassword: string = 'Enter your password'
@@ -36,7 +36,7 @@ export class TestComponentComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.isAdmin$ = this.authService.getUserRole().pipe(
-      map(role => role === 'admin')
+      map(roles => roles.includes('admin'))
     );
 
     this.userRole$ = this.authService.getUserRole();

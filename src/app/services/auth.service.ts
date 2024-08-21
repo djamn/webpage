@@ -9,7 +9,7 @@ import {User} from "../types/user.type";
 })
 export class AuthService {
   user$: Observable<User | null | undefined>;
-  userRole$: Observable<string>;
+  userRole$: Observable<string[]>;
 
   constructor(private firestore: AngularFirestore, private fireAuth: AngularFireAuth) {
     this.user$ = this.fireAuth.authState.pipe(
@@ -23,7 +23,7 @@ export class AuthService {
     );
 
     this.userRole$ = this.user$.pipe(
-      map(user => user ? user.role : 'guest')
+      map(user => user ? user.roles : ['guest']) // Default to array with 'guest' if no roles
     );
   }
 
@@ -84,7 +84,7 @@ export class AuthService {
     // todo router
   }
 
-  getUserRole(): Observable<string> {
+  getUserRole(): Observable<string[]> {
     return this.userRole$;
   }
 
@@ -101,15 +101,15 @@ export class AuthService {
 
       if (userSnapshot.exists) {
         const user = userSnapshot.data() as User;
-        const userRole = user.role;
-        console.log("This user is:", userRole)
-        return userRole || 'guest';
+        const userRoles = user.roles;
+        console.log("This user has the following roles:", userRoles)
+        return userRoles || ['guest'];
       }
 
-      return 'guest';
+      return ['guest'];
     } catch (e) {
       console.error("Error while fetching user role", e);
-      return 'guest';
+      return ['guest'];
     }
   }
 

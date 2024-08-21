@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {FirestoreService} from "./firestore.service";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {catchError, firstValueFrom, map, Observable, of, switchMap} from "rxjs";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
@@ -12,7 +11,7 @@ export class AuthService {
   user$: Observable<User | null | undefined>;
   userRole$: Observable<string>;
 
-  constructor(private firestoreService: FirestoreService, private firestore: AngularFirestore, private fireAuth: AngularFireAuth) {
+  constructor(private firestore: AngularFirestore, private fireAuth: AngularFireAuth) {
     this.user$ = this.fireAuth.authState.pipe(
       switchMap(user => {
         if (user) {
@@ -51,12 +50,26 @@ export class AuthService {
       await this.fireAuth.createUserWithEmailAndPassword(email, password).then(async (userCredential) => {
         const user = userCredential.user;
 
-        if (user) await this.firestoreService.registerUser(user.uid, email, username);
+        if (user) await this.registerUser(user.uid, email, username);
       })
     } catch (err) {
       throw err; // Rethrow Error
     }
   }
+
+  async registerUser(userId: string, email: string, username: string): Promise<void> {
+    try {
+      await this.firestore.collection('users').doc(userId).set({
+        uid: userId,
+        email: email,
+        username: username,
+        roles: ['guest']
+      });
+    } catch (err) {
+      throw err;
+    }
+  }
+
 
   async login(email: string, password: string) {
     try {

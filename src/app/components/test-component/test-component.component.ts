@@ -34,21 +34,23 @@ export class TestComponentComponent implements OnInit {
     this.data = [];
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.isAdmin$ = this.authService.getUserRole().pipe(
       map(role => role === 'admin')
     );
 
     this.userRole$ = this.authService.getUserRole();
 
-    this.firebaseService.getCollection('button-clicks').subscribe(data => {
-      this.data = data;
-      this.counter = data[0].counter;
-    })
+    try {
+      this.counter = await this.firebaseService.getNumber('button-clicks', this.docId, this.fieldName);
+    } catch (error) {
+      console.error('Error setting counter value:', error);
+    }
   }
 
   testButton(): void {
-    this.firebaseService.incrementNumber('button-clicks', this.docId, this.fieldName).then(() => {
+    this.firebaseService.incrementNumber('button-clicks', this.docId, this.counter).then(() => {
+      this.counter++;
       console.log("Number successfully incremented")
     })
 

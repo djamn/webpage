@@ -1,36 +1,36 @@
-import { Injectable } from '@angular/core';
-import {
-  collection,
-  collectionData,
-  deleteDoc,
-  doc,
-  Firestore,
-  getDoc,
-  setDoc,
-  updateDoc
-} from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {firstValueFrom, Observable} from 'rxjs';
+import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
 
-  constructor(private firestore: Firestore) { }
+  constructor(private firestore: AngularFirestore) {
+  }
 
-  async incrementNumber(collectionName: string, docId: string, fieldName: string): Promise<void> {
-    const docRef = doc(this.firestore, `${collectionName}/${docId}`);
-    const docSnapshot = await getDoc(docRef);
-    if (docSnapshot.exists()) {
-      const currentNumber = docSnapshot.data()[fieldName] || 0;
-      await updateDoc(docRef, { [fieldName]: currentNumber + 1 });
-    } else {
-      await updateDoc(docRef, { [fieldName]: 1 });
+  async incrementNumber(collectionName: string, docId: string, counterValue: number): Promise<void> {
+    const newCounterValue = counterValue + 1;
+    console.log(newCounterValue)
+    await this.firestore.collection(collectionName).doc(docId).update({
+      counter: newCounterValue
+    })
+  }
+
+  async getNumber(collectionName: string, docId: string, fieldName: string) {
+    const docSnapshot = await firstValueFrom(this.firestore.collection(collectionName).doc(docId).get())
+
+    if (docSnapshot && docSnapshot.exists) {
+      const docData = docSnapshot.data()
+      // @ts-ignore
+      return docData ? docData[fieldName] || -1 : -1;
     }
+    return -1;
   }
 
-  getCollection(collectionName: string): Observable<any[]> {
-    const collectionRef = collection(this.firestore, collectionName);
-    return collectionData(collectionRef);
-  }
+  // getCollection(collectionName: string): Observable<any[]> {
+  //   const collectionRef = collection(this.firestore, collectionName);
+  //   return collectionData(collectionRef);
+  // }
 }

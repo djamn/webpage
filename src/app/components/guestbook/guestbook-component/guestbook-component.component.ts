@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {GuestBookEntry} from "../../../types/guestbook.entry.type";
 import {Router} from "@angular/router";
 import {GuestbookService} from "../../../services/guestbook.service";
+import {ConfigService} from "../../../services/config.service";
 
 @Component({
   selector: 'guestbook-component',
@@ -15,14 +16,19 @@ export class GuestbookComponent implements OnInit {
   visibleEntriesCount: number = 0;
 
   currentPage: number = 1;
-  entriesPerPage: number = 2; // todo
+  entriesPerPage: number = 1;
+  config: any;
 
   constructor(
     private router: Router,
+    private configService: ConfigService,
     private guestbookService: GuestbookService) {
   }
 
   ngOnInit() {
+    this.config = this.configService.getConfig();
+    this.entriesPerPage = this.config.GUESTBOOK_ENTRIES_PER_PAGE;
+
     this.fetchData();
   }
 

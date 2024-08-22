@@ -16,7 +16,7 @@ export class AdminGuard implements CanActivate {
   ): Observable<boolean> {
     return this.auth.getUserRole().pipe(
       take(1),
-      map(role => role === 'admin'),
+      map(roles => roles.includes('admin')),
       tap(isAdmin => {
         if (!isAdmin) {
           this.router.navigate(['/']); // TODO can be changed later

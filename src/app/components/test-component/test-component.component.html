@@ -7,4 +7,5 @@
 <span>Total Clicks: {{ counter }} </span><br>
 <span>You are currently logged in as: {{getAuth().currentUser?.uid ? getAuth().currentUser?.uid : "Not logged in" }}</span><br>
 <span *ngIf="userRole$ | async as role">Your role: {{ role }}</span><br><br>
+<span >Your permissions: {{ permissions }}</span><br><br>
 <button class="button-general button-green" *ngIf="isAdmin$ | async" routerLink="/admin">Admin Panel</button><br>

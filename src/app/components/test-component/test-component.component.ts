@@ -5,6 +5,7 @@ import {getAuth} from "firebase/auth";
 import {signOut} from "@angular/fire/auth";
 import {Router} from "@angular/router";
 import {map, Observable} from "rxjs";
+import {PermissionService} from "../../services/permission.service";
 
 @Component({
   selector: 'app-test-component',
@@ -24,14 +25,18 @@ export class TestComponentComponent implements OnInit {
   @Input()
   loginInputPlaceholderUsername: string = 'Enter your username'
 
+  @Input()
+  permissions: string[] = [];
+
 
   data: any[];
   docId = 'clicks';
   fieldName = 'counter';
   counter: number = -1;
 
-  constructor(private firebaseService: FirestoreService, private authService: AuthService, private router: Router) {
+  constructor(private firebaseService: FirestoreService, private authService: AuthService, private router: Router, private permission: PermissionService) {
     this.data = [];
+    this.permissions = [];
   }
 
   async ngOnInit(): Promise<void> {
@@ -46,18 +51,22 @@ export class TestComponentComponent implements OnInit {
     } catch (error) {
       console.error('Error setting counter value:', error);
     }
+
+    this.permissions = await this.permission.getPermissions();
   }
 
   testButton(): void {
     this.firebaseService.incrementNumber('button-clicks', this.docId, this.counter).then(() => {
       this.counter++;
-      console.log("Number successfully incremented")
+      // console.log("Number successfully incremented")
     })
 
     this.authService.fetchUserRole('pNrC82iZV6W6PfxrrzUY4y7aHVq1');
 
-    const auth = getAuth();
-    console.log("AUTH: ", auth.currentUser)
+    console.log(this.permission.getPermissions);
+
+    // const auth = getAuth();
+    // console.log("AUTH: ", auth.currentUser)
   }
 
   logout() {

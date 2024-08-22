@@ -9,15 +9,15 @@ import {PermissionsType} from "../types/permissions.type";
 })
 export class PermissionService implements OnInit {
   private permissions: string[] = [];
+  private permissionsLoaded: Promise<void>;
 
   constructor(private firestore: AngularFirestore, private authService: AuthService) {
-    this.loadPermissions();
+    this.permissionsLoaded = this.loadPermissions();
   }
 
   async ngOnInit() {
-    await this.loadPermissions();
+    await this.permissionsLoaded;
   }
-
 
   private async loadPermissions(): Promise<void> {
     try {
@@ -40,19 +40,19 @@ export class PermissionService implements OnInit {
           return acc.concat(rolePermissions);
         }
         return acc;
-      }, []); // Start with an empty array
+      }, []);
     } catch (error) {
       console.error('Error fetching role permissions:', error);
       this.permissions = [];
     }
   }
 
-  hasPermission(permission: string): boolean {
-    return this.permissions.includes(permission);
+  async getPermissions(): Promise<string[]> {
+    await this.permissionsLoaded;
+    return this.permissions;
   }
 
-  get getPermissions(): string[] {
-    console.log("Setting permissions...")
-    return this.permissions;
+  hasPermission(permission: string): boolean {
+    return this.permissions.includes(permission);
   }
 }

@@ -7,7 +7,8 @@ import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import {PopupService} from "../../../services/popup.service";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../services/auth.service";
-import {map, Observable, shareReplay} from "rxjs";
+import {firstValueFrom, map, Observable, shareReplay} from "rxjs";
+import {PermissionService} from "../../../services/permission.service";
 
 @Component({
   selector: 'guestbook-entry-component',
@@ -32,6 +33,7 @@ export class GuestbookEntryComponent implements OnInit {
     private configService: ConfigService,
     private router: Router,
     private auth: AuthService,
+    protected permissionService: PermissionService,
     private sanitizer: DomSanitizer,
     private popupService: PopupService) {
   }
@@ -51,21 +53,27 @@ export class GuestbookEntryComponent implements OnInit {
     this.hasViewInvisibleEntriesPermission$ = this.hasPermission(['admin', 'moderator', 'owner']);
   }
 
-  toggleEntryVisibility() {
-    if(this.hasManageEntryPermission$) {
-      const newVisibility = !this.entry.is_visible
-      this.guestbookService.toggleVisibility(this.entry.id, newVisibility)
-        .then(success => {
-          if (success) {
-            this.entry.is_visible = newVisibility;
-            this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.VISIBILITY_UPDATED_SUCCESS'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
-          }
-        })
+  async toggleEntryVisibility() {
+    const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-guestbook-entry'));
+
+    if (hasPermission) {
+      if (this.permissionService.hasPermission('manage-guestbook-entry')) {
+        const newVisibility = !this.entry.is_visible
+        this.guestbookService.toggleVisibility(this.entry.id, newVisibility)
+          .then(success => {
+            if (success) {
+              this.entry.is_visible = newVisibility;
+              this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.VISIBILITY_UPDATED_SUCCESS'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
+            }
+          })
+      }
     }
   }
 
-  addComment() {
-    if(this.hasManageEntryPermission$) {
+  async addComment() {
+    const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-guestbook-entry'));
+
+    if (hasPermission) {
       this.popupService.openCommentPopup(this.translate.instant('DIALOG.DESCRIPTION_ADD_GUESTBOOK_COMMENT')).subscribe(async comment => {
         if (comment) {
           try {
@@ -81,7 +89,9 @@ export class GuestbookEntryComponent implements OnInit {
   }
 
   async editEntry() {
-    if (this.hasManageEntryPermission$) {
+    const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-guestbook-entry'));
+
+    if (hasPermission) {
       await this.router.navigate(["guestbook/update"], {
         state: {
           entry: this.entry
@@ -91,7 +101,9 @@ export class GuestbookEntryComponent implements OnInit {
   }
 
   async deleteEntry() {
-    if (this.hasManageEntryPermission$) {
+    const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-guestbook-entry'));
+
+    if (hasPermission) {
       this.popupService.openPopup(this.translate.instant('DIALOG.DESCRIPTION_DELETE_GUESTBOOK_ENTRY', {username: this.entry.username})).subscribe(async (result) => {
         if (result) {
           try {
@@ -107,7 +119,9 @@ export class GuestbookEntryComponent implements OnInit {
   }
 
   async deleteComment() {
-    if (this.hasDeleteCommentPermission$) {
+    const hasPermission = await firstValueFrom(this.permissionService.hasPermission('delete-guestbook-comment'));
+
+    if (hasPermission) {
       this.popupService.openPopup(this.translate.instant('DIALOG.DESCRIPTION_DELETE_GUESTBOOK_COMMENT', {})).subscribe(async (result) => {
         if (result) {
           try {

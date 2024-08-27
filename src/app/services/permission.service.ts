@@ -21,7 +21,7 @@ export class PermissionService implements OnInit {
 
   private async loadPermissions(): Promise<void> {
     try {
-      const roles = await firstValueFrom(this.authService.getUserRole());
+      const roles = await firstValueFrom(this.authService.getUserRoles());
       console.log("ROLES", roles);
 
       if (!roles || roles.length === 0) {
@@ -52,7 +52,8 @@ export class PermissionService implements OnInit {
     return this.permissions;
   }
 
-  hasPermission(permission: string): boolean {
+  async hasPermission(permission: string): Promise<boolean> {
+    await this.permissionsLoaded;
     return this.permissions.includes(permission);
   }
 }

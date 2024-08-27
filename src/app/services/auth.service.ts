@@ -9,7 +9,7 @@ import {User} from "../types/user.type";
 })
 export class AuthService {
   user$: Observable<User | null | undefined>;
-  userRole$: Observable<string[]>;
+  userRoles$: Observable<string[]>;
 
   constructor(private firestore: AngularFirestore, private fireAuth: AngularFireAuth) {
     this.user$ = this.fireAuth.authState.pipe(
@@ -22,7 +22,7 @@ export class AuthService {
       })
     );
 
-    this.userRole$ = this.user$.pipe(
+    this.userRoles$ = this.user$.pipe(
       map(user => user ? user.roles : ['guest']) // Default to array with 'guest' if no roles
     );
   }
@@ -84,8 +84,8 @@ export class AuthService {
     // todo router
   }
 
-  getUserRole(): Observable<string[]> {
-    return this.userRole$;
+  getUserRoles(): Observable<string[]> {
+    return this.userRoles$;
   }
 
   getUser(): Observable<User | null | undefined> {

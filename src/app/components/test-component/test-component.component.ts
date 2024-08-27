@@ -40,11 +40,11 @@ export class TestComponentComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.isAdmin$ = this.authService.getUserRole().pipe(
+    this.isAdmin$ = this.authService.getUserRoles().pipe(
       map(roles => roles.includes('admin'))
     );
 
-    this.userRole$ = this.authService.getUserRole();
+    this.userRole$ = this.authService.getUserRoles();
 
     try {
       this.counter = await this.firebaseService.getNumber('button-clicks', this.docId, this.fieldName);

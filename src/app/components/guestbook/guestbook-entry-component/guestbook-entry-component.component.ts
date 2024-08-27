@@ -6,6 +6,8 @@ import {ConfigService} from "../../../services/config.service";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import {PopupService} from "../../../services/popup.service";
 import {Router} from "@angular/router";
+import {AuthService} from "../../../services/auth.service";
+import {map, Observable, shareReplay} from "rxjs";
 
 @Component({
   selector: 'guestbook-entry-component',
@@ -18,6 +20,10 @@ export class GuestbookEntryComponent implements OnInit {
   hours: string = "";
   minutes: string = "";
   config: any;
+  private userRoles$: Observable<string[]> | undefined;
+  hasManageEntryPermission$: Observable<boolean> | undefined;
+  hasDeleteCommentPermission$: Observable<boolean> | undefined;
+  hasViewInvisibleEntriesPermission$: Observable<boolean> | undefined;
 
   constructor(
     private translate: TranslateService,
@@ -25,6 +31,7 @@ export class GuestbookEntryComponent implements OnInit {
     private snackbar: Snackbar,
     private configService: ConfigService,
     private router: Router,
+    private auth: AuthService,
     private sanitizer: DomSanitizer,
     private popupService: PopupService) {
   }
@@ -32,6 +39,87 @@ export class GuestbookEntryComponent implements OnInit {
   ngOnInit() {
     this.config = this.configService.getConfig()
     this.processTimestamp(this.entry.timestamp);
+
+    // Create a single Observable for user roles
+    this.userRoles$ = this.auth.getUserRoles().pipe(
+      shareReplay(1) // Cache the last emitted value
+    );
+
+    // TODO better approach
+    this.hasManageEntryPermission$ = this.hasPermission(['admin', 'moderator', 'owner']);
+    this.hasDeleteCommentPermission$ = this.hasPermission(['admin', 'moderator', 'owner']);
+    this.hasViewInvisibleEntriesPermission$ = this.hasPermission(['admin', 'moderator', 'owner']);
+  }
+
+  toggleEntryVisibility() {
+    if(this.hasManageEntryPermission$) {
+      const newVisibility = !this.entry.is_visible
+      this.guestbookService.toggleVisibility(this.entry.id, newVisibility)
+        .then(success => {
+          if (success) {
+            this.entry.is_visible = newVisibility;
+            this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.VISIBILITY_UPDATED_SUCCESS'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
+          }
+        })
+    }
+  }
+
+  addComment() {
+    if(this.hasManageEntryPermission$) {
+      this.popupService.openCommentPopup(this.translate.instant('DIALOG.DESCRIPTION_ADD_GUESTBOOK_COMMENT')).subscribe(async comment => {
+        if (comment) {
+          try {
+            await this.guestbookService.addComment(this.entry.id, comment);
+            this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.COMMENT_CREATION_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
+          } catch (err) {
+            console.error('Error commenting on entry:', err);
+            this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ERRORS.COMMENT_CREATION_FAILED'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+          }
+        }
+      });
+    }
+  }
+
+  async editEntry() {
+    if (this.hasManageEntryPermission$) {
+      await this.router.navigate(["guestbook/update"], {
+        state: {
+          entry: this.entry
+        }
+      })
+    }
+  }
+
+  async deleteEntry() {
+    if (this.hasManageEntryPermission$) {
+      this.popupService.openPopup(this.translate.instant('DIALOG.DESCRIPTION_DELETE_GUESTBOOK_ENTRY', {username: this.entry.username})).subscribe(async (result) => {
+        if (result) {
+          try {
+            await this.guestbookService.deleteEntry(this.entry.id);
+            this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.DELETE.ENTRY_DELETED_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
+          } catch (err) {
+            console.error('Error deleting entry:', err);
+            this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.DELETE.ENTRY_DELETION_FAILED'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+          }
+        }
+      });
+    }
+  }
+
+  async deleteComment() {
+    if (this.hasDeleteCommentPermission$) {
+      this.popupService.openPopup(this.translate.instant('DIALOG.DESCRIPTION_DELETE_GUESTBOOK_COMMENT', {})).subscribe(async (result) => {
+        if (result) {
+          try {
+            await this.guestbookService.deleteComment(this.entry.id);
+            this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.DELETE.COMMENT_DELETED_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
+          } catch (err) {
+            console.error('Error deleting comment:', err);
+            this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.DELETE.COMMENT_DELETED_SUCCESSFUL'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+          }
+        }
+      });
+    }
   }
 
   processTimestamp(timestamp: any) {
@@ -41,72 +129,14 @@ export class GuestbookEntryComponent implements OnInit {
     this.minutes = date.getMinutes().toString().padStart(2, '0');
   }
 
-  hasPermission() {
-    return true;
+  private hasPermission(allowedRoles: string[]): Observable<boolean> {
+    return this.userRoles$!.pipe(
+      map(roles => roles.some(role => allowedRoles.includes(role)))
+    );
   }
 
-  toggleEntryVisibility() {
-    const newVisibility = !this.entry.is_visible
-    this.guestbookService.toggleVisibility(this.entry.id, newVisibility)
-      .then(success => {
-        if (success) {
-          this.entry.is_visible = newVisibility;
-          this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.VISIBILITY_UPDATED_SUCCESS'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
-        }
-      })
-  }
 
   sanitizeHtml(html: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(html);
-  }
-
-  addComment() {
-    this.popupService.openCommentPopup(this.translate.instant('DIALOG.DESCRIPTION_ADD_GUESTBOOK_COMMENT')).subscribe(async comment => {
-      if (comment) {
-        try {
-          await this.guestbookService.addComment(this.entry.id, comment);
-          this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.COMMENT_CREATION_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
-        } catch (err) {
-          console.error('Error commenting on entry:', err);
-          this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ERRORS.COMMENT_CREATION_FAILED'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
-        }
-      }
-    });
-  }
-
-  async editEntry() {
-    await this.router.navigate(["guestbook/update"], {
-      state: {
-        entry: this.entry
-      }
-    })
-  }
-
-  async deleteEntry() {
-    this.popupService.openPopup(this.translate.instant('DIALOG.DESCRIPTION_DELETE_GUESTBOOK_ENTRY', {username: this.entry.username})).subscribe(async (result) => {
-      if (result) {
-        try {
-          await this.guestbookService.deleteEntry(this.entry.id);
-          this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.DELETE.ENTRY_DELETED_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
-        } catch (err) {
-          console.error('Error deleting entry:', err);
-          this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.DELETE.ENTRY_DELETION_FAILED'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
-        }
-      }
-    });
-  }
-
-  async deleteComment() {
-    this.popupService.openPopup(this.translate.instant('DIALOG.DESCRIPTION_DELETE_GUESTBOOK_COMMENT', {})).subscribe(async (result) => {
-      if (result) {
-        try {
-          await this.guestbookService.deleteComment(this.entry.id);
-          this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.DELETE.COMMENT_DELETED_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
-        } catch (err) {
-          console.error('Error deleting comment:', err);
-          this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.DELETE.COMMENT_DELETED_SUCCESSFUL'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
-        }
-      }
-    });
   }
 }

@@ -177,7 +177,13 @@ export class HasRoleDirective implements OnInit {
 
 ```
 
+## Permissions
+- view-invisible-guestbook-entries
+- manage-guestbook-entry
+- delete-guestbook-comment
 
+
+## Icons
 Discord Icon:
 
 viewBox="0 0 640 512"

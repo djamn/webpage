@@ -76,6 +76,7 @@
       "USERNAME_LABEL": "Your Username",
       "USERNAME_PLACEHOLDER": "Enter username...",
       "ENTRY_CREATED_SUCCESSFUL": "Entry successfully created!",
+      "ENTRY_UPDATED_SUCCESSFUL": "Entry successfully updated!",
       "MESSAGE_LABEL": "Your Message",
       "MESSAGE_PLACEHOLDER": "Your message...",
       "CAPTCHA_LABEL": "Enter ReCAPTCHA",

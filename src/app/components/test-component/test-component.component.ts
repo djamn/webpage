@@ -63,7 +63,7 @@ export class TestComponentComponent implements OnInit {
       // console.log("Number successfully incremented")
     })
 
-    this.authService.fetchUserRole('pNrC82iZV6W6PfxrrzUY4y7aHVq1');
+    // this.authService.fetchUserRole('pNrC82iZV6W6PfxrrzUY4y7aHVq1');
 
     // const auth = getAuth();
     // console.log("AUTH: ", auth.currentUser)

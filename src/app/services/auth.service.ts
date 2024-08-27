@@ -92,27 +92,6 @@ export class AuthService {
     return this.user$;
   }
 
-  // TODO move to user role service?
-  // TODO deprecated
-  async fetchUserRole(uid: string) {
-    try {
-      const userDoc = this.firestore.doc(`users/${uid}`).get();
-      const userSnapshot = await firstValueFrom(userDoc);
-
-      if (userSnapshot.exists) {
-        const user = userSnapshot.data() as User;
-        const userRoles = user.roles;
-        console.log("This user has the following roles:", userRoles)
-        return userRoles || ['guest'];
-      }
-
-      return ['guest'];
-    } catch (e) {
-      console.error("Error while fetching user role", e);
-      return ['guest'];
-    }
-  }
-
   async fetchEmailByUsername(username: string) {
     const userDoc = this.firestore.collection('users', ref => ref.where('username', '==', username)).get();
     const userSnapshot = await firstValueFrom(userDoc);

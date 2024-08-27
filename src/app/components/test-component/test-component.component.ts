@@ -25,8 +25,9 @@ export class TestComponentComponent implements OnInit {
   @Input()
   loginInputPlaceholderUsername: string = 'Enter your username'
 
-  @Input()
-  permissions: string[] = [];
+
+
+  userPermissions$: Observable<string[]> | undefined;
 
 
   data: any[];
@@ -34,12 +35,15 @@ export class TestComponentComponent implements OnInit {
   fieldName = 'counter';
   counter: number = -1;
 
-  constructor(private firebaseService: FirestoreService, private authService: AuthService, private router: Router, private permission: PermissionService) {
+  constructor(private firebaseService: FirestoreService, private authService: AuthService, private router: Router, private permissionService: PermissionService) {
     this.data = [];
-    this.permissions = [];
   }
 
   async ngOnInit(): Promise<void> {
+    this.userPermissions$ = this.permissionService.getAllPermissions().pipe(
+      map(permissions => permissions.sort()) // Sort permissions alphabetically
+    );
+
     this.isAdmin$ = this.authService.getUserRoles().pipe(
       map(roles => roles.includes('admin'))
     );
@@ -51,8 +55,6 @@ export class TestComponentComponent implements OnInit {
     } catch (error) {
       console.error('Error setting counter value:', error);
     }
-
-    this.permissions = await this.permission.getPermissions();
   }
 
   testButton(): void {
@@ -62,8 +64,6 @@ export class TestComponentComponent implements OnInit {
     })
 
     this.authService.fetchUserRole('pNrC82iZV6W6PfxrrzUY4y7aHVq1');
-
-    console.log(this.permission.getPermissions);
 
     // const auth = getAuth();
     // console.log("AUTH: ", auth.currentUser)

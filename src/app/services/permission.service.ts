@@ -1,59 +1,51 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AuthService} from "./auth.service";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {firstValueFrom} from "rxjs";
-import {PermissionsType} from "../types/permissions.type";
+import {combineLatest, map, Observable, of, shareReplay, switchMap} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-export class PermissionService implements OnInit {
-  private permissions: string[] = [];
-  private permissionsLoaded: Promise<void>;
+export class PermissionService {
+  private userPermissions$: Observable<string[]>;
 
   constructor(private firestore: AngularFirestore, private authService: AuthService) {
-    this.permissionsLoaded = this.loadPermissions();
+    this.userPermissions$ = this.initUserPermissions();
   }
 
-  async ngOnInit() {
-    await this.permissionsLoaded;
+  private initUserPermissions(): Observable<string[]> {
+    return this.authService.getUserRoles().pipe(
+      switchMap(roles => this.getPermissionsForRoles(roles)),
+      shareReplay(1)
+    );
   }
 
-  private async loadPermissions(): Promise<void> {
-    try {
-      const roles = await firstValueFrom(this.authService.getUserRoles());
-      console.log("ROLES", roles);
-
-      if (!roles || roles.length === 0) {
-        this.permissions = [];
-        return;
-      }
-
-      const permissionPromises = roles.map(role =>
-        firstValueFrom(this.firestore.collection<PermissionsType>('roles').doc(role).get())
-      );
-      const roleDocs = await Promise.all(permissionPromises);
-
-      this.permissions = roleDocs.reduce<string[]>((acc, doc) => {
-        if (doc.exists) {
-          const rolePermissions = doc.data()?.permissions || [];
-          return acc.concat(rolePermissions);
-        }
-        return acc;
-      }, []);
-    } catch (error) {
-      console.error('Error fetching role permissions:', error);
-      this.permissions = [];
+  private getPermissionsForRoles(roles: string[]): Observable<string[]> {
+    if (roles.length === 0) {
+      return of([]);
     }
+
+    const roleObservables = roles.map(role =>
+      this.firestore.doc(`roles/${role}`).valueChanges()
+    );
+
+    return combineLatest(roleObservables).pipe(
+      map(roleDocuments => {
+        const allPermissions = roleDocuments.flatMap((doc: any) => doc?.permissions || []);
+        return [...new Set(allPermissions)]; // Remove duplicates
+      })
+    );
   }
 
-  async getPermissions(): Promise<string[]> {
-    await this.permissionsLoaded;
-    return this.permissions;
+  hasPermission(permission: string): Observable<boolean> {
+    return this.userPermissions$.pipe(
+      map(permissions => permissions.includes(permission))
+    );
   }
 
-  async hasPermission(permission: string): Promise<boolean> {
-    await this.permissionsLoaded;
-    return this.permissions.includes(permission);
+  getAllPermissions(): Observable<string[]> {
+    return this.userPermissions$.pipe(
+      map(permissions => Array.from(permissions))
+    );
   }
 }

@@ -23,7 +23,7 @@ export class GuestbookComponent implements OnInit {
   constructor(
     private router: Router,
     private configService: ConfigService,
-    private permissionService: PermissionService,
+    protected permissionService: PermissionService,
     private guestbookService: GuestbookService) {
   }
 

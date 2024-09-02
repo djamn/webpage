@@ -11,7 +11,7 @@
     ></guestbook-entry-component>
 
     <!--    TODO-->
-    <div *ngIf="visibleEntriesCount == 0">
+    <div *ngIf="((permissionService.hasPermission('view-invisible-guestbook-entries') | async) && hiddenEntriesCount == 0 && visibleEntriesCount == 0) || (!(permissionService.hasPermission('view-invisible-guestbook-entries') | async) && visibleEntriesCount == 0)">
       <no-entries-component></no-entries-component>
     </div>
 

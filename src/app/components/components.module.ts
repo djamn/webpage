@@ -15,7 +15,6 @@ import {GuestbookMainComponent} from "./guestbook/guestbook-main-component/guest
 import {GuestbookEntryComponent} from "./guestbook/guestbook-entry-component/guestbook-entry-component.component";
 import {GuestbookPageComponent} from "./guestbook/guestbook-page-component/guestbook-page-component.component";
 import {GuestbookComponent} from "./guestbook/guestbook-component/guestbook-component.component";
-import {NoEntriesComponentComponent} from "./no-entries-component/no-entries-component.component";
 import {GuestbookCreateEntryComponent} from "./guestbook/guestbook-create-entry/guestbook-create-entry.component";
 import {RecaptchaFormsModule, RecaptchaModule} from "ng-recaptcha";
 import {QuillModule} from "ngx-quill";
@@ -28,6 +27,7 @@ import {ButtonSaveCancelComponent} from "./button-save-cancel/button-yes-cancel.
 import {AdminNavbar} from "./navbars/admin-navbar/admin-navbar.component";
 import {Navbar} from "./navbars/navbar/navbar.component";
 import {NavbarUser} from "./navbars/navbar-user/navbar-user.component";
+import {NoEntriesComponent} from "./no-entries/no-entries.component";
 
 Quill.register("modules/emoji", Emoji);
 
@@ -43,7 +43,7 @@ Quill.register("modules/emoji", Emoji);
     GuestbookEntryComponent,
     GuestbookPageComponent,
     GuestbookComponent,
-    NoEntriesComponentComponent,
+    NoEntriesComponent,
     GuestbookCreateEntryComponent,
     DialogCommentPopupComponent,
     DialogPopupComponent,
@@ -75,7 +75,7 @@ Quill.register("modules/emoji", Emoji);
     GuestbookEntryComponent,
     GuestbookPageComponent,
     GuestbookComponent,
-    NoEntriesComponentComponent,
+    NoEntriesComponent,
     GuestbookCreateEntryComponent,
     DialogCommentPopupComponent,
     DialogPopupComponent,

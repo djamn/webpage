@@ -1,0 +1,8 @@
+:host {
+  display: contents;
+}
+
+.no-entries-container {
+  margin-top: var(--dl-space-space-threeunits)
+}
+

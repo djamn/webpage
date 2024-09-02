@@ -121,5 +121,8 @@
     "DESCRIPTION_ADD_GUESTBOOK_COMMENT": "Type in your comment you want to add to this entry:",
     "DESCRIPTION_DELETE_GUESTBOOK_COMMENT": "Do you really want to delete the comment?",
     "REQUIRED_FIELD": "This field is required!"
+  },
+  "GENERAL": {
+    "NO_ENTRIES_AVAILABLE": "No entries available :("
   }
 }

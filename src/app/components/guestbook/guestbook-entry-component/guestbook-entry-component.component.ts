@@ -22,9 +22,6 @@ export class GuestbookEntryComponent implements OnInit {
   minutes: string = "";
   config: any;
   private userRoles$: Observable<string[]> | undefined;
-  hasManageEntryPermission$: Observable<boolean> | undefined;
-  hasDeleteCommentPermission$: Observable<boolean> | undefined;
-  hasViewInvisibleEntriesPermission$: Observable<boolean> | undefined;
 
   constructor(
     private translate: TranslateService,
@@ -46,11 +43,6 @@ export class GuestbookEntryComponent implements OnInit {
     this.userRoles$ = this.auth.getUserRoles().pipe(
       shareReplay(1) // Cache the last emitted value
     );
-
-    // TODO better approach
-    this.hasManageEntryPermission$ = this.hasPermission(['admin', 'moderator', 'owner']);
-    this.hasDeleteCommentPermission$ = this.hasPermission(['admin', 'moderator', 'owner']);
-    this.hasViewInvisibleEntriesPermission$ = this.hasPermission(['admin', 'moderator', 'owner']);
   }
 
   async toggleEntryVisibility() {

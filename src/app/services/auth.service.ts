@@ -3,6 +3,7 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {catchError, firstValueFrom, map, Observable, of, switchMap} from "rxjs";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {User} from "../types/user.type";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AuthService {
   user$: Observable<User | null | undefined>;
   userRoles$: Observable<string[]>;
 
-  constructor(private firestore: AngularFirestore, private fireAuth: AngularFireAuth) {
+  constructor(private firestore: AngularFirestore, private fireAuth: AngularFireAuth, private router: Router) {
     this.user$ = this.fireAuth.authState.pipe(
       switchMap(user => {
         if (user) {
@@ -81,7 +82,7 @@ export class AuthService {
 
   async logout() {
     await this.fireAuth.signOut();
-    // todo router
+    await this.router.navigate(['/login']);
   }
 
   getUserRoles(): Observable<string[]> {

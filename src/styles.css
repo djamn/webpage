@@ -395,8 +395,6 @@ INPUT STYLES
   }
 }
 
-
-/*TODO heading und co auch mobil definieren*/
 @media (max-width: 479px) {
   .popup-heading {
     font-size: 22px;

@@ -2,19 +2,6 @@
   display: contents;
 }
 
-/*TODO */
-/*.button {*/
-/*  color: var(--dl-color-black);*/
-/*  cursor: pointer;*/
-/*  display: inline-block;*/
-/*  padding: 0.5rem 1rem;*/
-/*  transition: 0.3s;*/
-/*  border-color: var(--dl-color-black);*/
-/*  border-width: 1px;*/
-/*  border-radius: 4px;*/
-/*  background-color: var(--dl-color-white);*/
-/*}*/
-
 .navbar-container {
   width: 100%;
   height: 100%;

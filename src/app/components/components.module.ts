@@ -28,6 +28,7 @@ import {AdminNavbar} from "./navbars/admin-navbar/admin-navbar.component";
 import {Navbar} from "./navbars/navbar/navbar.component";
 import {NavbarUser} from "./navbars/navbar-user/navbar-user.component";
 import {NoEntriesComponent} from "./no-entries/no-entries.component";
+import {MainpageMainComponent} from "./mainpage/mainpage-main-component/mainpage-main-component.component";
 
 Quill.register("modules/emoji", Emoji);
 
@@ -51,7 +52,8 @@ Quill.register("modules/emoji", Emoji);
     ButtonSaveCancelComponent,
     AdminNavbar,
     NavbarUser,
-    Navbar
+    Navbar,
+    MainpageMainComponent
   ],
   imports: [
     CommonModule,
@@ -83,7 +85,8 @@ Quill.register("modules/emoji", Emoji);
     ButtonSaveCancelComponent,
     AdminNavbar,
     NavbarUser,
-    Navbar
+    Navbar,
+    MainpageMainComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

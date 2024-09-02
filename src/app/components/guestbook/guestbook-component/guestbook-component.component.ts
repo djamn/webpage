@@ -3,6 +3,7 @@ import {GuestBookEntry} from "../../../types/guestbook.entry.type";
 import {Router} from "@angular/router";
 import {GuestbookService} from "../../../services/guestbook.service";
 import {ConfigService} from "../../../services/config.service";
+import {PermissionService} from "../../../services/permission.service";
 
 @Component({
   selector: 'guestbook-component',
@@ -22,6 +23,7 @@ export class GuestbookComponent implements OnInit {
   constructor(
     private router: Router,
     private configService: ConfigService,
+    private permissionService: PermissionService,
     private guestbookService: GuestbookService) {
   }
 
@@ -35,16 +37,28 @@ export class GuestbookComponent implements OnInit {
   fetchData() {
     this.guestbookService.getEntries().subscribe(data => {
       this.guestBookEntries = data;
-      const filteredItems = this.guestBookEntries.filter(entry => entry.is_visible);
-      this.hiddenEntriesCount = this.guestBookEntries.length - filteredItems.length;
-      this.visibleEntriesCount = filteredItems.length;
+      this.filterEntries();
+      this.updateCounts();
       this.performSearch("");
-      console.log(data)
     })
   }
 
+  filterEntries() {
+    this.permissionService.hasPermission('view-invisible-guestbook-entries').subscribe(hasPermission => {
+      this.filteredGuestBookEntries = this.guestBookEntries.filter(entry =>
+        hasPermission || entry.is_visible
+      );
+    });
+  }
+
+  updateCounts() {
+    const filteredItems = this.guestBookEntries.filter(entry => entry.is_visible);
+    this.hiddenEntriesCount = this.guestBookEntries.length - filteredItems.length;
+    this.visibleEntriesCount = filteredItems.length;
+  }
+
   performSearch(searchTerm: string) {
-    this.filteredGuestBookEntries = this.guestBookEntries;
+    // this.filteredGuestBookEntries = this.guestBookEntries;
     console.warn("Search not implemented");
   }
 

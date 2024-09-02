@@ -182,6 +182,17 @@ export class HasRoleDirective implements OnInit {
 - manage-guestbook-entry
 - delete-guestbook-comment
 
+## Link Problem
+Um das Link-Problem am Server zu lösen muss im Root der Domain folgende .htaccess hinzugefügt werden:
+```
+RewriteEngine On
+
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f [OR]
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d
+RewriteRule ^ - [L]
+
+RewriteRule ^ /index.html
+```
 
 ## Icons
 Discord Icon:

@@ -17,7 +17,7 @@
                     </div>-->
       <div class="navbar-buttons">
         <div class="dropdown-main">
-          <ng-select [items]="languages"
+          <ng-select [items]="config.LANGUAGES"
                      bindLabel="name"
                      bindValue="name"
                      [searchable]="false"
@@ -33,7 +33,7 @@
             </ng-template>
             <ng-template ng-option-tmp let-item="item" let-index="index">
               <div class="dropdown-label">
-                <img class=item-icon height="15" width="15" [src]="item.avatar" alt=""/>
+                <img class=item-icon height="15" width="15" [src]="item.icon" alt=""/>
                 <span class="item-name">{{ item.code | uppercase }}</span>
               </div>
             </ng-template>

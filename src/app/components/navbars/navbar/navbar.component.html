@@ -17,31 +17,24 @@
                     </div>-->
       <div class="navbar-buttons">
         <div class="dropdown-main">
-<!--                    <select #langSelect (change)="translate.use(langSelect.value)" class="dropdown-button">-->
-<!--                      <option *ngFor="let lang of translate.getLangs()"-->
-<!--                              [value]="lang"-->
-<!--                              [selected]="lang === translate.currentLang"-->
-<!--                              [class]="'dropdown-items flag-icon-' + lang">-->
-<!--                        {{ lang | uppercase }}-->
-<!--                      </option>-->
-<!--                    </select>-->
-          <ng-select [items]="cities3"
+          <ng-select [items]="languages"
                      bindLabel="name"
                      bindValue="name"
                      [searchable]="false"
                      [clearable]="false"
-                     placeholder="Select city"
-                     [(ngModel)]="selectedCityName">
+                     placeholder="Select language"
+                     (change)="onLanguageChange($event)"
+                     [(ngModel)]="translate.currentLang">
             <ng-template ng-label-tmp let-item="item">
               <div class="dropdown-label">
-              <img class=item-icon height="15" width="15" [src]="item.avatar" alt=""/>
-                <span class="item-name">{{item.name}}</span>
+                <img class=item-icon height="15" width="15" [src]="getAvatarByCode(translate.currentLang)" alt=""/>
+                <span class="item-name">{{ translate.currentLang | uppercase }}</span>
               </div>
             </ng-template>
             <ng-template ng-option-tmp let-item="item" let-index="index">
               <div class="dropdown-label">
-              <img class=item-icon height="15" width="15" [src]="item.avatar" alt=""/>
-              <span class="item-name">{{item.name}}</span>
+                <img class=item-icon height="15" width="15" [src]="item.avatar" alt=""/>
+                <span class="item-name">{{ item.code | uppercase }}</span>
               </div>
             </ng-template>
           </ng-select>

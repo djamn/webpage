@@ -11,7 +11,6 @@ import {TranslateModule, TranslateService} from "@ngx-translate/core";
   styleUrl: './app.component.css'
 })
 
-// TODO move service in mainpage
 export class AppComponent {
   constructor(public translate: TranslateService) {
     translate.setDefaultLang('en');

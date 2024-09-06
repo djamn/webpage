@@ -1,34 +1,128 @@
 {
   "LOGIN": {
-    "INVALID_CREDENTIALS": "Falsche Logindaten!"
+    "USERNAME_OR_EMAIL_LABEL": "Benutzername oder E-Mail eingeben",
+    "USERNAME_OR_EMAIL_PLACEHOLDER": "Dein Benutzername oder E-Mail",
+    "PASSWORD_LABEL": "Passwort eingeben",
+    "PASSWORD_PLACEHOLDER": "*******",
+    "FORGOT_PASSWORD_LINK_TEXT": "Passwort vergessen?",
+    "REMEMBER_ME_TEXT": "Angemeldet bleiben",
+    "PRIVACY_HINT": "Mit dem Anmelden akzeptieren Sie die Nutzungsbedingungen und erkennen die Datenschutzerklärung sowie die Cookie-Richtlinie an.",
+    "NO_ACCOUNT_HINT": "Noch kein Konto?",
+    "REGISTER_LINK_TEXT": "Hier klicken, um sich zu registrieren",
+    "ERRORS": {
+      "INVALID_CREDENTIALS": "Ungültige Anmeldedaten!",
+      "UNEXPECTED_ERROR": "Bei der Anmeldung ist ein Fehler aufgetreten. Bitte versuche es erneut.",
+      "REQUIRED_FIELD": "Dieses Feld ist erforderlich!"
+    }
   },
   "REGISTER": {
-    "EMAIL": "Ihre Email",
-    "USERNAME": "Ihr Benutzername",
+    "EMAIL": "Deine E-Mail",
+    "USERNAME": "Dein Benutzername",
     "PASSWORD": "Passwort eingeben",
     "CONFIRM_PASSWORD": "Passwort bestätigen",
     "EMAIL_PLACEHOLDER": "john@example.com",
     "USERNAME_PLACEHOLDER": "john",
     "PASSWORD_PLACEHOLDER": "*******",
-    "CONFIRM_PASSWORD_PLACEHOLDER": "*******",
     "REGISTER_BUTTON": "Registrieren",
-    "REGISTER_HINT": "Mit dem Klicken auf Registrieren akzeptieren Sie die HOST-Nutzungsbedingungen und erkennen die Datenschutzerklärung und Cookie-Richtlinie an.",
-    "FORM_INVALID": "Ihr Formular ist nicht gültig!",
-    "EMAIL_EXISTS": "E-Mail existiert bereits!",
-    "USERNAME_EXISTS": "Benutzername existiert bereits!",
-    "ERROR": "Bei der Registrierung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
-    "EMAIL_REQUIRED": "E-Mail ist erforderlich",
-    "EMAIL_INVALID": "E-Mail ist nicht gültig",
-    "EMAIL_TAKEN": "Diese E-Mail ist bereits vergeben",
-    "USERNAME_REQUIRED": "Benutzername ist erforderlich",
-    "USERNAME_TAKEN": "Dieser Benutzername ist bereits vergeben",
-    "PASSWORD_REQUIRED": "Passwort ist erforderlich",
-    "PASSWORD_MINLENGTH": "Passwort sollte mindestens 5 Zeichen lang sein",
-    "CONFIRM_PASSWORD_REQUIRED": "Passwortbestätigung ist erforderlich",
-    "PASSWORD_MISMATCH": "Passwörter stimmen nicht überein"
+    "REGISTER_HINT": "Mit einem Klick auf Registrieren akzeptieren Sie die HOST-Nutzungsbedingungen und erkennen die Datenschutzerklärung sowie die Cookie-Richtlinie an.",
+    "REGISTRATION_SUCCESSFUL": "Konto erfolgreich erstellt!",
+    "ERRORS": {
+      "FORM_INVALID": "Ihr Formular ist ungültig!",
+      "EMAIL_EXISTS": "Diese E-Mail existiert bereits!",
+      "EMAIL_INVALID": "Die E-Mail ist ungültig!",
+      "INVALID_USERNAME_PATTERN": "Der Benutzername darf nur Buchstaben und Zahlen enthalten!",
+      "USERNAME_MAX_LENGTH": "Der Benutzername darf maximal {{maxLength}} Zeichen haben!",
+      "USERNAME_TAKEN": "Dieser Benutzername ist bereits vergeben!",
+      "PASSWORD_MINLENGTH": "Das Passwort muss mindestens {{minLength}} Zeichen lang sein!",
+      "CONFIRM_PASSWORD_REQUIRED": "Die Passwortbestätigung ist erforderlich!",
+      "PASSWORD_MISMATCH": "Die Passwörter stimmen nicht überein!",
+      "REQUIRED_FIELD": "Dieses Feld ist erforderlich!",
+      "NO_REGISTRATION_POSSIBLE_HINT": "Die Registrierung ist derzeit deaktiviert.",
+      "UNEXPECTED_ERROR": "Bei der Registrierung ist ein Fehler aufgetreten. Bitte versuche es erneut."
+    }
+  },
+  "SNACKBAR": {
+    "CONFIRM_BUTTON": "Ok"
+  },
+  "FOOTER": {
+    "IMPRINT": "Impressum",
+    "DATA_PRIVACY": "Datenschutz",
+    "COPYRIGHT_INFORMATION": "© {{currentYear}} Jamnig.net, Alle Rechte vorbehalten.",
+    "INSTAGRAM": "Sie werden zu Instagram weitergeleitet",
+    "YOUTUBE": "Sie werden zu YouTube weitergeleitet",
+    "LINKEDIN": "Sie werden zu LinkedIn weitergeleitet",
+    "DISCORD": "Sie werden zu Discord weitergeleitet"
   },
   "HOME": {
-    "TITLE": "Hsdohnrtgkjbnghfello Angular with ngx-translate!",
-    "SELECT": "Change languagföplmte"
+    "TITLE": "Hallo Angular mit ngx-translate!",
+    "SELECT": "Sprache ändern"
+  },
+  "GUESTBOOK": {
+    "ENTRY_TITLE": "{{username}} schrieb am {{date}} ({{hour}}:{{minute}} Uhr)",
+    "COMMENT_TITLE": "Kommentar: ",
+    "ENTRY_EDITED": "(bearbeitet)",
+    "ENTRY_STATUS": "Status: {{status}}",
+    "VISIBILITY_UPDATED_SUCCESS": "Sichtbarkeit erfolgreich aktualisiert!",
+    "ENTRY_IS_INVISIBLE_HINT": "Hinweis: Dieser Eintrag ist derzeit unsichtbar!",
+    "UNEXPECTED_ERROR": "Ein unerwarteter Fehler ist aufgetreten. Überprüfen Sie die Konsole und versuchen Sie es erneut.",
+    "CHANGE_VISIBILITY_ENTRY_DESC": "Sichtbarkeit dieses Eintrags ändern",
+    "COMMENT_ENTRY_DESC": "Kommentar zu diesem Eintrag hinzufügen",
+    "EDIT_ENTRY_DESC": "Diesen Eintrag bearbeiten",
+    "DELETE_ENTRY_DESC": "Diesen Eintrag dauerhaft löschen",
+    "DELETE_COMMENT_DESC": "Diesen Kommentar dauerhaft löschen",
+    "CREATE": {
+      "CREATE_ENTRY_TITLE": "Gästebucheintrag erstellen",
+      "UPDATE_ENTRY_TITLE": "Gästebucheintrag aktualisieren",
+      "USERNAME_LABEL": "Dein Benutzername",
+      "USERNAME_PLACEHOLDER": "Benutzername eingeben...",
+      "ENTRY_CREATED_SUCCESSFUL": "Eintrag erfolgreich erstellt!",
+      "ENTRY_UPDATED_SUCCESSFUL": "Eintrag erfolgreich aktualisiert!",
+      "MESSAGE_LABEL": "Deine Nachricht",
+      "MESSAGE_PLACEHOLDER": "Deine Nachricht...",
+      "CAPTCHA_LABEL": "ReCAPTCHA eingeben",
+      "DATA_PRIVACY_CONFIRMATION": "Ich stimme zu, dass meine Angaben dauerhaft im Gästebuch gespeichert werden",
+      "BUTTON_SEND": "Eintrag erstellen",
+      "BUTTON_ABORT": "Eintrag verwerfen",
+      "BUTTON_UPDATE": "Eintrag aktualisieren",
+      "COMMENT_CREATION_SUCCESSFUL": "Kommentar erfolgreich erstellt!",
+      "ERRORS": {
+        "CHECKBOX_REQUIRED": "(erforderlich)",
+        "REQUIRED_FIELD": "Dieses Feld ist erforderlich!",
+        "INVALID_USERNAME_PATTERN": "Der Benutzername darf nur Buchstaben und Zahlen enthalten!",
+        "USERNAME_MAX_LENGTH": "Der Benutzername darf maximal {{maxLength}} Zeichen haben!",
+        "EMOJIS_NOT_AVAILABLE": "Emojis sind derzeit nicht verfügbar.",
+        "NO_CREATION_POSSIBLE_HINT": "Die Erstellung von Einträgen ist derzeit deaktiviert.",
+        "RECAPTCHA_EXPIRED": "ReCAPTCHA ist abgelaufen, bitte erneut versuchen!",
+        "FIELDS_HAVE_ERRORS": "Bitte beheben Sie alle Fehler, bevor Sie den Eintrag erstellen!",
+        "COMMENT_CREATION_FAILED": "Fehler beim Hinzufügen des Kommentars. Bitte versuchen Sie es erneut."
+      }
+    },
+    "DELETE": {
+      "ENTRY_DELETED_SUCCESSFUL": "Eintrag wurde erfolgreich gelöscht!",
+      "COMMENT_DELETED_SUCCESSFUL": "Kommentar wurde erfolgreich gelöscht!",
+      "ENTRY_DELETION_FAILED": "Fehler beim Löschen des Eintrags. Bitte versuchen Sie es erneut.",
+      "COMMENT_DELETION_FAILED": "Fehler beim Löschen des Kommentars. Bitte versuchen Sie es erneut."
+    },
+    "PAGE": {
+      "PAGES": "Seite {{currentPage}} von {{totalPages}}",
+      "BUTTON_PREVIOUS": "Zurück",
+      "BUTTON_NEXT": "Weiter"
+    }
+  },
+  "BUTTONS": {
+    "BUTTON_YES": "Ja",
+    "BUTTON_SAVE": "Speichern",
+    "BUTTON_CANCEL": "Abbrechen"
+  },
+  "DIALOG": {
+    "TITLE": "Bist du sicher?",
+    "COMMENT_TITLE": "Kommentar hinzufügen",
+    "DESCRIPTION_DELETE_GUESTBOOK_ENTRY": "Möchtest du den Eintrag von Benutzer \"{{username}}\" wirklich dauerhaft löschen?",
+    "DESCRIPTION_ADD_GUESTBOOK_COMMENT": "Geben Sie Ihren Kommentar ein, den Sie zu diesem Eintrag hinzufügen möchten:",
+    "DESCRIPTION_DELETE_GUESTBOOK_COMMENT": "Möchtest du diesen Kommentar wirklich löschen?",
+    "REQUIRED_FIELD": "Dieses Feld ist erforderlich!"
+  },
+  "GENERAL": {
+    "NO_ENTRIES_AVAILABLE": "Keine Einträge verfügbar :("
   }
 }

@@ -10,7 +10,42 @@
           Test
         </a>
       </nav>
+      <!--                    <div class='lang-selector-desktop'>
+                      <div v-for='locale of supportedLocales' :class='{"selected": selectedLocale == locale}' @click.prevent='selectLocale(locale)'>
+                        <div><img :src='"~/assets/i18n/" + locale + ".svg"' :alt='locale'> <span>{{localeName(locale)}}</span></div>
+                      </div>
+                    </div>-->
       <div class="navbar-buttons">
+        <div class="dropdown-main">
+<!--                    <select #langSelect (change)="translate.use(langSelect.value)" class="dropdown-button">-->
+<!--                      <option *ngFor="let lang of translate.getLangs()"-->
+<!--                              [value]="lang"-->
+<!--                              [selected]="lang === translate.currentLang"-->
+<!--                              [class]="'dropdown-items flag-icon-' + lang">-->
+<!--                        {{ lang | uppercase }}-->
+<!--                      </option>-->
+<!--                    </select>-->
+          <ng-select [items]="cities3"
+                     bindLabel="name"
+                     bindValue="name"
+                     [searchable]="false"
+                     [clearable]="false"
+                     placeholder="Select city"
+                     [(ngModel)]="selectedCityName">
+            <ng-template ng-label-tmp let-item="item">
+              <div class="dropdown-label">
+              <img class=item-icon height="15" width="15" [src]="item.avatar" alt=""/>
+                <span class="item-name">{{item.name}}</span>
+              </div>
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item" let-index="index">
+              <div class="dropdown-label">
+              <img class=item-icon height="15" width="15" [src]="item.avatar" alt=""/>
+              <span class="item-name">{{item.name}}</span>
+              </div>
+            </ng-template>
+          </ng-select>
+        </div>
         <a
           class="button-navbar navbar-button-login"
           routerLink="/login"

@@ -411,7 +411,7 @@ INPUT STYLES
 }
 
 
-/*Changes asterix*/
+/*Changes asterisx*/
 .mdc-floating-label--required:not(.mdc-floating-label--hide-required-marker)::after, .input-label {
   /*font-size: 15px !important;*/
 }

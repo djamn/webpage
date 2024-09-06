@@ -29,6 +29,7 @@ import {Navbar} from "./navbars/navbar/navbar.component";
 import {NavbarUser} from "./navbars/navbar-user/navbar-user.component";
 import {NoEntriesComponent} from "./no-entries/no-entries.component";
 import {MainpageMainComponent} from "./mainpage/mainpage-main-component/mainpage-main-component.component";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 Quill.register("modules/emoji", Emoji);
 
@@ -65,6 +66,7 @@ Quill.register("modules/emoji", Emoji);
     RecaptchaModule,
     RecaptchaFormsModule,
     QuillModule.forRoot(),
+    NgSelectModule,
   ],
   exports: [
     TestComponentComponent,

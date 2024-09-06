@@ -21,17 +21,17 @@ export class Navbar {
   navbarButtonRegister: string = 'Register'
 
   languages = [
-    { code: 'en', name: 'English', avatar: '/assets/i18n/en_US.svg' },
-    { code: 'de', name: 'German', avatar: '/assets/i18n/de_DE.svg' }
+    {code: 'en', name: 'English', avatar: '/assets/i18n/en_US.svg'},
+    {code: 'de', name: 'German', avatar: '/assets/i18n/de_DE.svg'}
   ];
 
   constructor(public translate: TranslateService) {
-    console.log(translate.getLangs())
   }
 
   onLanguageChange(langCode: any) {
-    console.log(langCode.code)
+    console.debug("Setting new language: ", langCode)
     this.translate.use(langCode.code);
+    window.localStorage.setItem('SELECTED_LANGUAGE', langCode.code);
   }
 
   getAvatarByCode(langCode: string) {
@@ -39,8 +39,8 @@ export class Navbar {
     return language ? language.avatar : null;
   }
 
-/*
-* Todo Browser Language, Cache/Save Userlange in DB, Better Array Handling 2x definition
-* */
+  /*
+  * Todo Better Array Handling 2x definition
+  * */
 
 }

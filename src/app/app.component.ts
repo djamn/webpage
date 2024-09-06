@@ -14,13 +14,13 @@ import {TranslateModule, TranslateService} from "@ngx-translate/core";
 // TODO move service in mainpage
 export class AppComponent {
   constructor(public translate: TranslateService) {
+    translate.setDefaultLang('en');
+
     const storedLanguage = window.localStorage.getItem('SELECTED_LANGUAGE');
     console.debug("Stored Language: " + storedLanguage)
     if (storedLanguage) translate.use(storedLanguage);
     else {
       console.debug("No stored language, using default")
-      translate.setDefaultLang('en');
-
       const browserLang = translate.getBrowserLang();
       const lang = browserLang!.match(/en|de/) ? browserLang : 'en'
       if (lang) translate.use(lang);

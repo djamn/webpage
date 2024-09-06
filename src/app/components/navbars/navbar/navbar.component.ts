@@ -39,5 +39,8 @@ export class Navbar {
     return language ? language.avatar : null;
   }
 
+/*
+* Todo Browser Language, Cache/Save Userlange in DB, Better Array Handling 2x definition
+* */
 
 }

@@ -49,20 +49,20 @@
       </div>
     </div>
 <!--    Mobile TODO -->
-    <div class="navbar-burger-menu">
+    <div class="navbar-burger-menu" (click)="toggleMenu()">
       <svg class="navbar-icon" viewBox="0 0 1024 1024">
         <path
           d="M128 554.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 298.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 810.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"
         ></path>
       </svg>
     </div>
-    <div
-      class="navbar-mobile-menu navbar-general-mobile"
-    >
+
+    <!-- Mobile menu, toggled based on 'isMenuOpen' value -->
+    <div class="navbar-mobile-menu navbar-general-mobile" [ngClass]="{'is-active': isMenuOpen}">
       <div class="navbar-nav">
         <div class="navbar-top">
-          <img [attr.src]="config.NAVBAR_LOGO_SRC" alt="image" class="navbar-logo"/>
-          <div class="navbar-close-menu">
+          <img [src]="config.NAVBAR_LOGO_SRC" alt="image" class="navbar-logo" />
+          <div class="navbar-close-menu" (click)="closeMenu()">
             <svg class="navbar-icon2" viewBox="0 0 1024 1024">
               <path
                 d="M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z"
@@ -79,16 +79,10 @@
           </a>
         </nav>
         <div class="navbar-buttons-mobile">
-          <a
-            class="navbar-button-login-mobile button-navbar"
-            routerLink="/login"
-          >
+          <a class="navbar-button-login-mobile button-navbar" routerLink="/login">
             {{ 'NAVBAR.LOGIN_BUTTON' | translate }}
           </a>
-          <a
-            class="button-navbar"
-            routerLink="/register"
-          >
+          <a class="button-navbar" routerLink="/register">
             {{ 'NAVBAR.REGISTER_BUTTON' | translate }}
           </a>
         </div>

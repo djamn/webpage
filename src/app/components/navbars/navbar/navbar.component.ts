@@ -10,6 +10,7 @@ import {Language} from "../../../types/language.type";
 })
 export class Navbar {
   config: any;
+  isMenuOpen: boolean = false;
 
   constructor(public translate: TranslateService, private configService: ConfigService) {
     this.config = configService.getConfig();
@@ -27,5 +28,14 @@ export class Navbar {
       return language ? language.icon : null;
     }
     return null;
+  }
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  // Method to close the menu
+  closeMenu(): void {
+    this.isMenuOpen = false;
   }
 }

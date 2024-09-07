@@ -139,6 +139,15 @@
   display: inline;
 }
 
+.navbar-mobile-menu {
+  display: none;
+}
+
+/* Show the menu when the 'is-active' class is added */
+.navbar-mobile-menu.is-active {
+  display: block;
+}
+
 @media (max-width: 767px) {
   .navbar-desktop-menu {
     display: none;
@@ -152,7 +161,7 @@
 }
 
 @media (max-width: 479px) {
-  .navbar-mobile-menu {
-    padding: 16px;
-  }
+  /*.navbar-mobile-menu {*/
+  /*  padding: 16px;*/
+  /*}*/
 }

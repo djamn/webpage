@@ -57,7 +57,7 @@
       </svg>
     </div>
 
-    <!-- Mobile menu, toggled based on 'isMenuOpen' value -->
+<!--    TODO mobile navbar classes besser integrieren -->
     <div class="navbar-mobile-menu navbar-general-mobile" [ngClass]="{'is-active': isMenuOpen}">
       <div class="navbar-nav">
         <div class="navbar-top">
@@ -85,6 +85,29 @@
           <a class="button-navbar" routerLink="/register">
             {{ 'NAVBAR.REGISTER_BUTTON' | translate }}
           </a>
+          <div class="dropdown-main">
+            <ng-select [items]="config.LANGUAGES"
+                       bindLabel="name"
+                       bindValue="name"
+                       [searchable]="false"
+                       [clearable]="false"
+                       placeholder="Select language"
+                       (change)="onLanguageChange($event)"
+                       [(ngModel)]="translate.currentLang">
+              <ng-template ng-label-tmp let-item="item">
+                <div class="dropdown-label">
+                  <img class=item-icon height="15" width="15" [src]="getAvatarByCode(translate.currentLang)" alt=""/>
+                  <span class="item-name">{{ translate.currentLang | uppercase }}</span>
+                </div>
+              </ng-template>
+              <ng-template ng-option-tmp let-item="item" let-index="index">
+                <div class="dropdown-label">
+                  <img class=item-icon height="15" width="15" [src]="item.icon" alt=""/>
+                  <span class="item-name">{{ item.code | uppercase }}</span>
+                </div>
+              </ng-template>
+            </ng-select>
+          </div>
         </div>
       </div>
     </div>

@@ -118,40 +118,10 @@
   margin-right: var(--dl-space-space-twounits);
 }
 
-.navbar-root-class-name3 {
-  margin-bottom: var(--dl-space-space-sixunits);
-}
-
 .dropdown-main {
   position: relative;
-}
-
-.dropdown-button {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-color: #f8f9fa;
-  border: 1px solid #ced4da;
-  border-radius: 20px;
-  padding: 8px 30px 8px 40px;
-  font-size: 16px;
-  cursor: pointer;
-  background-repeat: no-repeat;
-  background-position: 10px center;
-  background-size: 20px 20px;
-}
-
-.dropdown-button::-ms-expand {
-  display: none;
-}
-
-
-.flag-icon-en {
-  background-image: url('/assets/i18n/en_US.svg');
-}
-
-.flag-icon-de {
-  background-image: url('/assets/i18n/de_DE.svg');
+  width: 100px;
+  margin-right: var(--dl-space-space-unit);
 }
 
 .dropdown-label {
@@ -160,9 +130,9 @@
 }
 
 .item-icon {
-  height: 20px; /* Adjust size as needed */
-  width: 20px;  /* Adjust size as needed */
-  margin-right: 8px; /* Space between image and text */
+  height: 20px;
+  width: 20px;
+  margin-right: 8px;
 }
 
 .item-name {

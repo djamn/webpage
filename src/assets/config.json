@@ -9,6 +9,7 @@
   "REGISTER_BACKGROUND_IMAGE_SRC": "/assets/no-image.svg",
   "FOOTER_LOGO_IMAGE_SRC": "/assets/no-image.svg",
   "LOGIN_REGISTER_LOGO_IMAGE_SRC": "/assets/no-image.svg",
+  "NAVBAR_LOGO_SRC": "/assets/no-image.svg",
   "USERNAME_CHARACTER_PATTERN": "^[A-Za-z0-9]*$",
   "SNACKBAR_INFO_DURATION": 2000,
   "SNACKBAR_SUCCESS_DURATION": 1500,

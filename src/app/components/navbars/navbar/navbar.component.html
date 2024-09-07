@@ -1,7 +1,7 @@
-<div [ngClass]="rootClassName" class="navbar-container">
-  <header class="navbar-general" data-thq="thq-navbar">
+<div class="navbar-container">
+  <header class="navbar-general">
     <a routerLink="/">
-      <img [attr.src]="navbarLogoSrc" alt="logo" class="navbar-image"/>
+      <img [attr.src]="config.NAVBAR_LOGO_SRC" alt="logo" class="navbar-image"/>
     </a>
     <div class="navbar-desktop-menu" data-thq="thq-navbar-nav">
       <nav class="navbar-links">
@@ -10,11 +10,6 @@
           Test
         </a>
       </nav>
-      <!--                    <div class='lang-selector-desktop'>
-                      <div v-for='locale of supportedLocales' :class='{"selected": selectedLocale == locale}' @click.prevent='selectLocale(locale)'>
-                        <div><img :src='"~/assets/i18n/" + locale + ".svg"' :alt='locale'> <span>{{localeName(locale)}}</span></div>
-                      </div>
-                    </div>-->
       <div class="navbar-buttons">
         <div class="dropdown-main">
           <ng-select [items]="config.LANGUAGES"
@@ -43,16 +38,17 @@
           class="button-navbar navbar-button-login"
           routerLink="/login"
         >
-          {{ navbarButtonLogin }}
+          {{ 'NAVBAR.LOGIN_BUTTON' | translate }}
         </a>
         <a
           class="button-navbar navbar-button-register"
           routerLink="/register"
         >
-          {{ navbarButtonRegister }}
+          {{ 'NAVBAR.REGISTER_BUTTON' | translate }}
         </a>
       </div>
     </div>
+<!--    Mobile TODO -->
     <div class="navbar-burger-menu">
       <svg class="navbar-icon" viewBox="0 0 1024 1024">
         <path
@@ -65,7 +61,7 @@
     >
       <div class="navbar-nav">
         <div class="navbar-top">
-          <img [attr.src]="navbarLogoSrc" alt="image" class="navbar-logo"/>
+          <img [attr.src]="config.NAVBAR_LOGO_SRC" alt="image" class="navbar-logo"/>
           <div class="navbar-close-menu">
             <svg class="navbar-icon2" viewBox="0 0 1024 1024">
               <path
@@ -76,10 +72,10 @@
         </div>
         <nav class="navbar-links1">
           <a class="navbar-links-style-mobile" routerLink="/">
-            {{ navbarLinkAbout }}
+            About
           </a>
           <a class="navbar-links-style-mobile" routerLink="/bike-stations">
-            {{ navbarLinkBikeStations }}
+            Test
           </a>
         </nav>
         <div class="navbar-buttons-mobile">
@@ -87,13 +83,13 @@
             class="navbar-button-login-mobile button-navbar"
             routerLink="/login"
           >
-            {{ navbarButtonLogin }}
+            {{ 'NAVBAR.LOGIN_BUTTON' | translate }}
           </a>
           <a
             class="button-navbar"
             routerLink="/register"
           >
-            {{ navbarButtonRegister }}
+            {{ 'NAVBAR.REGISTER_BUTTON' | translate }}
           </a>
         </div>
       </div>

@@ -109,6 +109,10 @@
       "BUTTON_NEXT": "Next"
     }
   },
+  "NAVBAR": {
+    "LOGIN_BUTTON": "Login",
+    "REGISTER_BUTTON": "Register"
+  },
   "BUTTONS": {
     "BUTTON_YES": "Yes",
     "BUTTON_SAVE": "Save",

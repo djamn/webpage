@@ -1,9 +1,10 @@
-import {Component, Input} from '@angular/core'
+import {Component} from '@angular/core'
 import {TranslateService} from "@ngx-translate/core";
 import {ConfigService} from "../../../services/config.service";
 import {Language} from "../../../types/language.type";
 import {getAuth} from "firebase/auth";
 import {PermissionService} from "../../../services/permission.service";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-navbar',
@@ -15,16 +16,16 @@ export class Navbar {
   isMenuOpen: boolean = false;
 
   generalLinks = [
-    { path: '/', label: 'About' },
-    { path: '/bike-stations', label: 'Test' }
+    {path: '/', label: 'About'},
+    {path: '/bike-stations', label: 'Test'}
   ];
 
   adminLinks = [
-    { path: '/admin/dashboard', label: 'Admin Dashboard' },
-    { path: '/admin/settings', label: 'Admin Settings' }
+    {path: '/admin/dashboard', label: 'Admin Dashboard'},
+    {path: '/admin/settings', label: 'Admin Settings'}
   ];
 
-  constructor(public translate: TranslateService, private configService: ConfigService, protected permissionService: PermissionService) {
+  constructor(private authService: AuthService, public translate: TranslateService, private configService: ConfigService, protected permissionService: PermissionService) {
     this.config = configService.getConfig();
   }
 
@@ -49,6 +50,10 @@ export class Navbar {
   // Method to close the menu
   closeMenu(): void {
     this.isMenuOpen = false;
+  }
+
+  async logout() {
+    await this.authService.logout();
   }
 
   protected readonly getAuth = getAuth;

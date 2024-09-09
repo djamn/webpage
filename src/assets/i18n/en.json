@@ -111,6 +111,7 @@
   },
   "NAVBAR": {
     "LOGIN_BUTTON": "Login",
+    "LOGOUT_BUTTON": "Logout",
     "REGISTER_BUTTON": "Register"
   },
   "BUTTONS": {

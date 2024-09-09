@@ -5,12 +5,14 @@
     </a>
     <div class="navbar-desktop-menu">
       <nav class="navbar-links">
-        <a *ngIf="(permissionService.hasPermission('view-admin-dashboard') | async)" class="navbar-links-style" routerLink="/">Dashboard</a>
+        <a *ngIf="(permissionService.hasPermission('view-admin-dashboard') | async)" class="navbar-links-style"
+           routerLink="/">Dashboard</a>
 
         <!--        General Links -->
         <a *ngFor="let link of generalLinks" class="navbar-links-style" [routerLink]="link.path">
           {{ link.label }}
         </a>
+
         <!--        Logged in link -->
         <!--        <a *ngIf="getAuth().currentUser" class="navbar-links-style" routerLink="/">BANGER</a>-->
       </nav>
@@ -38,17 +40,26 @@
             </ng-template>
           </ng-select>
         </div>
-        <a
-          class="button-navbar navbar-button-login"
-          routerLink="/login"
+        <div *ngIf="!getAuth().currentUser">
+          <a
+            class="button-navbar navbar-button-login"
+            routerLink="/login"
+          >
+            {{ 'NAVBAR.LOGIN_BUTTON' | translate }}
+          </a>
+          <a
+            class="button-navbar navbar-button-register"
+            routerLink="/register"
+          >
+            {{ 'NAVBAR.REGISTER_BUTTON' | translate }}
+          </a>
+        </div>
+        <!--        TODO Style -->
+        <a *ngIf="getAuth().currentUser"
+           class="button-navbar navbar-button-register"
+           (click)="logout()"
         >
-          {{ 'NAVBAR.LOGIN_BUTTON' | translate }}
-        </a>
-        <a
-          class="button-navbar navbar-button-register"
-          routerLink="/register"
-        >
-          {{ 'NAVBAR.REGISTER_BUTTON' | translate }}
+          {{ 'NAVBAR.LOGOUT_BUTTON' | translate }}
         </a>
       </div>
     </div>

@@ -111,7 +111,8 @@
   },
   "NAVBAR": {
     "LOGIN_BUTTON": "Anmelden",
-    "REGISTER_BUTTON": "Registrieren"
+    "REGISTER_BUTTON": "Registrieren",
+    "DASHBOARD_LINK_TITLE": "Dashboard"
   },
   "BUTTONS": {
     "BUTTON_YES": "Ja",

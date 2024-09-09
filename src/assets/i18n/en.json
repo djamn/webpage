@@ -112,7 +112,14 @@
   "NAVBAR": {
     "LOGIN_BUTTON": "Login",
     "LOGOUT_BUTTON": "Logout",
-    "REGISTER_BUTTON": "Register"
+    "REGISTER_BUTTON": "Register",
+    "DASHBOARD_LINK_TITLE": "Dashboard",
+    "MAIN_PAGE_LINK_TITLE": "Main Page",
+    "TOOLS_LINK_TITLE": "Tools",
+    "MARIO_GAME_LINK_TITLE": "Mario Game",
+    "ABOUT_LINK_TITLE": "About",
+    "CHANGELOG_LINK_TITLE": "Changelog",
+    "MANAGE_USERS_LINK_TITLE": "Manage Users"
   },
   "BUTTONS": {
     "BUTTON_YES": "Yes",

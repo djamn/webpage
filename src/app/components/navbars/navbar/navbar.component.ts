@@ -17,7 +17,10 @@ export class Navbar {
 
   generalLinks: any[] = [];
 
-  constructor(private authService: AuthService, public translate: TranslateService, private configService: ConfigService, protected permissionService: PermissionService) {
+  constructor(private authService: AuthService,
+              public translate: TranslateService,
+              private configService: ConfigService,
+              protected permissionService: PermissionService) {
     this.config = configService.getConfig();
   }
 
@@ -51,32 +54,32 @@ export class Navbar {
   getNavLinks() {
     return [
       {
-        label: 'Dashboard',
+        label: this.translate.instant('NAVBAR.DASHBOARD_LINK_TITLE'),
         path: '/dashboard',
         permission: 'view-admin-dashboard',
       },
       {
-        label: 'Startseite',
+        label: this.translate.instant('NAVBAR.MAIN_PAGE_LINK_TITLE'),
         path: '/',
       },
       {
-        label: 'Tools',
+        label: this.translate.instant('NAVBAR.TOOLS_LINK_TITLE'),
         path: '/',
       },
       {
-        label: 'Mariospiel',
+        label: this.translate.instant('NAVBAR.MARIO_GAME_LINK_TITLE'),
         path: '/',
       },
       {
-        label: 'Über',
+        label: this.translate.instant('NAVBAR.ABOUT_LINK_TITLE'),
         path: '/',
       },
       {
-        label: 'Changelog',
+        label: this.translate.instant('NAVBAR.CHANGELOG_LINK_TITLE'),
         path: '/',
       },
       {
-        label: 'Manage Users',
+        label: this.translate.instant('NAVBAR.MANAGE_USERS_LINK_TITLE'),
         path: '/',
         permission: 'manage-users',
       },

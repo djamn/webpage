@@ -109,6 +109,10 @@
       "BUTTON_NEXT": "Weiter"
     }
   },
+  "NAVBAR": {
+    "LOGIN_BUTTON": "Anmelden",
+    "REGISTER_BUTTON": "Registrieren"
+  },
   "BUTTONS": {
     "BUTTON_YES": "Ja",
     "BUTTON_SAVE": "Speichern",

@@ -5,19 +5,11 @@
     </a>
     <div class="navbar-desktop-menu">
       <nav class="navbar-links">
-        <a *ngIf="(permissionService.hasPermission('view-admin-dashboard') | async)" class="navbar-link-style"
-           routerLink="/dashboard">Dashboard</a>
-
-        <!--        General Links -->
-        <a *ngFor="let link of generalLinks" class="navbar-link-style" [routerLink]="link.path">
-          {{ link.label }}
-        </a>
-
-        <!--        Logged in link -->
-        <!--        <a *ngIf="getAuth().currentUser" class="navbar-links-style" routerLink="/">BANGER</a>-->
-
-        <a *ngIf="(permissionService.hasPermission('manage-users') | async)" class="navbar-link-style"
-           routerLink="/">Manage Users</a>
+        <ng-container *ngFor="let link of getNavLinks()">
+          <a *ngIf="!link.permission || (permissionService.hasPermission(link.permission) | async)" class="navbar-link-style" [routerLink]="link.path">
+            {{ link.label }}
+          </a>
+        </ng-container>
       </nav>
 
       <div class="navbar-buttons">
@@ -88,7 +80,7 @@
           </div>
         </div>
 
-        <div class="language-switch-dropdown-main">
+        <div class="language-switch-dropdown-main-mobile">
           <ng-select [items]="config.LANGUAGES"
                      [searchable]="false"
                      [clearable]="false"
@@ -111,16 +103,11 @@
         </div>
 
         <nav class="navbar-links-mobile">
-          <a *ngIf="(permissionService.hasPermission('view-admin-dashboard') | async)" class="navbar-link-style-mobile"
-             routerLink="/dashboard">Dashboard</a>
-
-          <!--        General Links -->
-          <a *ngFor="let link of generalLinks" class="navbar-link-style-mobile" [routerLink]="link.path">
-            {{ link.label }}
-          </a>
-
-          <a *ngIf="(permissionService.hasPermission('manage-users') | async)" class="navbar-link-style-mobile"
-             routerLink="/">Manage Users</a>
+          <ng-container *ngFor="let link of getNavLinks()">
+            <a *ngIf="!link.permission || (permissionService.hasPermission(link.permission) | async)" class="navbar-link-style-mobile" [routerLink]="link.path">
+              {{ link.label }}
+            </a>
+          </ng-container>
         </nav>
 
         <div class="navbar-buttons-mobile">

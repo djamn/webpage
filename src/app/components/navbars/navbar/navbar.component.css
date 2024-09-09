@@ -196,6 +196,10 @@
   justify-content: space-between;
 }
 
+.language-switch-dropdown-main-mobile {
+  margin-bottom: var(--dl-space-space-unit);
+}
+
 /*
 
 .navbar-buttons-mobile {
@@ -241,10 +245,6 @@ flex-direction: column;
 @media (max-width: 767px) {
   .navbar-logo {
    padding: 0;
-  }
-
-  .language-switch-dropdown-main {
-    margin-bottom: var(--dl-space-space-unit);
   }
 
   .navbar-general {

@@ -15,13 +15,7 @@ export class Navbar {
   config: any;
   isMenuOpen: boolean = false;
 
-  generalLinks = [
-    {path: '/', label: 'Startseite'},
-    {path: '/', label: 'Tools'},
-    {path: '/', label: 'Mariospiel'},
-    {path: '/', label: 'Über'},
-    {path: '/', label: 'Changelog'}
-  ];
+  generalLinks: any[] = [];
 
   constructor(private authService: AuthService, public translate: TranslateService, private configService: ConfigService, protected permissionService: PermissionService) {
     this.config = configService.getConfig();
@@ -52,6 +46,42 @@ export class Navbar {
 
   async logout() {
     await this.authService.logout();
+  }
+
+  getNavLinks() {
+    return [
+      {
+        label: 'Dashboard',
+        path: '/dashboard',
+        permission: 'view-admin-dashboard',
+      },
+      {
+        label: 'Startseite',
+        path: '/',
+      },
+      {
+        label: 'Tools',
+        path: '/',
+      },
+      {
+        label: 'Mariospiel',
+        path: '/',
+      },
+      {
+        label: 'Über',
+        path: '/',
+      },
+      {
+        label: 'Changelog',
+        path: '/',
+      },
+      {
+        label: 'Manage Users',
+        path: '/',
+        permission: 'manage-users',
+      },
+      ...this.generalLinks
+    ];
   }
 
   protected readonly getAuth = getAuth;

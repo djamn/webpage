@@ -3,12 +3,16 @@
     <a routerLink="/">
       <img [attr.src]="config.NAVBAR_LOGO_SRC" alt="logo" class="navbar-image"/>
     </a>
-    <div class="navbar-desktop-menu" data-thq="thq-navbar-nav">
+    <div class="navbar-desktop-menu">
       <nav class="navbar-links">
-        <a class="navbar-links-style" routerLink="/">About</a>
-        <a class="navbar-links-style" routerLink="/bike-stations">
-          Test
+        <a *ngIf="(permissionService.hasPermission('view-admin-dashboard') | async)" class="navbar-links-style" routerLink="/">Dashboard</a>
+
+        <!--        General Links -->
+        <a *ngFor="let link of generalLinks" class="navbar-links-style" [routerLink]="link.path">
+          {{ link.label }}
         </a>
+        <!--        Logged in link -->
+        <!--        <a *ngIf="getAuth().currentUser" class="navbar-links-style" routerLink="/">BANGER</a>-->
       </nav>
       <div class="navbar-buttons">
         <div class="dropdown-main">
@@ -48,7 +52,7 @@
         </a>
       </div>
     </div>
-<!--    Mobile TODO -->
+    <!--    Mobile -->
     <div class="navbar-burger-menu" (click)="toggleMenu()">
       <svg class="navbar-icon" viewBox="0 0 1024 1024">
         <path
@@ -57,11 +61,11 @@
       </svg>
     </div>
 
-<!--    TODO mobile navbar classes besser integrieren -->
+    <!--    TODO mobile navbar classes besser integrieren -->
     <div class="navbar-mobile-menu navbar-general-mobile" [ngClass]="{'is-active': isMenuOpen}">
       <div class="navbar-nav">
         <div class="navbar-top">
-          <img [src]="config.NAVBAR_LOGO_SRC" alt="image" class="navbar-logo" />
+          <img [src]="config.NAVBAR_LOGO_SRC" alt="image" class="navbar-logo"/>
           <div class="navbar-close-menu" (click)="closeMenu()">
             <svg class="navbar-icon2" viewBox="0 0 1024 1024">
               <path

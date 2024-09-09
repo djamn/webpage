@@ -2,6 +2,8 @@ import {Component, Input} from '@angular/core'
 import {TranslateService} from "@ngx-translate/core";
 import {ConfigService} from "../../../services/config.service";
 import {Language} from "../../../types/language.type";
+import {getAuth} from "firebase/auth";
+import {PermissionService} from "../../../services/permission.service";
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +14,17 @@ export class Navbar {
   config: any;
   isMenuOpen: boolean = false;
 
-  constructor(public translate: TranslateService, private configService: ConfigService) {
+  generalLinks = [
+    { path: '/', label: 'About' },
+    { path: '/bike-stations', label: 'Test' }
+  ];
+
+  adminLinks = [
+    { path: '/admin/dashboard', label: 'Admin Dashboard' },
+    { path: '/admin/settings', label: 'Admin Settings' }
+  ];
+
+  constructor(public translate: TranslateService, private configService: ConfigService, protected permissionService: PermissionService) {
     this.config = configService.getConfig();
   }
 
@@ -38,4 +50,6 @@ export class Navbar {
   closeMenu(): void {
     this.isMenuOpen = false;
   }
+
+  protected readonly getAuth = getAuth;
 }

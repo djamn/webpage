@@ -10,7 +10,8 @@ body {
 }
 
 :root {
-  --dl-size-size-xsmall: 16px;
+  --dl-size-size-xxsmall: 16px;
+  --dl-size-size-xsmall: 32px;
   --dl-size-size-small: 48px;
   --dl-size-size-medium: 96px;
   --dl-size-size-large: 144px;

@@ -89,16 +89,16 @@
                        (change)="onLanguageChange($event)"
                        [(ngModel)]="translate.currentLang">
               <ng-template ng-label-tmp let-item="item">
-                <div class="language-switch-dropdown-label">
-                  <img class="language-switch-item-icon"
+                <div class="language-switch-dropdown-label-mobile">
+                  <img class="language-switch-item-icon-mobile"
                        [attr.src]="getAvatarByCode(translate.currentLang)" alt=""/>
-                  <span class="language-switch-item-name">{{ translate.currentLang | uppercase }}</span>
+                  <span class="language-switch-item-name-mobile">{{ translate.currentLang | uppercase }}</span>
                 </div>
               </ng-template>
               <ng-template ng-option-tmp let-item="item" let-index="index">
-                <div class="language-switch-dropdown-label">
-                  <img class="language-switch-item-icon" [attr.src]="item.icon" alt=""/>
-                  <span class="language-switch-item-name">{{ item.code | uppercase }}</span>
+                <div class="language-switch-dropdown-label-mobile">
+                  <img class="language-switch-item-icon-mobile" [attr.src]="item.icon" alt=""/>
+                  <span class="language-switch-item-name-mobile">{{ item.code | uppercase }}</span>
                 </div>
               </ng-template>
             </ng-select>

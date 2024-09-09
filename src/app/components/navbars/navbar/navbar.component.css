@@ -211,6 +211,28 @@
   margin-right: var(--dl-space-space-unit);
 }
 
+/*Language Switch Mobile */
+.language-switch-dropdown-main-mobile {
+  position: relative;
+  width: 80px;
+}
+
+.language-switch-dropdown-label-mobile {
+  display: flex;
+  align-items: center;
+}
+
+.language-switch-item-icon-mobile {
+  height: 16px;
+  width: 16px;
+  margin-right: 8px;
+}
+
+.language-switch-item-name-mobile {
+  font-size: 14px;
+  display: inline;
+}
+
 @media (max-width: 767px) {
   .navbar-logo {
     padding: 0;

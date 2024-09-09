@@ -6,6 +6,8 @@ import {AuthGuard} from "./guards/auth.guard";
 import {Guestbook} from "./pages/guestbook/guestbook.component";
 import {ResetPassword} from "./pages/reset-password/reset-password.component";
 import {GuestbookCreateEntry} from "./pages/guestbook-create-entry/guestbook-create-entry.component";
+import {AdminDashboard} from "./pages/admin-dashboard/admin-dashboard.component";
+import {DashboardGuard} from "./guards/dashboard.guard";
 
 export const routes: Routes = [
   {path: '', component: MainPage, pathMatch: 'full'},
@@ -19,5 +21,6 @@ export const routes: Routes = [
   {path: 'guestbook', component: Guestbook},
   {path: 'guestbook/create', component: GuestbookCreateEntry},
   {path: 'guestbook/update', component: GuestbookCreateEntry}, // TODO authguard
+  {path: 'dashboard', component: AdminDashboard, canActivate:[DashboardGuard]},
 
 ];

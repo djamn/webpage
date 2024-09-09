@@ -6,7 +6,8 @@
     <div class="navbar-desktop-menu">
       <nav class="navbar-links">
         <ng-container *ngFor="let link of getNavLinks()">
-          <a *ngIf="!link.permission || (permissionService.hasPermission(link.permission) | async)" class="navbar-link-style" [routerLink]="link.path">
+          <a *ngIf="!link.permission || (permissionService.hasPermission(link.permission) | async)"
+             class="navbar-link-style" [routerLink]="link.path">
             {{ link.label }}
           </a>
         </ng-container>
@@ -80,38 +81,30 @@
           </div>
         </div>
 
-        <div class="language-switch-dropdown-main-mobile">
-          <ng-select [items]="config.LANGUAGES"
-                     [searchable]="false"
-                     [clearable]="false"
-                     (change)="onLanguageChange($event)"
-                     [(ngModel)]="translate.currentLang">
-            <ng-template ng-label-tmp let-item="item">
-              <div class="language-switch-dropdown-label">
-                <img class="language-switch-item-icon"
-                     [attr.src]="getAvatarByCode(translate.currentLang)" alt=""/>
-                <span class="language-switch-item-name">{{ translate.currentLang | uppercase }}</span>
-              </div>
-            </ng-template>
-            <ng-template ng-option-tmp let-item="item" let-index="index">
-              <div class="language-switch-dropdown-label">
-                <img class="language-switch-item-icon" [attr.src]="item.icon" alt=""/>
-                <span class="language-switch-item-name">{{ item.code | uppercase }}</span>
-              </div>
-            </ng-template>
-          </ng-select>
-        </div>
+        <div class="language-account-container">
+          <div class="language-switch-dropdown-main-mobile">
+            <ng-select [items]="config.LANGUAGES"
+                       [searchable]="false"
+                       [clearable]="false"
+                       (change)="onLanguageChange($event)"
+                       [(ngModel)]="translate.currentLang">
+              <ng-template ng-label-tmp let-item="item">
+                <div class="language-switch-dropdown-label">
+                  <img class="language-switch-item-icon"
+                       [attr.src]="getAvatarByCode(translate.currentLang)" alt=""/>
+                  <span class="language-switch-item-name">{{ translate.currentLang | uppercase }}</span>
+                </div>
+              </ng-template>
+              <ng-template ng-option-tmp let-item="item" let-index="index">
+                <div class="language-switch-dropdown-label">
+                  <img class="language-switch-item-icon" [attr.src]="item.icon" alt=""/>
+                  <span class="language-switch-item-name">{{ item.code | uppercase }}</span>
+                </div>
+              </ng-template>
+            </ng-select>
+          </div>
 
-        <nav class="navbar-links-mobile">
-          <ng-container *ngFor="let link of getNavLinks()">
-            <a *ngIf="!link.permission || (permissionService.hasPermission(link.permission) | async)" class="navbar-link-style-mobile" [routerLink]="link.path">
-              {{ link.label }}
-            </a>
-          </ng-container>
-        </nav>
-
-        <div class="navbar-buttons-mobile">
-          <div *ngIf="getAuth().currentUser" class="navbar-buttons-mobile-container-1">
+          <div *ngIf="getAuth().currentUser" class="account-mobile-container">
             <a class="navbar-account-mobile" routerLink="/account">
               <img
                 src="/assets/no-image.svg"
@@ -119,20 +112,30 @@
                 alt=""/>
             </a>
           </div>
-          <div *ngIf="!getAuth().currentUser" class="navbar-buttons-mobile-container-2">
-            <a
-              class="navbar-button navbar-button-login-mobile"
-              routerLink="/login"
-            >
-              {{ 'NAVBAR.LOGIN_BUTTON' | translate }}
+        </div>
+
+        <nav class="navbar-links-mobile">
+          <ng-container *ngFor="let link of getNavLinks()">
+            <a *ngIf="!link.permission || (permissionService.hasPermission(link.permission) | async)"
+               class="navbar-link-style-mobile" [routerLink]="link.path">
+              {{ link.label }}
             </a>
-            <a
-              class="navbar-button"
-              routerLink="/register"
-            >
-              {{ 'NAVBAR.REGISTER_BUTTON' | translate }}
-            </a>
-          </div>
+          </ng-container>
+        </nav>
+
+        <div *ngIf="!getAuth().currentUser" class="navbar-buttons-mobile">
+          <a
+            class="navbar-button navbar-button-login-mobile"
+            routerLink="/login"
+          >
+            {{ 'NAVBAR.LOGIN_BUTTON' | translate }}
+          </a>
+          <a
+            class="navbar-button"
+            routerLink="/register"
+          >
+            {{ 'NAVBAR.REGISTER_BUTTON' | translate }}
+          </a>
         </div>
       </div>
     </div>

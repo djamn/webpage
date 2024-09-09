@@ -182,6 +182,7 @@ export class HasRoleDirective implements OnInit {
 - manage-guestbook-entry
 - delete-guestbook-comment
 - view-admin-dashboard
+- manage-users
 
 ## Link Problem
 Um das Link-Problem am Server zu lösen muss im Root der Domain folgende .htaccess hinzugefügt werden:

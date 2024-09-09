@@ -16,13 +16,11 @@ export class Navbar {
   isMenuOpen: boolean = false;
 
   generalLinks = [
-    {path: '/', label: 'About'},
-    {path: '/bike-stations', label: 'Test'}
-  ];
-
-  adminLinks = [
-    {path: '/admin/dashboard', label: 'Admin Dashboard'},
-    {path: '/admin/settings', label: 'Admin Settings'}
+    {path: '/', label: 'Startseite'},
+    {path: '/', label: 'Tools'},
+    {path: '/', label: 'Mariospiel'},
+    {path: '/', label: 'Über'},
+    {path: '/', label: 'Changelog'}
   ];
 
   constructor(private authService: AuthService, public translate: TranslateService, private configService: ConfigService, protected permissionService: PermissionService) {

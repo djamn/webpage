@@ -1,41 +1,43 @@
-<div class="navbar-container">
+<div class="main-component-container">
   <header class="navbar-general">
     <a routerLink="/">
       <img [attr.src]="config.NAVBAR_LOGO_SRC" alt="logo" class="navbar-image"/>
     </a>
     <div class="navbar-desktop-menu">
       <nav class="navbar-links">
-        <a *ngIf="(permissionService.hasPermission('view-admin-dashboard') | async)" class="navbar-links-style"
-           routerLink="/">Dashboard</a>
+        <a *ngIf="(permissionService.hasPermission('view-admin-dashboard') | async)" class="navbar-link-style"
+           routerLink="/dashboard">Dashboard</a>
 
         <!--        General Links -->
-        <a *ngFor="let link of generalLinks" class="navbar-links-style" [routerLink]="link.path">
+        <a *ngFor="let link of generalLinks" class="navbar-link-style" [routerLink]="link.path">
           {{ link.label }}
         </a>
 
         <!--        Logged in link -->
         <!--        <a *ngIf="getAuth().currentUser" class="navbar-links-style" routerLink="/">BANGER</a>-->
+
+        <a *ngIf="(permissionService.hasPermission('manage-users') | async)" class="navbar-link-style"
+           routerLink="/">Manage Users</a>
       </nav>
+
       <div class="navbar-buttons">
-        <div class="dropdown-main">
+        <div class="language-switch-dropdown-main">
           <ng-select [items]="config.LANGUAGES"
-                     bindLabel="name"
-                     bindValue="name"
                      [searchable]="false"
                      [clearable]="false"
-                     placeholder="Select language"
                      (change)="onLanguageChange($event)"
                      [(ngModel)]="translate.currentLang">
             <ng-template ng-label-tmp let-item="item">
-              <div class="dropdown-label">
-                <img class=item-icon height="15" width="15" [src]="getAvatarByCode(translate.currentLang)" alt=""/>
-                <span class="item-name">{{ translate.currentLang | uppercase }}</span>
+              <div class="language-switch-dropdown-label">
+                <img class=language-switch-item-icon height="15" width="15"
+                     [attr.src]="getAvatarByCode(translate.currentLang)" alt=""/>
+                <span class="language-switch-item-name">{{ translate.currentLang | uppercase }}</span>
               </div>
             </ng-template>
             <ng-template ng-option-tmp let-item="item" let-index="index">
-              <div class="dropdown-label">
-                <img class=item-icon height="15" width="15" [src]="item.icon" alt=""/>
-                <span class="item-name">{{ item.code | uppercase }}</span>
+              <div class="language-switch-dropdown-label">
+                <img class=language-switch-item-icon height="15" width="15" [attr.src]="item.icon" alt=""/>
+                <span class="language-switch-item-name">{{ item.code | uppercase }}</span>
               </div>
             </ng-template>
           </ng-select>
@@ -54,12 +56,12 @@
             {{ 'NAVBAR.REGISTER_BUTTON' | translate }}
           </a>
         </div>
-        <!--        TODO Style -->
-        <a *ngIf="getAuth().currentUser"
-           class="button-navbar navbar-button-register"
-           (click)="logout()"
-        >
-          {{ 'NAVBAR.LOGOUT_BUTTON' | translate }}
+        <!--        TODO implement account settings -->
+        <a *ngIf="getAuth().currentUser" class="navbar-account" routerLink="/account">
+          <img
+            src="/assets/no-image.svg"
+            class="navbar-account-image"
+            alt=""/>
         </a>
       </div>
     </div>
@@ -85,7 +87,7 @@
             </svg>
           </div>
         </div>
-        <nav class="navbar-links1">
+        <nav class="navbar-links-mobile">
           <a class="navbar-links-style-mobile" routerLink="/">
             About
           </a>

@@ -118,7 +118,7 @@
       <div class="confirm-button-container">
         <button
           class="confirm-button button-general"
-          [ngClass]="{'button-blue': config.REGISTER_POSSIBLE, 'button-disabled': !config.REGISTER_POSSIBLE}"
+          [disabled]="!config.REGISTER_POSSIBLE"
           [attr.title]="config.REGISTER_POSSIBLE ? '' : ('REGISTER.ERRORS.NO_REGISTRATION_POSSIBLE_HINT' | translate)"
           type="submit">
           {{ 'REGISTER.REGISTER_BUTTON'| translate }}

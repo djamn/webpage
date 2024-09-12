@@ -1,5 +1,6 @@
 <div class="flex items-center justify-center">
-  <div class="flex justify-start flex-col items-center relative rounded-lg w-[450px] max-sm:w-11/12 h-auto px-4 bg-white dark:bg-gray-600">
+  <div
+    class="flex justify-start flex-col items-center relative rounded-lg w-[450px] max-sm:w-11/12 h-auto px-4 bg-white dark:bg-gray-700">
     <login-register-image-component class="w-full mt-4 mb-8"></login-register-image-component>
     <form (ngSubmit)="login()" [formGroup]="loginForm" class="flex flex-col items-center w-full h-full mb-4">
       <p>
@@ -61,8 +62,8 @@
         <span class="hint-text-font">{{ 'LOGIN.REMEMBER_ME_TEXT' | translate }}</span>
       </div>
 
-      <div class="confirm-button-container">
-        <button class="confirm-button button-general button-blue" type="submit">Login</button>
+      <div class="w-full mb-2">
+        <button class="w-full btn-primary btn-blue" type="submit">Login</button>
       </div>
 
       <span class="hint-text-font">{{ 'LOGIN.PRIVACY_HINT' | translate }}</span>
@@ -71,5 +72,12 @@
       <a class="login-register-link link-text-font"
          routerLink="/register">{{ 'LOGIN.REGISTER_LINK_TEXT' | translate }}</a>
     </form>
+    <!--    TODO login processing animation -->
+    <!--      <button type="button" class="bg-indigo-400 h-max w-max rounded-lg text-white font-bold hover:bg-indigo-300 hover:cursor-not-allowed duration-[500ms,800ms]" disabled>-->
+    <!--        <div class="flex items-center justify-center m-[10px]">-->
+    <!--          <div class="h-5 w-5 border-t-transparent border-solid animate-spin rounded-full border-white border-4"></div>-->
+    <!--          <div class="ml-2"> Processing... </div>-->
+    <!--          </div>-->
+    <!--      </button>-->
   </div>
 </div>

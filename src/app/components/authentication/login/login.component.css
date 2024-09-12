@@ -40,12 +40,12 @@ html, body {
 }
 
 .confirm-button {
-  width: 100%;
+  /*width: 100%;*/
 }
 
 .confirm-button-container {
-  width: 100%;
-  margin-bottom: var(--dl-space-space-halfunit);
+  /*width: 100%;*/
+  /*margin-bottom: var(--dl-space-space-halfunit);*/
 }
 
 .forgot-password {

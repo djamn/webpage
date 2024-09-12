@@ -1,7 +1,121 @@
 @import "@ng-select/ng-select/themes/default.theme.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn-primary {
+    @apply
+    appearance-none
+    border-solid
+    border border-[#1b1f2326]
+    rounded-md
+    box-border
+    cursor-pointer
+    inline-block
+    text-sm
+    text-white
+    text-center
+    font-medium
+    leading-5
+    py-2
+    px-4
+    relative
+    select-none
+    touch-manipulation
+    align-middle
+    whitespace-nowrap
+    transition ease-in-out hover:-translate-y-1 hover:scale-105
+    font-sans
+
+    disabled:transition-none
+    disabled:hover:translate-y-0
+    disabled:hover:scale-100
+    disabled:cursor-not-allowed
+    disabled:bg-gray-500
+  }
+
+  .btn-blue {
+    @apply
+    bg-blue-500
+    hover:bg-blue-600
+    disabled:hover:bg-gray-500
+    dark:text-white
+  }
+
+}
+
+.button-general:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+.button-disabled {
+  cursor: not-allowed;
+  color: white;
+  background-color: #878787;
+}
+
+/*TODO marked for removal*/
+.button-general {
+  /*appearance: none;*/
+  /*border: 1px solid rgba(27, 31, 35, .15);*/
+  /*border-radius: 6px;*/
+  /*box-shadow: rgba(27, 31, 35, .1) 0 1px 0;*/
+  /*box-sizing: border-box;*/
+  /*color: #fff;*/
+  /*cursor: pointer;*/
+  /*display: inline-block;*/
+  /*font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";*/
+  /*font-size: 14px;*/
+  /*font-weight: 600;*/
+  /*line-height: 20px;*/
+  /*padding: 6px 16px;*/
+  /*padding: 0.5rem 1rem;*/
+  /*transition: 0.3s;*/
+  /*position: relative;*/
+  /*text-align: center;*/
+  /*text-decoration: none;*/
+  /*user-select: none;*/
+  /*-webkit-user-select: none;*/
+  /*touch-action: manipulation;*/
+  /*vertical-align: middle;*/
+  /*white-space: nowrap;*/
+}
+
+
+/*TODO marked for removal*/
+.button-blue {
+  color: white;
+  background-color: var(--blue-color);
+}
+
+/*TODO marked for removal*/
+.button-blue:hover {
+  color: white;
+  background: var(--blue-color-hover);
+}
+
+.button-red {
+  color: white;
+  background-color: #c91313;
+}
+
+.button-red:hover {
+  background-color: #a20b0b;
+}
+
+.button-green {
+  color: white;
+  background-color: #1b831a;
+}
+
+.button-green:hover {
+  background-color: #0c6f0b;
+}
 
 html, body {
   height: 100%;
@@ -64,96 +178,39 @@ body {
 }
 
 
-.button-general {
-  appearance: none;
-  background-color: #2ea44f;
-  border: 1px solid rgba(27, 31, 35, .15);
-  border-radius: 6px;
-  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
-  /*padding: 6px 16px;*/
-  padding: 0.5rem 1rem;
-  transition: 0.3s;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: middle;
-  white-space: nowrap;
-}
+/*.button-general:focus:not(:focus-visible):not(.focus-visible) {*/
+/*  box-shadow: none;*/
+/*  outline: none;*/
+/*}*/
 
-.button-general:focus:not(:focus-visible):not(.focus-visible) {
-  box-shadow: none;
-  outline: none;
-}
+/*.button-general:hover {*/
+/*  background-color: #2c974b;*/
+/*}*/
 
-.button-general:hover {
-  background-color: #2c974b;
-}
+/*.button-general:focus {*/
+/*  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;*/
+/*  outline: none;*/
+/*}*/
 
-.button-general:focus {
-  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
-  outline: none;
-}
+/*.button-general:active {*/
+/*  background-color: #298e46;*/
+/*  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;*/
+/*}*/
 
-.button-general:disabled {
-  background-color: #94d3a2;
-  border-color: rgba(27, 31, 35, .1);
-  color: rgba(255, 255, 255, .8);
-  cursor: default;
-}
+/*.button-blue {*/
+/*  color: white;*/
+/*  background-color: var(--blue-color);*/
+/*}*/
 
-.button-general:active {
-  background-color: #298e46;
-  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
-}
+/*.button-blue:hover {*/
+/*  color: white;*/
+/*  background: var(--blue-color-hover);*/
+/*}*/
 
-.button-blue {
-  color: white;
-  background-color: var(--blue-color);
-}
+/*.button-disabled:hover {*/
+/*  background-color: #878787;*/
+/*}*/
 
-.button-blue:hover {
-  color: white;
-  background: var(--blue-color-hover);
-}
-
-.button-disabled {
-  cursor: not-allowed;
-  color: white;
-  background-color: #878787;
-}
-
-.button-disabled:hover {
-  background-color: #878787;
-}
-
-.button-red {
-  color: white;
-  background-color: #c91313;
-}
-
-.button-red:hover {
-  background-color: #a20b0b;
-}
-
-.button-green {
-  color: white;
-  background-color: #1b831a;
-}
-
-.button-green:hover {
-  background-color: #0c6f0b;
-}
 
 .main-component-container {
   width: 100%;

@@ -1,71 +1,75 @@
-<div class="main-login-container">
-<!--      display: flex; align-items: center; justify-content: center;-->
-<div class="login-container">
-  <login-register-image-component class="login-image-container"></login-register-image-component>
-  <form (ngSubmit)="login()" [formGroup]="loginForm" class="login-component-form">
-    <p>
-      <mat-form-field class="small small-form-field" appearance="outline">
-        <mat-label class="input-label">{{'LOGIN.USERNAME_OR_EMAIL_LABEL' | translate}}</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="usernameOrEmail"
-          class="login-input"
-          [placeholder]="'LOGIN.USERNAME_OR_EMAIL_PLACEHOLDER' | translate"
-          autocomplete="username"
-        />
+<div class="flex items-center justify-center">
+  <div class="flex justify-start flex-col items-center relative rounded-lg w-[450px] max-sm:w-11/12 h-auto px-4 bg-white dark:bg-gray-600">
+    <login-register-image-component class="w-full mt-4 mb-8"></login-register-image-component>
+    <form (ngSubmit)="login()" [formGroup]="loginForm" class="flex flex-col items-center w-full h-full mb-4">
+      <p>
+        <mat-form-field class="small small-form-field" appearance="outline">
+          <mat-label class="input-label">{{ 'LOGIN.USERNAME_OR_EMAIL_LABEL' | translate }}</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="usernameOrEmail"
+            class="login-input"
+            [placeholder]="'LOGIN.USERNAME_OR_EMAIL_PLACEHOLDER' | translate"
+            autocomplete="username"
+          />
 
-        <mat-error *ngIf="loginForm.get('usernameOrEmail')?.hasError('required')">{{'LOGIN.ERRORS.REQUIRED_FIELD' | translate}}</mat-error>
-      </mat-form-field>
-    </p>
+          <mat-error
+            *ngIf="loginForm.get('usernameOrEmail')?.hasError('required')">{{ 'LOGIN.ERRORS.REQUIRED_FIELD' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </p>
 
-    <p>
-      <mat-form-field class="small small-form-field" appearance="outline">
-        <mat-label class="input-label">{{'LOGIN.PASSWORD_LABEL' | translate}}</mat-label>
-        <input
-          matInput
-          formControlName="password"
-          autocomplete="new-password"
-          [placeholder]="'LOGIN.PASSWORD_PLACEHOLDER' | translate"
-          [type]="hidePassword ? 'password' : 'text'"
-          class="login-input"/>
-        <button
-          type="button"
-          mat-icon-button
-          matSuffix
-          (click)="togglePasswordVisibility($event)"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hidePassword"
-        >
-          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-        </button>
-        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">{{'LOGIN.ERRORS.REQUIRED_FIELD' | translate}}</mat-error>
-      </mat-form-field>
-    </p>
+      <p>
+        <mat-form-field class="small small-form-field" appearance="outline">
+          <mat-label class="input-label">{{ 'LOGIN.PASSWORD_LABEL' | translate }}</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            autocomplete="new-password"
+            [placeholder]="'LOGIN.PASSWORD_PLACEHOLDER' | translate"
+            [type]="hidePassword ? 'password' : 'text'"
+            class="login-input"/>
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="togglePasswordVisibility($event)"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword"
+          >
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="loginForm.get('password')?.hasError('required')">{{ 'LOGIN.ERRORS.REQUIRED_FIELD' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </p>
 
-    <a
-      class="forgot-password link-text-font"
-      routerLink="/reset-password">
-      {{'LOGIN.FORGOT_PASSWORD_LINK_TEXT' | translate}}
-    </a>
-    <div class="remember-me-container">
-      <mat-checkbox
-        class="mat-checkbox"
-        [checked]=""
-        (change)="updateCheckbox($event.checked)"
-      ></mat-checkbox>
+      <a
+        class="forgot-password link-text-font"
+        routerLink="/reset-password">
+        {{ 'LOGIN.FORGOT_PASSWORD_LINK_TEXT' | translate }}
+      </a>
+      <div class="remember-me-container">
+        <mat-checkbox
+          class="mat-checkbox"
+          [checked]=""
+          (change)="updateCheckbox($event.checked)"
+        ></mat-checkbox>
 
-      <span class="hint-text-font">{{'LOGIN.REMEMBER_ME_TEXT' | translate}}</span>
-    </div>
+        <span class="hint-text-font">{{ 'LOGIN.REMEMBER_ME_TEXT' | translate }}</span>
+      </div>
 
-    <div class="confirm-button-container">
-      <button class="confirm-button button-general button-blue" type="submit">Login</button>
-    </div>
+      <div class="confirm-button-container">
+        <button class="confirm-button button-general button-blue" type="submit">Login</button>
+      </div>
 
-    <span class="hint-text-font">{{'LOGIN.PRIVACY_HINT' | translate}}</span>
+      <span class="hint-text-font">{{ 'LOGIN.PRIVACY_HINT' | translate }}</span>
 
-    <span class="info-text-font login-register-hint">{{'LOGIN.NO_ACCOUNT_HINT' | translate}}</span>
-    <a class="login-register-link link-text-font" routerLink="/register">{{'LOGIN.REGISTER_LINK_TEXT' | translate}}</a>
-  </form>
-</div>
+      <span class="info-text-font login-register-hint">{{ 'LOGIN.NO_ACCOUNT_HINT' | translate }}</span>
+      <a class="login-register-link link-text-font"
+         routerLink="/register">{{ 'LOGIN.REGISTER_LINK_TEXT' | translate }}</a>
+    </form>
+  </div>
 </div>

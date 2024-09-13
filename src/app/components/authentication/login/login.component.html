@@ -5,7 +5,7 @@
     <form (ngSubmit)="login()" [formGroup]="loginForm" class="flex flex-col items-center w-full h-full mb-3">
       <div class="w-full mb-6">
         <label for="username-email"
-               class="block mb-1 text-base font-medium text-gray-900 dark:text-white">{{ 'LOGIN.USERNAME_OR_EMAIL_LABEL' | translate }}</label>
+               class="tw-input-label">{{ 'LOGIN.USERNAME_OR_EMAIL_LABEL' | translate }}</label>
         <div class="relative">
           <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -16,23 +16,31 @@
             </svg>
           </div>
           <input
-            class="bg-gray-50 h-12 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            class="tw-input"
             id="username-email"
+            [ngClass]="{'tw-input-error': isControlInvalid(this.loginForm, 'usernameOrEmail')}"
             [placeholder]="'LOGIN.USERNAME_OR_EMAIL_PLACEHOLDER' | translate"
             formControlName="usernameOrEmail"
             autocomplete="username"
             type="text">
         </div>
+        <div class="relative">
+          <div
+            [ngClass]="{
+            'opacity-100 visible': isControlInvalid(loginForm, 'usernameOrEmail'),
+            'opacity-0 invisible': !isControlInvalid(loginForm, 'usernameOrEmail')
+          }"
+            class="tw-input-error-label"
+          >
+            <div *ngIf="loginForm.get('usernameOrEmail')?.hasError('required')">
+              {{ "LOGIN.ERRORS.REQUIRED_FIELD" | translate }}
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!--
-                <mat-error
-                  *ngIf="loginForm.get('usernameOrEmail')?.hasError('required')">{{ 'LOGIN.ERRORS.REQUIRED_FIELD' | translate }}
-                </mat-error>
-      -->
-
       <div class="w-full mb-2">
-        <label for="password" class="block mb-1 text-base font-medium text-gray-900 dark:text-white">
+        <label for="password" class="tw-input-label">
           {{ 'LOGIN.PASSWORD_LABEL' | translate }}
         </label>
         <div class="relative">
@@ -45,8 +53,9 @@
           </div>
           <input
             [placeholder]="'LOGIN.PASSWORD_PLACEHOLDER' | translate"
-            class="bg-gray-50 h-12 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 pr-12 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            class="tw-input"
             id="password"
+            [ngClass]="{'tw-input-error': isControlInvalid(this.loginForm, 'password')}"
             [type]="hidePassword ? 'password' : 'text'"
             formControlName="password"
             autocomplete="password"
@@ -60,7 +69,7 @@
               class="h-5 w-5"
               fill="currentColor"
               viewBox="0 0 1024 1024">
-              <title>{{ 'GUESTBOOK.CHANGE_VISIBILITY_ENTRY_DESC' | translate }}</title>
+              <title>{{ 'LOGIN.SHOW_PASSWORD_HINT' | translate }}</title>
               <path *ngIf="!hidePassword"
                     d="M950.857 548.571c-54.286-84-128.571-156-217.714-201.714 22.857 38.857 34.857 83.429 34.857 128.571 0 141.143-114.857 256-256 256s-256-114.857-256-256c0-45.143 12-89.714 34.857-128.571-89.143 45.714-163.429 117.714-217.714 201.714 97.714 150.857 255.429 256 438.857 256s341.143-105.143 438.857-256zM539.429 329.143c0-14.857-12.571-27.429-27.429-27.429-95.429 0-173.714 78.286-173.714 173.714 0 14.857 12.571 27.429 27.429 27.429s27.429-12.571 27.429-27.429c0-65.143 53.714-118.857 118.857-118.857 14.857 0 27.429-12.571 27.429-27.429zM1024 548.571c0 14.286-4.571 27.429-11.429 39.429-105.143 173.143-297.714 289.714-500.571 289.714s-395.429-117.143-500.571-289.714c-6.857-12-11.429-25.143-11.429-39.429s4.571-27.429 11.429-39.429c105.143-172.571 297.714-289.714 500.571-289.714s395.429 117.143 500.571 289.714c6.857 12 11.429 25.143 11.429 39.429z"
               ></path>
@@ -70,15 +79,16 @@
             </svg>
           </button>
         </div>
+        <div>
+          <!--               TODO Class-->
+          <div *ngIf="isControlInvalid(loginForm, 'password')"
+               class="ml-3 mt-0.5 text-red-500 text-xs transition-opacity duration-300">
+            <div *ngIf="loginForm.get('password')?.hasError('required')">
+              {{ "LOGIN.ERRORS.REQUIRED_FIELD" | translate }}
+            </div>
+          </div>
+        </div>
       </div>
-
-
-      <!--      <p>
-                <mat-error
-                  *ngIf="loginForm.get('password')?.hasError('required')">{{ 'LOGIN.ERRORS.REQUIRED_FIELD' | translate }}
-                </mat-error>
-              </mat-form-field>
-            </p>-->
 
       <div class="flex flex-row w-full mb-6">
         <div class="w-1/2">
@@ -99,7 +109,7 @@
       </div>
 
       <div class="w-full mb-2">
-        <button class="w-full btn-primary btn-blue" type="submit">Login</button>
+        <button class="w-full btn-primary btn-blue" type="submit">{{ 'LOGIN.LOGIN_BUTTON' | translate }}</button>
       </div>
 
       <span class="text-hint-style">{{ 'LOGIN.PRIVACY_HINT' | translate }}</span>
@@ -111,12 +121,12 @@
 
 
     <!--    TODO login processing animation -->
-    <!--      <button type="button" class="bg-indigo-400 h-max w-max rounded-lg text-white font-bold hover:bg-indigo-300 hover:cursor-not-allowed duration-[500ms,800ms]" disabled>-->
-    <!--        <div class="flex items-center justify-center m-[10px]">-->
-    <!--          <div class="h-5 w-5 border-t-transparent border-solid animate-spin rounded-full border-white border-4"></div>-->
-    <!--          <div class="ml-2"> Processing... </div>-->
-    <!--          </div>-->
-    <!--      </button>-->
+    <!--          <button type="button" class="bg-indigo-400 h-max w-max rounded-lg text-white font-bold hover:bg-indigo-300 hover:cursor-not-allowed duration-[500ms,800ms]" disabled>-->
+    <!--            <div class="flex items-center justify-center m-[10px]">-->
+    <!--              <div class="h-5 w-5 border-t-transparent border-solid animate-spin rounded-full border-white border-4"></div>-->
+    <!--              <div class="ml-2"> Processing... </div>-->
+    <!--              </div>-->
+    <!--          </button>-->
 
   </div>
 </div>

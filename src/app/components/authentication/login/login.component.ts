@@ -5,6 +5,7 @@ import {ConfigService} from "../../../services/config.service";
 import {Router} from "@angular/router";
 import {Snackbar} from "../../../utility/snackbar";
 import {TranslateService} from "@ngx-translate/core";
+import {isControlInvalid} from "../../../utility/form-utils";
 
 @Component({
   selector: 'login-component',
@@ -75,4 +76,6 @@ export class LoginComponent implements OnInit {
   private isFirebaseError(err: any): err is { code: string } {
     return typeof err === 'object' && err !== null && 'code' in err;
   }
+
+  protected readonly isControlInvalid = isControlInvalid;
 }

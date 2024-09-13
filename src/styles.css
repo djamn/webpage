@@ -8,8 +8,97 @@
   border: 1px solid red;
 }
 
+.input-error-message {
+  color: var(--error-color);
+  margin-left: var(--dl-space-space-unit);
+  font-size: 13px;
+  margin-top: 4px;
+  transition: all 0.3s;
+  margin-bottom: var(--dl-space-space-halfunit);
+}
+
+.input-label {
+  font-size: 18px;
+  align-self: flex-start;
+  font-style: normal;
+  text-align: center;
+  font-weight: 500;
+}
+
+.input-error, .textarea-error {
+  border-color: var(--error-color);
+}
+
+.input-error:focus, .textarea-error:focus {
+  margin: -1px; /*Due to bigger border*/
+  border: 2px solid var(--error-color)
+}
+
+.input-error::placeholder, .textarea-error::placeholder {
+  color: var(--error-color);
+  opacity: 1; /* Firefox */
+}
+
 
 @layer components {
+  .tw-input {
+    @apply
+    bg-gray-50
+    h-12
+    border
+    border-gray-300
+    text-gray-900
+    text-sm
+    rounded-lg
+    focus:ring-blue-500
+    focus:border-blue-500
+    block
+    w-full
+    ps-10
+    p-2.5
+    transition-all duration-100
+    dark:bg-gray-700
+    dark:border-gray-600
+    dark:placeholder-gray-400
+    dark:text-white
+    dark:focus:ring-blue-500
+    dark:focus:border-blue-500
+  }
+
+  .tw-input-error {
+    @apply
+    border-red-500
+    focus:border-2
+    focus:border-solid
+    focus:border-red-500
+    placeholder:text-red-500
+    placeholder:opacity-100
+  }
+
+  .tw-input-label {
+    @apply
+    block
+    mb-1
+    text-base
+    font-medium
+    text-gray-900
+    dark:text-white
+  }
+
+  .tw-input-error-label {
+    @apply
+    absolute
+    left-0
+    top-full
+    ml-3
+    mt-0.5
+    text-red-500
+    text-xs
+    transition-opacity
+    duration-300
+  }
+
+
   .text-info-style {
     @apply
     text-black
@@ -169,9 +258,6 @@ body {
 
   --dl-color-black: #000000;
   --dl-color-white: #FFFFFF;
-
-  /*--color-success:*/
-  /*-- color-error:*/
 }
 
 .page-main-container {
@@ -272,23 +358,6 @@ INPUT STYLES
 .input-error::placeholder, .textarea-error::placeholder {
   color: var(--error-color);
   opacity: 1; /* Firefox */
-}
-
-.input-error-message {
-  color: var(--error-color);
-  margin-left: var(--dl-space-space-unit);
-  font-size: 13px;
-  margin-top: 4px;
-  transition: all 0.3s;
-  margin-bottom: var(--dl-space-space-halfunit);
-}
-
-.input-label {
-  font-size: 18px;
-  align-self: flex-start;
-  font-style: normal;
-  text-align: center;
-  font-weight: 500;
 }
 
 .quill-editor-style {

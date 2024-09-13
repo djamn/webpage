@@ -8,6 +8,7 @@ import {ConfigService} from "../../../services/config.service";
 import {Router} from "@angular/router";
 import {Snackbar} from "../../../utility/snackbar";
 import {TranslateService} from "@ngx-translate/core";
+import {isControlInvalid} from "../../../utility/form-utils";
 
 @Component({
   selector: 'register-component',
@@ -117,4 +118,6 @@ export class RegisterComponent implements OnInit {
 
     return exists;
   }
+
+    protected readonly isControlInvalid = isControlInvalid;
 }

@@ -38,6 +38,10 @@
   color: var(--error-color);
   opacity: 1; /* Firefox */
 }
+/*
+TODO Loading zeichen + Warum der outline spinnt
+*/
+
 
 
 @layer components {
@@ -82,7 +86,7 @@
     text-base
     font-medium
     text-gray-900
-    dark:text-white
+    dark:text-gray-200
   }
 
   .tw-input-error-label {

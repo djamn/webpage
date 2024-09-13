@@ -47,31 +47,36 @@
         </mat-form-field>
       </p>
 
-      <a
-        class="forgot-password link-text-font"
-        routerLink="/reset-password">
-        {{ 'LOGIN.FORGOT_PASSWORD_LINK_TEXT' | translate }}
-      </a>
-      <div class="remember-me-container">
-        <mat-checkbox
-          class="mat-checkbox"
-          [checked]=""
-          (change)="updateCheckbox($event.checked)"
-        ></mat-checkbox>
-
-        <span class="hint-text-font">{{ 'LOGIN.REMEMBER_ME_TEXT' | translate }}</span>
+      <div class="flex flex-row w-full mb-2">
+        <div class="w-1/2">
+          <input class="checkbox"
+                 id="remember-me-box"
+                 type="checkbox"
+                 (change)="updateCheckbox($event)"
+                 value="">
+          <label for="remember-me-box" class="text-hint-style">{{ 'LOGIN.REMEMBER_ME_TEXT' | translate }}</label>
+        </div>
+        <div class="w-1/2 flex justify-end">
+          <a
+            class="text-end  text-base text-link-style"
+            routerLink="/reset-password">
+            {{ 'LOGIN.FORGOT_PASSWORD_LINK_TEXT' | translate }}
+          </a>
+        </div>
       </div>
 
       <div class="w-full mb-2">
         <button class="w-full btn-primary btn-blue" type="submit">Login</button>
       </div>
 
-      <span class="hint-text-font">{{ 'LOGIN.PRIVACY_HINT' | translate }}</span>
+      <span class="text-hint-style">{{ 'LOGIN.PRIVACY_HINT' | translate }}</span>
 
       <span class="info-text-font login-register-hint">{{ 'LOGIN.NO_ACCOUNT_HINT' | translate }}</span>
-      <a class="login-register-link link-text-font"
+      <a class="login-register-link text-link-style"
          routerLink="/register">{{ 'LOGIN.REGISTER_LINK_TEXT' | translate }}</a>
     </form>
+
+
     <!--    TODO login processing animation -->
     <!--      <button type="button" class="bg-indigo-400 h-max w-max rounded-lg text-white font-bold hover:bg-indigo-300 hover:cursor-not-allowed duration-[500ms,800ms]" disabled>-->
     <!--        <div class="flex items-center justify-center m-[10px]">-->
@@ -79,5 +84,6 @@
     <!--          <div class="ml-2"> Processing... </div>-->
     <!--          </div>-->
     <!--      </button>-->
+
   </div>
 </div>

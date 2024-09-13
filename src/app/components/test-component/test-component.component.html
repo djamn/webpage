@@ -1,8 +1,8 @@
 <br><br>
-<button class="button-general button-red general" (click)="testButton()">Click Me</button>
-<button class="button-general button-red general" (click)="logout()">Log Out</button>
-<button class="button-general button-blue general" (click)="login()">Switch to Login</button>
-<button class="button-general button-blue general" (click)="guestbook()">Guestbook</button>
+<button class="btn-primary btn-red general" (click)="testButton()">Click Me</button>
+<button class="btn-primary btn-red general" (click)="logout()">Log Out</button>
+<button class="btn-primary btn-blue general" (click)="login()">Switch to Login</button>
+<button class="btn-primary btn-blue general" (click)="guestbook()">Guestbook</button>
 <br><br>
 <span>Total Clicks: {{ counter }} </span><br>
 <span>You are currently logged in as: {{getAuth().currentUser?.uid ? getAuth().currentUser?.uid : "Not logged in" }}</span><br>
@@ -11,7 +11,7 @@
   <span>Your Permissions:</span>
   <p>{{ (userPermissions$ | async)?.join(', ') }}</p>
 </div><br>
-<button class="button-general button-green" *ngIf="isAdmin$ | async" routerLink="/admin">Admin Panel</button><br>
+<button class="btn-primary btn-green" *ngIf="isAdmin$ | async" routerLink="/admin">Admin Panel</button><br>
 <h1 class="text-3xl font-bold underline">
   Hello world!
 </h1>

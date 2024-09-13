@@ -117,14 +117,14 @@
 
       <div class="confirm-button-container">
         <button
-          class="confirm-button button-general"
+          class="confirm-button btn-primary"
           [disabled]="!config.REGISTER_POSSIBLE"
           [attr.title]="config.REGISTER_POSSIBLE ? '' : ('REGISTER.ERRORS.NO_REGISTRATION_POSSIBLE_HINT' | translate)"
           type="submit">
           {{ 'REGISTER.REGISTER_BUTTON'| translate }}
         </button>
       </div>
-      <span class="hint-text-font">{{ 'REGISTER.REGISTER_HINT'| translate }}</span>
+      <span class="text-hint-style">{{ 'REGISTER.REGISTER_HINT'| translate }}</span>
     </form>
   </div>
 </div>

@@ -94,10 +94,10 @@
       <div *ngIf="!isEditMode" class="privacy-confirmation">
         <input
           type="checkbox"
-          class="checkbox-style"
+          class="checkbox"
           formControlName="confirmation_checkbox">
         <span id="privacy-confirmation-text"
-              class="hint-text-font">{{ "GUESTBOOK.CREATE.DATA_PRIVACY_CONFIRMATION" | translate }}</span>
+              class="text-hint-style">{{ "GUESTBOOK.CREATE.DATA_PRIVACY_CONFIRMATION" | translate }}</span>
         <div
           class="checkbox-required"
           [ngStyle]="{
@@ -112,15 +112,15 @@
 
       <div class="buttons-container">
         <button
-          class="button-general
+          class="btn-primary
           guestbook-confirm-button"
-          [ngClass]="{'button-green': config.GUESTBOOK_ENTRY_CREATION_POSSIBLE, 'button-disabled': !config.GUESTBOOK_ENTRY_CREATION_POSSIBLE}"
+          [ngClass]="{'btn-green': config.GUESTBOOK_ENTRY_CREATION_POSSIBLE, 'button-disabled': !config.GUESTBOOK_ENTRY_CREATION_POSSIBLE}"
           [attr.title]="config.GUESTBOOK_ENTRY_CREATION_POSSIBLE ? '' : ('REGISTER.ERRORS.NO_REGISTRATION_POSSIBLE_HINT' | translate)"
           type="submit">
           <div *ngIf="!isEditMode">{{ "GUESTBOOK.CREATE.BUTTON_SEND" | translate }}</div>
           <div *ngIf="isEditMode">{{ "GUESTBOOK.CREATE.BUTTON_UPDATE" | translate }}</div>
         </button>
-        <button class="button-general button-red guestbook-abort-button" type="button" (click)="abort($event)">
+        <button class="btn-primary btn-red guestbook-abort-button" type="button" (click)="abort($event)">
           {{ "GUESTBOOK.CREATE.BUTTON_ABORT" | translate }}
         </button>
       </div>

@@ -1,37 +1,5 @@
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-.login-container {
-  /*border: 1px solid green;*/
-  /*border-radius: 10px;*/
-  /*background-color: white;*/
-  /*width: 450px;*/
-  /*height: 520px;*/
-  /*display: flex;*/
-  /*position: relative;*/
-  /*align-items: center;*/
-  /*flex-direction: column;*/
-  /*justify-content: flex-start;*/
-  /*padding: 0 var(--dl-space-space-unit);*/
-}
-
-
-.login-image-container {
-  /*width: 100%;*/
-  /*margin-top: var(--dl-space-space-unit);*/
-  /*margin-bottom: var(--dl-space-space-twounits)*/
-}
-
-.login-component-form {
-  /*border: 1px solid red;*/
-  /*width: 100%;*/
-  /*height: 100%;*/
-  /*display: flex;*/
-  /*align-items: center;*/
-  /*margin-bottom: var(--dl-space-space-unit);*/
-  /*flex-direction: column;*/
+:host {
+  display: contents;
 }
 
 .small-form-field {
@@ -39,67 +7,8 @@ html, body {
   width: 415px;
 }
 
-.confirm-button {
-  /*width: 100%;*/
-}
-
-.border-1 {
-  border: 1px solid red;
-}
-
-.confirm-button-container {
-  /*width: 100%;*/
-  /*margin-bottom: var(--dl-space-space-halfunit);*/
-}
-
-.forgot-password {
-  /*margin-top: -35px;*/
-  /*margin-bottom: var(--dl-space-space-halfunit);*/
-  /*text-align: end;*/
-  /*width: 100%;*/
-  /*font-size: 14px;*/
-}
-
-.remember-me-container {
-  /*display: flex;*/
-  /*margin-left: -10px;*/
-  /*align-items: center;*/
-  /*align-self: flex-start;*/
-  /*margin-bottom: var(--dl-space-space-halfunit);*/
-}
-
-.hint-text-font {
-  color: var(--text-hint-color);
-  font-size: 15px;
-  font-weight: 400;
-  text-align: justify;
-  font-style: italic;
-}
-
-
-.login-register-link {
-  font-size: 16px;
-}
-
-.login-register-hint {
-  margin-top: var(--dl-space-space-halfunit);
-  color: var(--dl-color-gray-500);
-}
-
 @media (max-width: 479px) {
-  .login-container {
-    /*width: 95%;*/
-    /*height: auto;*/
-    /*padding: var(--dl-space-space-halfunit);*/
-  }
-
-  .small-form-field {
+    .small-form-field {
     width: 90vw !important;
-  }
-
-  .main-login-container {
-    /*display: flex;*/
-    /*align-items: center;*/
-    /*justify-content: center;*/
   }
 }

@@ -4,7 +4,20 @@
 @tailwind components;
 @tailwind utilities;
 
+.border-1 {
+  border: 1px solid red;
+}
+
+
 @layer components {
+  .text-info-style {
+    @apply
+    text-black
+    text-base
+    text-justify
+    font-normal
+  }
+
   .text-link-style {
     @apply
     font-medium
@@ -17,7 +30,7 @@
   .text-hint-style {
     @apply
     text-gray-500
-    text-base
+    text-[15px]
     font-normal
     text-justify
     italic
@@ -210,12 +223,6 @@ body {
   }
 }
 
-.info-text-font {
-  color: black;
-  font-size: 16px;
-  font-weight: 400;
-  text-align: justify;
-}
 
 .subheading {
   font-size: 24px;
@@ -315,6 +322,7 @@ INPUT STYLES
   flex-direction: column;
   justify-content: flex-start;
 }
+
 @media (max-width: 767px) {
 
 }

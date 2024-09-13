@@ -3,7 +3,7 @@ module.exports = {
   darkMode: 'selector',
   // darkMode: ['selector', '[data-mode="dark"]'],
   // darkMode: ['variant', '&:not(.light *)'],
-  content: ["./src/**/*.{html,ts}",],
+  content: ["./src/**/*.{html,js}", "./node_modules/tw-elements/js/**/*.js"],
   theme: {
     extend: {
       boxShadow: {
@@ -12,6 +12,7 @@ module.exports = {
     },
   },
   plugins: [
+    // require("tw-elements/plugin.cjs"),
     require('@tailwindcss/forms'),
   ],
 }

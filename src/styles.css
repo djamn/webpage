@@ -61,6 +61,9 @@ TODO Loading zeichen + Warum der outline spinnt
     ps-10
     p-2.5
     transition-all duration-100
+    disabled:bg-gray-300
+    disabled:cursor-not-allowed
+    disabled:dark:disabled:bg-gray-800
     dark:bg-gray-700
     dark:border-gray-600
     dark:placeholder-gray-400

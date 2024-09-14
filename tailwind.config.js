@@ -1,8 +1,7 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'selector',
-  // darkMode: ['selector', '[data-mode="dark"]'],
   // darkMode: ['variant', '&:not(.light *)'],
+  // darkMode: ['selector', '[data-mode="dark"]'],
   content: ["./src/**/*.{html,js}", "./node_modules/tw-elements/js/**/*.js"],
   theme: {
     extend: {

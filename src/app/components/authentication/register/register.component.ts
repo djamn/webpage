@@ -70,6 +70,7 @@ export class RegisterComponent implements OnInit {
     }
 
     if (!this.signupForm.valid) {
+      this.signupForm.markAllAsTouched();
       console.debug("Register Form invalid");
       return;
     }

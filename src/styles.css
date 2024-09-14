@@ -78,6 +78,13 @@ TODO Loading zeichen + Warum der outline spinnt
     focus:border-red-500
     placeholder:text-red-500
     placeholder:opacity-100
+
+    dark:focus-visible:ring-0 /*TODO better version*/
+    dark:border-red-500
+    dark:focus:border-2
+    dark:focus:border-solid
+    dark:focus:border-red-500
+    dark:placeholder:text-red-500
   }
 
   .tw-input-label {
@@ -102,7 +109,6 @@ TODO Loading zeichen + Warum der outline spinnt
     transition-opacity
     duration-300
   }
-
 
   .text-info-style {
     @apply

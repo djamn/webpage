@@ -1,14 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../../services/auth.service";
 import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
-import {CrossFieldErrorMatcher} from "./cross-field-error-matcher";
-import {confirmPasswordValidator} from "./confirm-password.validator";
 import {firstValueFrom} from "rxjs";
 import {ConfigService} from "../../../services/config.service";
 import {Router} from "@angular/router";
 import {Snackbar} from "../../../utility/snackbar";
 import {TranslateService} from "@ngx-translate/core";
 import {isControlInvalid} from "../../../utility/form-utils";
+import {confirmPasswordValidator} from "./confirm-password.validator";
 
 @Component({
   selector: 'register-component',
@@ -19,7 +18,6 @@ export class RegisterComponent implements OnInit {
   hidePassword = true;
   hideConfirmPassword = true;
   config: any;
-  errorMatcher = new CrossFieldErrorMatcher();
   signupForm!: UntypedFormGroup;
 
   constructor(
@@ -119,5 +117,5 @@ export class RegisterComponent implements OnInit {
     return exists;
   }
 
-    protected readonly isControlInvalid = isControlInvalid;
+  protected readonly isControlInvalid = isControlInvalid;
 }

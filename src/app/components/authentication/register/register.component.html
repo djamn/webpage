@@ -197,7 +197,6 @@
           </button>
         </div>
 
-<!--        TODO error handling -->
         <div class="relative">
           <div
             [ngClass]="{
@@ -210,43 +209,11 @@
               *ngIf="signupForm.get('confirmPassword')?.hasError('required')">{{ 'REGISTER.ERRORS.REQUIRED_FIELD'| translate }}
             </div>
             <div
-              *ngIf="signupForm.hasError('passwordMismatch')">{{ 'REGISTER.ERRORS.PASSWORD_MISMATCH'| translate }}
+              *ngIf="this.signupForm.errors?.['passwordsMismatch']">{{ 'REGISTER.ERRORS.PASSWORD_MISMATCH'| translate }}
             </div>
           </div>
         </div>
       </div>
-
-
-
-     <!-- <p>
-        <mat-form-field class="small small-form-field" appearance="outline">
-          <mat-label class="input-label">{{ 'REGISTER.CONFIRM_PASSWORD'| translate }}</mat-label>
-          <input
-            matInput
-            formControlName="confirmPassword"
-            autocomplete="new-password"
-            [placeholder]="'REGISTER.PASSWORD_PLACEHOLDER' | translate"
-            [errorStateMatcher]="errorMatcher"
-            [type]="hideConfirmPassword ? 'password' : 'text'"
-            class="register-input"/>
-          <button
-            type="button"
-            mat-icon-button
-            matSuffix
-            (click)="toggleConfirmPasswordVisibility($event)"
-            [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hideConfirmPassword"
-          >
-            <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-          </button>
-          <mat-error
-            *ngIf="signupForm.get('confirmPassword')?.hasError('required')">{{ 'REGISTER.ERRORS.CONFIRM_PASSWORD_REQUIRED'| translate }}
-          </mat-error>
-          <mat-error
-            *ngIf="signupForm.hasError('passwordMismatch')">{{ 'REGISTER.ERRORS.PASSWORD_MISMATCH'| translate }}
-          </mat-error>
-        </mat-form-field>
-      </p>-->
 
       <div class="confirm-button-container">
         <button

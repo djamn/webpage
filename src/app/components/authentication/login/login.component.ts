@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   hidePassword = true;
   loginForm!: UntypedFormGroup;
   config: any;
+  isLoading: boolean = false;
 
   constructor(private authService: AuthService,
               private snackbar: Snackbar,
@@ -48,6 +49,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
+    this.isLoading = true;
     let usernameOrEmail = this.loginForm.value.usernameOrEmail.trim().toLowerCase();
 
     try {
@@ -59,9 +61,11 @@ export class LoginComponent implements OnInit {
 
       await this.authService.login(usernameOrEmail, this.loginForm.value.password);
       this.loginForm.reset();
+      this.isLoading = false;
       await this.router.navigate(['']);
     } catch (err) {
       // TODO recode
+      this.isLoading = false;
       if (this.isFirebaseError(err) && err.code === 'auth/invalid-credential' || err instanceof Error && err.message === 'auth/invalid-credential') {
         this.snackbar.showSnackbar(this.translate.instant('LOGIN.ERRORS.INVALID_CREDENTIALS'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
       } else {
@@ -70,8 +74,6 @@ export class LoginComponent implements OnInit {
       }
     }
   }
-
-  // Invalid login data!
 
   // Type guard to check if error is a Firebase error
   private isFirebaseError(err: any): err is { code: string } {

@@ -12,7 +12,7 @@ export class ChangelogComponent implements OnInit {
   loading: boolean = true;
 
   constructor(private changelogService: ChangelogService,
-              private permissionService: PermissionService) {
+              protected permissionService: PermissionService) {
   }
 
   ngOnInit() {
@@ -36,7 +36,7 @@ export class ChangelogComponent implements OnInit {
   changelog: ChangelogEntry[] = [
     {
       changes: [
-        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
+        'Lorem ipsum dolor sit amet, consetetur sadipscing elitir elitir elitir elitir elitir elitir elitir elitir elitir elitir',
         'Lorem ipsum dolor sit amet, consetetur',
         'Lorem ipsum dolor sit amet, consetetur sadipscing'
       ],
@@ -55,6 +55,14 @@ export class ChangelogComponent implements OnInit {
       timestamp: 12222222,
     },
   ];
+
+  deleteEntry(id: string) {
+
+  }
+
+  editEntry(id: string) {
+
+  }
 
   processTimestamp(timestamp: any) {
     const date = new Date(timestamp)

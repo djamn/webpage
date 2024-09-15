@@ -139,5 +139,11 @@
   },
   "GENERAL": {
     "NO_ENTRIES_AVAILABLE": "No entries available :("
+  },
+  "CHANGELOG": {
+    "CHANGELOG_TITLE": "Changelog",
+    "ADD_ENTRY_DESC": "Add new entry",
+    "DELETE_ENTRY_DESC": "Delete this entry",
+    "EDIT_ENTRY_DESC": "Edit this entry"
   }
 }

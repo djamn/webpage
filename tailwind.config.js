@@ -10,6 +10,8 @@ module.exports = {
       },
       colors: {
         'dark-mode': '#050505',
+        'dark-mode-inside': '#1f2937',
+        'dark-mode-inside-hover': '#2a3748',
         'title-dark-mode-text':'#eaeaea',
         'dark-mode-text': '#909090'
       },

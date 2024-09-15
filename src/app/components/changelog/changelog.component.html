@@ -2,7 +2,7 @@
   <div class="max-w-4xl mx-auto">
     <div class="flex justify-between items-center mb-8">
       <h1
-        class="text-4xl font-bold text-center text-gray-900 dark:text-white animate-fadeInDown"
+        class="text-4xl font-bold text-center text-gray-900 dark:text-title-dark-mode-text animate-fadeInDown"
         style="animation-duration: 0.4s; animation-fill-mode: forwards">
         Changelog
       </h1>
@@ -22,7 +22,7 @@
          [ngClass]="{'animate-pulse' : loading}"
          class="mb-8 transform transition duration-500 ease-in-out hover:scale-105 animate-fade-in">
       <div class="flex flex-row">
-      <div class="text-lg max-sm:text-center font-semibold text-gray-700 dark:text-gray-300
+      <div class="text-lg max-sm:text-center font-semibold text-gray-700 dark:text-title-dark-mode-text
         opacity-0 animate-fadeInRight w-[60%]"
            [ngClass]="{'blur-sm' : loading}"
            style="animation-delay: 0.2s; animation-fill-mode: forwards;">
@@ -51,10 +51,10 @@
         </div>
       </div>
 
-      <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400 mt-3">
+      <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-dark-mode-text mt-3">
         <li *ngFor="let change of entry.changes"
-            class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md opacity-0
-          animate-fadeInUp transform hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300"
+            class="bg-white dark:bg-dark-mode-inside p-4 rounded-lg shadow-md opacity-0
+          animate-fadeInUp transform hover:bg-gray-100 dark:hover:bg-dark-mode-inside-hover transition duration-300"
             [ngClass]="{'blur-sm' : loading}"
             style="animation-delay: 0.4s; animation-fill-mode: forwards;">
           {{ change }}

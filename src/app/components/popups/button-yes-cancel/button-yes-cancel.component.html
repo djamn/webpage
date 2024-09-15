@@ -1,20 +1,20 @@
-<div class="button-yes-cancel-container">
-  <div class="button-yes-cancel-button-1">
-    <button
-      (click)="onConfirm()"
-      class="btn-primary btn-green"
-      type="button"
-    >
-      {{ 'BUTTONS.BUTTON_YES' | translate }}
-    </button>
-  </div>
-  <div class="button-yes-cancel-button-2">
+<div class="flex w-full relative justify-end flex-end dark:bg-dark-mode">
+  <div class="w-auto flex h-auto">
     <button
       (click)="onCancel()"
-      class="btn-primary btn-red"
+      class="btn-primary btn-gray"
       type="button"
     >
       {{ 'BUTTONS.BUTTON_CANCEL' | translate }}
+    </button>
+  </div>
+  <div class="w-auto flex h-auto ml-4">
+    <button
+      (click)="onConfirm()"
+      class="btn-primary btn-red"
+      type="button"
+    >
+      {{ 'BUTTONS.BUTTON_YES' | translate }}
     </button>
   </div>
 </div>

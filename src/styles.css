@@ -39,12 +39,43 @@
   opacity: 1; /* Firefox */
 }
 
-/*
-TODO Loading zeichen + Warum der outline spinnt
-*/
-
 
 @layer components {
+  .blur-background {
+    @apply backdrop-blur-md; /* Adds a medium blur */
+  }
+
+  .popup-text {
+    @apply
+    text-lg
+    text-center
+    text-black
+    dark:text-dark-mode-text
+  }
+
+  .popup-heading {
+    @apply
+    text-black
+    text-2xl
+    self-center
+    font-semibold
+    mb-6
+    dark:text-title-dark-mode-text
+  }
+
+  .popup-container {
+    @apply
+    h-auto
+    flex
+    p-2
+    relative
+    items-center
+    flex-col
+    justify-start
+    bg-white
+    dark:bg-dark-mode
+  }
+
   .tw-input {
     @apply
     bg-gray-50
@@ -201,6 +232,19 @@ TODO Loading zeichen + Warum der outline spinnt
     bg-blue-500
     hover:bg-blue-600
     disabled:hover:bg-gray-500
+    dark:text-white
+  }
+
+  .btn-gray {
+    @apply
+    border
+    border-gray-500
+    border-solid
+    bg-white
+    text-black
+    hover:bg-gray-100
+    disabled:hover:bg-gray-500
+    dark:bg-black
     dark:text-white
   }
 
@@ -380,30 +424,6 @@ INPUT STYLES
   cursor: auto;
   color: var(--dl-color-black);
   background-color: var(--dl-color-white);
-}
-
-.popup-heading {
-  color: var(--dl-color-black);
-  font-size: 25px;
-  align-self: center;
-  text-align: center;
-  font-weight: 700;
-  margin-bottom: var(--dl-space-space-oneandhalfunits);
-}
-
-.popup-text {
-  font-size: 18px;
-  text-align: center;
-}
-
-.popup-container {
-  height: auto;
-  display: flex;
-  padding: var(--dl-space-space-halfunit);
-  position: relative;
-  align-items: center;
-  flex-direction: column;
-  justify-content: flex-start;
 }
 
 @media (max-width: 767px) {

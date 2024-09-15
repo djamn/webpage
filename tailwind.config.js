@@ -8,22 +8,27 @@ module.exports = {
       boxShadow: {
         'btn-1': '0 1px 0 rgba(27,31,35,0.1)'
       },
+      colors: {
+        'dark-mode': '#050505',
+        'title-dark-mode-text':'#eaeaea',
+        'dark-mode-text': '#909090'
+      },
       keyframes: {
         fadeInDown: {
-          '0%': { opacity: '0', transform: 'translateY(-20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
+          '0%': {opacity: '0', transform: 'translateY(-20px)'},
+          '100%': {opacity: '1', transform: 'translateY(0)'},
         },
         fadeInUp: {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
+          '0%': {opacity: '0', transform: 'translateY(20px)'},
+          '100%': {opacity: '1', transform: 'translateY(0)'},
         },
         fadeInRight: {
-          '0%': { opacity: '0', transform: 'translateX(-20px)' },
-          '100%': { opacity: '1', transform: 'translateX(0)' },
+          '0%': {opacity: '0', transform: 'translateX(-20px)'},
+          '100%': {opacity: '1', transform: 'translateX(0)'},
         },
         fadeInLeft: {
-          '0%': { opacity: '0', transform: 'translateX(20px)' },
-          '100%': { opacity: '1', transform: 'translateX(0)' },
+          '0%': {opacity: '0', transform: 'translateX(20px)'},
+          '100%': {opacity: '1', transform: 'translateX(0)'},
         },
       },
       animation: {

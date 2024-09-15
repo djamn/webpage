@@ -1,11 +1,14 @@
 <div class="main-component-container main-guestbook-container">
   <div class="guestbook-container">
     <div class="guestbook-title-container">
-<!--      TODO i18n-->
+      <!--      TODO i18n-->
       <span id="guestbook-title">Gästebuch</span>
       <div class="guestbook-subtitle-container">
-        <span *ngIf="!(permissionService.hasPermission('view-invisible-guestbook-entries') | async)" id="guestbook-subtitle-1">Einträge: {{visibleEntriesCount}}</span>
-        <span *ngIf="(permissionService.hasPermission('view-invisible-guestbook-entries') | async)" id="guestbook-subtitle-1-admin">Einträge: {{visibleEntriesCount}} (versteckt: {{ hiddenEntriesCount }})</span>
+        <span *ngIf="!(permissionService.hasPermission('view-invisible-guestbook-entries') | async)"
+              id="guestbook-subtitle-1">Einträge: {{ visibleEntriesCount }}</span>
+        <span *ngIf="(permissionService.hasPermission('view-invisible-guestbook-entries') | async)"
+              id="guestbook-subtitle-1-admin">Einträge: {{ visibleEntriesCount }}
+          (versteckt: {{ hiddenEntriesCount }})</span>
         <span id="guestbook-subtitle-2">Besucher: %s</span>
       </div>
     </div>
@@ -14,6 +17,6 @@
       <a id="guestbook-entry" routerLink="create"><< Eintragen</a>
       <a id="guestbook-homepage" routerLink="">Homepage >></a>
     </div>
-<!--TODO mobile compatibility-->
+    <!--TODO mobile compatibility-->
   </div>
 </div>

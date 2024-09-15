@@ -42,7 +42,8 @@
 
 @layer components {
   .blur-background {
-    @apply backdrop-blur-md; /* Adds a medium blur */
+    @apply backdrop-blur-md;
+    /* Adds a medium blur */
   }
 
   .popup-text {
@@ -76,7 +77,7 @@
     dark:bg-dark-mode
   }
 
-  .tw-input {
+  .tw-input, .tw-textarea {
     @apply
     bg-gray-50
     h-12
@@ -103,7 +104,12 @@
     dark:focus:border-blue-500
   }
 
-  .tw-input-error {
+  .tw-textarea {
+    @apply
+    ps-2
+  }
+
+  .tw-input-error, .tw-textarea-error {
     @apply
     focus-visible:ring-0 /*TODO better version*/
     border-red-500
@@ -245,13 +251,16 @@
     hover:bg-gray-100
     disabled:hover:bg-gray-500
     dark:bg-black
+      dark:hover:bg-gray-950
     dark:text-white
   }
 
   .btn-green {
     @apply
     bg-green-600
+    dark:bg-green-700
     hover:bg-green-700
+    dark:hover:bg-green-800
     disabled:hover:bg-gray-500
     dark:text-white
   }

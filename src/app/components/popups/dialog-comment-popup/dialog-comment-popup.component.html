@@ -1,19 +1,24 @@
-<div class="dialog-popup-component-container popup-container">
+<div class="w-[450px] max-md:w-full popup-container">
   <span class="popup-heading">{{ 'DIALOG.COMMENT_TITLE' | translate }}</span>
-  <span class="dialog-popup-text-1 popup-text">{{ dialogPopupDescription }}</span>
-  <form (ngSubmit)="confirm()" [formGroup]="commentForm" class="textarea-container">
+  <span class="w-auto mb-6 popup-text">{{ dialogPopupDescription }}</span>
+  <form (ngSubmit)="confirm()" [formGroup]="commentForm" class="w-full mb-4">
     <textarea
       formControlName="comment"
-      class="textarea-style popup-textarea"
-      [ngClass]="{'textarea-error': isControlInvalid(this.commentForm, 'comment')}">
+      class="tw-textarea w-full min-h-[50px] h-[100px] max-h-[150px]"
+      [ngClass]="{'tw-textarea-error': isControlInvalid(this.commentForm, 'comment')}">
     </textarea>
-    <div
-      class="input-error-message comment-error-message"
-      [ngStyle]="{
-        opacity: isControlInvalid(commentForm, 'comment') ? '1' : '0',
-        visibility: isControlInvalid(commentForm, 'comment') ? 'visible' : 'hidden'
-        }">
-      {{ "DIALOG.REQUIRED_FIELD" | translate }}
+    <div class="relative">
+      <div
+        [ngClass]="{
+            'opacity-100 visible': isControlInvalid(commentForm, 'comment'),
+            'opacity-0 invisible': !isControlInvalid(commentForm, 'comment')
+          }"
+        class="tw-input-error-label"
+      >
+        <div *ngIf="commentForm.get('comment')?.hasError('required')">
+          {{ "DIALOG.REQUIRED_FIELD" | translate }}
+        </div>
+      </div>
     </div>
   </form>
   <button-save-cancel-component (cancel)="cancel()" (confirm)="confirm()"></button-save-cancel-component>

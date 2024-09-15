@@ -22,8 +22,8 @@ import * as Emoji from 'quill2-emoji'
 import Quill from "quill";
 import {DialogCommentPopupComponent} from "./popups/dialog-comment-popup/dialog-comment-popup.component";
 import {DialogPopupComponent} from "./popups/dialog-popup/dialog-popup.component";
-import {ButtonYesCancelComponent} from "./button-yes-cancel/button-yes-cancel.component";
-import {ButtonSaveCancelComponent} from "./button-save-cancel/button-yes-cancel.component";
+import {ButtonYesCancelComponent} from "./popups/button-yes-cancel/button-yes-cancel.component";
+import {ButtonSaveCancelComponent} from "./popups/button-save-cancel/button-yes-cancel.component";
 import {AdminNavbar} from "./navbars/admin-navbar/admin-navbar.component";
 import {Navbar} from "./navbars/navbar/navbar.component";
 import {NavbarUser} from "./navbars/navbar-user/navbar-user.component";

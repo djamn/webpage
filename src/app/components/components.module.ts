@@ -31,6 +31,7 @@ import {NoEntriesComponent} from "./no-entries/no-entries.component";
 import {MainpageMainComponent} from "./mainpage/mainpage-main-component/mainpage-main-component.component";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {AdminDashboardComponent} from "./admin/admin-dashboard/admin-dashboard.component";
+import {ChangelogComponent} from "./changelog/changelog.component";
 
 Quill.register("modules/emoji", Emoji);
 
@@ -56,7 +57,8 @@ Quill.register("modules/emoji", Emoji);
     NavbarUser,
     Navbar,
     MainpageMainComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    ChangelogComponent
   ],
   imports: [
     CommonModule,
@@ -91,7 +93,8 @@ Quill.register("modules/emoji", Emoji);
     NavbarUser,
     Navbar,
     MainpageMainComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    ChangelogComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

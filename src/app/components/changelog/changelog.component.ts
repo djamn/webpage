@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {isControlInvalid} from "../../utility/form-utils";
 
 @Component({
   selector: 'changelog-component',
@@ -13,7 +14,7 @@ export class ChangelogComponent {
       date: '2024-09-15',
       version: '1.0.0',
       changes: [
-        'Added new user profile page with advanced editing features sxdfddlsabfndksj dsfndjsnfvdsr drsfdsflkjgnldtsfmxyd c,ydlvxdslkfgvjldkfsjvlxdf bvxdofgndlksfng kds gokdnf',
+        'Added new user profile page with advanced editing features sxdfddlsabfndksj dsfndjsnfvdsr',
         'Improved performance on the dashboard',
         'Fixed bug with date picker on the forms page'
       ]
@@ -32,9 +33,8 @@ export class ChangelogComponent {
       version: '1.0.0',
       changes: [
         'Released initial version of the application',
-        'Added login functionality',
-        'Implemented dark mode switch'
       ]
     }
   ];
+  protected readonly isControlInvalid = isControlInvalid;
 }

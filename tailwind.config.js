@@ -21,11 +21,16 @@ module.exports = {
           '0%': { opacity: '0', transform: 'translateX(-20px)' },
           '100%': { opacity: '1', transform: 'translateX(0)' },
         },
+        fadeInLeft: {
+          '0%': { opacity: '0', transform: 'translateX(20px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
       },
       animation: {
         fadeInDown: 'fadeInDown 0.5s ease-out forwards',
         fadeInUp: 'fadeInUp 0.5s ease-out forwards',
         fadeInRight: 'fadeInRight 0.5s ease-out forwards',
+        fadeInLeft: 'fadeInLeft 0.5s ease-out forwards',
         fadeIn: 'fadeIn 0.5s ease-out forwards',
         bounce: 'bounce 1.5s infinite',
       }

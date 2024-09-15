@@ -76,7 +76,7 @@ export class Navbar {
       },
       {
         label: this.translate.instant('NAVBAR.CHANGELOG_LINK_TITLE'),
-        path: '/',
+        path: '/changelog',
       },
       {
         label: this.translate.instant('NAVBAR.MANAGE_USERS_LINK_TITLE'),

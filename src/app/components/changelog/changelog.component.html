@@ -1,10 +1,22 @@
 <div class="container mx-auto p-6">
   <div class="max-w-4xl mx-auto">
-    <h1 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-white
-      animate-fadeInDown"
-        style="animation-duration: 0.4s; animation-fill-mode:forwards">
-      Changelog
-    </h1>
+    <div class="flex justify-between items-center mb-8">
+      <h1
+        class="text-4xl font-bold text-center text-gray-900 dark:text-white animate-fadeInDown"
+        style="animation-duration: 0.4s; animation-fill-mode: forwards">
+        Changelog
+      </h1>
+      <button
+        class="flex items-center justify-center w-12 h-12 text-white bg-green-500 rounded-full hover:bg-green-700 shadow-lg transition duration-300 ease-in-out transform hover:scale-110"
+        title="Add new entry">
+<!--        TODO title-->
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
+        </svg>
+      </button>
+    </div>
+
 
     <div *ngFor="let entry of changelog"
          [ngClass]="{'animate-pulse' : loading}"
@@ -20,7 +32,7 @@
              class="flex justify-end space-x-6 w-[40%] animate-fadeInLeft">
           <svg
             (click)="editEntry(entry.id)"
-            class="cursor-pointer w-6 h-6"
+            class="cursor-pointer w-6 h-6 transition-all hover:scale-105"
             viewBox="0 0 877.7142857142857 1024">
             <title>{{ 'GUESTBOOK.EDIT_ENTRY_DESC' | translate }}</title>
             <path
@@ -29,7 +41,7 @@
           </svg>
           <svg
             (click)="deleteEntry(entry.id)"
-            class="cursor-pointer w-6 h-6"
+            class="cursor-pointer w-6 h-6 transition-all hover:scale-105"
             viewBox="0 0 804.5714285714286 1024">
             <title>{{ 'GUESTBOOK.DELETE_ENTRY_DESC' | translate }}</title>
             <path

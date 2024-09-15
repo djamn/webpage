@@ -1,4 +1,4 @@
-<div class="container mx-auto p-6 border-1">
+<div class="container mx-auto p-6">
   <div class="max-w-4xl mx-auto">
     <h1 class="text-4xl font-bold text-center mb-8 text-gray-900 dark:text-white
       animate-fadeInDown"
@@ -7,13 +7,14 @@
     </h1>
 
     <div *ngFor="let entry of changelog"
-         class="mb-8 transform transition duration-500 ease-in-out hover:scale-105 animate-fade-in animate-pulse">
+         [ngClass]="{'animate-pulse' : loading}"
+         class="mb-8 transform transition duration-500 ease-in-out hover:scale-105 animate-fade-in">
 
       <div class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3
         opacity-0 animate-fadeInRight"
            [ngClass]="{'blur-sm' : loading}"
            style="animation-delay: 0.2s; animation-fill-mode: forwards;">
-        {{ entry.date }} ({{ entry.version }})
+        {{ processTimestamp(entry.timestamp) }} ({{ entry.version }})
       </div>
 
       <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">

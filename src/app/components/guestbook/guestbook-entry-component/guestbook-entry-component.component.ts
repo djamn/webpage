@@ -38,11 +38,6 @@ export class GuestbookEntryComponent implements OnInit {
   ngOnInit() {
     this.config = this.configService.getConfig()
     this.processTimestamp(this.entry.timestamp);
-
-    // Create a single Observable for user roles
-    this.userRoles$ = this.auth.getUserRoles().pipe(
-      shareReplay(1) // Cache the last emitted value
-    );
   }
 
   async toggleEntryVisibility() {
@@ -134,13 +129,6 @@ export class GuestbookEntryComponent implements OnInit {
     this.hours = date.getHours().toString().padStart(2, '0');
     this.minutes = date.getMinutes().toString().padStart(2, '0');
   }
-
-  private hasPermission(allowedRoles: string[]): Observable<boolean> {
-    return this.userRoles$!.pipe(
-      map(roles => roles.some(role => allowedRoles.includes(role)))
-    );
-  }
-
 
   sanitizeHtml(html: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(html);

@@ -1,40 +1,66 @@
-import {Component} from '@angular/core';
-import {isControlInvalid} from "../../utility/form-utils";
+import {Component, OnInit} from '@angular/core';
+import {ChangelogService} from "../../services/changelog.service";
+import {PermissionService} from "../../services/permission.service";
+import {ChangelogEntry} from "../../types/changelog.entry.type";
 
 @Component({
   selector: 'changelog-component',
   templateUrl: './changelog.component.html',
   styleUrl: './changelog.component.css'
 })
-export class ChangelogComponent {
+export class ChangelogComponent implements OnInit {
   loading: boolean = true;
 
-  changelog = [
+  constructor(private changelogService: ChangelogService,
+              private permissionService: PermissionService) {
+  }
+
+  ngOnInit() {
+    this.fetchEntries();
+  }
+
+  fetchEntries() {
+    this.loading = true;
+    this.changelogService.getEntries().subscribe({
+      next: (data) => {
+        this.changelog = data;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Error fetching changelog entries:', err);
+        this.loading = false
+      },
+    })
+  }
+
+  changelog: ChangelogEntry[] = [
     {
-      date: '2024-09-15',
-      version: '1.0.0',
       changes: [
-        'Added new user profile page with advanced editing features sxdfddlsabfndksj dsfndjsnfvdsr',
-        'Improved performance on the dashboard',
-        'Fixed bug with date picker on the forms page'
-      ]
+        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
+        'Lorem ipsum dolor sit amet, consetetur',
+        'Lorem ipsum dolor sit amet, consetetur sadipscing'
+      ],
+      id: 'uid',
+      version: '1.0.0',
+      timestamp: 12222222,
     },
     {
-      date: '2024-09-10',
-      version: '1.0.0',
       changes: [
-        'Updated the landing page design',
-        'Integrated payment gateway for premium users',
-        'Fixed issue with notification system'
-      ]
+        'At vero eos et accusam et justo duo dolores et ea rebum',
+        'Lorem ipsum dolor sit amet',
+        'Labore et dolore magna aliquyam erat, sed diam'
+      ],
+      id: 'uid',
+      version: '2.0.0',
+      timestamp: 12222222,
     },
-    {
-      date: '2024-09-01',
-      version: '1.0.0',
-      changes: [
-        'Released initial version of the application',
-      ]
-    }
   ];
-  protected readonly isControlInvalid = isControlInvalid;
+
+  processTimestamp(timestamp: any) {
+    const date = new Date(timestamp)
+    const formattedDate = date.toLocaleDateString();
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${formattedDate}, ${hours}:${minutes}`
+  }
 }

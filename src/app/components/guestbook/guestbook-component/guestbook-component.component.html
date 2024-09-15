@@ -5,7 +5,7 @@
       [hiddenEntriesCount]="hiddenEntriesCount"
     ></guestbook-main-component>
 
-    <div *ngIf="isLoading">
+    <div *ngIf="isLoading; else entriesContent">
       <div *ngFor="let i of [].constructor(entriesPerPage);" class="border shadow rounded-md p-4 w-full mx-auto mb-5">
         <div class="animate-pulse flex space-x-4">
           <div class="flex-1 space-y-6 py-1">
@@ -22,15 +22,18 @@
       </div>
     </div>
 
-    <guestbook-entry-component
-      *ngFor="let guestBookEntry of paginatedEntries"
-      [entry]="guestBookEntry"
-    ></guestbook-entry-component>
+    <!--    Todo should be inserted in animation -->
+    <ng-template #entriesContent>
+      <guestbook-entry-component
+        *ngFor="let guestBookEntry of paginatedEntries"
+        [entry]="guestBookEntry"
+      ></guestbook-entry-component>
+    </ng-template>
 
     <div *ngIf="!isLoading">
       <div
         *ngIf="((permissionService.hasPermission('view-invisible-guestbook-entries') | async) && hiddenEntriesCount == 0 && visibleEntriesCount == 0) || (!(permissionService.hasPermission('view-invisible-guestbook-entries') | async) && visibleEntriesCount == 0)">
-        {{hiddenEntriesCount}} vs {{visibleEntriesCount}}
+        {{ hiddenEntriesCount }} vs {{ visibleEntriesCount }}
         <no-entries-component></no-entries-component>
       </div>
     </div>

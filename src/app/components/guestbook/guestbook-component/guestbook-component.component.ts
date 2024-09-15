@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {GuestbookService} from "../../../services/guestbook.service";
 import {ConfigService} from "../../../services/config.service";
 import {PermissionService} from "../../../services/permission.service";
+import {firstValueFrom} from "rxjs";
 
 @Component({
   selector: 'guestbook-component',
@@ -15,10 +16,13 @@ export class GuestbookComponent implements OnInit {
   filteredGuestBookEntries: GuestBookEntry[] = [];
   hiddenEntriesCount: number = 0;
   visibleEntriesCount: number = 0;
+  isLoading: boolean = true;
 
   currentPage: number = 1;
   entriesPerPage: number = 1;
   config: any;
+
+
 
   constructor(
     private router: Router,
@@ -31,17 +35,28 @@ export class GuestbookComponent implements OnInit {
     this.config = this.configService.getConfig();
     this.entriesPerPage = this.config.GUESTBOOK_ENTRIES_PER_PAGE;
 
+    // this.isLoading = true;
     this.fetchData();
+    // this.isLoading = false;
   }
 
   fetchData() {
-    this.guestbookService.getEntries().subscribe(data => {
-      this.guestBookEntries = data;
-      this.filterEntries();
-      this.updateCounts();
-      this.performSearch("");
-    })
+    this.isLoading = true;
+    this.guestbookService.getEntries().subscribe({
+      next: (data) => {
+        this.guestBookEntries = data;
+        this.isLoading = false;
+        this.filterEntries();
+        this.updateCounts();
+        this.performSearch("");
+      },
+      error: (err) => {
+        console.error('Error fetching guestbook entries:', err);
+        this.isLoading = false
+      },
+    });
   }
+
 
   filterEntries() {
     this.permissionService.hasPermission('view-invisible-guestbook-entries').subscribe(hasPermission => {
@@ -84,5 +99,4 @@ export class GuestbookComponent implements OnInit {
     const startIndex = (this.currentPage - 1) * this.entriesPerPage;
     return this.filteredGuestBookEntries.slice(startIndex, startIndex + this.entriesPerPage);
   }
-
 }

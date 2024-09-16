@@ -26,6 +26,7 @@
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "bootstrap": "^5.3.3",
+    "flowbite": "^2.5.1",
     "ng-recaptcha": "^13.2.1",
     "ngx-quill": "^26.0.8",
     "quill": "^2.0.2",

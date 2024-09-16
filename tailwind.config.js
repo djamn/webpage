@@ -2,7 +2,7 @@ module.exports = {
   darkMode: 'selector',
   // darkMode: ['variant', '&:not(.light *)'],
   // darkMode: ['selector', '[data-mode="dark"]'],
-  content: ["./src/**/*.{html,js}", "./node_modules/tw-elements/js/**/*.js"],
+  content: ["./src/**/*.{html,js}", "./node_modules/tw-elements/js/**/*.js", "./node_modules/flowbite/**/*.js"],
   theme: {
     extend: {
       boxShadow: {
@@ -45,6 +45,7 @@ module.exports = {
   },
   plugins: [
     // require("tw-elements/plugin.cjs"),
+    require('flowbite/plugin'),
     require('@tailwindcss/forms'),
   ],
 }

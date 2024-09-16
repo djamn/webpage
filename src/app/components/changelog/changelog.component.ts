@@ -114,8 +114,8 @@ export class ChangelogComponent implements OnInit {
       this.popupService.openUpdateChangelogPopup(entry).subscribe(async (result) => {
         if (result) {
           try {
-            await this.changelogService.addEntry(result.timestamp, result.changes, result.version, result.version_category)
-            this.snackbar.showSnackbar(this.translate.instant('CHANGELOG.DELETION_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
+            await this.changelogService.updateEntry(entry.id, result.timestamp, result.changes, result.version, result.version_category)
+            this.snackbar.showSnackbar(this.translate.instant('CHANGELOG.UPDATE_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
           } catch (err) {
             console.error('Error updating changelog entry:', err);
             this.snackbar.showSnackbar(this.translate.instant('CHANGELOG.UPDATE_UNSUCCESSFUL'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);

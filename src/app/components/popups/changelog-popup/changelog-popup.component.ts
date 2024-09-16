@@ -33,7 +33,7 @@ export class ChangelogPopupComponent {
       const timeString = dateObj.toLocaleTimeString('de-AT', {hour: '2-digit', minute: '2-digit'});
 
       this.changelogForm = new UntypedFormGroup({
-        changes: new UntypedFormControl(data.changes, [Validators.required]),
+        changes: new UntypedFormControl(data.changes.join('\n'), [Validators.required]),
         version: new UntypedFormControl(data.version, [Validators.required]),
         version_category: new UntypedFormControl(data.version_category),
         date: new UntypedFormControl(dateString),

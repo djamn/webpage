@@ -20,7 +20,7 @@
     "@angular/material": "^18.2.3",
     "@angular/platform-browser": "^18.2.3",
     "@angular/platform-browser-dynamic": "^18.2.3",
-    "@angular/router": "^18.2.3",
+    "@angular/router": "^18.2.4",
     "@fortawesome/fontawesome-free": "^6.6.0",
     "@ng-select/ng-select": "^13.7.1",
     "@ngx-translate/core": "^15.0.0",

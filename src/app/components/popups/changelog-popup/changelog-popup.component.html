@@ -1,0 +1,55 @@
+<div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+  <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+      <form (ngSubmit)="confirm()" [formGroup]="changelogForm"
+            class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+        <div class="bg-white dark:bg-dark-mode px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+            <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left border-1 w-full">
+              <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-title-dark-mode-text"
+                  id="modal-title">{{ 'DIALOG.TITLE' | translate }}</h3>
+              <div class="mt-2 border-1">
+                <div class="border-1 w-[20%]">
+                  <input class="tw-input h-[30px] p-2"
+                         id="version"
+                         [ngClass]="{'tw-input-error': isControlInvalid(this.changelogForm, 'version')}"
+                         formControlName="version"
+                         [placeholder]="'Test'"
+                         type="text"
+                  >
+                  <!--                         [ngClass]="{'tw-input-error'}"-->
+                  <!--<input
+     class="tw-input"
+     id="username-email"
+     [ngClass]="{'tw-input-error': isControlInvalid(this.loginForm, 'usernameOrEmail')}"
+     [placeholder]="'LOGIN.USERNAME_OR_EMAIL_PLACEHOLDER' | translate"
+     formControlName="usernameOrEmail"
+     autocomplete="username"
+     type="text">-->
+
+
+                </div>
+                <!--                <div class="border-1"></div>-->
+
+
+                <!--                <p class="text-sm text-gray-500 dark:text-dark-mode-text">BLA BLA BLA BLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLABLA BLA BLA</p>-->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-50 dark:bg-dark-mode px-4 py-3 sm:flex sm:flex-row sm:px-6 justify-end">
+          <button type="button"
+                  (click)="cancel()"
+                  class="btn-primary btn-gray mr-4">
+            {{ 'BUTTONS.BUTTON_CANCEL' | translate }}
+          </button>
+          <button type="submit"
+                  class="btn-primary btn-red">
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

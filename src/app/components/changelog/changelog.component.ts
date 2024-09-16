@@ -26,6 +26,7 @@ export class ChangelogComponent implements OnInit {
       ],
       id: 'uid',
       version: '1.0.0',
+      version_category: 'general',
       timestamp: 12222222,
     },
     {
@@ -36,6 +37,7 @@ export class ChangelogComponent implements OnInit {
       ],
       id: 'uid',
       version: '2.0.0',
+      version_category: 'general',
       timestamp: 12222222,
     },
   ];
@@ -66,6 +68,13 @@ export class ChangelogComponent implements OnInit {
         this.loading = false
       },
     })
+  }
+
+  async addEntry() {
+    const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-changelog-entries'));
+    if(hasPermission) {
+
+    }
   }
 
   async deleteEntry(id: string) {

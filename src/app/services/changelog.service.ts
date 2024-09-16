@@ -34,16 +34,31 @@ export class ChangelogService {
     } catch (err) {
       throw err;
     }
-
   }
 
-  async updateEntry(id: string) {
-
+  async updateEntry(id: string, timestamp: number, changes: string[], version: string, versionCategory: string) {
+    try {
+      await this.firestore.collection(changelogCollectionName).doc(id).update({
+        changes: changes,
+        version: version,
+        version_category: versionCategory,
+        timestamp: timestamp
+      })
+    } catch (err) {
+      throw err;
+    }
   }
 
-  async addEntry() {
-
+  async addEntry(timestamp: number, changes: string[], version: string, versionCategory: string) {
+    try {
+      await this.firestore.collection(changelogCollectionName).add({
+        changes: changes,
+        version: version,
+        version_category: versionCategory,
+        timestamp: timestamp
+      })
+    } catch (err) {
+      throw err;
+    }
   }
-
-
 }

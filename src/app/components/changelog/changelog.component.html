@@ -27,7 +27,8 @@
         opacity-0 animate-fadeInRight w-[60%]"
              [ngClass]="{'blur-sm' : loading}"
              style="animation-delay: 0.2s; animation-fill-mode: forwards;">
-          {{ processTimestamp(entry.timestamp) }} ({{ entry.version }})
+          {{ processTimestamp(entry.timestamp) }} (<ng-container *ngIf="entry.version_category !== 'General'">{{ entry.version_category }}
+        </ng-container>{{ entry.version }})
         </div>
         <div *ngIf="!loading && (permissionService.hasPermission('manage-changelog-entries') | async)"
              class="flex justify-end space-x-6 w-[40%] animate-fadeInLeft">

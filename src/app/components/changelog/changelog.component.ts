@@ -40,6 +40,28 @@ export class ChangelogComponent implements OnInit {
       version_category: 'general',
       timestamp: 12222222,
     },
+    {
+      changes: [
+        'At vero eos et accusam et justo duo dolores et ea rebum',
+        'Lorem ipsum dolor sit amet',
+        'Labore et dolore magna aliquyam erat, sed diam'
+      ],
+      id: 'uid',
+      version: '2.0.0',
+      version_category: 'general',
+      timestamp: 12222222,
+    },
+    {
+      changes: [
+        'At vero eos et accusam et justo duo dolores et ea rebum',
+        'Lorem ipsum dolor sit amet',
+        'Labore et dolore magna aliquyam erat, sed diam'
+      ],
+      id: 'uid',
+      version: '2.0.0',
+      version_category: 'general',
+      timestamp: 12222222,
+    },
   ];
 
   constructor(private changelogService: ChangelogService,

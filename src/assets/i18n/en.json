@@ -126,6 +126,7 @@
   },
   "BUTTONS": {
     "BUTTON_YES": "Yes",
+    "BUTTON_DELETE": "Delete",
     "BUTTON_SAVE": "Save",
     "BUTTON_CANCEL": "Cancel"
   },

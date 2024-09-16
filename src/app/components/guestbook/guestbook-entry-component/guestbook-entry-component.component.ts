@@ -91,7 +91,7 @@ export class GuestbookEntryComponent implements OnInit {
     const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-guestbook-entry'));
 
     if (hasPermission) {
-      this.popupService.openPopup(this.translate.instant('DIALOG.DESCRIPTION_DELETE_GUESTBOOK_ENTRY', {username: this.entry.username})).subscribe(async (result) => {
+      this.popupService.openPopup(this.translate.instant('DIALOG.DESCRIPTION_DELETE_GUESTBOOK_ENTRY', {username: this.entry.username}), this.translate.instant('BUTTONS.BUTTON_DELETE')).subscribe(async (result) => {
         if (result) {
           try {
             await this.guestbookService.deleteEntry(this.entry.id);
@@ -109,7 +109,7 @@ export class GuestbookEntryComponent implements OnInit {
     const hasPermission = await firstValueFrom(this.permissionService.hasPermission('delete-guestbook-comment'));
 
     if (hasPermission) {
-      this.popupService.openPopup(this.translate.instant('DIALOG.DESCRIPTION_DELETE_GUESTBOOK_COMMENT', {})).subscribe(async (result) => {
+      this.popupService.openPopup(this.translate.instant('DIALOG.DESCRIPTION_DELETE_GUESTBOOK_COMMENT', {}), this.translate.instant('BUTTONS.BUTTON_DELETE')).subscribe(async (result) => {
         if (result) {
           try {
             await this.guestbookService.deleteComment(this.entry.id);

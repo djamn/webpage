@@ -7,8 +7,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
   styleUrl: './dialog-popup.component.css'
 })
 export class DialogPopupComponent {
-  @Input()
-  dialogPopupDescription: string = '{0}'
+  dialogPopupDescription: string = ''
+  buttonActionText: string = ''
 
   constructor(public dialogRef: MatDialogRef<DialogPopupComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.setDescription();
@@ -24,5 +24,6 @@ export class DialogPopupComponent {
 
   setDescription() {
     this.dialogPopupDescription = this.data.description;
+    this.buttonActionText = this.data.button_action_text
   }
 }

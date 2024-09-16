@@ -13,8 +13,8 @@ export class PopupService {
     private dialog: MatDialog) {
   }
 
-  openPopup(description: string): Observable<boolean>  {
-    const dialogRef = this.dialog.open(DialogPopupComponent, {data: {description: description}})
+  openPopup(description: string, buttonActionText: string): Observable<boolean>  {
+    const dialogRef = this.dialog.open(DialogPopupComponent, {data: {description: description, button_action_text: buttonActionText}})
 
     return dialogRef.afterClosed();
   }

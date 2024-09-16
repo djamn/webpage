@@ -2,6 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {ChangelogService} from "../../services/changelog.service";
 import {PermissionService} from "../../services/permission.service";
 import {ChangelogEntry} from "../../types/changelog.entry.type";
+import {firstValueFrom} from "rxjs";
+import {PopupService} from "../../services/popup.service";
+import {TranslateService} from "@ngx-translate/core";
+import {Snackbar} from "../../utility/snackbar";
+import {ConfigService} from "../../services/config.service";
 
 @Component({
   selector: 'changelog-component',
@@ -10,28 +15,7 @@ import {ChangelogEntry} from "../../types/changelog.entry.type";
 })
 export class ChangelogComponent implements OnInit {
   loading: boolean = true;
-
-  constructor(private changelogService: ChangelogService,
-              protected permissionService: PermissionService) {
-  }
-
-  ngOnInit() {
-    this.fetchEntries();
-  }
-
-  fetchEntries() {
-    this.loading = true;
-    this.changelogService.getEntries().subscribe({
-      next: (data) => {
-        this.changelog = data;
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error('Error fetching changelog entries:', err);
-        this.loading = false
-      },
-    })
-  }
+  config: any;
 
   changelog: ChangelogEntry[] = [
     {
@@ -56,8 +40,51 @@ export class ChangelogComponent implements OnInit {
     },
   ];
 
-  deleteEntry(id: string) {
+  constructor(private changelogService: ChangelogService,
+              private popupService: PopupService,
+              private translate: TranslateService,
+              private snackbar: Snackbar,
+              private configService: ConfigService,
+              protected permissionService: PermissionService) {
+  }
 
+  ngOnInit() {
+    this.config = this.configService.getConfig();
+    this.fetchEntries();
+  }
+
+  fetchEntries() {
+    this.loading = true;
+    this.changelogService.getEntries().subscribe({
+      next: (data) => {
+        this.changelog = data;
+        console.log(data)
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Error fetching changelog entries:', err);
+        this.loading = false
+      },
+    })
+  }
+
+  async deleteEntry(id: string) {
+    console.log('works?')
+    const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-changelog-entries'));
+
+    if (hasPermission) {
+      this.popupService.openPopup(this.translate.instant('DIALOG.DESCRIPTION_DELETE_CHANGELOG_ENTRY', {}), this.translate.instant('BUTTONS.BUTTON_DELETE')).subscribe(async (result) => {
+        if (result) {
+          try {
+            await this.changelogService.deleteEntry(id);
+            this.snackbar.showSnackbar(this.translate.instant('CHANGELOG.DELETION_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
+          } catch (err) {
+            console.error('Error deleting changelog entry:', err);
+            this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.DELETE.COMMENT_DELETED_SUCCESSFUL'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+          }
+        }
+      })
+    }
   }
 
   editEntry(id: string) {

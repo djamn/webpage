@@ -116,7 +116,7 @@ export class GuestbookEntryComponent implements OnInit {
             this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.DELETE.COMMENT_DELETED_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
           } catch (err) {
             console.error('Error deleting comment:', err);
-            this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.DELETE.COMMENT_DELETED_SUCCESSFUL'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+            this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.DELETE.COMMENT_DELETION_FAILED'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
           }
         }
       });

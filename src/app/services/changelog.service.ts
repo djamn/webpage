@@ -20,9 +20,30 @@ export class ChangelogService {
         map(actions => {
           return actions.map(a => {
             const data = a.payload.doc.data() as ChangelogEntry
-            return {...data}
+            const id = a.payload.doc.id;
+            return {...data, id}
           })
         })
       )
   }
+
+  async deleteEntry(id: string) {
+    try {
+      await this.firestore.collection(changelogCollectionName).doc(id).delete();
+      console.debug("Successfully deleted entry with id", id)
+    } catch (err) {
+      throw err;
+    }
+
+  }
+
+  async updateEntry(id: string) {
+
+  }
+
+  async addEntry() {
+
+  }
+
+
 }

@@ -136,6 +136,7 @@
     "DESCRIPTION_DELETE_GUESTBOOK_ENTRY": "Do you really want to delete the entry of user \"{{username}}\" permanently?",
     "DESCRIPTION_ADD_GUESTBOOK_COMMENT": "Type in your comment you want to add to this entry:",
     "DESCRIPTION_DELETE_GUESTBOOK_COMMENT": "Do you really want to delete the comment?",
+    "DESCRIPTION_DELETE_CHANGELOG_ENTRY": "Do you really want to delete this changelog entry?",
     "REQUIRED_FIELD": "This field is required!"
   },
   "GENERAL": {
@@ -145,6 +146,8 @@
     "CHANGELOG_TITLE": "Changelog",
     "ADD_ENTRY_DESC": "Add new entry",
     "DELETE_ENTRY_DESC": "Delete this entry",
-    "EDIT_ENTRY_DESC": "Edit this entry"
+    "EDIT_ENTRY_DESC": "Edit this entry",
+    "DELETION_SUCCESSFUL": "Changelog entry successfully deleted!",
+    "DELETION_UNSUCCESSFUL": "There was an error deleting changelog entry. Please try again."
   }
 }

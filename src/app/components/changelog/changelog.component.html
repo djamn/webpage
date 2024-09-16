@@ -6,8 +6,8 @@
         style="animation-duration: 0.4s; animation-fill-mode: forwards">
         {{ 'CHANGELOG.CHANGELOG_TITLE' | translate }}
       </h1>
-      <button *ngIf="permissionService.hasPermission('manage-changelog-entries') | async"
-              class="flex items-center justify-center w-12 h-12 text-white bg-green-500 rounded-full hover:bg-green-700 shadow-lg transition duration-300 ease-in-out transform hover:scale-110 animate-fadeInLeft"
+      <button *ngIf="!loading && (permissionService.hasPermission('manage-changelog-entries') | async)"
+              class="ml-4 flex items-center justify-center w-12 h-12 text-white bg-green-500 rounded-full hover:bg-green-700 shadow-lg transition duration-300 ease-in-out transform hover:scale-110 animate-fadeInLeft"
               title="{{'CHANGELOG.ADD_ENTRY_DESC' | translate}}">
         <!--        TODO title-->
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
@@ -28,7 +28,7 @@
              style="animation-delay: 0.2s; animation-fill-mode: forwards;">
           {{ processTimestamp(entry.timestamp) }} ({{ entry.version }})
         </div>
-        <div *ngIf="permissionService.hasPermission('manage-changelog-entries') | async"
+        <div *ngIf="!loading && (permissionService.hasPermission('manage-changelog-entries') | async)"
              class="flex justify-end space-x-6 w-[40%] animate-fadeInLeft">
           <svg
             (click)="editEntry(entry.id)"

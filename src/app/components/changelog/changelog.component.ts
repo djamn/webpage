@@ -73,6 +73,11 @@ export class ChangelogComponent implements OnInit {
   async addEntry() {
     const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-changelog-entries'));
     if(hasPermission) {
+      this.popupService.openCreateChangelogPopup().subscribe(async (result) => {
+        if(result) {
+          console.warn(result)
+        }
+      })
 
     }
   }

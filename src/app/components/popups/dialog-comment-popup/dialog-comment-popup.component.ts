@@ -24,10 +24,7 @@ export class DialogCommentPopupComponent {
   confirm() {
     // Show field is required hint
     if (this.commentForm.invalid) {
-      Object.keys(this.commentForm.controls).forEach(field => {
-        const control = this.commentForm.get(field);
-        if (control) control.markAsTouched({onlySelf: true});
-      });
+      this.commentForm.markAllAsTouched();
       return;
     }
 

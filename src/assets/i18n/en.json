@@ -137,7 +137,16 @@
     "DESCRIPTION_ADD_GUESTBOOK_COMMENT": "Type in your comment you want to add to this entry:",
     "DESCRIPTION_DELETE_GUESTBOOK_COMMENT": "Do you really want to delete the comment?",
     "DESCRIPTION_DELETE_CHANGELOG_ENTRY": "Do you really want to delete this changelog entry?",
-    "REQUIRED_FIELD": "This field is required!"
+    "REQUIRED_FIELD": "This field is required!",
+    "CREATE_CHANGELOG_TITLE": "Create Changelog Entry",
+    "SELECT_DATE_LABEL": "Select Date",
+    "SELECT_TIME_LABEL": "Select Time",
+    "ENTER_CHANGES_LABEL": "Enter Changes",
+    "ENTER_CHANGES_HINT": "Newline for new change",
+    "ENTER_VERSION_LABEL": "Enter Version",
+    "ENTER_VERSION_PLACEHOLDER": "Version",
+    "CATEGORY_LABEL": "Select Category"
+
   },
   "GENERAL": {
     "NO_ENTRIES_AVAILABLE": "No entries available :("

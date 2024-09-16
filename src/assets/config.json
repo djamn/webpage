@@ -19,6 +19,7 @@
   "GUESTBOOK_USERNAME_CHARACTER_PATTERN": "^[A-Za-z0-9]*$",
   "LOGIN_SLOW_DOWN_DURATION": 1000,
   "GUESTBOOK_ENTRIES_PER_PAGE": 2,
+  "VERSION_CATEGORIES": ["General", "MarioGame", "Unknown"],
   "LANGUAGES": [
     {
       "code": "en",

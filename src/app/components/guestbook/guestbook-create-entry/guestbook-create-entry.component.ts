@@ -88,12 +88,13 @@ export class GuestbookCreateEntryComponent implements OnInit {
 
     // Show field is required hint
     if (this.createEntryForm.invalid) {
-      Object.keys(this.createEntryForm.controls).forEach(field => {
+      this.createEntryForm.markAllAsTouched();
+/*      Object.keys(this.createEntryForm.controls).forEach(field => {
         const control = this.createEntryForm.get(field);
         if (control) {
           control.markAsTouched({onlySelf: true});
         }
-      });
+      });*/
       this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ERRORS.FIELDS_HAVE_ERRORS'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
       return;
     }

@@ -4,6 +4,8 @@ import {Observable} from "rxjs";
 import {DialogCommentPopupComponent} from "../components/popups/dialog-comment-popup/dialog-comment-popup.component";
 import {DialogPopupComponent} from "../components/popups/dialog-popup/dialog-popup.component";
 import {ChangelogPopupComponent} from "../components/popups/changelog-popup/changelog-popup.component";
+import {ChangelogEntry} from "../types/changelog.entry.type";
+import {data} from "autoprefixer";
 
 @Injectable({
   providedIn: 'root'
@@ -25,20 +27,13 @@ export class PopupService {
     return dialogRef.afterClosed();
   }
 
-  openUpdateChangelogPopup(timestamp: number, version: string, versionCategory: string, changes: string[]): Observable<boolean> {
-    const dialogRef = this.dialog.open(ChangelogPopupComponent, {
-      data: {
-        changes: changes,
-        version: version,
-        version_category: versionCategory,
-        timestamp: timestamp
-      }
-    })
+  openUpdateChangelogPopup(entry: ChangelogEntry): Observable<ChangelogEntry> {
+    const dialogRef = this.dialog.open(ChangelogPopupComponent, {data: entry})
 
     return dialogRef.afterClosed();
   }
 
-  openCreateChangelogPopup(): Observable<boolean> {
+  openCreateChangelogPopup(): Observable<ChangelogEntry> {
     const dialogRef = this.dialog.open(ChangelogPopupComponent)
 
     return dialogRef.afterClosed();

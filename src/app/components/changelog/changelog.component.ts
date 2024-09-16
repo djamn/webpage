@@ -72,15 +72,22 @@ export class ChangelogComponent implements OnInit {
 
   async addEntry() {
     const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-changelog-entries'));
-    if(hasPermission) {
+    if (hasPermission) {
       this.popupService.openCreateChangelogPopup().subscribe(async (result) => {
-        if(result) {
-          console.warn(result)
+        if (result) {
+          try {
+            await this.changelogService.addEntry(result.timestamp, result.changes, result.version, result.version_category)
+            this.snackbar.showSnackbar(this.translate.instant('CHANGELOG.CREATION_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
+          } catch (err) {
+            console.error("Error while creating changelog", err);
+            this.snackbar.showSnackbar(this.translate.instant('CHANGELOG.CREATION_UNSUCCESSFUL'), 'error-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
+          }
         }
       })
-
     }
   }
+
+  // TODO snackbars auf success und error checken
 
   async deleteEntry(id: string) {
     console.log('works?')
@@ -94,15 +101,29 @@ export class ChangelogComponent implements OnInit {
             this.snackbar.showSnackbar(this.translate.instant('CHANGELOG.DELETION_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
           } catch (err) {
             console.error('Error deleting changelog entry:', err);
-            this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.DELETE.COMMENT_DELETED_SUCCESSFUL'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+            this.snackbar.showSnackbar(this.translate.instant('CHANGELOG.DELETION_UNSUCCESSFUL'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
           }
         }
       })
     }
   }
 
-  editEntry(id: string) {
+  async editEntry(entry: ChangelogEntry) {
+    const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-changelog-entries'));
+    if (hasPermission) {
+      this.popupService.openUpdateChangelogPopup(entry).subscribe(async (result) => {
+        if (result) {
+          try {
+            await this.changelogService.addEntry(result.timestamp, result.changes, result.version, result.version_category)
+            this.snackbar.showSnackbar(this.translate.instant('CHANGELOG.DELETION_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
+          } catch (err) {
+            console.error('Error updating changelog entry:', err);
+            this.snackbar.showSnackbar(this.translate.instant('CHANGELOG.UPDATE_UNSUCCESSFUL'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+          }
+        }
+      })
 
+    }
   }
 
   processTimestamp(timestamp: any) {

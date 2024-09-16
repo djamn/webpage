@@ -25,15 +25,19 @@ export class ChangelogPopupComponent {
         version_category: new UntypedFormControl(this.config.VERSION_CATEGORIES[0]),
         date: new UntypedFormControl(new Date().toISOString().substring(0, 10)),
         time: new UntypedFormControl(timeString),
-      })} else {
+      })
+    } else {
+      const dateObj = new Date(data.timestamp);
+      // const dateString = dateObj.toLocaleDateString('de-AT', { day: '2-digit', month: '2-digit', year: 'numeric' });
+      const dateString = dateObj.toISOString().substring(0, 10)
+      const timeString = dateObj.toLocaleTimeString('de-AT', {hour: '2-digit', minute: '2-digit'});
 
-
-        this.changelogForm = new UntypedFormGroup({
-          changes: new UntypedFormControl(data.changes, [Validators.required]),
-          version: new UntypedFormControl(data.version, [Validators.required]),
-          version_category: new UntypedFormControl(data.version_category),
-          date: new UntypedFormControl(''),
-          time: new UntypedFormControl(''),
+      this.changelogForm = new UntypedFormGroup({
+        changes: new UntypedFormControl(data.changes, [Validators.required]),
+        version: new UntypedFormControl(data.version, [Validators.required]),
+        version_category: new UntypedFormControl(data.version_category),
+        date: new UntypedFormControl(dateString),
+        time: new UntypedFormControl(timeString),
       })
     }
   }
@@ -52,33 +56,14 @@ export class ChangelogPopupComponent {
     const version = this.changelogForm.get('version')?.value
     const versionCategory = this.changelogForm.get('version_category')?.value
 
-    this.dialogRef.close({timestamp, version, versionCategory, changesArray});
+    this.dialogRef.close({
+      timestamp: timestamp,
+      version: version,
+      version_category: versionCategory,
+      changes: changesArray
+    });
   }
 
-  /*    const year = dateObject.getFullYear();
-    const month = String(dateObject.getMonth() + 1).padStart(2, '0'); // Months are 0-based, so add 1
-    const day = String(dateObject.getDate()).padStart(2, '0');
-
-    // Extract the hours and minutes
-    const hours = String(dateObject.getHours()).padStart(2, '0');
-    const minutes = String(dateObject.getMinutes()).padStart(2, '0');
-    // Format the date as YYYY-MM-DD
-    const formattedDate = `${year}-${month}-${day}`;
-
-    // Format the time as HH:MM
-    const formattedTime = `${hours}:${minutes}`;
-    console.log("Date:", formattedDate);
-    console.log("Time:", formattedTime);*/
-
-  // TODO UTILITY
-  formatDate(date: Date): string {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is 0-based
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${day}. ${month}. ${year}`;
-  }
-
-  // TODO UTILITY
   getFormTimeStamp() {
     const date = this.changelogForm.get('date')?.value;
     const time = this.changelogForm.get('time')?.value;
@@ -89,12 +74,7 @@ export class ChangelogPopupComponent {
   }
 
   cancel() {
-    // this.dialogRef.close(false);
-  }
-
-  setDescription() {
-    // this.dialogPopupDescription = this.data.description;
-    // this.buttonActionText = this.data.button_action_text
+    this.dialogRef.close(false);
   }
 
   protected readonly isControlInvalid = isControlInvalid;

@@ -50,6 +50,7 @@ export class ChangelogService {
   }
 
   async addEntry(timestamp: number, changes: string[], version: string, versionCategory: string) {
+    console.log(timestamp, changes, version, versionCategory)
     try {
       await this.firestore.collection(changelogCollectionName).add({
         changes: changes,

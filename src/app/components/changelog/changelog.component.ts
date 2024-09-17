@@ -82,7 +82,6 @@ export class ChangelogComponent implements OnInit {
     this.changelogService.getEntries().subscribe({
       next: (data) => {
         this.changelog = data;
-        console.log(data)
         this.loading = false;
       },
       error: (err) => {
@@ -112,7 +111,6 @@ export class ChangelogComponent implements OnInit {
   // TODO snackbars auf success und error checken
 
   async deleteEntry(id: string) {
-    console.log('works?')
     const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-changelog-entries'));
 
     if (hasPermission) {

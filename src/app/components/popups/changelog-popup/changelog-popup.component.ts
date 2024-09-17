@@ -70,7 +70,10 @@ export class ChangelogPopupComponent {
 
     const combinedDateTime = date + 'T' + time;
     const dateObject = new Date(combinedDateTime);
-    return dateObject.getTime();
+
+    if (isNaN(dateObject.getTime())) return new Date().getTime();
+    else return dateObject.getTime();
+
   }
 
   cancel() {

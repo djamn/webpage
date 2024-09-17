@@ -1,22 +1,75 @@
-<div class="main-component-container main-guestbook-container">
-  <div class="guestbook-container">
-    <div class="guestbook-title-container">
-      <!--      TODO i18n-->
-      <span id="guestbook-title">Gästebuch</span>
-      <div class="guestbook-subtitle-container">
+<div class="bg-gradient-to-br from-gray-100 to-blue-50 flex items-center justify-center py-10">
+  <div class="bg-white p-10 rounded-xl shadow-lg w-[90%] max-w-3xl transition-all duration-300 transform hover:scale-105">
+    <!-- Title and Entry Count -->
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-extrabold text-gray-800 mb-4 tracking-wide animate-fadeInDown">
+        Gästebuch
+      </h1>
+      <div>
         <span *ngIf="!(permissionService.hasPermission('view-invisible-guestbook-entries') | async)"
-              id="guestbook-subtitle-1">Einträge: {{ visibleEntriesCount }}</span>
+              class="text-xl text-gray-600 animate-fadeInUp">
+          Einträge: {{ visibleEntriesCount }}
+        </span>
         <span *ngIf="(permissionService.hasPermission('view-invisible-guestbook-entries') | async)"
-              id="guestbook-subtitle-1-admin">Einträge: {{ visibleEntriesCount }}
-          (versteckt: {{ hiddenEntriesCount }})</span>
-        <span id="guestbook-subtitle-2">Besucher: %s</span>
+              class="text-xl text-gray-600 animate-fadeInUp">
+          Einträge: {{ visibleEntriesCount }}
+          <span class="text-gray-400">(versteckt: {{ hiddenEntriesCount }})</span>
+        </span>
       </div>
     </div>
 
-    <div class="guestbook-links-container">
-      <a id="guestbook-entry" routerLink="create"><< Eintragen</a>
-      <a id="guestbook-homepage" routerLink="">Homepage >></a>
+    <!-- Action Buttons -->
+    <div class="flex justify-between items-center space-x-4">
+      <!-- Create Entry Button -->
+      <a routerLink="create"
+         class="px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg font-semibold tracking-wide hover:bg-blue-700 transform transition-all duration-300 ease-in-out hover:scale-105 animate-fadeInLeft">
+        + Eintrag erstellen
+      </a>
+
+      <!-- Back to Homepage Button -->
+      <a routerLink=""
+         class="px-6 py-3 bg-gray-300 text-gray-700 rounded-lg shadow-lg font-semibold tracking-wide hover:bg-gray-400 transform transition-all duration-300 ease-in-out hover:scale-105 animate-fadeInRight">
+        Zurück zur Homepage
+      </a>
     </div>
-    <!--TODO mobile compatibility-->
   </div>
 </div>
+
+
+<!--<div class="bg-gray-100 p-6 flex justify-center items-center">
+  <div class="g-white p-8 rounded-lg shadow-lg w-[70%]">
+    &lt;!&ndash; Title and Subtitle &ndash;&gt;
+    <div class="text-center mb-6">
+      <h1 class="text-3xl font-bold text-gray-800 mb-2 animate-fadeInDown">
+        Gästebuch
+      </h1>
+      <div class="">
+        <span *ngIf="!(permissionService.hasPermission('view-invisible-guestbook-entries') | async)"
+              class="text-gray-600 text-lg animate-fadeInUp">
+          Einträge: {{ visibleEntriesCount }}
+        </span>
+        <span *ngIf="(permissionService.hasPermission('view-invisible-guestbook-entries') | async)"
+              class="text-gray-600 text-lg animate-fadeInUp">
+          Einträge: {{ visibleEntriesCount }}
+          <span class="text-gray-400">(versteckt: {{ hiddenEntriesCount }})</span>
+        </span>
+      </div>
+    </div>
+
+    &lt;!&ndash; Links &ndash;&gt;
+    <div class="flex justify-between mt-4">
+      <a routerLink="create"
+         class="text-blue-500 hover:text-blue-700 transition-colors duration-300 animate-fadeInLeft">
+        &lt;&lt; Eintragen
+      </a>
+      <a routerLink=""
+         class="text-blue-500 hover:text-blue-700 transition-colors duration-300 animate-fadeInRight">
+        Homepage &gt;&gt;
+      </a>
+    </div>
+  </div>
+</div>-->
+
+
+<!--TODO mobile compatibility-->
+<!--      TODO i18n-->

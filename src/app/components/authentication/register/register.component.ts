@@ -84,6 +84,7 @@ export class RegisterComponent implements OnInit {
       const emailExists = await this.checkEmailExists(email);
       if (emailExists) {
         this.snackbar.showSnackbar(this.translate.instant('REGISTER.ERRORS.EMAIL_EXISTS'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+        this.isLoading = false;
         return;
       }
 
@@ -91,6 +92,7 @@ export class RegisterComponent implements OnInit {
       const usernameExists = await this.checkUsernameExists(username);
       if (usernameExists) {
         this.snackbar.showSnackbar(this.translate.instant('REGISTER.ERRORS.USERNAME_TAKEN'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+        this.isLoading = false;
         return;
 
       }

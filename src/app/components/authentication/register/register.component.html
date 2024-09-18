@@ -217,6 +217,7 @@
       <div class="w-full mb-2">
         <button
           [attr.title]="config.REGISTER_POSSIBLE ? '' : ('REGISTER.ERRORS.NO_REGISTRATION_POSSIBLE_HINT' | translate)"
+          [ngClass]="{'cursor-not-allowed' : isLoading}"
           [disabled]="!config.REGISTER_POSSIBLE" class="w-full btn-primary btn-blue"
           type="submit">
           <div class="flex items-center justify-center">

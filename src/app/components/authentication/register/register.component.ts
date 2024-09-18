@@ -66,6 +66,8 @@ export class RegisterComponent implements OnInit {
 
 
   async register() {
+    if(this.isLoading) return;
+
     if (!this.config.REGISTER_POSSIBLE) {
       this.snackbar.showSnackbar(this.translate.instant('REGISTER.ERRORS.NO_REGISTRATION_POSSIBLE_HINT'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
       return;

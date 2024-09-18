@@ -43,6 +43,8 @@ export class LoginComponent implements OnInit {
   }
 
   async login() {
+    if(this.isLoading) return;
+
     if (!this.loginForm.valid) {
       this.loginForm.markAllAsTouched();
       console.debug("Login Form invalid");

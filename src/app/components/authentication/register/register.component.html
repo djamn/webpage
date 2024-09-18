@@ -214,14 +214,20 @@
         </div>
       </div>
 
-      <div class="w-full mb-1.5">
-        <button class="w-full btn-primary btn-blue"
-                [disabled]="!config.REGISTER_POSSIBLE"
-                [attr.title]="config.REGISTER_POSSIBLE ? '' : ('REGISTER.ERRORS.NO_REGISTRATION_POSSIBLE_HINT' | translate)"
-                type="submit">{{ 'REGISTER.REGISTER_BUTTON'| translate }}
+      <div class="w-full mb-2">
+        <button
+          [attr.title]="config.REGISTER_POSSIBLE ? '' : ('REGISTER.ERRORS.NO_REGISTRATION_POSSIBLE_HINT' | translate)"
+          [disabled]="!config.REGISTER_POSSIBLE" class="w-full btn-primary btn-blue"
+          type="submit">
+          <div class="flex items-center justify-center">
+            <div *ngIf="isLoading"
+                 class="tw-loading-animation"></div>
+            <div class="ml-2">{{ 'REGISTER.REGISTER_BUTTON'| translate }}</div>
+          </div>
         </button>
+        <span class="text-hint-style">{{ 'REGISTER.REGISTER_HINT'| translate }}</span>
       </div>
-      <span class="text-hint-style">{{ 'REGISTER.REGISTER_HINT'| translate }}</span>
+
     </form>
   </div>
 </div>

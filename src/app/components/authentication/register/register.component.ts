@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit {
   hideConfirmPassword = true;
   config: any;
   signupForm!: UntypedFormGroup;
+  isLoading: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -76,6 +77,8 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
+    this.isLoading = true;
+
     try {
       const email = this.signupForm.value.email.trim().toLowerCase();
       const emailExists = await this.checkEmailExists(email);
@@ -96,10 +99,12 @@ export class RegisterComponent implements OnInit {
       this.snackbar.showSnackbar(this.translate.instant('REGISTER.REGISTRATION_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
       this.signupForm.reset();
 
+      this.isLoading = false;
       await this.router.navigate(['/login'])
     } catch (err) {
       console.error("Registration error:", err);
       this.snackbar.showSnackbar(this.translate.instant('REGISTER.ERRORS.UNEXPECTED_ERROR'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+      this.isLoading = false;
     }
   }
 

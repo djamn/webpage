@@ -34,7 +34,8 @@ export class RegisterComponent implements OnInit {
     this.signupForm = new UntypedFormGroup({
       email: new UntypedFormControl({value: '', disabled: !this.config.REGISTER_POSSIBLE}, [
         Validators.required,
-        Validators.email
+        Validators.email,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
       ]),
       username: new UntypedFormControl({value: '', disabled: !this.config.REGISTER_POSSIBLE}, [
         Validators.required,

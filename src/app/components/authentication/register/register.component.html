@@ -43,7 +43,7 @@
             <div
               *ngIf="signupForm.get('email')?.hasError('required')">{{ 'REGISTER.ERRORS.REQUIRED_FIELD'| translate }}
             </div>
-            <div *ngIf="signupForm.get('email')?.hasError('email')">{{ 'REGISTER.ERRORS.EMAIL_INVALID'| translate }}
+            <div *ngIf="signupForm.get('email')?.hasError('email') || signupForm.get('email')?.hasError('pattern')">{{ 'REGISTER.ERRORS.EMAIL_INVALID'| translate }}
             </div>
             <div
               *ngIf="signupForm.get('email')?.hasError('emailTaken')">{{ 'REGISTER.ERRORS.EMAIL_EXISTS'| translate }}

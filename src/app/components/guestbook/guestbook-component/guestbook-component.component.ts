@@ -4,7 +4,6 @@ import {Router} from "@angular/router";
 import {GuestbookService} from "../../../services/guestbook.service";
 import {ConfigService} from "../../../services/config.service";
 import {PermissionService} from "../../../services/permission.service";
-import {firstValueFrom} from "rxjs";
 
 @Component({
   selector: 'guestbook-component',
@@ -21,7 +20,6 @@ export class GuestbookComponent implements OnInit {
   currentPage: number = 1;
   entriesPerPage: number = 1;
   config: any;
-
 
 
   constructor(

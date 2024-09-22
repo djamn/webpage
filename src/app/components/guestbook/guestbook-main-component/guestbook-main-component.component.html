@@ -1,5 +1,5 @@
 <div class="bg-gradient-to-br from-gray-100 to-blue-50 flex items-center justify-center py-10">
-  <div class="bg-white p-10 rounded-xl shadow-lg w-[90%] max-w-3xl transition-all duration-300 transform hover:scale-105">
+  <div class="bg-white p-10 rounded-xl shadow-lg w-[90%] max-w-3xl transition-all duration-300 transform hover:scale-102">
     <!-- Title and Entry Count -->
     <div class="text-center mb-8">
       <h1 class="text-4xl font-extrabold text-gray-800 mb-4 tracking-wide animate-fadeInDown">
@@ -11,7 +11,7 @@
           Einträge: {{ visibleEntriesCount }}
         </span>
         <span *ngIf="(permissionService.hasPermission('view-invisible-guestbook-entries') | async)"
-              class="text-xl text-gray-600 animate-fadeInUp">
+              class="text-xl text-gray-600 animate-fadeInSlow">
           Einträge: {{ visibleEntriesCount }}
           <span class="text-gray-400">(versteckt: {{ hiddenEntriesCount }})</span>
         </span>

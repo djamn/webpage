@@ -17,12 +17,12 @@ export class GuestbookService {
               private translate: TranslateService) {
   }
 
-  async addEntry(username: string, timestamp: number, status: string, isVisible: boolean, entryMessage: string) {
+  async addEntry(username: string, timestamp: number, title: string, isVisible: boolean, entryMessage: string) {
     try {
       await this.firestore.collection(guestbookCollectionName).add({
         username: username,
         timestamp: timestamp,
-        status: status,
+        title: title,
         is_visible: isVisible,
         entry_message: entryMessage,
         comment: null,
@@ -35,10 +35,11 @@ export class GuestbookService {
     }
   }
 
-  async updateEntry(id: string, username: string, timestamp: number, silentEdit: boolean, entryMessage: string) {
+  async updateEntry(id: string, username: string, title: string, timestamp: number, silentEdit: boolean, entryMessage: string) {
     try {
       await this.firestore.collection(guestbookCollectionName).doc(id).update({
         username: username,
+        title: title,
         edited: true,
         silent_edit: silentEdit,
         entry_message: entryMessage,
@@ -94,7 +95,6 @@ export class GuestbookService {
   async toggleVisibility(id: string, newVisibility: boolean): Promise<boolean> {
     return this.firestore.collection(guestbookCollectionName).doc(id).update({
       is_visible: newVisibility,
-      status: newVisibility ? 'visible' : 'invisible'
     }).then(() => {
       return true;
     }).catch((err) => {

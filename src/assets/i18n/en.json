@@ -61,7 +61,7 @@
     "SELECT": "Change language"
   },
   "GUESTBOOK": {
-    "ENTRY_TITLE": "{{username}} wrote on {{date}} ({{hour}}:{{minute}} o'clock)",
+    "ENTRY_SUBTITLE": "wrote on {{date}} ({{hour}}:{{minute}} o'clock)",
     "COMMENT_TITLE": "Comment: ",
     "ENTRY_EDITED": "(edited)",
     "ENTRY_STATUS": "Status: {{status}}",

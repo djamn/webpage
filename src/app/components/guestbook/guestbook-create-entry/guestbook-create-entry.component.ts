@@ -104,10 +104,10 @@ export class GuestbookCreateEntryComponent implements OnInit {
       const trimmedUsername = formEntry.username.trim();
 
       if (this.isEditMode) {
-        await this.guestbookService.updateEntry(this.entryId!, trimmedUsername, Date.now(), false, formEntry.entry_message);
+        await this.guestbookService.updateEntry(this.entryId!, trimmedUsername, 'TITLE', Date.now(), false, formEntry.entry_message);
         this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ENTRY_UPDATED_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION)
       } else {
-        await this.guestbookService.addEntry(trimmedUsername, Date.now(), 'visible', true, formEntry.entry_message);
+        await this.guestbookService.addEntry(trimmedUsername, Date.now(), 'TITLE', true, formEntry.entry_message);
         this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ENTRY_CREATED_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION)
       }
 

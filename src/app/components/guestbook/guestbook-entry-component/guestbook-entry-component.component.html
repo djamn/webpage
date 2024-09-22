@@ -1,79 +1,93 @@
-<div *ngIf="entry.is_visible || !entry.is_visible && (permissionService.hasPermission('view-invisible-guestbook-entries') | async)"
-     class="p-6 bg-white shadow-md rounded-lg mb-6 border border-gray-200 transition-opacity duration-500 ease-in-out transform hover:scale-105"
-     [class.opacity-50]="!entry.is_visible">
-  <div class="flex justify-between">
-    <div class="w-full">
+<div
+  *ngIf="entry.is_visible || !entry.is_visible && (permissionService.hasPermission('view-invisible-guestbook-entries') | async)"
+  class="p-6 bg-white shadow-md rounded-lg mb-6 border border-gray-200 transition duration-500 ease-in-out hover:scale-101 animate-fade-in"
+  [class.opacity-50]="!entry.is_visible">
+  <div class="flex justify-between border-1 flex-row max-sm:flex-col">
+    <div class="w-full border-1">
       <div class="flex justify-between items-center">
         <div class="flex flex-col">
-          <span class="text-lg font-semibold text-gray-700">{{ entry.username }}</span>
+          <span class="text-lg font-semibold text-gray-700 animate-fadeInDown">{{ entry.title }}</span>
           <span class="text-sm text-gray-500">
-            {{ 'GUESTBOOK.ENTRY_TITLE' | translate: { date: formattedDate, hour: hours, minute: minutes } }}
+          <span class="font-semibold">{{ entry.username }}</span>  {{
+              'GUESTBOOK.ENTRY_SUBTITLE' | translate: {
+                date: formattedDate,
+                hour: hours,
+                minute: minutes
+              }
+            }}
           </span>
-          <span *ngIf="entry.edited && !entry.silent_edit" class="text-xs text-gray-400 italic">{{ 'GUESTBOOK.ENTRY_EDITED' | translate }}</span>
-        </div>
-
-        <!-- Entry visibility hint -->
-        <div *ngIf="!entry.is_visible" class="text-sm text-red-500">
-          {{ "GUESTBOOK.ENTRY_IS_INVISIBLE_HINT" | translate }}
+          <span *ngIf="entry.edited && !entry.silent_edit"
+                class="text-xs text-gray-400 italic">{{ 'GUESTBOOK.ENTRY_EDITED' | translate }}</span>
+          <span *ngIf="!entry.is_visible" class="text-sm text-red-500 font-semibold animate-fadeInSlow">
+            {{ "GUESTBOOK.ENTRY_IS_INVISIBLE_HINT" | translate }}
+          </span>
         </div>
       </div>
     </div>
 
     <!-- Admin actions (Edit, Delete, etc.) -->
-    <div *ngIf="permissionService.hasPermission('manage-guestbook-entry') | async" class="flex space-x-3 items-center">
-      <div class="text-sm text-gray-600">{{ "GUESTBOOK.ENTRY_STATUS" | translate: {status: entry.status} }}</div>
+    <div class="flex space-x-6 max-sm:space-x-10 animate-fadeInLeft border-1 max-sm:justify-center">
+      <!-- Toggle visibility icon -->
+      <svg (click)="toggleEntryVisibility()"
+           class="w-6 max-sm:w-5 max-sm:h-5 h-6 cursor-pointer text-gray-500 hover:text-gray-700 transition-colors duration-300 hover:scale-105"
+           viewBox="0 0 1024 1024">
+        <title>{{ 'GUESTBOOK.CHANGE_VISIBILITY_ENTRY_DESC' | translate }}</title>
+        <path *ngIf="!entry.is_visible"
+              d="M950.857 548.571c-54.286-84-128.571-156-217.714-201.714 22.857 38.857 34.857 83.429 34.857 128.571 0 141.143-114.857 256-256 256s-256-114.857-256-256c0-45.143 12-89.714 34.857-128.571-89.143 45.714-163.429 117.714-217.714 201.714 97.714 150.857 255.429 256 438.857 256s341.143-105.143 438.857-256zM539.429 329.143c0-14.857-12.571-27.429-27.429-27.429-95.429 0-173.714 78.286-173.714 173.714 0 14.857 12.571 27.429 27.429 27.429s27.429-12.571 27.429-27.429c0-65.143 53.714-118.857 118.857-118.857 14.857 0 27.429-12.571 27.429-27.429zM1024 548.571c0 14.286-4.571 27.429-11.429 39.429-105.143 173.143-297.714 289.714-500.571 289.714s-395.429-117.143-500.571-289.714c-6.857-12-11.429-25.143-11.429-39.429s4.571-27.429 11.429-39.429c105.143-172.571 297.714-289.714 500.571-289.714s395.429 117.143 500.571 289.714c6.857 12 11.429 25.143 11.429 39.429z"></path>
+        <path *ngIf="entry.is_visible"
+              d="M317.143 762.857l44.571-80.571c-66.286-48-105.714-125.143-105.714-206.857 0-45.143 12-89.714 34.857-128.571-89.143 45.714-163.429 117.714-217.714 201.714 59.429 92 143.429 169.143 244 214.286zM539.429 329.143c0-14.857-12.571-27.429-27.429-27.429-95.429 0-173.714 78.286-173.714 173.714 0 14.857 12.571 27.429 27.429 27.429s27.429-12.571 27.429-27.429c0-65.714 53.714-118.857 118.857-118.857 14.857 0 27.429-12.571 27.429-27.429zM746.857 220c0 1.143 0 4-0.571 5.143-120.571 215.429-240 432-360.571 647.429l-28 50.857c-3.429 5.714-9.714 9.143-16 9.143-10.286 0-64.571-33.143-76.571-40-5.714-3.429-9.143-9.143-9.143-16 0-9.143 19.429-40 25.143-49.714-110.857-50.286-204-136-269.714-238.857-7.429-11.429-11.429-25.143-11.429-39.429 0-13.714 4-28 11.429-39.429 113.143-173.714 289.714-289.714 500.571-289.714 34.286 0 69.143 3.429 102.857 9.714l30.857-55.429c3.429-5.714 9.143-9.143 16-9.143 10.286 0 64 33.143 76 40 5.714 3.429 9.143 9.143 9.143 15.429zM768 475.429c0 106.286-65.714 201.143-164.571 238.857l160-286.857c2.857 16 4.571 32 4.571 48zM1024 548.571c0 14.857-4 26.857-11.429 39.429-17.714 29.143-40 57.143-62.286 82.857-112 128.571-266.286 206.857-438.286 206.857l42.286-75.429c166.286-14.286 307.429-115.429 396.571-253.714-42.286-65.714-96.571-123.429-161.143-168l36-64c70.857 47.429 142.286 118.857 186.857 192.571 7.429 12.571 11.429 24.571 11.429 39.429z"></path>
+      </svg>
 
-      <div class="flex space-x-3">
-        <!-- Toggle visibility icon -->
-        <svg (click)="toggleEntryVisibility()" class="w-5 h-5 cursor-pointer text-gray-500 hover:text-gray-700 transition-colors duration-300"
-             viewBox="0 0 1024 1024">
-          <title>{{ 'GUESTBOOK.CHANGE_VISIBILITY_ENTRY_DESC' | translate }}</title>
-          <path *ngIf="!entry.is_visible" d="M950.857 548.571..."></path>
-          <path *ngIf="entry.is_visible" d="M317.143 762.857..."></path>
-        </svg>
+      <!-- Comment icon -->
+      <svg (click)="addComment()"
+           class="w-6 h-6 max-sm:w-5 max-sm:h-5 cursor-pointer text-gray-500 hover:text-gray-700 transition-colors duration-300 hover:scale-105"
+           viewBox="0 0 1024 1024">
+        <title>{{ 'GUESTBOOK.COMMENT_ENTRY_DESC' | translate }}</title>
+        <path
+          d="M365.714 512c0 40.571-32.571 73.143-73.143 73.143s-73.143-32.571-73.143-73.143 32.571-73.143 73.143-73.143 73.143 32.571 73.143 73.143zM585.143 512c0 40.571-32.571 73.143-73.143 73.143s-73.143-32.571-73.143-73.143 32.571-73.143 73.143-73.143 73.143 32.571 73.143 73.143zM804.571 512c0 40.571-32.571 73.143-73.143 73.143s-73.143-32.571-73.143-73.143 32.571-73.143 73.143-73.143 73.143 32.571 73.143 73.143zM512 219.429c-237.714 0-438.857 133.714-438.857 292.571 0 85.143 57.143 166.286 156 222.286l49.714 28.571-15.429 54.857c-10.857 40.571-25.143 72-40 98.286 57.714-24 110.286-56.571 157.143-97.714l24.571-21.714 32.571 3.429c24.571 2.857 49.714 4.571 74.286 4.571 237.714 0 438.857-133.714 438.857-292.571s-201.143-292.571-438.857-292.571zM1024 512c0 202.286-229.143 365.714-512 365.714-28 0-56-1.714-82.857-4.571-74.857 66.286-164 113.143-262.857 138.286-20.571 5.714-42.857 9.714-65.143 12.571h-2.857c-11.429 0-21.714-9.143-24.571-21.714v-0.571c-2.857-14.286 6.857-22.857 15.429-33.143 36-40.571 77.143-74.857 104-170.286-117.714-66.857-193.143-170.286-193.143-286.286 0-201.714 229.143-365.714 512-365.714v0c282.857 0 512 164 512 365.714z"></path>
+      </svg>
 
-        <!-- Comment icon -->
-        <svg (click)="addComment()" class="w-5 h-5 cursor-pointer text-gray-500 hover:text-gray-700 transition-colors duration-300"
-             viewBox="0 0 1024 1024">
-          <title>{{ 'GUESTBOOK.COMMENT_ENTRY_DESC' | translate }}</title>
-          <path d="M365.714 512c0 40.571-32.571 73.143-73.143..."></path>
-        </svg>
+      <!-- Edit icon -->
+      <svg (click)="editEntry()"
+           class="w-6 h-6 max-sm:w-5 max-sm:h-5 cursor-pointer text-gray-500 hover:text-gray-700 transition-colors duration-300 hover:scale-105"
+           viewBox="0 0 877.7142857142857 1024">
+        <title>{{ 'GUESTBOOK.EDIT_ENTRY_DESC' | translate }}</title>
+        <path
+          d="M585.143 512c0-80.571-65.714-146.286-146.286-146.286s-146.286 65.714-146.286 146.286 65.714 146.286 146.286 146.286 146.286-65.714 146.286-146.286zM877.714 449.714v126.857c0 8.571-6.857 18.857-16 20.571l-105.714 16c-6.286 18.286-13.143 35.429-22.286 52 19.429 28 40 53.143 61.143 78.857 3.429 4 5.714 9.143 5.714 14.286s-1.714 9.143-5.143 13.143c-13.714 18.286-90.857 102.286-110.286 102.286-5.143 0-10.286-2.286-14.857-5.143l-78.857-61.714c-16.571 8.571-34.286 16-52 21.714-4 34.857-7.429 72-16.571 106.286-2.286 9.143-10.286 16-20.571 16h-126.857c-10.286 0-19.429-7.429-20.571-17.143l-16-105.143c-17.714-5.714-34.857-12.571-51.429-21.143l-80.571 61.143c-4 3.429-9.143 5.143-14.286 5.143s-10.286-2.286-14.286-6.286c-30.286-27.429-70.286-62.857-94.286-96-2.857-4-4-8.571-4-13.143 0-5.143 1.714-9.143 4.571-13.143 19.429-26.286 40.571-51.429 60-78.286-9.714-18.286-17.714-37.143-23.429-56.571l-104.571-15.429c-9.714-1.714-16.571-10.857-16.571-20.571v-126.857c0-8.571 6.857-18.857 15.429-20.571l106.286-16c5.714-18.286 13.143-35.429 22.286-52.571-19.429-27.429-40-53.143-61.143-78.857-3.429-4-5.714-8.571-5.714-13.714s2.286-9.143 5.143-13.143c13.714-18.857 90.857-102.286 110.286-102.286 5.143 0 10.286 2.286 14.857 5.714l78.857 61.143c16.571-8.571 34.286-16 52-21.714 4-34.857 7.429-72 16.571-106.286 2.286-9.143 10.286-16 20.571-16h126.857c10.286 0 19.429 7.429 20.571 17.143l16 105.143c17.714 5.714 34.857 12.571 51.429 21.143l81.143-61.143c3.429-3.429 8.571-5.143 13.714-5.143s10.286 2.286 14.286 5.714c30.286 28 70.286 63.429 94.286 97.143 2.857 3.429 4 8 4 12.571 0 5.143-1.714 9.143-4.571 13.143-19.429 26.286-40.571 51.429-60 78.286 9.714 18.286 17.714 37.143 23.429 56l104.571 16c9.714 1.714 16.571 10.857 16.571 20.571z"></path>
+      </svg>
 
-        <!-- Edit icon -->
-        <svg (click)="editEntry()" class="w-5 h-5 cursor-pointer text-gray-500 hover:text-gray-700 transition-colors duration-300"
-             viewBox="0 0 877.7142857142857 1024">
-          <title>{{ 'GUESTBOOK.EDIT_ENTRY_DESC' | translate }}</title>
-          <path d="M585.143 512c0-80.571-65.714-146.286-146.286..."></path>
-        </svg>
-
-        <!-- Delete icon -->
-        <svg (click)="deleteEntry()" class="w-5 h-5 cursor-pointer text-gray-500 hover:text-red-600 transition-colors duration-300"
-             viewBox="0 0 804.5714285714286 1024">
-          <title>{{ 'GUESTBOOK.DELETE_ENTRY_DESC' | translate }}</title>
-          <path d="M292.571 420.571v329.143c0 10.286-8 18.286..."></path>
-        </svg>
-      </div>
+      <!-- Delete icon -->
+      <svg (click)="deleteEntry()"
+           class="w-6 h-6 max-sm:w-5 max-sm:h-5 cursor-pointer text-gray-500 hover:text-red-600 transition-colors duration-300 hover:scale-105"
+           viewBox="0 0 804.5714285714286 1024">
+        <title>{{ 'GUESTBOOK.DELETE_ENTRY_DESC' | translate }}</title>
+        <path
+          d="M292.571 420.571v329.143c0 10.286-8 18.286-18.286 18.286h-36.571c-10.286 0-18.286-8-18.286-18.286v-329.143c0-10.286 8-18.286 18.286-18.286h36.571c10.286 0 18.286 8 18.286 18.286zM438.857 420.571v329.143c0 10.286-8 18.286-18.286 18.286h-36.571c-10.286 0-18.286-8-18.286-18.286v-329.143c0-10.286 8-18.286 18.286-18.286h36.571c10.286 0 18.286 8 18.286 18.286zM585.143 420.571v329.143c0 10.286-8 18.286-18.286 18.286h-36.571c-10.286 0-18.286-8-18.286-18.286v-329.143c0-10.286 8-18.286 18.286-18.286h36.571c10.286 0 18.286 8 18.286 18.286zM658.286 834.286v-541.714h-512v541.714c0 27.429 15.429 43.429 18.286 43.429h475.429c2.857 0 18.286-16 18.286-43.429zM274.286 219.429h256l-27.429-66.857c-1.714-2.286-6.857-5.714-9.714-6.286h-181.143c-3.429 0.571-8 4-9.714 6.286zM804.571 237.714v36.571c0 10.286-8 18.286-18.286 18.286h-54.857v541.714c0 62.857-41.143 116.571-91.429 116.571h-475.429c-50.286 0-91.429-51.429-91.429-114.286v-544h-54.857c-10.286 0-18.286-8-18.286-18.286v-36.571c0-10.286 8-18.286 18.286-18.286h176.571l40-95.429c11.429-28 45.714-50.857 76-50.857h182.857c30.286 0 64.571 22.857 76 50.857l40 95.429h176.571c10.286 0 18.286 8 18.286 18.286z"></path>
+      </svg>
     </div>
   </div>
 
   <!-- Main Entry Message -->
   <div class="mt-4">
-    <div class="text-base text-gray-700" [innerHTML]="sanitizeHtml(entry.entry_message)"></div>
+    <div class="text-base text-gray-700 animate-fadeInRight" [innerHTML]="sanitizeHtml(entry.entry_message)"></div>
   </div>
 
   <!-- Admin comment section -->
-  <div *ngIf="entry.comment" class="mt-4 p-4 bg-gray-50 border-t border-gray-200 rounded-lg">
+  <div *ngIf="entry.comment"
+       class="mt-4 p-4 bg-gray-50 border-t border-gray-200 rounded-lg flex justify-between items-center animate-fadeInUp">
     <div class="text-sm text-gray-600">
       <span class="font-semibold">{{ "GUESTBOOK.COMMENT_TITLE" | translate }}:</span>
       <span>{{ entry.comment }}</span>
     </div>
 
     <!-- Delete comment button -->
-    <div *ngIf="permissionService.hasPermission('delete-guestbook-comment') | async" class="mt-2 flex justify-end">
-      <svg (click)="deleteComment()" class="w-5 h-5 cursor-pointer text-red-500 hover:text-red-700 transition-colors duration-300"
+    <div *ngIf="permissionService.hasPermission('delete-guestbook-comment') | async" class="ml-4">
+      <svg (click)="deleteComment()"
+           class="w-6 h-6 max-sm:w-5 max-sm:h-5 cursor-pointer text-red-500 hover:text-red-700 transition-colors duration-300 hover:scale-105"
            viewBox="0 0 804.5714285714286 1024">
         <title>{{ 'GUESTBOOK.DELETE_COMMENT_DESC' | translate }}</title>
-        <path d="M292.571 420.571v329.143c0 10.286-8 18.286..."></path>
+        <path
+          d="M292.571 420.571v329.143c0 10.286-8 18.286-18.286 18.286h-36.571c-10.286 0-18.286-8-18.286-18.286v-329.143c0-10.286 8-18.286 18.286-18.286h36.571c10.286 0 18.286 8 18.286 18.286zM438.857 420.571v329.143c0 10.286-8 18.286-18.286 18.286h-36.571c-10.286 0-18.286-8-18.286-18.286v-329.143c0-10.286 8-18.286 18.286-18.286h36.571c10.286 0 18.286 8 18.286 18.286zM585.143 420.571v329.143c0 10.286-8 18.286-18.286 18.286h-36.571c-10.286 0-18.286-8-18.286-18.286v-329.143c0-10.286 8-18.286 18.286-18.286h36.571c10.286 0 18.286 8 18.286 18.286zM658.286 834.286v-541.714h-512v541.714c0 27.429 15.429 43.429 18.286 43.429h475.429c2.857 0 18.286-16 18.286-43.429zM274.286 219.429h256l-27.429-66.857c-1.714-2.286-6.857-5.714-9.714-6.286h-181.143c-3.429 0.571-8 4-9.714 6.286zM804.571 237.714v36.571c0 10.286-8 18.286-18.286 18.286h-54.857v541.714c0 62.857-41.143 116.571-91.429 116.571h-475.429c-50.286 0-91.429-51.429-91.429-114.286v-544h-54.857c-10.286 0-18.286-8-18.286-18.286v-36.571c0-10.286 8-18.286 18.286-18.286h176.571l40-95.429c11.429-28 45.714-50.857 76-50.857h182.857c30.286 0 64.571 22.857 76 50.857l40 95.429h176.571c10.286 0 18.286 8 18.286 18.286z"></path>
       </svg>
     </div>
   </div>

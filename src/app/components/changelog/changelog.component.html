@@ -7,7 +7,7 @@
         {{ 'CHANGELOG.CHANGELOG_TITLE' | translate }}
       </h1>
       <button *ngIf="!loading && (permissionService.hasPermission('manage-changelog-entries') | async)"
-              class="ml-4 flex items-center justify-center w-12 h-12 text-white bg-green-500 dark:bg-green-700 rounded-full hover:bg-green-700 dark:hover:bg-green-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-110 animate-fadeInLeft"
+              class="ml-4 flex items-center justify-center w-12 h-12 text-white bg-green-500 dark:bg-green-700 rounded-full hover:bg-green-700 dark:hover:bg-green-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105 animate-fadeInLeft"
               (click)="addEntry()"
               title="{{'CHANGELOG.ADD_ENTRY_DESC' | translate}}">
         <!--        TODO title-->
@@ -25,7 +25,7 @@
 
     <div *ngFor="let entry of changelog"
          [ngClass]="{'animate-pulse' : loading}"
-         class="mb-8 transform transition duration-500 ease-in-out hover:scale-105 animate-fade-in">
+         class="mb-8 transform transition duration-500 ease-in-out hover:scale-102 animate-fade-in">
       <div class="flex flex-row">
         <div class="text-lg max-sm:text-center font-semibold text-gray-700 dark:text-title-dark-mode-text
         opacity-0 animate-fadeInRight w-[60%]"

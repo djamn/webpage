@@ -9,9 +9,9 @@
     <div class="w-full">
       <div class="flex justify-between items-center">
         <div class="flex flex-col">
-          <span [ngClass]="{'animate-fadeInDown' : !isLoading}"  class="text-lg font-semibold text-gray-700 dark:text-title-dark-mode-text">{{ entry.title }}</span>
+          <span [ngClass]="{'animate-fadeInDown' : !isLoading}"  class="text-lg font-semibold text-gray-800 dark:text-title-dark-mode-text">{{ entry.title }}</span>
           <span class="text-sm text-gray-500 dark:text-dark-mode-text">
-          <span class="font-semibold">{{ entry.username }}</span>  {{
+          <span class="font-medium">{{ entry.username }}</span>  {{
               'GUESTBOOK.ENTRY_SUBTITLE' | translate: {
                 date: creationDate,
               }

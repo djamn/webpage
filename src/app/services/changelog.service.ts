@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {map} from "rxjs";
+import {debounceTime, map} from "rxjs";
 import {ChangelogEntry} from "../types/changelog.entry.type";
 
 const changelogCollectionName: string = 'changelogs'
@@ -17,6 +17,7 @@ export class ChangelogService {
     return this.firestore.collection(changelogCollectionName, ref => ref.orderBy('timestamp', 'desc'))
       .snapshotChanges()
       .pipe(
+        debounceTime(300),    // needed to not load everything twice
         map(actions => {
           return actions.map(a => {
             const data = a.payload.doc.data() as ChangelogEntry

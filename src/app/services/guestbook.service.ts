@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {map, timestamp} from "rxjs";
+import {debounceTime, distinctUntilChanged, map, timestamp} from "rxjs";
 import {GuestBookEntry} from "../types/guestbook.entry.type";
 import {Snackbar} from "../utility/snackbar";
 import {TranslateService} from "@ngx-translate/core";
@@ -55,6 +55,7 @@ export class GuestbookService {
     return this.firestore.collection(guestbookCollectionName, ref => ref.orderBy('timestamp', 'desc'))
       .snapshotChanges()
       .pipe(
+        debounceTime(300),    // needed to not load everything twice
         map(actions => {
           return actions.map(a => {
             const data = a.payload.doc.data() as GuestBookEntry;

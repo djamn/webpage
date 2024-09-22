@@ -7,6 +7,7 @@ import {PopupService} from "../../services/popup.service";
 import {TranslateService} from "@ngx-translate/core";
 import {Snackbar} from "../../utility/snackbar";
 import {ConfigService} from "../../services/config.service";
+import build from "../../../build";
 
 @Component({
   selector: 'changelog-component',
@@ -16,6 +17,8 @@ import {ConfigService} from "../../services/config.service";
 export class ChangelogComponent implements OnInit {
   loading: boolean = true;
   config: any;
+  date: string = '';
+  time: string = '';
 
   changelog: ChangelogEntry[] = [
     {
@@ -73,6 +76,10 @@ export class ChangelogComponent implements OnInit {
   }
 
   ngOnInit() {
+    const dateObj = new Date(build.timestamp);
+    this.date = `${dateObj.getDate().toString().padStart(2, '0')}.${(dateObj.getMonth() + 1).toString().padStart(2, '0')}.${dateObj.getFullYear()}`;
+    this.time = `${dateObj.getHours().toString().padStart(2, '0')}:${dateObj.getMinutes().toString().padStart(2, '0')}`;
+
     this.config = this.configService.getConfig();
     this.fetchEntries();
   }
@@ -153,4 +160,6 @@ export class ChangelogComponent implements OnInit {
     const minutes = date.getMinutes().toString().padStart(2, '0');
     return `${formattedDate}, ${hours}:${minutes}`
   }
+
+  protected readonly build = build;
 }

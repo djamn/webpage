@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ConfigService} from "../../services/config.service";
+import Build from "../../../build";
 
 @Component({
   selector: 'footer-component',
@@ -16,4 +17,6 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
     this.config = this.configService.getConfig();
   }
+
+  protected readonly build = Build;
 }

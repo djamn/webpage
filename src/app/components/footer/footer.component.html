@@ -19,7 +19,7 @@
       <span class="footer-copyright-text">
         {{ 'FOOTER.COPYRIGHT_INFORMATION' | translate: {currentYear: currentYear} }}
         <a class="text-gray-600 transition-all duration-200 hover:text-blue-500"
-           routerLink="/changelog">{{ 'FOOTER.VERSION' | translate }}</a>
+           routerLink="/changelog">{{'FOOTER.VERSION' | translate: {version: build.version} }}</a>
       </span>
     </div>
   </div>

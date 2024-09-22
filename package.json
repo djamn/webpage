@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "angular-build-info && ng build",
+    "deploy": "angular-build-info && ng build --prod && ./deploy",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -25,9 +26,10 @@
     "@ng-select/ng-select": "^13.7.1",
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
+    "angular-build-info": "^2.0.1",
     "bootstrap": "^5.3.3",
     "flowbite": "^2.5.1",
-    "ng-recaptcha": "^13.2.1",
+    "ng-recaptcha-2": "^14.0.0",
     "ngx-quill": "^26.0.8",
     "quill": "^2.0.2",
     "quill2-emoji": "^0.1.2",

@@ -16,7 +16,7 @@ import {GuestbookEntryComponent} from "./guestbook/guestbook-entry-component/gue
 import {GuestbookPageComponent} from "./guestbook/guestbook-page-component/guestbook-page-component.component";
 import {GuestbookComponent} from "./guestbook/guestbook-component/guestbook-component.component";
 import {GuestbookCreateEntryComponent} from "./guestbook/guestbook-create-entry/guestbook-create-entry.component";
-import {RecaptchaFormsModule, RecaptchaModule} from "ng-recaptcha";
+import {RecaptchaFormsModule, RecaptchaModule} from "ng-recaptcha-2";
 import {QuillModule} from "ngx-quill";
 import * as Emoji from 'quill2-emoji'
 import Quill from "quill";

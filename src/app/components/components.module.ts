@@ -24,9 +24,7 @@ import {DialogCommentPopupComponent} from "./popups/dialog-comment-popup/dialog-
 import {DialogPopupComponent} from "./popups/dialog-popup/dialog-popup.component";
 import {ButtonYesCancelComponent} from "./popups/button-yes-cancel/button-yes-cancel.component";
 import {ButtonSaveCancelComponent} from "./popups/button-save-cancel/button-yes-cancel.component";
-import {AdminNavbar} from "./navbars/admin-navbar/admin-navbar.component";
 import {Navbar} from "./navbars/navbar/navbar.component";
-import {NavbarUser} from "./navbars/navbar-user/navbar-user.component";
 import {NoEntriesComponent} from "./no-entries/no-entries.component";
 import {MainpageMainComponent} from "./mainpage/mainpage-main-component/mainpage-main-component.component";
 import {NgSelectModule} from "@ng-select/ng-select";
@@ -54,8 +52,6 @@ Quill.register("modules/emoji", Emoji);
     DialogPopupComponent,
     ButtonYesCancelComponent,
     ButtonSaveCancelComponent,
-    AdminNavbar,
-    NavbarUser,
     Navbar,
     MainpageMainComponent,
     AdminDashboardComponent,
@@ -91,8 +87,6 @@ Quill.register("modules/emoji", Emoji);
     DialogPopupComponent,
     ButtonYesCancelComponent,
     ButtonSaveCancelComponent,
-    AdminNavbar,
-    NavbarUser,
     Navbar,
     MainpageMainComponent,
     AdminDashboardComponent,

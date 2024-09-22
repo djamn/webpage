@@ -61,9 +61,10 @@
     "SELECT": "Change language"
   },
   "GUESTBOOK": {
-    "ENTRY_SUBTITLE": "wrote on {{date}} ({{hour}}:{{minute}} o'clock)",
+    "ENTRY_SUBTITLE": "wrote on {{date}}",
     "COMMENT_TITLE": "Comment: ",
     "ENTRY_EDITED": "(edited)",
+    "ENTRY_EDITED_TIME": "Edited on {{date}}",
     "ENTRY_STATUS": "Status: {{status}}",
     "VISIBILITY_UPDATED_SUCCESS": "Visibility updated successfully!",
     "ENTRY_IS_INVISIBLE_HINT": "Hint: This entry is currently invisible!",
@@ -149,7 +150,8 @@
 
   },
   "GENERAL": {
-    "NO_ENTRIES_AVAILABLE": "No entries available :("
+    "NO_ENTRIES_AVAILABLE": "No entries available :(",
+    "CLOCK": "o'clock"
   },
   "CHANGELOG": {
     "CHANGELOG_TITLE": "Changelog",

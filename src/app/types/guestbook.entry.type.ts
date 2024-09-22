@@ -6,6 +6,7 @@ export interface GuestBookEntry {
   is_visible: boolean;
   entry_text: string;
   edited: boolean;
+  edited_timestamp: number;
   silent_edit: boolean;
   comment: string;
   user_uid: string;

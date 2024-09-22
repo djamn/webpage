@@ -6,8 +6,7 @@ import {ConfigService} from "../../../services/config.service";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import {PopupService} from "../../../services/popup.service";
 import {Router} from "@angular/router";
-import {AuthService} from "../../../services/auth.service";
-import {firstValueFrom, map, Observable, shareReplay} from "rxjs";
+import {firstValueFrom} from "rxjs";
 import {PermissionService} from "../../../services/permission.service";
 
 @Component({
@@ -17,11 +16,9 @@ import {PermissionService} from "../../../services/permission.service";
 })
 export class GuestbookEntryComponent implements OnInit {
   @Input() entry: any;
-  formattedDate: string = "";
-  hours: string = "";
-  minutes: string = "";
+  creationDate: string = "";
+  editDate: string = "";
   config: any;
-  private userRoles$: Observable<string[]> | undefined;
 
   constructor(
     private translate: TranslateService,
@@ -29,7 +26,6 @@ export class GuestbookEntryComponent implements OnInit {
     private snackbar: Snackbar,
     private configService: ConfigService,
     private router: Router,
-    private auth: AuthService,
     protected permissionService: PermissionService,
     private sanitizer: DomSanitizer,
     private popupService: PopupService) {
@@ -37,7 +33,8 @@ export class GuestbookEntryComponent implements OnInit {
 
   ngOnInit() {
     this.config = this.configService.getConfig()
-    this.processTimestamp(this.entry.timestamp);
+    this.creationDate = this.processTimestamp(this.entry.timestamp);
+    if(this.entry.edited) this.editDate = this.processTimestamp(this.entry.edited_timestamp)
   }
 
   async toggleEntryVisibility() {
@@ -125,9 +122,10 @@ export class GuestbookEntryComponent implements OnInit {
 
   processTimestamp(timestamp: any) {
     const date = new Date(timestamp)
-    this.formattedDate = date.toLocaleDateString();
-    this.hours = date.getHours().toString().padStart(2, '0');
-    this.minutes = date.getMinutes().toString().padStart(2, '0');
+    const formattedDate = date.toLocaleDateString();
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${formattedDate} (${hours}:${minutes} ${this.translate.instant('GENERAL.CLOCK')})`
   }
 
   sanitizeHtml(html: string): SafeHtml {

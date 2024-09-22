@@ -42,16 +42,14 @@ export class GuestbookEntryComponent implements OnInit {
     const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-guestbook-entry'));
 
     if (hasPermission) {
-      if (this.permissionService.hasPermission('manage-guestbook-entry')) {
-        const newVisibility = !this.entry.is_visible
-        this.guestbookService.toggleVisibility(this.entry.id, newVisibility)
-          .then(success => {
-            if (success) {
-              this.entry.is_visible = newVisibility;
-              this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.VISIBILITY_UPDATED_SUCCESS'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
-            }
-          })
-      }
+      const newVisibility = !this.entry.is_visible
+      this.guestbookService.toggleVisibility(this.entry.id, newVisibility)
+        .then(success => {
+          if (success) {
+            this.entry.is_visible = newVisibility;
+            this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.VISIBILITY_UPDATED_SUCCESS'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
+          }
+        })
     }
   }
 

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {map} from "rxjs";
+import {map, timestamp} from "rxjs";
 import {GuestBookEntry} from "../types/guestbook.entry.type";
 import {Snackbar} from "../utility/snackbar";
 import {TranslateService} from "@ngx-translate/core";
@@ -35,12 +35,13 @@ export class GuestbookService {
     }
   }
 
-  async updateEntry(id: string, username: string, title: string, timestamp: number, silentEdit: boolean, entryMessage: string) {
+  async updateEntry(id: string, username: string, title: string, editTimestamp: number, silentEdit: boolean, entryMessage: string) {
     try {
       await this.firestore.collection(guestbookCollectionName).doc(id).update({
         username: username,
         title: title,
         edited: true,
+        edited_timestamp: editTimestamp,
         silent_edit: silentEdit,
         entry_message: entryMessage,
       });

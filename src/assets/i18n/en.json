@@ -61,6 +61,9 @@
     "SELECT": "Change language"
   },
   "GUESTBOOK": {
+    "TITLE": "Guestbook",
+    "ENTRY_AMOUNT": "Entries: {{entries}}",
+    "ENTRY_AMOUNT_HIDDEN": "(hidden: {{entriesHidden}})",
     "ENTRY_SUBTITLE": "wrote on {{date}}",
     "COMMENT_TITLE": "Comment: ",
     "ENTRY_EDITED": "(edited)",
@@ -74,6 +77,8 @@
     "EDIT_ENTRY_DESC": "Edit this entry",
     "DELETE_ENTRY_DESC": "Delete this entry permanently",
     "DELETE_COMMENT_DESC": "Delete this comment permanently",
+    "CREATE_ENTRY_BUTTON": "Create Entry",
+    "BACK_BUTTON": "Back To Homepage",
     "CREATE": {
       "CREATE_ENTRY_TITLE": "Create Guestbook Entry",
       "UPDATE_ENTRY_TITLE": "Update Guestbook Entry",

@@ -1,75 +1,38 @@
-<div class="bg-gradient-to-br from-gray-100 to-blue-50 flex items-center justify-center py-10">
-  <div class="bg-white p-10 rounded-xl shadow-lg w-[90%] max-w-3xl transition-all duration-300 transform hover:scale-102">
-    <!-- Title and Entry Count -->
+<div class="flex items-center justify-center py-8">
+  <div
+    class="bg-gradient-to-br from-gray-200 to-white dark:bg-gradient-to-br dark:from-gray-600 dark:to-gray-800 p-8 rounded-xl shadow-lg w-[90%] max-w-3xl transition-all duration-300 transform hover:scale-102">
     <div class="text-center mb-8">
-      <h1 class="text-4xl font-extrabold text-gray-800 mb-4 tracking-wide animate-fadeInDown">
-        Gästebuch
+      <h1 class="text-4xl font-bold text-gray-800 dark:text-title-dark-mode-text mb-2 tracking-wide animate-fadeInDown">
+        {{ 'GUESTBOOK.TITLE' | translate }}
       </h1>
       <div>
         <span *ngIf="!(permissionService.hasPermission('view-invisible-guestbook-entries') | async)"
-              class="text-xl text-gray-600 animate-fadeInUp">
-          Einträge: {{ visibleEntriesCount }}
+              class="text-xl text-gray-600 dark:text-dark-mode-text animate-fadeInUp">
+          {{ 'GUESTBOOK.ENTRY_AMOUNT' | translate: {entries: visibleEntriesCount} }}
         </span>
         <span *ngIf="(permissionService.hasPermission('view-invisible-guestbook-entries') | async)"
-              class="text-xl text-gray-600 animate-fadeInSlow">
-          Einträge: {{ visibleEntriesCount }}
-          <span class="text-gray-400">(versteckt: {{ hiddenEntriesCount }})</span>
+              class="text-xl text-gray-600 dark:text-dark-mode-text animate-fadeInSlow">
+          {{ 'GUESTBOOK.ENTRY_AMOUNT' | translate: {entries: visibleEntriesCount} }}
+          <span
+            class="text-gray-500">{{ 'GUESTBOOK.ENTRY_AMOUNT_HIDDEN' | translate: {entriesHidden: hiddenEntriesCount} }}</span>
         </span>
       </div>
     </div>
 
-    <!-- Action Buttons -->
-    <div class="flex justify-between items-center space-x-4">
-      <!-- Create Entry Button -->
+    <div class="flex justify-between items-center space-x-4 animate-fadeInUp">
       <a routerLink="create"
-         class="px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg font-semibold tracking-wide hover:bg-blue-700 transform transition-all duration-300 ease-in-out hover:scale-105 animate-fadeInLeft">
-        + Eintrag erstellen
+         class="btn-primary bg-blue-600 hover:bg-blue-700  p-3">
+        {{ 'GUESTBOOK.CREATE_ENTRY_BUTTON' | translate }}
       </a>
 
-      <!-- Back to Homepage Button -->
       <a routerLink=""
-         class="px-6 py-3 bg-gray-300 text-gray-700 rounded-lg shadow-lg font-semibold tracking-wide hover:bg-gray-400 transform transition-all duration-300 ease-in-out hover:scale-105 animate-fadeInRight">
-        Zurück zur Homepage
+         class="btn-primary bg-gray-500 hover:bg-gray-600  p-3">
+        {{ 'GUESTBOOK.BACK_BUTTON' | translate }}
       </a>
     </div>
   </div>
 </div>
 
 
-<!--<div class="bg-gray-100 p-6 flex justify-center items-center">
-  <div class="g-white p-8 rounded-lg shadow-lg w-[70%]">
-    &lt;!&ndash; Title and Subtitle &ndash;&gt;
-    <div class="text-center mb-6">
-      <h1 class="text-3xl font-bold text-gray-800 mb-2 animate-fadeInDown">
-        Gästebuch
-      </h1>
-      <div class="">
-        <span *ngIf="!(permissionService.hasPermission('view-invisible-guestbook-entries') | async)"
-              class="text-gray-600 text-lg animate-fadeInUp">
-          Einträge: {{ visibleEntriesCount }}
-        </span>
-        <span *ngIf="(permissionService.hasPermission('view-invisible-guestbook-entries') | async)"
-              class="text-gray-600 text-lg animate-fadeInUp">
-          Einträge: {{ visibleEntriesCount }}
-          <span class="text-gray-400">(versteckt: {{ hiddenEntriesCount }})</span>
-        </span>
-      </div>
-    </div>
+<!--bg-gradient-to-br from-gray-100 to-blue-50 -->
 
-    &lt;!&ndash; Links &ndash;&gt;
-    <div class="flex justify-between mt-4">
-      <a routerLink="create"
-         class="text-blue-500 hover:text-blue-700 transition-colors duration-300 animate-fadeInLeft">
-        &lt;&lt; Eintragen
-      </a>
-      <a routerLink=""
-         class="text-blue-500 hover:text-blue-700 transition-colors duration-300 animate-fadeInRight">
-        Homepage &gt;&gt;
-      </a>
-    </div>
-  </div>
-</div>-->
-
-
-<!--TODO mobile compatibility-->
-<!--      TODO i18n-->

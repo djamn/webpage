@@ -253,7 +253,7 @@
     hover:bg-gray-100
     disabled:hover:bg-gray-500
     dark:bg-black
-      dark:hover:bg-gray-950
+    dark:hover:bg-gray-950
     dark:text-white
   }
 

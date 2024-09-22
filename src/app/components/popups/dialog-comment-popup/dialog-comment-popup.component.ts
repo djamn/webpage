@@ -9,16 +9,12 @@ import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
   styleUrl: './dialog-comment-popup.component.css'
 })
 export class DialogCommentPopupComponent {
-  @Input()
-  dialogPopupDescription: string = '{0}' // TODO
   commentForm!: UntypedFormGroup;
 
   constructor(public dialogRef: MatDialogRef<DialogCommentPopupComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.commentForm = new UntypedFormGroup({
       comment: new UntypedFormControl('', [Validators.required])
     })
-
-    this.setDescription();
   }
 
   confirm() {
@@ -35,10 +31,6 @@ export class DialogCommentPopupComponent {
   cancel() {
     this.commentForm.reset();
     this.dialogRef.close(false);
-  }
-
-  setDescription() {
-    this.dialogPopupDescription = this.data.description;
   }
 
   protected readonly isControlInvalid = isControlInvalid;

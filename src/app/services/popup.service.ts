@@ -39,8 +39,8 @@ export class PopupService {
     return dialogRef.afterClosed();
   }
 
-  openCommentPopup(description: string): Observable<string> {
-    const dialogRef = this.dialog.open(DialogCommentPopupComponent, {data: {description: description}})
+  openCommentPopup(): Observable<string> {
+    const dialogRef = this.dialog.open(DialogCommentPopupComponent)
 
     return dialogRef.afterClosed();
   }

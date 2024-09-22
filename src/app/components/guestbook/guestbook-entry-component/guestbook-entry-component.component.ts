@@ -57,7 +57,7 @@ export class GuestbookEntryComponent implements OnInit {
     const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-guestbook-entry'));
 
     if (hasPermission) {
-      this.popupService.openCommentPopup(this.translate.instant('DIALOG.DESCRIPTION_ADD_GUESTBOOK_COMMENT')).subscribe(async comment => {
+      this.popupService.openCommentPopup().subscribe(async comment => {
         if (comment) {
           try {
             await this.guestbookService.addComment(this.entry.id, comment);

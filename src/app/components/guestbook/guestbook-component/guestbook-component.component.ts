@@ -69,10 +69,8 @@ export class GuestbookComponent implements OnInit {
       next: (data) => {
         this.guestBookEntries = data;
         this.filterEntries();
-        this.isLoading = false;
         this.updateCounts();
         this.performSearch("");
-        console.log("Finished")
       },
       error: (err) => {
         console.error('Error fetching guestbook entries:', err);
@@ -87,6 +85,7 @@ export class GuestbookComponent implements OnInit {
       this.filteredGuestBookEntries = this.guestBookEntries.filter(entry =>
         hasPermission || entry.is_visible
       );
+      this.isLoading = false;
     });
   }
 

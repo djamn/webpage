@@ -9,15 +9,13 @@
     <div class="w-full">
       <div class="flex justify-between items-center">
         <div class="flex flex-col">
-          <span class="text-lg font-semibold text-gray-700 dark:text-title-dark-mode-text animate-fadeInDown">{{ entry.title }}</span>
+          <span [ngClass]="{'animate-fadeInDown' : !isLoading}"  class="text-lg font-semibold text-gray-700 dark:text-title-dark-mode-text">{{ entry.title }}</span>
           <span class="text-sm text-gray-500 dark:text-dark-mode-text">
           <span class="font-semibold">{{ entry.username }}</span>  {{
               'GUESTBOOK.ENTRY_SUBTITLE' | translate: {
                 date: creationDate,
               }
             }}
-            TEST: {{isLoading}}
-            TEST: {{isLoading}}
           </span>
           <span *ngIf="entry.edited && !entry.silent_edit"
                 [title]="'GUESTBOOK.ENTRY_EDITED_TIME' | translate: {date: editDate}"

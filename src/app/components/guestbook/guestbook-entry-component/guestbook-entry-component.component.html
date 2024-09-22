@@ -2,7 +2,9 @@
   *ngIf="entry.is_visible || !entry.is_visible && (permissionService.hasPermission('view-invisible-guestbook-entries') | async)"
   class="p-6 bg-white dark:bg-dark-mode-inside shadow-md rounded-lg mb-6 border border-gray-200 transition duration-500 ease-in-out hover:scale-101 animate-fade-in"
   [class.dark:opacity-90]="!entry.is_visible"
-  [class.opacity-50]="!entry.is_visible">
+  [class.opacity-50]="!entry.is_visible"
+  [ngClass]="{'animate-pulse blur-sm' : isLoading}"
+>
   <div class="flex justify-between flex-row max-sm:flex-col">
     <div class="w-full">
       <div class="flex justify-between items-center">
@@ -14,6 +16,8 @@
                 date: creationDate,
               }
             }}
+            TEST: {{isLoading}}
+            TEST: {{isLoading}}
           </span>
           <span *ngIf="entry.edited && !entry.silent_edit"
                 [title]="'GUESTBOOK.ENTRY_EDITED_TIME' | translate: {date: editDate}"
@@ -27,7 +31,8 @@
     </div>
 
     <!-- Admin actions (Edit, Delete, etc.) -->
-    <div class="flex space-x-6 max-sm:space-x-10 animate-fadeInLeft max-sm:justify-center">
+    <div *ngIf="!isLoading && (permissionService.hasPermission('manage-guestbook-entry') | async)"
+      class="flex space-x-6 max-sm:space-x-10 animate-fadeInLeft max-sm:justify-center">
       <!-- Toggle visibility icon -->
       <svg (click)="toggleEntryVisibility()"
            class="w-6 max-sm:w-5 max-sm:h-5 h-6 cursor-pointer text-gray-500 hover:text-gray-700 transition-colors duration-300 hover:scale-105"
@@ -82,7 +87,7 @@
     </div>
 
     <!-- Delete comment button -->
-    <div *ngIf="permissionService.hasPermission('delete-guestbook-comment') | async" class="ml-4">
+    <div *ngIf="!isLoading && (permissionService.hasPermission('delete-guestbook-comment') | async)" class="ml-4">
       <svg (click)="deleteComment()"
            class="w-6 h-6 max-sm:w-5 max-sm:h-5 cursor-pointer text-red-500 hover:text-red-700 transition-colors duration-300 hover:scale-105"
            viewBox="0 0 804.5714285714286 1024">

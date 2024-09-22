@@ -1,10 +1,10 @@
 export interface GuestBookEntry {
   entry_id: number;
+  title: string;
   username: string;
   timestamp: number;
-  status: string;
   is_visible: boolean;
-  entry_text: string;
+  entry_message: string;
   edited: boolean;
   edited_timestamp: number;
   silent_edit: boolean;

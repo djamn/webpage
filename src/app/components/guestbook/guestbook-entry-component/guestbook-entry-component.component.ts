@@ -16,6 +16,7 @@ import {PermissionService} from "../../../services/permission.service";
 })
 export class GuestbookEntryComponent implements OnInit {
   @Input() entry: any;
+  @Input() isLoading: boolean = false;
   creationDate: string = "";
   editDate: string = "";
   config: any;
@@ -34,7 +35,7 @@ export class GuestbookEntryComponent implements OnInit {
   ngOnInit() {
     this.config = this.configService.getConfig()
     this.creationDate = this.processTimestamp(this.entry.timestamp);
-    if(this.entry.edited) this.editDate = this.processTimestamp(this.entry.edited_timestamp)
+    if (this.entry.edited) this.editDate = this.processTimestamp(this.entry.edited_timestamp)
   }
 
   async toggleEntryVisibility() {

@@ -12,7 +12,34 @@ import {PermissionService} from "../../../services/permission.service";
 })
 export class GuestbookComponent implements OnInit {
   guestBookEntries: GuestBookEntry[] = [];
-  filteredGuestBookEntries: GuestBookEntry[] = [];
+  filteredGuestBookEntries: GuestBookEntry[] = [
+    {
+      title: 'Coole Webseite!',
+      entry_id: 0,
+      username: 'David',
+      timestamp: 0,
+      is_visible: true,
+      entry_message: "Mega coole Webseite, freut mich!",
+      edited: false,
+      edited_timestamp: 0,
+      silent_edit: false,
+      comment: '',
+      user_uid: ''
+    },
+    {
+      title: 'Lorem ipsum dolor sit amet',
+      entry_id: 0,
+      username: 'Peter',
+      timestamp: 0,
+      is_visible: true,
+      entry_message: "orem ipsum dolor sit amet, consetetur sadipscing elitir elitir elitir elitir elitir elitir elitir elitir elitir eliti",
+      edited: true,
+      edited_timestamp: 0,
+      silent_edit: false,
+      comment: 'Freut mich!!',
+      user_uid: ''
+    }
+  ];
   hiddenEntriesCount: number = 0;
   visibleEntriesCount: number = 0;
   isLoading: boolean = true;
@@ -33,9 +60,7 @@ export class GuestbookComponent implements OnInit {
     this.config = this.configService.getConfig();
     this.entriesPerPage = this.config.GUESTBOOK_ENTRIES_PER_PAGE;
 
-    // this.isLoading = true;
     this.fetchData();
-    // this.isLoading = false;
   }
 
   fetchData() {
@@ -43,10 +68,11 @@ export class GuestbookComponent implements OnInit {
     this.guestbookService.getEntries().subscribe({
       next: (data) => {
         this.guestBookEntries = data;
-        this.isLoading = false;
         this.filterEntries();
+        this.isLoading = false;
         this.updateCounts();
         this.performSearch("");
+        console.log("Finished")
       },
       error: (err) => {
         console.error('Error fetching guestbook entries:', err);

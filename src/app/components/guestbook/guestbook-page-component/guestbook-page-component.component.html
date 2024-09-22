@@ -1,15 +1,12 @@
 <div class="text-center py-4">
-  <!-- Page Info -->
-  <span class="text-lg font-semibold text-gray-700 animate-fade-in">
+  <span class="text-lg font-medium text-gray-700 dark:text-title-dark-mode-text animate-fade-in">
     {{ 'GUESTBOOK.PAGE.PAGES' | translate: {currentPage: currentPage, totalPages: totalPages} }}
   </span>
 
-  <!-- Pagination Buttons -->
   <div class="flex justify-center items-center mt-4 space-x-2">
-    <!-- Previous Button -->
     <button
       (click)="previousPage()"
-      class="px-3 py-2 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700 transition ease-in-out duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400"
+      class="px-3 py-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-800 dark:hover:bg-blue-900 text-white dark:text-title-dark-mode-text rounded-md shadow-md transition ease-in-out duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400"
     >
       {{ 'GUESTBOOK.PAGE.BUTTON_PREVIOUS' | translate }}
     </button>
@@ -19,9 +16,9 @@
       <button
         (click)="page !== '...' ? changePage(page) : null"
         [disabled]="page === '...' || page === currentPage"
-        class="px-3 py-2 text-gray-700 bg-gray-100 rounded-md shadow-md hover:bg-gray-200 transition ease-in-out duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-300"
+        class="px-3 py-2 text-gray-700 dark:text-black bg-gray-100 dark:bg-gray-300 rounded-md shadow-md hover:bg-gray-200 dark:hover:bg-gray-400 transition ease-in-out duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-300"
         [ngClass]="{
-          'bg-blue-600 text-white': page === currentPage,
+          'bg-blue-100 dark:bg-blue-200 text-gray-700': page === currentPage,
           'cursor-not-allowed opacity-50': page === '...'
         }"
       >
@@ -29,32 +26,11 @@
       </button>
     </ng-container>
 
-    <!-- Next Button -->
     <button
       (click)="nextPage()"
-      class="px-3 py-2 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700 transition ease-in-out duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400"
+      class="px-3 py-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-800 dark:hover:bg-blue-900 text-white dark:text-title-dark-mode-text rounded-md shadow-md transition ease-in-out duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400"
     >
       {{ 'GUESTBOOK.PAGE.BUTTON_NEXT' | translate }}
     </button>
   </div>
 </div>
-
-
-<!--
-<div class="main-component-container main-guestbook-page-container">
-  <div class="guestbook-sub-container">
-    <div class="page-container">
-      <span>{{'GUESTBOOK.PAGE.PAGES' | translate: {currentPage: currentPage, totalPages: totalPages}  }}</span>
-    </div>
-    <div class="page-buttons">
-      <button (click)="previousPage()">{{'GUESTBOOK.PAGE.BUTTON_PREVIOUS' | translate}}</button>
-      <button *ngFor="let page of getPageNumbers()"
-              (click)="page !== '...' ? changePage(page) : null"
-              [disabled]="page === '...' || page === currentPage">
-        {{ page }}
-      </button>
-      <button (click)="nextPage()">{{'GUESTBOOK.PAGE.BUTTON_NEXT' | translate}}</button>
-    </div>
-  </div>
-</div>
--->

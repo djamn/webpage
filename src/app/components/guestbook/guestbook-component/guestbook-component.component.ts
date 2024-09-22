@@ -67,6 +67,7 @@ export class GuestbookComponent implements OnInit {
     this.isLoading = true;
     this.guestbookService.getEntries().subscribe({
       next: (data) => {
+        console.log(data)
         this.guestBookEntries = data;
         this.filterEntries();
         this.updateCounts();

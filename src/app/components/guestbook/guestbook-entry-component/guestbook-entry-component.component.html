@@ -1,6 +1,7 @@
+<div class="w-full flex justify-center">
 <div
   *ngIf="entry.is_visible || !entry.is_visible && (permissionService.hasPermission('view-invisible-guestbook-entries') | async)"
-  class="p-6 bg-white dark:bg-dark-mode-inside shadow-md rounded-lg mb-6 border border-gray-200 dark:border-gray-600 transition duration-500 ease-in-out hover:scale-101 animate-fade-in"
+  class="w-[95%] p-6 bg-white dark:bg-dark-mode-inside shadow-md rounded-lg mb-6 border border-gray-200 dark:border-gray-600 transition duration-500 ease-in-out hover:scale-101 animate-fade-in"
   [class.dark:opacity-90]="!entry.is_visible"
   [class.opacity-50]="!entry.is_visible"
   [ngClass]="{'animate-pulse blur-sm' : isLoading}"
@@ -95,4 +96,5 @@
       </svg>
     </div>
   </div>
+</div>
 </div>

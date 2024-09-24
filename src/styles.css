@@ -217,7 +217,7 @@
     touch-manipulation
     align-middle
     whitespace-nowrap
-    transition ease-in-out hover:-translate-y-1 hover:scale-105
+    transition ease-in-out hover:-translate-y-1 hover:scale-102 duration-200
     font-sans
 
     disabled:transition-none

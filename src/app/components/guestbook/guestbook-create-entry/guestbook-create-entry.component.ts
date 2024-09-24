@@ -65,20 +65,46 @@ export class GuestbookCreateEntryComponent implements OnInit {
     }
   }
 
-  // TODO rework
   quillModules = {
-    toolbar: [
-      [{'font': []}],
-      ['bold', 'italic', 'underline'],
-      ['code-block'],
-      [{'list': 'ordered'}],
-      [{'script': 'sub'}, {'script': 'super'}],
-      [{'color': []}, {'background': []}],
-      ['clean'],
-      ['emoji']  // Add emoji to the toolbar
-    ],
-    'emoji-toolbar': false,
+    'emoji-toolbar': true,
+    'emoji-textarea': true,
+    'emoji-shortname': true,
+    toolbar: {
+      container: [
+        ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+        ['code-block'],
+        // [{header: 1}, {header: 2}], // custom button values
+        [{list: 'ordered'}, {list: 'bullet'}],
+        // [{'script': 'sub'}, {'script': 'super'}],      // superscript/subscript
+        [{indent: '-1'}, {indent: '+1'}], // outdent/indent
+        [{direction: 'rtl'}], // text direction
+        [{size: ['small', false, 'large', 'huge']}], // custom dropdown
+        [{header: [1, 2, 3, 4, 5, 6, false]}],
+        ['image'],                                    // image
+        ['code-block'], // code block
+        [{align: []}],
+        ['emoji'],
+        ['clean'], // remove formatting button
+        ['link', 'image', 'video'],
+        ['emoji']
+      ]
+    }
   };
+
+  // TODO rework
+  /*  quillModules = {
+      toolbar: [
+        [{'font': []}],
+        ['bold', 'italic', 'underline'],
+        ['code-block'],
+        [{'list': 'ordered'}],
+        [{'script': 'sub'}, {'script': 'super'}],
+        [{'color': []}, {'background': []}],
+        ['clean'],
+        ['emoji']  // Add emoji to the toolbar
+      ],
+      'emoji-toolbar': false,
+    };*/
 
   async createEntry() {
     if (!this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE && !this.isEditMode) {
@@ -89,12 +115,12 @@ export class GuestbookCreateEntryComponent implements OnInit {
     // Show field is required hint
     if (this.createEntryForm.invalid) {
       this.createEntryForm.markAllAsTouched();
-/*      Object.keys(this.createEntryForm.controls).forEach(field => {
-        const control = this.createEntryForm.get(field);
-        if (control) {
-          control.markAsTouched({onlySelf: true});
-        }
-      });*/
+      /*      Object.keys(this.createEntryForm.controls).forEach(field => {
+              const control = this.createEntryForm.get(field);
+              if (control) {
+                control.markAsTouched({onlySelf: true});
+              }
+            });*/
       this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ERRORS.FIELDS_HAVE_ERRORS'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
       return;
     }

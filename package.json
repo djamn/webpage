@@ -30,6 +30,7 @@
     "bootstrap": "^5.3.3",
     "flowbite": "^2.5.1",
     "ng-recaptcha-2": "^14.0.0",
+    "ngx-editor": "^18.0.0",
     "ngx-quill": "^26.0.8",
     "quill": "^2.0.2",
     "quill2-emoji": "^0.1.2",

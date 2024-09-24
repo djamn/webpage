@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "angular-build-info && ng build",
+    "build-dev": "angular-build-info && ng build --configuration development",
     "deploy": "angular-build-info && ng build --prod && ./deploy",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

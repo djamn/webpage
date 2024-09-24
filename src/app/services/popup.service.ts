@@ -6,6 +6,7 @@ import {DialogPopupComponent} from "../components/popups/dialog-popup/dialog-pop
 import {ChangelogPopupComponent} from "../components/popups/changelog-popup/changelog-popup.component";
 import {ChangelogEntry} from "../types/changelog.entry.type";
 import {data} from "autoprefixer";
+import {CreateEntryPopupComponent} from "../components/popups/create-entry-popup/create-entry-popup.component";
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,12 @@ export class PopupService {
 
   openCreateChangelogPopup(): Observable<ChangelogEntry> {
     const dialogRef = this.dialog.open(ChangelogPopupComponent)
+
+    return dialogRef.afterClosed();
+  }
+
+  openCreateEntryPopup(): Observable<ChangelogEntry> {
+    const dialogRef = this.dialog.open(CreateEntryPopupComponent)
 
     return dialogRef.afterClosed();
   }

@@ -4,6 +4,7 @@ import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {ConfigService} from "../../../services/config.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {DialogPopupComponent} from "../dialog-popup/dialog-popup.component";
+import {CreateEntryPopupComponent} from "../create-entry-popup/create-entry-popup.component";
 
 @Component({
   selector: 'app-changelog-popup',
@@ -14,7 +15,7 @@ export class ChangelogPopupComponent {
   config: any;
   changelogForm!: UntypedFormGroup;
 
-  constructor(public dialogRef: MatDialogRef<DialogPopupComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private configService: ConfigService) {
+  constructor(public dialogRef: MatDialogRef<ChangelogPopupComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private configService: ConfigService) {
     this.config = this.configService.getConfig();
     const timeString = new Date().toLocaleTimeString('de-AT', {hour: '2-digit', minute: '2-digit'});
 

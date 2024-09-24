@@ -20,7 +20,7 @@
     </div>
 
     <div class="flex justify-between items-center w-full animate-fadeInUp">
-      <button routerLink="create"
+      <button (click)="createEntry()"
               [disabled]="!config.GUESTBOOK_ENTRY_CREATION_POSSIBLE"
               [attr.title]="config.GUESTBOOK_ENTRY_CREATION_POSSIBLE ? '' : ('REGISTER.ERRORS.NO_REGISTRATION_POSSIBLE_HINT' | translate)"
               class="btn-primary btn-blue w-full p-3">

@@ -1,0 +1,132 @@
+<div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+  <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+    <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
+      <form (ngSubmit)="confirm()" [formGroup]="changelogForm"
+            class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 w-full max-sm:w-[95%] sm:max-w-lg">
+        <div class="bg-white dark:bg-dark-mode px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+            <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
+              <h3 class="text-lg font-semibold leading-6 text-gray-900 dark:text-title-dark-mode-text"
+                  id="modal-title">{{'DIALOG.CREATE_CHANGELOG_TITLE' | translate}}</h3>
+
+              <div
+                class=" w-full flex flex-row space-x-10 max-sm:space-x-0 justify-center max-sm:justify-start max-sm:flex-col mt-4">
+                <div class="relative w-[30%] max-sm:ml-0 max-sm:w-full">
+                  <label for="datepicker" class="tw-input-label">{{'DIALOG.SELECT_DATE_LABEL' | translate}}</label>
+                  <!-- TODO JAVASCRIPT BEHAVIOR implementieren -->
+                  <input type="date" id="datepicker" formControlName="date" class="tw-input pl-2">
+                  <!--
+                                    <div class="relative max-w-sm">
+                    <input datepicker id="datepicker" type="text"
+                           formControlName="date"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                           placeholder="Select date">
+                    <div class="absolute inset-y-0 end-3 flex items-center ps-3.5 pointer-events-none">
+                      <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                           xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                          d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                      </svg>
+                    </div>
+                  </div>
+                  -->
+                </div>
+                <div class="w-[20%] max-sm:w-full">
+                  <label for="time" class="tw-input-label">{{'DIALOG.SELECT_TIME_LABEL' | translate}}</label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
+                      <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                           xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd"
+                              d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
+                              clip-rule="evenodd"/>
+                      </svg>
+                    </div>
+                    <input type="time" id="time"
+                           formControlName="time"
+                           class="tw-input p-2"/>
+                  </div>
+                </div>
+              </div>
+
+              <div class=" mt-4">
+                <label for="changes" class="tw-input-label mb-0">{{'DIALOG.ENTER_CHANGES_LABEL' | translate}}</label>
+                <div class="text-hint-style max-sm:text-center">{{'DIALOG.ENTER_CHANGES_HINT' | translate}}</div>
+                <textarea
+                  id="changes"
+                  formControlName="changes"
+                  class="tw-textarea w-full min-h-[50px] h-[100px] max-h-[150px]"
+                  [ngClass]="{'tw-textarea-error': isControlInvalid(this.changelogForm, 'changes')}">
+                    </textarea>
+                <div class="relative">
+                  <div
+                    [ngClass]="{
+            'opacity-100 visible': isControlInvalid(changelogForm, 'changes'),
+            'opacity-0 invisible': !isControlInvalid(changelogForm, 'changes')
+          }"
+                    class="tw-input-error-label"
+                  >
+                    <div *ngIf="changelogForm.get('changes')?.hasError('required')">
+                      {{ "DIALOG.REQUIRED_FIELD" | translate }}
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="mt-4 flex flex-row max-sm:flex-col space-x-10 max-sm:space-x-0 justify-center max-sm:justify-start ">
+                  <div class="w-[30%] max-sm:w-full">
+                    <label for="version" class="tw-input-label">{{'DIALOG.ENTER_VERSION_LABEL' | translate}}</label>
+                    <input class="tw-input h-[40px] p-2"
+                           id="version"
+                           [ngClass]="{'tw-input-error': isControlInvalid(this.changelogForm, 'version')}"
+                           formControlName="version"
+                           [placeholder]="'DIALOG.ENTER_VERSION_PLACEHOLDER' | translate"
+                           type="text"
+                    >
+                    <div class="relative">
+                      <div
+                        [ngClass]="{
+            'opacity-100 visible': isControlInvalid(changelogForm, 'version'),
+            'opacity-0 invisible': !isControlInvalid(changelogForm, 'version')
+          }"
+                        class="tw-input-error-label"
+                      >
+                        <div *ngIf="changelogForm.get('version')?.hasError('required')">
+                          {{ "DIALOG.REQUIRED_FIELD" | translate }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="w-auto max-sm:w-full">
+                    <label for="version-category" class="tw-input-label">{{'DIALOG.CATEGORY_LABEL' | translate}}</label>
+                    <select id="version-category"
+                            formControlName="version_category"
+                            class="h-[40px] tw-select">
+                      <option *ngFor="let category of config.VERSION_CATEGORIES" [value]="category">{{ category }}
+                      </option>
+                    </select>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="tw-btn-popup-container">
+          <button type="button"
+                  (click)="cancel()"
+                  class="btn-primary btn-gray">
+            {{ 'BUTTONS.BUTTON_CANCEL' | translate }}
+          </button>
+          <button type="submit"
+                  class="btn-primary btn-red">
+            {{ 'BUTTONS.BUTTON_SAVE' | translate }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -29,6 +29,7 @@ import {NgSelectModule} from "@ng-select/ng-select";
 import {AdminDashboardComponent} from "./admin/admin-dashboard/admin-dashboard.component";
 import {ChangelogComponent} from "./changelog/changelog.component";
 import {ChangelogPopupComponent} from "./popups/changelog-popup/changelog-popup.component";
+import {CreateEntryPopupComponent} from "./popups/create-entry-popup/create-entry-popup.component";
 
 Quill.register("modules/emoji", Emoji);
 
@@ -48,6 +49,7 @@ Quill.register("modules/emoji", Emoji);
     GuestbookCreateEntryComponent,
     DialogCommentPopupComponent,
     DialogPopupComponent,
+    CreateEntryPopupComponent,
     Navbar,
     MainpageMainComponent,
     AdminDashboardComponent,
@@ -81,6 +83,7 @@ Quill.register("modules/emoji", Emoji);
     GuestbookCreateEntryComponent,
     DialogCommentPopupComponent,
     DialogPopupComponent,
+    CreateEntryPopupComponent,
     Navbar,
     MainpageMainComponent,
     AdminDashboardComponent,

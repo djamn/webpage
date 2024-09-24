@@ -4,6 +4,7 @@ import {debounceTime, distinctUntilChanged, map, timestamp} from "rxjs";
 import {GuestBookEntry} from "../types/guestbook.entry.type";
 import {Snackbar} from "../utility/snackbar";
 import {TranslateService} from "@ngx-translate/core";
+import {user} from "@angular/fire/auth";
 
 const guestbookCollectionName: string = 'guestbook-entries'
 
@@ -36,6 +37,7 @@ export class GuestbookService {
   }
 
   async updateEntry(id: string, username: string, title: string, editTimestamp: number, silentEdit: boolean, entryMessage: string) {
+    console.log(id, username, title, editTimestamp, silentEdit);
     try {
       await this.firestore.collection(guestbookCollectionName).doc(id).update({
         username: username,

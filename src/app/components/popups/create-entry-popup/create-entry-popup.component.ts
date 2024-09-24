@@ -14,11 +14,11 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 })
 export class CreateEntryPopupComponent {
   config: any;
-  changelogForm!: UntypedFormGroup;
   createEntryForm!: UntypedFormGroup;
   entryId: string | null = null;
   isEditMode: boolean = false;
 
+  // TODO rework
   quillModules = {
     toolbar: [
       [{'font': []}],
@@ -33,9 +33,6 @@ export class CreateEntryPopupComponent {
     'emoji-toolbar': false,
   }
 
-  // public dialogRef: MatDialogRef<CreateEntryPopupComponent>,
-  // public data: any
-  //               @Inject(MAT_DIALOG_DATA)
 
   constructor(public dialogRef: MatDialogRef<CreateEntryPopupComponent>,
               @Inject(MAT_DIALOG_DATA)
@@ -62,48 +59,21 @@ export class CreateEntryPopupComponent {
       confirmation_checkbox: new UntypedFormControl('', [
         Validators.requiredTrue,
       ]),
-      silent_edit: new UntypedFormControl()
+      silent_edit: new UntypedFormControl(false)
     })
 
-    // TODO updateEntry
-    /*
-        if (history.state && history.state.entry) {
-      const entry = history.state.entry;
-      this.entryId = entry.id;
+    if (data) {
+      const entry = data;
       this.isEditMode = true;
-      this.createEntryForm.get('recaptcha')?.disable();
-      this.createEntryForm.get('confirmation_checkbox')?.disable();
+      this.entryId = entry.id;
       this.createEntryForm.patchValue({
+        title: entry.title,
         username: entry.username,
         entry_message: entry.entry_message,
       })
+      this.createEntryForm.get('recaptcha')?.disable();
+      this.createEntryForm.get('confirmation_checkbox')?.disable();
     }
-     */
-
-    const timeString = new Date().toLocaleTimeString('de-AT', {hour: '2-digit', minute: '2-digit'});
-
-    /*    if (!data) {
-          this.changelogForm = new UntypedFormGroup({
-            changes: new UntypedFormControl('', [Validators.required]),
-            version: new UntypedFormControl('', [Validators.required]),
-            version_category: new UntypedFormControl(this.config.VERSION_CATEGORIES[0]),
-            date: new UntypedFormControl(new Date().toISOString().substring(0, 10)),
-            time: new UntypedFormControl(timeString),
-          })
-        } else {
-          const dateObj = new Date(data.timestamp);
-          // const dateString = dateObj.toLocaleDateString('de-AT', { day: '2-digit', month: '2-digit', year: 'numeric' });
-          const dateString = dateObj.toISOString().substring(0, 10)
-          const timeString = dateObj.toLocaleTimeString('de-AT', {hour: '2-digit', minute: '2-digit'});
-
-          this.changelogForm = new UntypedFormGroup({
-            changes: new UntypedFormControl(data.changes.join('\n'), [Validators.required]),
-            version: new UntypedFormControl(data.version, [Validators.required]),
-            version_category: new UntypedFormControl(data.version_category),
-            date: new UntypedFormControl(dateString),
-            time: new UntypedFormControl(timeString),
-          })
-        }*/
   }
 
   async confirm() {

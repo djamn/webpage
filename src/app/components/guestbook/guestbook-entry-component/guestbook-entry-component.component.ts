@@ -75,11 +75,7 @@ export class GuestbookEntryComponent implements OnInit {
     const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-guestbook-entry'));
 
     if (hasPermission) {
-      await this.router.navigate(["guestbook/update"], {
-        state: {
-          entry: this.entry
-        }
-      })
+      this.popupService.openUpdateEntryPopup(this.entry);
     }
   }
 

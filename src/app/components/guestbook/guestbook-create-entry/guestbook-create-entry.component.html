@@ -112,9 +112,9 @@
 
       <div class="buttons-container">
         <button
-          class="btn-primary
+          class="btn-primary btn-green
           guestbook-confirm-button"
-          [ngClass]="{'btn-green': config.GUESTBOOK_ENTRY_CREATION_POSSIBLE, 'button-disabled': !config.GUESTBOOK_ENTRY_CREATION_POSSIBLE}"
+          [disabled]="!config.GUESTBOOK_ENTRY_CREATION_POSSIBLE"
           [attr.title]="config.GUESTBOOK_ENTRY_CREATION_POSSIBLE ? '' : ('REGISTER.ERRORS.NO_REGISTRATION_POSSIBLE_HINT' | translate)"
           type="submit">
           <div *ngIf="!isEditMode">{{ "GUESTBOOK.CREATE.BUTTON_SEND" | translate }}</div>

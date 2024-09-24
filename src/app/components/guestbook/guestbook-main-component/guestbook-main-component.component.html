@@ -20,27 +20,13 @@
     </div>
 
     <div class="flex justify-between items-center w-full animate-fadeInUp">
-      <a routerLink="create"
-         class="btn-primary btn-blue w-full p-3">
+      <button routerLink="create"
+              [disabled]="!config.GUESTBOOK_ENTRY_CREATION_POSSIBLE"
+              [attr.title]="config.GUESTBOOK_ENTRY_CREATION_POSSIBLE ? '' : ('REGISTER.ERRORS.NO_REGISTRATION_POSSIBLE_HINT' | translate)"
+              class="btn-primary btn-blue w-full p-3">
         {{ 'GUESTBOOK.CREATE_ENTRY_BUTTON' | translate }}
-      </a>
+      </button>
 
     </div>
-
-<!--    <div class="flex justify-between items-center space-x-4 animate-fadeInUp">
-      <a routerLink="create"
-         class="btn-primary bg-blue-600 hover:bg-blue-700  p-3">
-        {{ 'GUESTBOOK.CREATE_ENTRY_BUTTON' | translate }}
-      </a>
-
-      <a routerLink=""
-         class="btn-primary bg-gray-500 hover:bg-gray-600  p-3">
-        {{ 'GUESTBOOK.BACK_BUTTON' | translate }}
-      </a>
-    </div>-->
   </div>
 </div>
-
-
-<!--bg-gradient-to-br from-gray-100 to-blue-50 -->
-

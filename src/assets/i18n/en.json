@@ -103,7 +103,8 @@
         "NO_CREATION_POSSIBLE_HINT": "Entry creation is currently disabled.",
         "RECAPTCHA_EXPIRED": "ReCAPTCHA is expired, please redo it!",
         "FIELDS_HAVE_ERRORS": "Please fix all errors before creating entry!",
-        "COMMENT_CREATION_FAILED": "There was an error adding the comment. Please try again."
+        "COMMENT_CREATION_FAILED": "There was an error adding the comment. Please try again.",
+        "NO_ENTRY_CREATION_POSSIBLE": "Guestbook entry creation is currently disabled"
       }
     },
     "DELETE": {

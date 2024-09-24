@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {PermissionService} from "../../../services/permission.service";
+import {ConfigService} from "../../../services/config.service";
 
 @Component({
   selector: 'guestbook-main-component',
@@ -7,7 +8,9 @@ import {PermissionService} from "../../../services/permission.service";
   styleUrl: './guestbook-main-component.component.css'
 })
 export class GuestbookMainComponent {
-  constructor(protected permissionService : PermissionService) {
+  config: any;
+  constructor(protected permissionService : PermissionService, private configService: ConfigService) {
+    this.config = this.configService.getConfig();
   }
 
   @Input()

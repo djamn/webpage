@@ -1,6 +1,6 @@
 <div class="flex items-center justify-center py-8">
   <div
-    class="w-[95%] bg-gradient-to-br from-gray-200 to-white dark:bg-gradient-to-br dark:from-gray-600 dark:to-gray-800 p-8 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-102">
+    class="w-[90%] bg-gradient-to-br from-gray-200 to-white dark:bg-gradient-to-br dark:from-gray-600 dark:to-gray-800 p-8 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-102">
     <div class="text-center mb-8">
       <h1 class="text-4xl font-bold text-gray-800 dark:text-title-dark-mode-text mb-2 tracking-wide animate-fadeInDown">
         {{ 'GUESTBOOK.TITLE' | translate }}
@@ -23,7 +23,7 @@
       <button (click)="createEntry()"
               [disabled]="!config.GUESTBOOK_ENTRY_CREATION_POSSIBLE"
               [attr.title]="config.GUESTBOOK_ENTRY_CREATION_POSSIBLE ? '' : ('REGISTER.ERRORS.NO_REGISTRATION_POSSIBLE_HINT' | translate)"
-              class="btn-primary btn-blue w-full p-3">
+              class="btn-primary btn-blue w-full text-base p-3">
         {{ 'GUESTBOOK.CREATE_ENTRY_BUTTON' | translate }}
       </button>
 

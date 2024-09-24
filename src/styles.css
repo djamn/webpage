@@ -232,7 +232,9 @@
     bg-blue-500
     hover:bg-blue-600
     disabled:hover:bg-gray-500
-    dark:text-white
+    dark:text-title-dark-mode-text
+    dark:bg-blue-700
+    dark:hover:bg-blue-800
   }
 
   .btn-red {
@@ -316,30 +318,19 @@
   }
 }
 
-/*input[type="date"] {
-  position: relative;
-  padding: 10px;
+.ql-editor.ql-blank::before {
+  @apply dark:text-dark-mode-text;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
-  color: transparent;
-  background: none;
-  z-index: 1;
+.ql-editor, .ql-toolbar {
+  @apply
+  border-gray-300
+  dark:border-gray-600
+  bg-white
+  dark:bg-dark-mode-inside
+  text-black
+  dark:text-title-dark-mode-text
 }
-
-input[type="date"]:before {
-  !*color: transparent;*!
-  background: none;
-  display: block;
-  font-family: 'FontAwesome', serif;
-  content: '\f073';
-  width: 15px;
-  height: 20px;
-  position: absolute;
-  top: 12px;
-  right: 6px;
-  color: #999;
-}*/
 
 .button-disabled {
   cursor: not-allowed;

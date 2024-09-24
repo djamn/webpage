@@ -53,4 +53,15 @@
   Processing...
 </button>
 
+<div *ngIf="true" class="border-1 flex flex-row items-center">
+  <input
+    type="checkbox"
+    class="w-5 h-5"
+    formControlName="silent_edit">
+
+  <span class="border-1">
+    {{ "GUESTBOOK.CREATE.SILENT_EDIT" | translate }}
+  </span>
+</div>
+
 <input type="password" class="test" >

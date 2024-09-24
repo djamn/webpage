@@ -31,10 +31,10 @@
 
     <!-- Admin actions (Edit, Delete, etc.) -->
     <div *ngIf="!isLoading && (permissionService.hasPermission('manage-guestbook-entry') | async)"
-      class="flex space-x-6 max-sm:space-x-10 animate-fadeInLeft max-sm:justify-center">
+      class="flex space-x-6 max-sm:space-x-10 animate-fadeInLeft max-sm:justify-center max-sm:mt-3">
       <!-- Toggle visibility icon -->
       <svg (click)="toggleEntryVisibility()"
-           class="w-6 max-sm:w-5 max-sm:h-5 h-6 cursor-pointer text-gray-500 hover:text-gray-700 transition-colors duration-300 hover:scale-105"
+           class="w-6 max-sm:w-6 max-sm:h-6 h-6 cursor-pointer text-gray-500 hover:text-gray-700 transition-colors duration-300 hover:scale-105"
            viewBox="0 0 1024 1024">
         <title>{{ 'GUESTBOOK.CHANGE_VISIBILITY_ENTRY_DESC' | translate }}</title>
         <path *ngIf="!entry.is_visible"
@@ -45,7 +45,7 @@
 
       <!-- Comment icon -->
       <svg (click)="addComment()"
-           class="w-6 h-6 max-sm:w-5 max-sm:h-5 cursor-pointer text-gray-500 hover:text-gray-700 transition-colors duration-300 hover:scale-105"
+           class="w-6 h-6 max-sm:w-6 max-sm:h-6 cursor-pointer text-gray-500 hover:text-gray-700 transition-colors duration-300 hover:scale-105"
            viewBox="0 0 1024 1024">
         <title>{{ 'GUESTBOOK.COMMENT_ENTRY_DESC' | translate }}</title>
         <path
@@ -54,7 +54,7 @@
 
       <!-- Edit icon -->
       <svg (click)="editEntry()"
-           class="w-6 h-6 max-sm:w-5 max-sm:h-5 cursor-pointer text-gray-500 hover:text-gray-700 transition-colors duration-300 hover:scale-105"
+           class="w-6 h-6 max-sm:w-6 max-sm:h-6 cursor-pointer text-gray-500 hover:text-gray-700 transition-colors duration-300 hover:scale-105"
            viewBox="0 0 877.7142857142857 1024">
         <title>{{ 'GUESTBOOK.EDIT_ENTRY_DESC' | translate }}</title>
         <path
@@ -63,7 +63,7 @@
 
       <!-- Delete icon -->
       <svg (click)="deleteEntry()"
-           class="w-6 h-6 max-sm:w-5 max-sm:h-5 cursor-pointer text-gray-500 hover:text-red-600 transition-colors duration-300 hover:scale-105"
+           class="w-6 h-6 max-sm:w-6 max-sm:h-6 cursor-pointer text-gray-500 hover:text-red-600 transition-colors duration-300 hover:scale-105"
            viewBox="0 0 804.5714285714286 1024">
         <title>{{ 'GUESTBOOK.DELETE_ENTRY_DESC' | translate }}</title>
         <path
@@ -88,7 +88,7 @@
     <!-- Delete comment button -->
     <div *ngIf="!isLoading && (permissionService.hasPermission('delete-guestbook-comment') | async)" class="ml-4">
       <svg (click)="deleteComment()"
-           class="w-6 h-6 max-sm:w-5 max-sm:h-5 cursor-pointer text-red-500 hover:text-red-700 transition-colors duration-300 hover:scale-105"
+           class="w-6 h-6 max-sm:w-6 max-sm:h-6 cursor-pointer text-red-500 hover:text-red-700 transition-colors duration-300 hover:scale-105"
            viewBox="0 0 804.5714285714286 1024">
         <title>{{ 'GUESTBOOK.DELETE_COMMENT_DESC' | translate }}</title>
         <path

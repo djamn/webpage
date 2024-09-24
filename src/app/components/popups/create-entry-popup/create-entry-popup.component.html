@@ -19,14 +19,13 @@
                          [ngClass]="{'tw-input-error': isControlInvalid(this.createEntryForm, 'title')}"
                          formControlName="title"
                          [placeholder]="'GUESTBOOK.CREATE.TITLE_PLACEHOLDER' | translate"
-                         type="text"
-                  >
+                         type="text">
                   <div class="relative">
                     <div
                       [ngClass]="{
-            'opacity-100 visible': isControlInvalid(createEntryForm, 'title'),
-            'opacity-0 invisible': !isControlInvalid(createEntryForm, 'title')
-          }"
+                        'opacity-100 visible': isControlInvalid(createEntryForm, 'title'),
+                        'opacity-0 invisible': !isControlInvalid(createEntryForm, 'title')
+                      }"
                       class="tw-input-error-label"
                     >
                       <div *ngIf="createEntryForm.get('title')?.hasError('required')">
@@ -48,16 +47,14 @@
                          [ngClass]="{'tw-input-error': isControlInvalid(this.createEntryForm, 'username')}"
                          formControlName="username"
                          [placeholder]="'GUESTBOOK.CREATE.USERNAME_PLACEHOLDER' | translate"
-                         type="text"
-                  >
+                         type="text">
                   <div class="relative">
                     <div
                       [ngClass]="{
-            'opacity-100 visible': isControlInvalid(createEntryForm, 'username'),
-            'opacity-0 invisible': !isControlInvalid(createEntryForm, 'username')
-          }"
-                      class="tw-input-error-label"
-                    >
+                        'opacity-100 visible': isControlInvalid(createEntryForm, 'username'),
+                        'opacity-0 invisible': !isControlInvalid(createEntryForm, 'username')
+                      }"
+                      class="tw-input-error-label">
                       <div *ngIf="createEntryForm.get('username')?.hasError('required')">
                         {{ "GUESTBOOK.CREATE.ERRORS.REQUIRED_FIELD" | translate }}
                       </div>
@@ -73,18 +70,6 @@
                   </div>
                 </div>
               </div>
-
-              <!--
-
-              .quill-editor-style {
-  width: 100%;
-  height: 200px;
-  cursor: auto;
-  color: var(--dl-color-black);
-  background-color: var(--dl-color-white);
-}
-              -->
-
 
               <!--              TODO REWORK EDITOR -->
               <div class=" mt-4">

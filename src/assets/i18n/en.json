@@ -80,6 +80,8 @@
     "CREATE_ENTRY_BUTTON": "Create Entry",
     "BACK_BUTTON": "Back To Homepage",
     "CREATE": {
+      "TITLE_LABEL": "Your Title",
+      "TITLE_PLACEHOLDER": "Enter title...",
       "CREATE_ENTRY_TITLE": "Create Guestbook Entry",
       "UPDATE_ENTRY_TITLE": "Update Guestbook Entry",
       "USERNAME_LABEL": "Your Username",

@@ -13,6 +13,7 @@ import {GuestbookService} from "../../../services/guestbook.service";
 })
 export class GuestbookMainComponent {
   config: any;
+
   constructor(protected permissionService: PermissionService,
               private configService: ConfigService,
               private snackbar: Snackbar,
@@ -29,17 +30,8 @@ export class GuestbookMainComponent {
   hiddenEntriesCount: number = 0;
 
   async createEntry() {
-    if(!this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE) return;
+    if (!this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE) return;
 
-    this.popupService.openCreateEntryPopup().subscribe(async (result) => {
-      if(result) {
-        try {
-          // await this.guestbookService.addEntry()
-        } catch(err) {
-          console.error("Error while creating guestbook entry", err);
-          this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.UNEXPECTED_ERROR'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
-        }
-      }
-    })
+    this.popupService.openCreateEntryPopup();
   }
 }

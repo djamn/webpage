@@ -332,6 +332,10 @@
   dark:text-title-dark-mode-text
 }
 
+.ql-editor.ql-blank:focus::before {
+  content: '';
+}
+
 .button-disabled {
   cursor: not-allowed;
   color: white;

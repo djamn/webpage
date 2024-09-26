@@ -17,7 +17,8 @@ module.exports = {
         'dark-mode-inside': '#1f2937',
         'dark-mode-inside-hover': '#2a3748',
         'title-dark-mode-text': '#eaeaea',
-        'dark-mode-text': '#909090'
+        'dark-mode-text': '#909090',
+        'dark-mode-text-hover': '#787878'
       },
       keyframes: {
         fadeInDown: {

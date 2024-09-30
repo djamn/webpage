@@ -8,6 +8,7 @@
   "REGISTER_POSSIBLE": true,
   "REGISTER_BACKGROUND_IMAGE_SRC": "/assets/no-image.svg",
   "FOOTER_LOGO_IMAGE_SRC": "/assets/no-image.svg",
+  "LANDING_PAGE_LOGO_IMAGE_SRC": "/assets/no-image.svg",
   "LOGIN_REGISTER_LOGO_IMAGE_SRC": "/assets/no-image.svg",
   "NAVBAR_LOGO_SRC": "/assets/no-image.svg",
   "USERNAME_CHARACTER_PATTERN": "^[A-Za-z0-9]*$",

@@ -174,5 +174,8 @@
     "DELETION_UNSUCCESSFUL": "There was an error deleting changelog entry. Please try again.",
     "CREATION_UNSUCCESSFUL": "There was an error creating changelog entry. Please try again.",
     "UPDATE_UNSUCCESSFUL": "There was an error updating changelog entry. Please try again."
+  },
+  "MAINPAGE": {
+    "KEYWORDS_TEXT": "I'm David, an experienced Software Developer with a strong focus on"
   }
 }

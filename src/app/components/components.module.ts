@@ -29,6 +29,9 @@ import {AdminDashboardComponent} from "./admin/admin-dashboard/admin-dashboard.c
 import {ChangelogComponent} from "./changelog/changelog.component";
 import {ChangelogPopupComponent} from "./popups/changelog-popup/changelog-popup.component";
 import {CreateEntryPopupComponent} from "./popups/create-entry-popup/create-entry-popup.component";
+import {
+  MainPageIntroductionComponent
+} from "./mainpage-introduction-component/mainpage-introduction-component.component";
 
 Quill.register("modules/emoji", Emoji);
 
@@ -53,6 +56,7 @@ Quill.register("modules/emoji", Emoji);
     AdminDashboardComponent,
     ChangelogComponent,
     ChangelogPopupComponent,
+    MainPageIntroductionComponent
   ],
   imports: [
     CommonModule,
@@ -86,6 +90,7 @@ Quill.register("modules/emoji", Emoji);
     AdminDashboardComponent,
     ChangelogComponent,
     ChangelogPopupComponent,
+    MainPageIntroductionComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

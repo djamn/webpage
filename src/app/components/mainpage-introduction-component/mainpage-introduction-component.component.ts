@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, NgZone, OnInit} from '@angular/core';
 import {ConfigService} from "../../services/config.service";
 
 @Component({
@@ -8,7 +8,7 @@ import {ConfigService} from "../../services/config.service";
 })
 export class MainPageIntroductionComponent implements OnInit {
   config: any;
-  keywords = ['Java', 'AngularJS', 'Typescript']; // Keywords to type
+  keywords = ['Java ', 'AngularJS ', 'Typescript ']; // Keywords to type
   // colors = ['text-red-500', 'text-blue-500', 'text-green-500']; // Tailwind classes for colors
   colors = ['blue', 'green', 'red'];
   currentWordIndex = 0;
@@ -19,6 +19,7 @@ export class MainPageIntroductionComponent implements OnInit {
   currentColor = this.colors[0];
 
   ngOnInit() {
+    this.ngZone.runOutsideAngular(() => this.startTyping());
     this.startTyping();
   }
 
@@ -39,17 +40,20 @@ export class MainPageIntroductionComponent implements OnInit {
       if (this.displayText === currentWord) {
         setTimeout(() => {
           this.isDeleting = true;
-          this.startTyping();
+          this.ngZone.runOutsideAngular(() => this.startTyping());
         }, 500);
         return;
       }
     }
 
     const delay = this.isDeleting ? this.deletingSpeed : this.typingSpeed;
-    setTimeout(() => this.startTyping(), delay);
+
+    this.cdr.detectChanges();
+
+    setTimeout(() => this.ngZone.runOutsideAngular(() => this.startTyping()), delay);
   }
 
-  constructor(private configService: ConfigService) {
+  constructor(private configService: ConfigService, private cdr : ChangeDetectorRef, private ngZone: NgZone) {
     this.config = this.configService.getConfig();
   }
 }

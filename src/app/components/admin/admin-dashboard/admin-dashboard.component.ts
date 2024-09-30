@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ConfigService} from "../../../services/config.service";
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
@@ -19,77 +19,51 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
     ])
   ]
 })
-export class AdminDashboardComponent implements AfterViewInit {
+export class AdminDashboardComponent implements OnInit {
   config: any;
-  @ViewChild('textContainer') textContainer!: ElementRef;
-  texts = [
-    {
-      text: 'amazing',
-      className:
-        'bg-clip-text text-center text-transparent bg-gradient-to-r from-[#ff1835] to-[#ffc900]'
-    },
-    {
-      text: 'stunning',
-      className:
-        'bg-clip-text text-center text-transparent bg-gradient-to-r from-[#0077ff] to-[#00e7df]'
-    },
-    {
-      text: 'fantastic',
-      className:
-        'bg-clip-text text-center text-transparent bg-gradient-to-r from-[#7f00de] to-[#ff007f]'
-    },
-    {
-      text: 'amazing',
-      className:
-        'bg-clip-text text-center text-transparent bg-gradient-to-r from-[#ff1835] to-[#ffc900]'
+  keywords = ['Java', 'AngularJS', 'Typescript']; // Keywords to type
+  // colors = ['text-red-500', 'text-blue-500', 'text-green-500']; // Tailwind classes for colors
+  colors=['blue', 'green', 'red'];
+  currentWordIndex = 0;
+  displayText = '';
+  isDeleting = false;
+  typingSpeed = 150; // Adjust typing speed
+  deletingSpeed = 100; // Adjust deleting speed
+  currentColor = this.colors[0];
+
+  ngOnInit() {
+    this.startTyping();
+  }
+
+  startTyping() {
+    const currentWord = this.keywords[this.currentWordIndex];
+    const currentLength = this.displayText.length;
+
+    if (this.isDeleting) {
+      // Deleting logic
+      this.displayText = currentWord.substring(0, currentLength - 1);
+      if (this.displayText === '') {
+        this.isDeleting = false;
+        this.currentWordIndex = (this.currentWordIndex + 1) % this.keywords.length;
+        this.currentColor = this.colors[this.currentWordIndex]; // Change color
+        console.log(this.currentColor);
+      }
+    } else {
+      // Typing logic
+      this.displayText = currentWord.substring(0, currentLength + 1);
+      if (this.displayText === currentWord) {
+        this.isDeleting = true;
+      }
     }
-  ];
 
-  currentTextIndex = 0;
-  currentState = 'visible';
+    // Adjust speed based on typing or deleting state
+    const delay = this.isDeleting ? this.deletingSpeed : this.typingSpeed;
 
-  ngAfterViewInit() {
-    this.animateTexts();
-  }
+    setTimeout(() => this.startTyping(), delay);
 
-  animateTexts() {
-    setInterval(() => {
-      this.currentState = 'hidden';
-
-      setTimeout(() => {
-        this.currentTextIndex =
-          (this.currentTextIndex + 1) % this.texts.length;
-        this.currentState = 'visible';
-      }, 300); // 300ms delay matches animation duration
-    }, 1600); // Time interval between changes
-  }
-
-  get currentText() {
-    return this.texts[this.currentTextIndex];
   }
 
   constructor(private configService: ConfigService) {
     this.config = this.configService.getConfig();
   }
-
-/*  animateTexts() {
-    let step = 0;
-    setInterval(() => {
-      switch (step) {
-        case 0:
-          this.currentState = 'visible';
-          break;
-        case 1:
-          this.currentState = 'hidden25';
-          break;
-        case 2:
-          this.currentState = 'hidden50';
-          break;
-        case 3:
-          this.currentState = 'hidden75';
-          break;
-      }
-      step = (step + 1) % 4;
-    }, 1600);
-  }*/
 }

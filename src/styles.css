@@ -8,6 +8,11 @@
   border: 1px solid red;
 }
 
+.border-1a {
+  border: 2px solid green;
+}
+
+
 .input-error-message {
   color: var(--error-color);
   margin-left: var(--dl-space-space-unit);

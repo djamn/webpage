@@ -36,5 +36,11 @@
       "name": "French",
       "icon": "/assets/no-image.svg"
     }
-  ]
+  ],
+  "_comment": "NOTE - Keywords need gap, colors have to be currently defined in main page introduction css",
+  "KEYWORDS_LANDING_PAGE": ["Java ", "AngularJS ", "Typescript "],
+  "KEYWORDS_COLOR_LIST": ["blue", "green", "red"],
+  "TYPING_SPEED_MS": 150,
+  "DELETING_SPEED_MS": 100,
+  "FULL_KEYWORD_PAUSE_DURATION_MS": 500
 }

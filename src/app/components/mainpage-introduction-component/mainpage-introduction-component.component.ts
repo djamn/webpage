@@ -8,19 +8,23 @@ import {ConfigService} from "../../services/config.service";
 })
 export class MainPageIntroductionComponent implements OnInit, OnDestroy {
   config: any;
-  keywords: string[] = ['Java ', 'AngularJS ', 'Typescript ']; // Space is needed, dont know why
-  // colors = ['text-red-500', 'text-blue-500', 'text-green-500']; // Tailwind classes for colors
-  colors: string[] = ['blue', 'green', 'red'];
+  keywords: string[];
+  colors: string[];
   currentWordIndex: number = 0;
   displayText: string = '';
   isDeleting: boolean = false;
-  typingSpeed: number = 150;
-  deletingSpeed: number = 100;
-  currentColor: string = this.colors[0];
+  typingSpeed: number;
+  deletingSpeed: number;
+  currentColor: string;
   active: boolean = false;
 
   constructor(private configService: ConfigService, private cdr: ChangeDetectorRef, private ngZone: NgZone) {
     this.config = this.configService.getConfig();
+    this.keywords = this.config.KEYWORDS_LANDING_PAGE;
+    this.colors = this.config.KEYWORDS_COLOR_LIST;
+    this.deletingSpeed = this.config.DELETING_SPEED_MS;
+    this.typingSpeed = this.config.TYPING_SPEED_MS;
+    this.currentColor = this.colors[0];
   }
 
   ngOnInit() {
@@ -50,7 +54,7 @@ export class MainPageIntroductionComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.isDeleting = true;
           this.ngZone.runOutsideAngular(() => this.startTyping());
-        }, 500);
+        }, this.config.FULL_KEYWORD_PAUSE_DURATION_MS);
         return;
       }
     }

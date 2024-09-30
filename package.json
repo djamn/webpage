@@ -24,7 +24,7 @@
     "@angular/platform-browser-dynamic": "^18.2.3",
     "@angular/router": "^18.2.3",
     "@fortawesome/fontawesome-free": "^6.6.0",
-    "@ng-select/ng-select": "^13.7.1",
+    "@ng-select/ng-select": "^13.8.2",
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "angular-build-info": "^2.0.1",

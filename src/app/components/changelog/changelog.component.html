@@ -1,5 +1,5 @@
-<div class="container mx-auto p-6 dark:bg-dark-mode">
-  <div class="max-w-4xl mx-auto">
+<div class="p-6 dark:bg-dark-mode w-[95%]">
+  <div class="w-full">
     <div class="flex justify-between items-center">
       <h1
         class="text-4xl font-bold text-center text-gray-900 dark:text-title-dark-mode-text animate-fadeInDown"
@@ -10,7 +10,6 @@
               class="ml-4 flex items-center justify-center w-12 h-12 text-white bg-green-500 dark:bg-green-700 rounded-full hover:bg-green-700 dark:hover:bg-green-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105 animate-fadeInLeft"
               (click)="addEntry()"
               title="{{'CHANGELOG.ADD_ENTRY_DESC' | translate}}">
-        <!--        TODO title-->
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
@@ -18,7 +17,7 @@
       </button>
     </div>
     <div class="mb-8 italic text-gray-500 dark:text-dark-mode-text animate-fadeInRight">
-      {{'CHANGELOG.BUILD_INFO' | translate: {date: date, time: time, hash: build.git.hash} }}
+      {{ 'CHANGELOG.BUILD_INFO' | translate: {date: date, time: time, hash: build.git.hash} }}
 
     </div>
 
@@ -27,12 +26,14 @@
          [ngClass]="{'animate-pulse' : loading}"
          class="mb-8 transform transition duration-500 ease-in-out hover:scale-102 animate-fade-in">
       <div class="flex flex-row">
-        <div class="text-lg max-sm:text-center font-semibold text-gray-700 dark:text-title-dark-mode-text
+        <div class="text-lg font-semibold text-gray-700 dark:text-title-dark-mode-text
         opacity-0 animate-fadeInRight w-[60%]"
              [ngClass]="{'blur-sm' : loading}"
              style="animation-delay: 0.2s; animation-fill-mode: forwards;">
-          {{ processTimestamp(entry.timestamp) }} (<ng-container *ngIf="entry.version_category !== 'General'">{{ entry.version_category }}
-        </ng-container>{{ entry.version }})
+          {{ processTimestamp(entry.timestamp) }} (
+          <ng-container *ngIf="entry.version_category !== 'General'">{{ entry.version_category }}
+          </ng-container>
+          {{ entry.version }})
         </div>
         <div *ngIf="!loading && (permissionService.hasPermission('manage-changelog-entries') | async)"
              class="flex justify-end space-x-6 w-[40%] animate-fadeInLeft">

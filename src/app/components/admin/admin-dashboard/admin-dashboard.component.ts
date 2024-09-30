@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ConfigService} from "../../../services/config.service";
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
@@ -23,12 +23,12 @@ export class AdminDashboardComponent implements OnInit {
   config: any;
   keywords = ['Java', 'AngularJS', 'Typescript']; // Keywords to type
   // colors = ['text-red-500', 'text-blue-500', 'text-green-500']; // Tailwind classes for colors
-  colors=['blue', 'green', 'red'];
+  colors = ['blue', 'green', 'red'];
   currentWordIndex = 0;
   displayText = '';
   isDeleting = false;
-  typingSpeed = 150; // Adjust typing speed
-  deletingSpeed = 100; // Adjust deleting speed
+  typingSpeed = 150;
+  deletingSpeed = 100;
   currentColor = this.colors[0];
 
   ngOnInit() {
@@ -40,7 +40,6 @@ export class AdminDashboardComponent implements OnInit {
     const currentLength = this.displayText.length;
 
     if (this.isDeleting) {
-      // Deleting logic
       this.displayText = currentWord.substring(0, currentLength - 1);
       if (this.displayText === '') {
         this.isDeleting = false;
@@ -49,18 +48,18 @@ export class AdminDashboardComponent implements OnInit {
         console.log(this.currentColor);
       }
     } else {
-      // Typing logic
       this.displayText = currentWord.substring(0, currentLength + 1);
       if (this.displayText === currentWord) {
-        this.isDeleting = true;
+        setTimeout(() => {
+          this.isDeleting = true;
+          this.startTyping();
+        }, 500);
+        return;
       }
     }
 
-    // Adjust speed based on typing or deleting state
     const delay = this.isDeleting ? this.deletingSpeed : this.typingSpeed;
-
     setTimeout(() => this.startTyping(), delay);
-
   }
 
   constructor(private configService: ConfigService) {

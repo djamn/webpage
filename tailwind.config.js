@@ -21,6 +21,10 @@ module.exports = {
         'dark-mode-text-hover': '#787878'
       },
       keyframes: {
+        blink: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' },
+        },
         fadeInDown: {
           '0%': {opacity: '0', transform: 'translateY(-20px)'},
           '100%': {opacity: '1', transform: 'translateY(0)'},
@@ -43,6 +47,7 @@ module.exports = {
         },
       },
       animation: {
+        blink: 'blink 1s step-end infinite',
         fadeInDown: 'fadeInDown 0.5s ease-out forwards',
         fadeInUp: 'fadeInUp 0.5s ease-out forwards',
         fadeInRight: 'fadeInRight 0.5s ease-out forwards',

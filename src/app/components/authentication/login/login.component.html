@@ -109,7 +109,7 @@
       </div>
 
       <div class="w-full mb-2">
-        <button class="w-full btn-primary btn-blue" type="submit" [ngClass]="{'cursor-not-allowed' : isLoading}">
+        <button [disabled]="isLoading" class="w-full btn-primary btn-blue" type="submit">
           <div class="flex items-center justify-center">
             <div *ngIf="isLoading"
               class="tw-loading-animation"></div>

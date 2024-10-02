@@ -1,5 +1,5 @@
 <div
-  class="h-[350px] w-[450px] p-4 cursor-pointer select-none touch-manipulation transition ease-in-out hover:-translate-y-1 hover:scale-102 duration-200 group">
+  class="h-[350px] max-lg:h-[250px] w-[450px] max-lg:w-[350px] p-4 cursor-pointer select-none touch-manipulation transition ease-in-out hover:-translate-y-1 hover:scale-102 duration-200 group">
   <div class="h-full flex flex-col border-2 rounded-lg border-solid border-gray-100 shadow-sm">
     <div class="flex flex-row p-2 space-x-2 items-center justify-between w-full">
       <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -15,8 +15,8 @@
     <div class="h-full rounded-lg flex flex-col p-3 justify-end bg-gray-400 relative">
       <img [attr.src]="'/assets/no-image.svg'" alt="Background Image"
            class="absolute inset-0 w-full h-full box-border object-cover z-0 rounded-2xl p-3"/>
-      <div class="relative z-10 text-gray-700 text-lg">Testing the Stuff</div>
-      <div class="relative z-10 text-gray-600 text-sm">Very nice testing stuff</div>
+      <div class="relative z-10 text-gray-700 text-lg max-md:text-sm">Testing the Stuff</div>
+      <div class="relative z-10 text-gray-600 text-sm max-md:text-xs">Very nice testing stuff</div>
     </div>
   </div>
 </div>

@@ -1,10 +1,16 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'selector',
   // darkMode: ['variant', '&:not(.light *)'],
   // darkMode: ['selector', '[data-mode="dark"]'],
-  content: ["./src/**/*.{html,js,ts}", "./node_modules/tw-elements/js/**/*.js", "./node_modules/flowbite/**/*.js"],
+  content: ["./src/**/*.{html,ts,json}", "./node_modules/flowbite/**/*.js"],
   theme: {
     extend: {
+      backgroundImage: {
+        'orange-gradient': 'linear-gradient(to right, #ff1835, #ffc900)',
+        'blue-gradient': 'linear-gradient(to right, #0077ff, #00e7df)',
+        'rosa-gradient': 'linear-gradient(to right, #7f00de, #ff007f)',
+      },
       scale: {
         '101': '1.01',
         '102': '1.02',
@@ -59,9 +65,9 @@ module.exports = {
     },
   },
   plugins: [
-    // require("tw-elements/plugin.cjs"),
     require('flowbite/plugin'),
     require('@tailwindcss/forms'),
   ],
+  autoprefixer: {},
 }
 

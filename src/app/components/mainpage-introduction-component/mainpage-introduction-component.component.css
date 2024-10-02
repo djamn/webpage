@@ -4,40 +4,21 @@
 
 
 .red {
-  text-align: center; /* Center text */
   background: linear-gradient(to right, #ff1835, #ffc900); /* Gradient background */
-  background-clip: text; /* Clip background to the text */
-  -webkit-background-clip: text; /* Safari compatibility */
-  color: transparent; /* Make the text itself transparent */
+  /*-webkit-background-clip: text; !* Safari compatibility *!*/
 }
 
 .green {
-  text-align: center; /* Center text */
   background: linear-gradient(to right, #0077ff, #00e7df); /* Gradient background */
-  background-clip: text; /* Clip background to the text */
-  -webkit-background-clip: text; /* Safari compatibility */
-  color: transparent; /* Make the text itself transparent */
+  /*-webkit-background-clip: text; !* Safari compatibility *!*/
 }
 
 .blue {
-  text-align: center; /* Center text */
+  /*text-align: center; !* Center text *!*/
   background: linear-gradient(to right, #7f00de, #ff007f); /* Gradient background */
-  background-clip: text; /* Clip background to the text */
-  -webkit-background-clip: text; /* Safari compatibility */
-  color: transparent; /* Make the text itself transparent */
+  /*background-clip: text; !* Clip background to the text *!*/
+  /*-webkit-background-clip: text; !* Safari compatibility *!*/
+  /*color: transparent; !* Make the text itself transparent *!*/
 }
 
-.cursor-type {
-  display: inline-block;
-  width: 1px; /* Width of the cursor */
-  background-color: black; /* Cursor color */
-  margin-left: 2px; /* Space between text and cursor */
-  animation: blink 1s step-end infinite; /* Blinking animation */
-  height: 1.2em; /* Ensure it's the same height as the text */
-  vertical-align: middle; /* Align it properly with text */
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; } /* Fully visible at the start and end */
-  50% { opacity: 0; }      /* Hidden at the midpoint */
-}
+/*text-center bg-clip-text text-transparent bg-gradient-to-r from-[#7f00de] to-[#ff007f]*/

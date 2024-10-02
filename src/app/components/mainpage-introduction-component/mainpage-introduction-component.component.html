@@ -14,7 +14,7 @@
     <div class="text-black w-[70%] max-md:w-full font-semibold text-[33px] dark:text-title-dark-mode-text">
       {{'MAINPAGE.KEYWORDS_TEXT' | translate}}
       <span class="relative">
-        <span [ngClass]="currentColor">{{ displayText }}</span>
+        <span class="text-center bg-clip-text text-transparent" [ngClass]="currentColor">{{ displayText }}</span>
         <span class="bg-black inline-block w-[1px] h-[1.2em] ml-1 align-middle animate-blink"></span>
       </span>
     </div>

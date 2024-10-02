@@ -27,6 +27,19 @@ module.exports = {
         'dark-mode-text-hover': '#787878'
       },
       keyframes: {
+        blurIn: {
+          '0%': { filter: 'blur(8px)' },
+          '100%': { filter: 'blur(0px)' },
+        },
+        scaleIn: {
+          '0%': { transform: 'scale(0.1)' },
+          '100%': { transform: 'scale(1)' },
+        },
+        blurScaleIn: {
+          '0%': { filter: 'blur(100px)', transform: 'scale(0.1)' },
+          '50%': { transform: 'scale(1)' },
+          '100%': { filter: 'blur(0px)' },
+        },
         blink: {
           '0%, 100%': { opacity: '1' },
           '50%': { opacity: '0' },
@@ -53,6 +66,9 @@ module.exports = {
         },
       },
       animation: {
+        blurIn: 'blurIn 1s ease-out forwards',
+        blurScaleIn: 'blurScaleIn 0.7s ease-out forwards',
+        scaleIn: 'scaleIn 0.5s ease-out forwards',
         blink: 'blink 1s step-end infinite',
         fadeInDown: 'fadeInDown 0.5s ease-out forwards',
         fadeInUp: 'fadeInUp 0.5s ease-out forwards',

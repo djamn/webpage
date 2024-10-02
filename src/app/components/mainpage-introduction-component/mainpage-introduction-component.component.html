@@ -7,11 +7,11 @@
         <img
           [attr.alt]=""
           [attr.src]="config.LANDING_PAGE_LOGO_IMAGE_SRC"
-          class="relative w-28 h-28 rounded-full object-cover max-sm:mb-4"
+          class="relative w-28 h-28 rounded-full object-cover max-sm:mb-4 animate-blurScaleIn"
         />
       </div>
     </div>
-    <div class="text-black w-[70%] max-md:w-full font-semibold text-[33px] dark:text-title-dark-mode-text">
+    <div class="text-black w-[70%] max-md:w-full font-semibold text-[33px] dark:text-title-dark-mode-text animate-fadeInUp">
       {{'MAINPAGE.KEYWORDS_TEXT' | translate}}
       <span class="relative">
         <span class="text-center bg-clip-text text-transparent" [ngClass]="currentColor">{{ displayText }}</span>

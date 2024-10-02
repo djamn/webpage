@@ -157,6 +157,36 @@
     duration-300
   }
 
+  .tw-component-container {
+    @apply
+    w-[95%]
+    h-auto
+    relative
+    flex
+    flex-col
+    overflow-auto
+    items-center
+    justify-center
+    p-6
+
+    bg-white
+    dark:bg-dark-mode
+  }
+
+  .tw-page-container {
+    @apply
+    w-full
+    flex
+    overflow-auto
+    min-h-screen
+    items-center
+    flex-col
+    justify-start
+
+    bg-white
+    dark:bg-dark-mode
+  }
+
   .text-info-style {
     @apply
     text-black

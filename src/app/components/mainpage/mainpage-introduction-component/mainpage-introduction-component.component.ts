@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit} from '@angular/core';
-import {ConfigService} from "../../services/config.service";
+import {ConfigService} from "../../../services/config.service";
 
 @Component({
   selector: 'mainpage-introduction-component',

@@ -31,7 +31,7 @@ import {ChangelogPopupComponent} from "./popups/changelog-popup/changelog-popup.
 import {CreateEntryPopupComponent} from "./popups/create-entry-popup/create-entry-popup.component";
 import {
   MainPageIntroductionComponent
-} from "./mainpage-introduction-component/mainpage-introduction-component.component";
+} from "./mainpage/mainpage-introduction-component/mainpage-introduction-component.component";
 
 Quill.register("modules/emoji", Emoji);
 

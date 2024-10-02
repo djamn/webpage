@@ -51,11 +51,14 @@
   .tw-separation-line {
     @apply
     w-full
+    bg-white
+    dark:bg-dark-mode
     border-transparent
     rounded-full
     my-6
     p-0.25
     bg-gradient-to-r from-white via-gray-200 to-white
+    dark:bg-gradient-to-r dark:from-dark-mode dark:via-gray-300 dark:to-dark-mode
   }
 
   .popup-text {
@@ -173,7 +176,7 @@
     relative
     flex
     flex-col
-    /*overflow-auto*/
+      /*overflow-auto*/
     items-center
     justify-center
     p-6
@@ -450,9 +453,6 @@ body {
     color: white !important;
   }
 }
-
-
-
 
 
 /*Changes asterisx*/

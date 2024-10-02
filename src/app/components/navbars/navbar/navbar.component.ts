@@ -51,6 +51,7 @@ export class Navbar {
     await this.authService.logout();
   }
 
+  // TODO move to config
   getNavLinks() {
     return [
       {
@@ -63,8 +64,8 @@ export class Navbar {
         path: '/',
       },
       {
-        label: this.translate.instant('NAVBAR.TOOLS_LINK_TITLE'),
-        path: '/',
+        label: this.translate.instant('NAVBAR.PROJECTS_LINK_TITLE'),
+        path: '/projects',
       },
       {
         label: this.translate.instant('NAVBAR.MARIO_GAME_LINK_TITLE'),

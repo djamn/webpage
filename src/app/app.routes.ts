@@ -9,6 +9,7 @@ import {AdminDashboard} from "./pages/admin-dashboard/admin-dashboard.component"
 import {DashboardGuard} from "./guards/dashboard.guard";
 import {Changelog} from "./pages/changelog/changelog.component";
 import {AuthGuard} from "./guards/auth.guard";
+import {Projects} from "./pages/projects/projects.component";
 
 export const routes: Routes = [
   {path: '', component: MainPage, pathMatch: 'full'},
@@ -19,6 +20,7 @@ export const routes: Routes = [
     component: ResetPassword,
     canActivate: [UserGuard]
   },
+  {path: 'projects', component: Projects},
   {path: 'guestbook', component: Guestbook},
   {path: 'changelog', component: Changelog},
   {path: 'dashboard', component: AdminDashboard, canActivate: [DashboardGuard]},

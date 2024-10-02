@@ -34,6 +34,7 @@ import {
 } from "./mainpage/mainpage-introduction-component/mainpage-introduction-component.component";
 import {ProjectsComponent} from "./mainpage/projects-component/projects-component.component";
 import {ProjectTemplateComponent} from "./mainpage/project-template/project-template.component";
+import {ProjectsMainComponent} from "./projects/projects-main-component/projects-main-component.component";
 
 Quill.register("modules/emoji", Emoji);
 
@@ -60,7 +61,8 @@ Quill.register("modules/emoji", Emoji);
     ChangelogPopupComponent,
     MainPageIntroductionComponent,
     ProjectsComponent,
-    ProjectTemplateComponent
+    ProjectTemplateComponent,
+    ProjectsMainComponent
   ],
   imports: [
     CommonModule,
@@ -96,7 +98,8 @@ Quill.register("modules/emoji", Emoji);
     ChangelogPopupComponent,
     MainPageIntroductionComponent,
     ProjectsComponent,
-    ProjectTemplateComponent
+    ProjectTemplateComponent,
+    ProjectsMainComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

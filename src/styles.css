@@ -165,7 +165,7 @@
     relative
     flex
     flex-col
-    overflow-auto
+    /*overflow-auto*/
     items-center
     justify-center
     p-6

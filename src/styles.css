@@ -177,10 +177,10 @@
     @apply
     w-full
     flex
+    flex-col
     overflow-auto
     min-h-screen
     items-center
-    flex-col
     justify-start
 
     bg-white

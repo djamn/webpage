@@ -160,6 +160,7 @@
   .tw-component-container {
     @apply
     w-[95%]
+    max-sm:w-full
     h-auto
     relative
     flex

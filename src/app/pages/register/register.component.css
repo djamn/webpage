@@ -2,12 +2,3 @@
   display: contents;
 }
 
-.register-main-container {
-  justify-content: center;
-/*  TODO background*/
-}
-
-.register-container {
-  margin-top: 5%;
-  height: auto;
-}

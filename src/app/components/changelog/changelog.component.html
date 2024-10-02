@@ -1,11 +1,11 @@
 <div class="tw-component-container">
   <div class="w-full">
     <div class="flex justify-between items-center">
-      <h1
-        class="text-4xl font-bold text-center text-gray-900 dark:text-title-dark-mode-text animate-fadeInDown"
+      <div
+        class="tw-heading mb-1"
         style="animation-duration: 0.4s; animation-fill-mode: forwards">
         {{ 'CHANGELOG.CHANGELOG_TITLE' | translate }}
-      </h1>
+      </div>
       <button *ngIf="!loading && (permissionService.hasPermission('manage-changelog-entries') | async)"
               class="ml-4 flex items-center justify-center w-12 h-12 text-white bg-green-500 dark:bg-green-700 rounded-full hover:bg-green-700 dark:hover:bg-green-800 shadow-lg transition duration-300 ease-in-out transform hover:scale-105 animate-fadeInLeft"
               (click)="addEntry()"
@@ -18,7 +18,10 @@
     </div>
     <div class="mb-8 italic text-gray-500 dark:text-dark-mode-text animate-fadeInRight">
       {{ 'CHANGELOG.BUILD_INFO' | translate: {date: date, time: time, hash: build.git.hash} }}
+    </div>
 
+    <div class="tw-separation-line">
+      <div class="w-full h-full"></div>
     </div>
 
 

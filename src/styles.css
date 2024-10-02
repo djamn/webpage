@@ -24,14 +24,39 @@
 @layer components {
   .tw-heading {
     @apply
-    text-2xl
+    text-[40px]
+    self-center
+    text-center
+    font-semibold
+    mb-10
+    animate-fadeInDown
+
+    text-black
+    dark:text-title-dark-mode-text
   }
 
   .tw-subheading {
     @apply
-    text-2xl
+    text-3xl
+    self-center
+    text-center
+    font-semibold
+    mb-10
+    animate-fadeInLeft
+
+    text-black
+    dark:text-title-dark-mode-text
   }
 
+  .tw-separation-line {
+    @apply
+    w-full
+    border-transparent
+    rounded-full
+    my-6
+    p-0.25
+    bg-gradient-to-r from-white via-gray-200 to-white
+  }
 
   .popup-text {
     @apply

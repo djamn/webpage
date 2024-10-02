@@ -11,6 +11,9 @@ module.exports = {
         'blue-gradient': 'linear-gradient(to right, #0077ff, #00e7df)',
         'rosa-gradient': 'linear-gradient(to right, #7f00de, #ff007f)',
       },
+      padding: {
+        '0.25': '0.09rem'
+      },
       scale: {
         '101': '1.01',
         '102': '1.02',

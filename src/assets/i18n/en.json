@@ -178,5 +178,10 @@
   },
   "MAINPAGE": {
     "KEYWORDS_TEXT": "I'm David, an experienced Software Developer with a strong focus on"
+  },
+  "PROJECTS": {
+    "TITLE": "Projects",
+    "DESCRIPTION": "Some projects i made over the last years :)",
+    "ADD_PROJECT_DESC": "Add new project"
   }
 }

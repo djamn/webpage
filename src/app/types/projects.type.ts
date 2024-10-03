@@ -1,5 +1,5 @@
 export interface Project {
-  project_id: string;
+  id: string;
   title: string;
   short_desc: string;
   long_desc: string;
@@ -9,7 +9,7 @@ export interface Project {
   image_url: string;
   tags: string[];
   is_featured: boolean;
-  featured_amount: number;
+  featured_projects_amount: number;
   year_created: number;
   project_entry_creation_timestamp: number;
   likes: number;

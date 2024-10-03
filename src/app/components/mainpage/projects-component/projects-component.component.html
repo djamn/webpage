@@ -4,7 +4,7 @@
   </div>
   <div class="w-auto flex flex-col space-y-4">
     <div *ngFor="let row of projectsChunks" class="w-full flex justify-between flex-row max-md:flex-col max-md:items-center max-md:justify-center">
-      <project-template *ngFor="let project of row" [project]="project"></project-template>
+      <project-template *ngFor="let project of row" [project]="project" [isProjectPage]="false"></project-template>
     </div>
 
     <div class="w-full flex justify-center">

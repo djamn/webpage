@@ -13,7 +13,7 @@ import {Project} from "../../../types/projects.type";
 export class ProjectsMainComponent {
   loading: boolean = false;
   projects: Project[] = [{
-    project_id: 'bla',
+    id: 'bla',
     title: 'Bike Management System',
     subpage_url: '/changelog',
     short_desc: 'short desc',
@@ -27,10 +27,10 @@ export class ProjectsMainComponent {
     likes: 10,
     project_entry_creation_timestamp: 238572922,
     views: 0,
-    featured_amount: 0
+    featured_projects_amount: 0
   },
     {
-      project_id: 'bla',
+      id: 'bla',
       title: 'Bike Management System',
       subpage_url: '/changelog',
       short_desc: 'System to manage some cool bikes in my garden',
@@ -44,10 +44,10 @@ export class ProjectsMainComponent {
       likes: 100,
       project_entry_creation_timestamp: 238572922,
       views: 0,
-      featured_amount: 0
+      featured_projects_amount: 0
     },
     {
-      project_id: 'bla',
+      id: 'bla',
       title: 'Bike Management System',
       subpage_url: '/changelog',
       short_desc: 'short desc',
@@ -61,10 +61,10 @@ export class ProjectsMainComponent {
       likes: 20,
       project_entry_creation_timestamp: 238572922,
       views: 0,
-      featured_amount: 0
+      featured_projects_amount: 0
     },
     {
-      project_id: 'bla',
+      id: 'bla',
       title: 'Bike Management System',
       subpage_url: '/changelog',
       short_desc: 'short desc',
@@ -78,7 +78,7 @@ export class ProjectsMainComponent {
       likes: 150,
       project_entry_creation_timestamp: 238572922,
       views: 0,
-      featured_amount: 0
+      featured_projects_amount: 0
     }
 
   ]

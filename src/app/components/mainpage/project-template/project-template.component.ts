@@ -21,7 +21,7 @@ export class ProjectTemplateComponent {
   featuredCount: number = 0;
   config: any;
 
-  constructor(private permissionService: PermissionService,
+  constructor(protected permissionService: PermissionService,
               private projectService: ProjectsService,
               private snackbar: Snackbar,
               private configService: ConfigService,

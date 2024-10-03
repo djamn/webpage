@@ -182,6 +182,8 @@
   "PROJECTS": {
     "TITLE": "Projects",
     "DESCRIPTION": "Some projects i made over the last years :)",
-    "ADD_PROJECT_DESC": "Add new project"
+    "ADD_PROJECT_DESC": "Add new project",
+    "MAINPAGE_PROJECTS_TITLE": "Selected projects",
+    "MAINPAGE_PROJECTS_MORE": "See all projects"
   }
 }

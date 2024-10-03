@@ -1,8 +1,9 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import build from "../../../../build";
 import {PermissionService} from "../../../services/permission.service";
 import {ProjectsService} from "../../../services/projects.service";
 import {TranslateService} from "@ngx-translate/core";
+import {Project} from "../../../types/projects.type";
 
 @Component({
   selector: 'projects-main-component',
@@ -11,9 +12,8 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class ProjectsMainComponent {
   loading: boolean = false;
-  @Input()
-  projects: any[] = [{
-    id: 'bla',
+  projects: Project[] = [{
+    project_id: 'bla',
     title: 'Bike Management System',
     subpage_url: '/changelog',
     short_desc: 'short desc',
@@ -25,10 +25,11 @@ export class ProjectsMainComponent {
     is_featured: false,
     year_created: 2024,
     likes: 10,
-    project_entry_creation_timestamp: 238572922
+    project_entry_creation_timestamp: 238572922,
+    views: 0,
   },
     {
-      id: 'bla',
+      project_id: 'bla',
       title: 'Bike Management System',
       subpage_url: '/changelog',
       short_desc: 'System to manage some cool bikes in my garden',
@@ -40,10 +41,11 @@ export class ProjectsMainComponent {
       is_featured: false,
       year_created: 2024,
       likes: 100,
-      project_entry_creation_timestamp: 238572922
+      project_entry_creation_timestamp: 238572922,
+      views: 0,
     },
     {
-      id: 'bla',
+      project_id: 'bla',
       title: 'Bike Management System',
       subpage_url: '/changelog',
       short_desc: 'short desc',
@@ -55,10 +57,11 @@ export class ProjectsMainComponent {
       is_featured: false,
       year_created: 2024,
       likes: 20,
-      project_entry_creation_timestamp: 238572922
+      project_entry_creation_timestamp: 238572922,
+      views: 0,
     },
     {
-      id: 'bla',
+      project_id: 'bla',
       title: 'Bike Management System',
       subpage_url: '/changelog',
       short_desc: 'short desc',
@@ -70,7 +73,8 @@ export class ProjectsMainComponent {
       is_featured: false,
       year_created: 2024,
       likes: 150,
-      project_entry_creation_timestamp: 238572922
+      project_entry_creation_timestamp: 238572922,
+      views: 0,
     }
 
   ]

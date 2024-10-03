@@ -1,19 +1,16 @@
-<div class="tw-component-container">
+<div *ngIf="projects?.length" class="tw-component-container">
   <div class="tw-subheading">
-    Selected Projects
+    {{ 'PROJECTS.MAINPAGE_PROJECTS_TITLE' | translate }}
   </div>
   <div class="w-auto flex flex-col space-y-4">
-    <div class="w-full flex justify-between flex-row max-md:flex-col max-md:items-center max-md:justify-center">
-      <project-template></project-template>
-      <project-template></project-template>
+    <div *ngFor="let row of projectsChunks" class="w-full flex justify-between flex-row max-md:flex-col max-md:items-center max-md:justify-center">
+      <project-template *ngFor="let project of row" [project]="project"></project-template>
     </div>
 
-    <div class="w-full flex justify-between flex-row max-md:flex-col max-md:items-center max-md:justify-center">
-      <project-template></project-template>
-      <project-template></project-template>
-    </div>
     <div class="w-full flex justify-center">
-      <button class="btn-primary btn-gray" type="button" [routerLink]="'/projects'">See all projects</button>
+      <button class="btn-primary btn-gray" type="button" [routerLink]="'/projects'">
+        {{ 'PROJECTS.MAINPAGE_PROJECTS_MORE' | translate }}
+      </button>
     </div>
   </div>
 </div>

@@ -27,6 +27,7 @@ export class ProjectsMainComponent {
     likes: 10,
     project_entry_creation_timestamp: 238572922,
     views: 0,
+    featured_amount: 0
   },
     {
       project_id: 'bla',
@@ -43,6 +44,7 @@ export class ProjectsMainComponent {
       likes: 100,
       project_entry_creation_timestamp: 238572922,
       views: 0,
+      featured_amount: 0
     },
     {
       project_id: 'bla',
@@ -59,6 +61,7 @@ export class ProjectsMainComponent {
       likes: 20,
       project_entry_creation_timestamp: 238572922,
       views: 0,
+      featured_amount: 0
     },
     {
       project_id: 'bla',
@@ -75,6 +78,7 @@ export class ProjectsMainComponent {
       likes: 150,
       project_entry_creation_timestamp: 238572922,
       views: 0,
+      featured_amount: 0
     }
 
   ]

@@ -15,4 +15,8 @@ export class ProjectTemplateComponent {
   constructor(permissionService: PermissionService, translate: TranslateService) {
 
   }
+
+  like() {
+    console.log("Works")
+  }
 }

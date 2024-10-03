@@ -1,8 +1,9 @@
 export interface Project {
   id: string;
   title: string;
-  short_description: string;
-  long_description: string;
+  short_desc: string;
+  long_desc: string;
+  subpage_url: string,
   repo_url: string;
   external_url: string;
   image_url: string;

@@ -27,10 +27,10 @@
 
     <div class="w-auto flex flex-wrap">
       <div
-        *ngFor="let project of projects; let i = index"
+        *ngFor="let project of projects"
         class="w-full md:w-1/3 flex justify-center mb-8 max-md:mb-4"
       >
-        <project-template></project-template>
+        <project-template [project]="project" ></project-template>
       </div>
     </div>
 

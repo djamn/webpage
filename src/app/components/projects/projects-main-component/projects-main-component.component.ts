@@ -10,7 +10,20 @@ import {PermissionService} from "../../../services/permission.service";
 export class ProjectsMainComponent {
   loading: boolean = false;
   @Input()
-  projects: any[] = ['Hallo', 'h', 's', 's']
+  projects: any[] = [{
+    id: 'bla',
+    title: 'TILTE',
+    subpage_url: '/changelog',
+    short_desc: 'short desc',
+    long_desc: 'longer longer longer desc',
+    repo_url: 'REPO URL',
+    external_url: 'EXT URL',
+    image_url: 'IMG URL',
+    tags: ['tag1', 'tag2'],
+    is_featured: false,
+    year_created: 2024,
+    project_entry_creation_timestamp: 238572922
+  }]
 
 
   constructor(protected permissionService: PermissionService) {

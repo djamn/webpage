@@ -43,5 +43,6 @@
   "KEYWORDS_COLOR_LIST": ["bg-rosa-gradient", "bg-blue-gradient", "bg-orange-gradient"],
   "TYPING_SPEED_MS": 150,
   "DELETING_SPEED_MS": 100,
-  "FULL_KEYWORD_PAUSE_DURATION_MS": 500
+  "FULL_KEYWORD_PAUSE_DURATION_MS": 500,
+  "MAX_FEATURED_PROJECTS": 1
 }

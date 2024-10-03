@@ -63,7 +63,17 @@ export class ProjectsService {
     }
   }
 
-  async featureProject() {
+  async featureProject(id: string, isFeatured: boolean, featuredProjects: number) {
+    console.log(id);
+    console.log("Changing feature: ", isFeatured, featuredProjects, `Featured Projects new: ${isFeatured ? featuredProjects + 1 : featuredProjects - 1}`)
+    try {
+      await this.firestore.collection(projectsCollectionName).doc(id).update({
+        is_featured: isFeatured,
+        featuredProjects: isFeatured ? featuredProjects + 1 : featuredProjects - 1
+      })
+    } catch (err) {
+      throw err;
+    }
 
   }
 

@@ -11,4 +11,6 @@ export interface Project {
   is_featured: boolean;
   year_created: number;
   project_entry_creation_timestamp: number;
+  likes: number;
+  views: number
 }

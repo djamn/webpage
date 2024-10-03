@@ -48,6 +48,10 @@
     dark:text-title-dark-mode-text
   }
 
+  .tw-description {
+    @apply mb-8 italic text-gray-500 dark:text-dark-mode-text animate-fadeInRight
+  }
+
   .tw-separation-line {
     @apply
     w-full

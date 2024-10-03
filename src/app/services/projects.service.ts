@@ -30,7 +30,7 @@ export class ProjectsService {
     }
   }
 
-  async getProjects() {
+  getProjects() {
     return this.firestore.collection(projectsCollectionName, ref => ref.orderBy('year_created', 'desc'))
       .snapshotChanges()
       .pipe(
@@ -39,7 +39,7 @@ export class ProjectsService {
           return actions.map(a => {
             const data = a.payload.doc.data() as Project
             const id = a.payload.doc.id;
-            return {id, ...data}
+            return {...data, id}
           })
         })
       )

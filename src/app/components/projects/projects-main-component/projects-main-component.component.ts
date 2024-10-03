@@ -1,6 +1,8 @@
 import {Component, Input} from '@angular/core';
 import build from "../../../../build";
 import {PermissionService} from "../../../services/permission.service";
+import {ProjectsService} from "../../../services/projects.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'projects-main-component',
@@ -22,6 +24,7 @@ export class ProjectsMainComponent {
     tags: ['tag1', 'tag2'],
     is_featured: false,
     year_created: 2024,
+    likes: 10,
     project_entry_creation_timestamp: 238572922
   },
     {
@@ -51,6 +54,7 @@ export class ProjectsMainComponent {
       tags: ['tag1', 'tag2'],
       is_featured: false,
       year_created: 2024,
+      likes: 20,
       project_entry_creation_timestamp: 238572922
     },
     {
@@ -65,13 +69,30 @@ export class ProjectsMainComponent {
       tags: ['tag1', 'tag2'],
       is_featured: false,
       year_created: 2024,
+      likes: 150,
       project_entry_creation_timestamp: 238572922
     }
 
   ]
 
 
-  constructor(protected permissionService: PermissionService) {
+  constructor(protected permissionService: PermissionService, private projectService: ProjectsService, private translate: TranslateService) {
+    this.fetchData();
+  }
+
+  fetchData(): void {
+    this.loading = true;
+
+    this.projectService.getProjects().subscribe({
+      next: (data) => {
+        this.projects = data;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Error fetching projects:', err);
+        this.loading = false;
+      }
+    })
   }
 
   addProject(): void {

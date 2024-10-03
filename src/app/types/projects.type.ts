@@ -1,5 +1,5 @@
 export interface Project {
-  id: string;
+  project_id: string;
   title: string;
   short_desc: string;
   long_desc: string;

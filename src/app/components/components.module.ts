@@ -35,6 +35,7 @@ import {
 import {ProjectsComponent} from "./mainpage/projects-component/projects-component.component";
 import {ProjectTemplateComponent} from "./mainpage/project-template/project-template.component";
 import {ProjectsMainComponent} from "./projects/projects-main-component/projects-main-component.component";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 Quill.register("modules/emoji", Emoji);
 
@@ -75,6 +76,7 @@ Quill.register("modules/emoji", Emoji);
     RecaptchaFormsModule,
     QuillModule.forRoot(),
     NgSelectModule,
+    FontAwesomeModule
   ],
   exports: [
     TestComponentComponent,

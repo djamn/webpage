@@ -33,13 +33,20 @@ export class ProjectTemplateComponent {
     console.log("Works")
   }
 
-  deleteEntry(id: string): void {
+  async deleteEntry(id: string) {
+    const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-projects'));
 
+    if (hasPermission) {
 
+    }
   }
 
-  editEntry(id: string): void {
+  async editEntry(id: string) {
+    const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-projects'));
 
+    if (hasPermission) {
+
+    }
   }
 
   async featureProject(id: string) {
@@ -55,7 +62,7 @@ export class ProjectTemplateComponent {
         const newFeatureValue = !this.project.is_featured;
         await this.projectService.featureProject(id, !this.project.is_featured, this.featuredCount);
 
-        if(newFeatureValue) this.snackbar.showSnackbar(this.translate.instant('PROJECTS.FEATURING_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
+        if (newFeatureValue) this.snackbar.showSnackbar(this.translate.instant('PROJECTS.FEATURING_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
         else this.snackbar.showSnackbar(this.translate.instant('PROJECTS.UN_FEATURING_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
 
       } catch (error) {

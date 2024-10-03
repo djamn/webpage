@@ -12,6 +12,7 @@ import {Project} from "../../../types/projects.type";
 })
 export class ProjectsMainComponent {
   loading: boolean = false;
+  featuredCount: number = 0;
   projects: Project[] = [{
     id: 'bla',
     title: 'Bike Management System',
@@ -27,7 +28,6 @@ export class ProjectsMainComponent {
     likes: 10,
     project_entry_creation_timestamp: 238572922,
     views: 0,
-    featured_projects_amount: 0
   },
     {
       id: 'bla',
@@ -44,7 +44,6 @@ export class ProjectsMainComponent {
       likes: 100,
       project_entry_creation_timestamp: 238572922,
       views: 0,
-      featured_projects_amount: 0
     },
     {
       id: 'bla',
@@ -61,7 +60,6 @@ export class ProjectsMainComponent {
       likes: 20,
       project_entry_creation_timestamp: 238572922,
       views: 0,
-      featured_projects_amount: 0
     },
     {
       id: 'bla',
@@ -78,7 +76,6 @@ export class ProjectsMainComponent {
       likes: 150,
       project_entry_creation_timestamp: 238572922,
       views: 0,
-      featured_projects_amount: 0
     }
 
   ]
@@ -95,6 +92,7 @@ export class ProjectsMainComponent {
       next: (data) => {
         this.projects = data;
         this.loading = false;
+        this.featuredCount = this.projects.filter(project => project.is_featured).length;
       },
       error: (err) => {
         console.error('Error fetching projects:', err);

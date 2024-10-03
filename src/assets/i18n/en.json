@@ -187,6 +187,11 @@
     "MAX_FEATURED_PROJECTS_EXCEEDED": "There is already a maximum of {{amount}} project(s) featured!",
     "FEATURING_SUCCESSFUL": "Successfully featured project",
     "UN_FEATURING_SUCCESSFUL": "Successfully unfeatured project",
-    "ERROR_OCCURRED": "There was an error changing feature. Please try again."
+    "ERROR_OCCURRED": "There was an error changing feature. Please try again.",
+    "EDIT_PROJECT_DESC": "Edit this project",
+    "UN_FEATURE_PROJECT_DESC": "Unfeature this project",
+    "FEATURE_PROJECT_DESC": "Feature this project",
+    "DELETE_PROJECT_DESC": "Delete this project",
+    "PROJECT_TITLE": "Project from {{year"
   }
 }

@@ -31,6 +31,7 @@ export class ProjectsService {
         likes: 0,
         tags: [],
       });
+      console.log("Successfully added");
     } catch (err) {
       throw err;
     }
@@ -56,7 +57,7 @@ export class ProjectsService {
   }
 
   getProjects() {
-    return this.firestore.collection(projectsCollectionName, ref => ref.orderBy('year_created', 'desc'))
+    return this.firestore.collection(projectsCollectionName, ref => ref.orderBy('project_year', 'desc'))
       .snapshotChanges()
       .pipe(
         debounceTime(300), // needed to not load everything twice

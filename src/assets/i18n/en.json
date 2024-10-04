@@ -196,6 +196,29 @@
     "PROJECT_TITLE": "Project from {{year}}",
     "FEATURED_HINT": "(featured)",
     "DELETION_SUCCESSFUL": "The project was deleted successfully!",
-    "DELETION_UNSUCCESSFUL": "There was an error deleting the project. Please try again."
+    "DELETION_UNSUCCESSFUL": "There was an error deleting the project. Please try again.",
+    "CREATE_PROJECT_TITLE": "Create Project",
+    "UPDATE_PROJECT_TITLE": "Update Project",
+    "TITLE_LABEL": "Your Title",
+    "TITLE_PLACEHOLDER": "Enter Title",
+    "SHORT_DESC_LABEL": "Short Description",
+    "SHORT_DESC_PLACEHOLDER": "Enter a short description",
+    "LONG_DESC_TITLE": "Long Description",
+    "LONG_DESC_PLACEHOLDER": "Enter your actual project description",
+    "REPO_URL_TITLE": "Repository URL",
+    "REPO_URL_PLACEHOLDER": "Enter repository url (optional)",
+    "EXTERNAL_URL_TITLE": "External URL",
+    "EXTERNAL_URL_PLACEHOLDER": "Enter external url (optional)",
+    "PROJECT_YEAR_TITLE": "Year of creation",
+    "PROJECT_YEAR_PLACEHOLDER": "Enter year",
+    "FEATURE_PROJECT": "Feature project on main page?",
+    "IMAGE_TITLE": "Upload Project Image",
+    "FIELDS_HAVE_ERRORS": "Please fix all errors before creating entry!",
+    "UNEXPECTED_ERROR": "There was an error while creating project. Please try again.",
+    "PROJECT_CREATED_SUCCESSFUL": "Project was created successfully!",
+    "PROJECT_UPDATED_SUCCESSFUL": "Project was updated successfully!"
+  },
+  "ERRORS": {
+    "REQUIRED": "This field is required!"
   }
 }

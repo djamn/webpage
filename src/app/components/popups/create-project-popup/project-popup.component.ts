@@ -52,11 +52,11 @@ export class ProjectPopupComponent {
       this.projectId = project.id;
       this.projectForm.patchValue({
         title: project.title,
-        short_desc: project.username,
-        long_desc: project.entry_message,
+        short_desc: project.short_desc,
+        long_desc: project.long_desc,
         repo_url: project.repo_url,
         external_url: project.external_url,
-        project_year: project.year_created,
+        project_year: project.project_year,
         is_featured: project.is_featured,
       })
     }

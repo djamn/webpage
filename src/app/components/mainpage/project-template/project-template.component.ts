@@ -56,9 +56,7 @@ export class ProjectTemplateComponent {
   async editProject() {
     const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-projects'));
 
-    if (hasPermission) {
-      this.popupService.openUpdateProjectPopup(this.project);
-    }
+    if (hasPermission) this.popupService.openUpdateProjectPopup(this.project);
   }
 
   async featureProject(id: string) {

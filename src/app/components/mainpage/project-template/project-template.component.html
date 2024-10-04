@@ -8,7 +8,7 @@
       </svg>
       <div class="text-gray-500 font-medium flex items-center">{{'PROJECTS.PROJECT_TITLE' | translate: {year: project.year_created} }} <span
         *ngIf="isProjectPage && project.is_featured && (permissionService.hasPermission('manage-projects') | async)"
-        class="ml-1 text-red-600 text-sm">(featured)</span></div>
+        class="ml-1 text-red-600 text-sm">{{'PROJECTS.FEATURED_HINT' | translate}}</span></div>
       <svg class="w-5 h-5 opacity-0 group-hover:opacity-90 transition-all duration-500"
            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
         <path

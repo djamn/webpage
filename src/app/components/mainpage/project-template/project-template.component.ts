@@ -6,6 +6,7 @@ import {firstValueFrom} from "rxjs";
 import {ProjectsService} from "../../../services/projects.service";
 import {Snackbar} from "../../../utility/snackbar";
 import {ConfigService} from "../../../services/config.service";
+import {PopupService} from "../../../services/popup.service";
 
 @Component({
   selector: 'project-template',
@@ -25,6 +26,7 @@ export class ProjectTemplateComponent {
               private projectService: ProjectsService,
               private snackbar: Snackbar,
               private configService: ConfigService,
+              private popupService: PopupService,
               private translate: TranslateService) {
     this.config = configService.getConfig();
   }
@@ -37,7 +39,17 @@ export class ProjectTemplateComponent {
     const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-projects'));
 
     if (hasPermission) {
-
+      this.popupService.openPopup(this.translate.instant('DIALOG.DELETE_PROJECT_DESC', {}), this.translate.instant('BUTTONS.BUTTON_DELETE')).subscribe(async (result) => {
+        if(result) {
+          try {
+            await this.projectService.deleteProject(id);
+            this.snackbar.showSnackbar(this.translate.instant('PROJECTS.DELETION_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
+          } catch (err) {
+            console.error('Error deleting project entry:', err);
+            this.snackbar.showSnackbar(this.translate.instant('PROJECTS.DELETION_UNSUCCESSFUL'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+          }
+        }
+      })
     }
   }
 

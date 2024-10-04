@@ -148,6 +148,7 @@
     "DESCRIPTION_ADD_GUESTBOOK_COMMENT": "Type in your comment you want to add to this entry:",
     "DESCRIPTION_DELETE_GUESTBOOK_COMMENT": "Do you really want to delete the comment?",
     "DESCRIPTION_DELETE_CHANGELOG_ENTRY": "Do you really want to delete this changelog entry?",
+    "DELETE_PROJECT_DESC": "Do you really want to delete this project?",
     "REQUIRED_FIELD": "This field is required!",
     "CREATE_CHANGELOG_TITLE": "Create Changelog Entry",
     "SELECT_DATE_LABEL": "Select Date",
@@ -192,6 +193,9 @@
     "UN_FEATURE_PROJECT_DESC": "Unfeature this project",
     "FEATURE_PROJECT_DESC": "Feature this project",
     "DELETE_PROJECT_DESC": "Delete this project",
-    "PROJECT_TITLE": "Project from {{year}}"
+    "PROJECT_TITLE": "Project from {{year}}",
+    "FEATURED_HINT": "(featured)",
+    "DELETION_SUCCESSFUL": "The project was deleted successfully!",
+    "DELETION_UNSUCCESSFUL": "There was an error deleting the project. Please try again."
   }
 }

@@ -4,6 +4,8 @@ import {PermissionService} from "../../../services/permission.service";
 import {ProjectsService} from "../../../services/projects.service";
 import {TranslateService} from "@ngx-translate/core";
 import {Project} from "../../../types/projects.type";
+import {firstValueFrom} from "rxjs";
+import {PopupService} from "../../../services/popup.service";
 
 @Component({
   selector: 'projects-main-component',
@@ -77,11 +79,12 @@ export class ProjectsMainComponent {
       project_entry_creation_timestamp: 238572922,
       views: 0,
     }
-
   ]
 
-
-  constructor(protected permissionService: PermissionService, private projectService: ProjectsService, private translate: TranslateService) {
+  constructor(protected permissionService: PermissionService,
+              private projectService: ProjectsService,
+              private popupService: PopupService,
+              private translate: TranslateService) {
     this.fetchData();
   }
 
@@ -101,10 +104,13 @@ export class ProjectsMainComponent {
     })
   }
 
-  addProject(): void {
+  async addProject() {
+    const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-projects'));
 
+    if (hasPermission) {
+      this.popupService.openCreateProjectPopup();
+    }
   }
-
 
   protected readonly build = build;
 }

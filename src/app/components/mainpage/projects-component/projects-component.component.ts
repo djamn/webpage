@@ -49,12 +49,4 @@ export class ProjectsComponent {
     return result;
   }
 
-  async addProject() {
-    const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-projects'));
-
-    if (hasPermission) {
-      this.popupService.openCreateProjectPopup();
-    }
-  }
-
 }

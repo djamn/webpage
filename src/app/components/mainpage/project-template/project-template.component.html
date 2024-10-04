@@ -52,7 +52,7 @@
       </svg>
 
       <svg
-        (click)="editEntry(project.id)"
+        (click)="editProject()"
         class="cursor-pointer w-6 h-6 transition-all hover:scale-105"
         viewBox="0 0 877.7142857142857 1024">
         <title>{{ 'PROJECTS.EDIT_PROJECT_DESC' | translate }}</title>
@@ -63,7 +63,7 @@
 
 
       <svg
-        (click)="deleteEntry(project.id)"
+        (click)="deleteProject(project.id)"
         class="cursor-pointer w-6 h-6 transition-all hover:scale-105"
         viewBox="0 0 804.5714285714286 1024">
         <title>{{ 'PROJECT.DELETE_PROJECT_DESC' | translate }}</title>

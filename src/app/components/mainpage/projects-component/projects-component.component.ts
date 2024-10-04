@@ -3,6 +3,8 @@ import {Project} from "../../../types/projects.type";
 import {PermissionService} from "../../../services/permission.service";
 import {ProjectsService} from "../../../services/projects.service";
 import {TranslateService} from "@ngx-translate/core";
+import {firstValueFrom} from "rxjs";
+import {PopupService} from "../../../services/popup.service";
 
 @Component({
   selector: 'projects-component',
@@ -16,7 +18,10 @@ export class ProjectsComponent {
   projects: Project[] = [];
   projectsChunks: Project[][] = [];
 
-  constructor(protected permissionService: PermissionService, private projectService: ProjectsService, private translate: TranslateService) {
+  constructor(protected permissionService: PermissionService,
+              private projectService: ProjectsService,
+              private popupService: PopupService,
+              private translate: TranslateService) {
     this.fetchProjects();
   }
 
@@ -42,6 +47,14 @@ export class ProjectsComponent {
       result.push(array.slice(i, i + chunkSize));
     }
     return result;
+  }
+
+  async addProject() {
+    const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-projects'));
+
+    if (hasPermission) {
+      this.popupService.openCreateProjectPopup();
+    }
   }
 
 }

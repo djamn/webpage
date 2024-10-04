@@ -35,12 +35,12 @@ export class ProjectTemplateComponent {
     console.log("Works")
   }
 
-  async deleteEntry(id: string) {
+  async deleteProject(id: string) {
     const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-projects'));
 
     if (hasPermission) {
       this.popupService.openPopup(this.translate.instant('DIALOG.DELETE_PROJECT_DESC', {}), this.translate.instant('BUTTONS.BUTTON_DELETE')).subscribe(async (result) => {
-        if(result) {
+        if (result) {
           try {
             await this.projectService.deleteProject(id);
             this.snackbar.showSnackbar(this.translate.instant('PROJECTS.DELETION_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
@@ -53,11 +53,11 @@ export class ProjectTemplateComponent {
     }
   }
 
-  async editEntry(id: string) {
+  async editProject() {
     const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-projects'));
 
     if (hasPermission) {
-
+      this.popupService.openUpdateProjectPopup(this.project);
     }
   }
 

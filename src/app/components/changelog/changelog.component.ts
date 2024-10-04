@@ -98,6 +98,7 @@ export class ChangelogComponent implements OnInit {
     })
   }
 
+  // TODO Change add/edit to new format (handling in popup)
   async addEntry() {
     const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-changelog-entries'));
     if (hasPermission) {

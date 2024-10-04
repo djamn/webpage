@@ -16,9 +16,6 @@ export class GuestbookMainComponent {
 
   constructor(protected permissionService: PermissionService,
               private configService: ConfigService,
-              private snackbar: Snackbar,
-              private guestbookService: GuestbookService,
-              private translate: TranslateService,
               private popupService: PopupService) {
     this.config = this.configService.getConfig();
   }

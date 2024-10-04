@@ -192,6 +192,6 @@
     "UN_FEATURE_PROJECT_DESC": "Unfeature this project",
     "FEATURE_PROJECT_DESC": "Feature this project",
     "DELETE_PROJECT_DESC": "Delete this project",
-    "PROJECT_TITLE": "Project from {{year"
+    "PROJECT_TITLE": "Project from {{year}}"
   }
 }

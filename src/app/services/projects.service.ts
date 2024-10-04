@@ -14,17 +14,42 @@ export class ProjectsService {
   constructor(private firestore: AngularFirestore) {
   }
 
-  async addProject() {
+  async addProject(title: string, createdAt: number, shortDesc: string, longDesc: string, subPageUrl: string, repoUrl: string, externalUrl: string, isFeatured: boolean, projectYear: number, imageUrl: string) {
     try {
-      await this.firestore.collection(projectsCollectionName).add({});
+      await this.firestore.collection(projectsCollectionName).add({
+        title: title,
+        entry_created_at: createdAt,
+        short_desc: shortDesc,
+        long_desc: longDesc,
+        sub_page_url: subPageUrl,
+        repo_url: repoUrl,
+        external_url: externalUrl,
+        is_featured: isFeatured,
+        project_year: projectYear,
+        image_url: imageUrl,
+        views: 0,
+        likes: 0,
+        tags: [],
+      });
     } catch (err) {
       throw err;
     }
   }
 
-  async updateProject(id: string) {
+  async updateProject(id: string, title: string, lastUpdatedAt: number, shortDesc: string, longDesc: string, subPageUrl: string, repoUrl: string, externalUrl: string, isFeatured: boolean, projectYear: number, imageUrl: string) {
     try {
-      await this.firestore.collection(projectsCollectionName).doc(id).update({});
+      await this.firestore.collection(projectsCollectionName).doc(id).update({
+        title: title,
+        entry_last_updated_at: lastUpdatedAt,
+        short_desc: shortDesc,
+        long_desc: longDesc,
+        sub_page_url: subPageUrl,
+        repo_url: repoUrl,
+        external_url: externalUrl,
+        is_featured: isFeatured,
+        project_year: projectYear,
+        image_url: imageUrl,
+      });
     } catch (err) {
       throw err;
     }
@@ -64,8 +89,6 @@ export class ProjectsService {
   }
 
   async featureProject(id: string, isFeatured: boolean, featuredProjects: number) {
-    console.log(id);
-    console.log("Changing feature: ", isFeatured, featuredProjects, `Featured Projects new: ${isFeatured ? featuredProjects + 1 : featuredProjects - 1}`)
     try {
       await this.firestore.collection(projectsCollectionName).doc(id).update({
         is_featured: isFeatured,

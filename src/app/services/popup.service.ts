@@ -5,7 +5,6 @@ import {DialogCommentPopupComponent} from "../components/popups/dialog-comment-p
 import {DialogPopupComponent} from "../components/popups/dialog-popup/dialog-popup.component";
 import {ChangelogPopupComponent} from "../components/popups/changelog-popup/changelog-popup.component";
 import {ChangelogEntry} from "../types/changelog.entry.type";
-import {data} from "autoprefixer";
 import {CreateEntryPopupComponent} from "../components/popups/create-entry-popup/create-entry-popup.component";
 import {GuestBookEntry} from "../types/guestbook.entry.type";
 import {Project} from "../types/projects.type";
@@ -43,14 +42,14 @@ export class PopupService {
     return dialogRef.afterClosed();
   }
 
-  openCreateProjectPopup(): Observable<Project> {
-    const dialogRef = this.dialog.open(ProjectPopupComponent)
+  openCreateProjectPopup(featuredCount: number): Observable<Project> {
+    const dialogRef = this.dialog.open(ProjectPopupComponent, {data: {featuredCount: featuredCount}})
 
     return dialogRef.afterClosed();
   }
 
-  openUpdateProjectPopup(entry: Project): Observable<Project> {
-    const dialogRef = this.dialog.open(ProjectPopupComponent, {data: entry})
+  openUpdateProjectPopup(project: Project, featuredCount: number): Observable<Project> {
+    const dialogRef = this.dialog.open(ProjectPopupComponent, {data: {project: project, featuredCount: featuredCount}});
 
     return dialogRef.afterClosed();
   }

@@ -143,8 +143,8 @@
                     </div>
                   </div>
 
-                  <div
-                    class="w-[70%] max-sm:w-full text-start flex flex-row items-center mt-4 justify-end max-sm:justify-center">
+                  <div *ngIf="checkFeaturedCount()"
+                       class="w-[70%] max-sm:w-full text-start flex flex-row items-center mt-4 justify-end max-sm:justify-center">
                     <input
                       type="checkbox"
                       class="checkbox"
@@ -163,7 +163,8 @@
                     <button type="button" class="btn-primary btn-red p-1">Delete Image</button>
                   </div>
                   <div class="w-[60%]">
-                    <img [attr.src]="'/assets/no-image.svg'" alt="logo" class="w-full h-full box-border object-cover rounded-lg"/>
+                    <img [attr.src]="'/assets/no-image.svg'" alt="logo"
+                         class="w-full h-full box-border object-cover rounded-lg"/>
                   </div>
                 </div>
 

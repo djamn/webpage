@@ -112,7 +112,7 @@ export class ProjectsMainComponent {
     const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-projects'));
 
     if (hasPermission) {
-      this.popupService.openCreateProjectPopup();
+      this.popupService.openCreateProjectPopup(this.featuredCount);
     }
   }
 

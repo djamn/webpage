@@ -3,7 +3,6 @@ import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {isControlInvalid} from "../../../utility/form-utils";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ConfigService} from "../../../services/config.service";
-import {GuestbookService} from "../../../services/guestbook.service";
 import {Snackbar} from "../../../utility/snackbar";
 import {TranslateService} from "@ngx-translate/core";
 import {ProjectsService} from "../../../services/projects.service";
@@ -18,6 +17,8 @@ export class ProjectPopupComponent {
   projectForm!: UntypedFormGroup;
   projectId: string | null = null;
   isEditMode: boolean = false;
+  featuredCount: number = 0;
+  isFeatured: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<ProjectPopupComponent>,
               @Inject(MAT_DIALOG_DATA)
@@ -46,10 +47,13 @@ export class ProjectPopupComponent {
       is_featured: new UntypedFormControl('', []),
     })
 
-    if (data) {
-      const project = data;
+    this.featuredCount = data.featuredCount;
+
+    if (data.project) {
+      const project = data.project;
       this.isEditMode = true;
       this.projectId = project.id;
+      this.isFeatured = project.is_featured;
       this.projectForm.patchValue({
         title: project.title,
         short_desc: project.short_desc,
@@ -85,6 +89,10 @@ export class ProjectPopupComponent {
       console.error("Project creation error:", e);
       this.snackbar.showSnackbar(this.translate.instant('PROJECTS.UNEXPECTED_ERROR'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
     }
+  }
+
+  checkFeaturedCount() {
+    return this.isFeatured || (this.featuredCount < this.config.MAX_FEATURED_PROJECTS);
   }
 
   cancel() {

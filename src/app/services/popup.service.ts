@@ -8,6 +8,8 @@ import {ChangelogEntry} from "../types/changelog.entry.type";
 import {data} from "autoprefixer";
 import {CreateEntryPopupComponent} from "../components/popups/create-entry-popup/create-entry-popup.component";
 import {GuestBookEntry} from "../types/guestbook.entry.type";
+import {Project} from "../types/projects.type";
+import {ProjectPopupComponent} from "../components/popups/create-project-popup/project-popup.component";
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +39,18 @@ export class PopupService {
 
   openCreateChangelogPopup(): Observable<ChangelogEntry> {
     const dialogRef = this.dialog.open(ChangelogPopupComponent)
+
+    return dialogRef.afterClosed();
+  }
+
+  openCreateProjectPopup(): Observable<Project> {
+    const dialogRef = this.dialog.open(ProjectPopupComponent)
+
+    return dialogRef.afterClosed();
+  }
+
+  openUpdateProjectPopup(entry: Project): Observable<Project> {
+    const dialogRef = this.dialog.open(ProjectPopupComponent, {data: entry})
 
     return dialogRef.afterClosed();
   }

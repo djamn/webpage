@@ -36,6 +36,7 @@ import {ProjectsComponent} from "./mainpage/projects-component/projects-componen
 import {ProjectTemplateComponent} from "./mainpage/project-template/project-template.component";
 import {ProjectsMainComponent} from "./projects/projects-main-component/projects-main-component.component";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {ProjectPopupComponent} from "./popups/create-project-popup/project-popup.component";
 
 Quill.register("modules/emoji", Emoji);
 
@@ -63,7 +64,8 @@ Quill.register("modules/emoji", Emoji);
     MainPageIntroductionComponent,
     ProjectsComponent,
     ProjectTemplateComponent,
-    ProjectsMainComponent
+    ProjectsMainComponent,
+    ProjectPopupComponent
   ],
   imports: [
     CommonModule,
@@ -101,7 +103,8 @@ Quill.register("modules/emoji", Emoji);
     MainPageIntroductionComponent,
     ProjectsComponent,
     ProjectTemplateComponent,
-    ProjectsMainComponent
+    ProjectsMainComponent,
+    ProjectPopupComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

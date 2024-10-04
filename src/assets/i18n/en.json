@@ -213,7 +213,7 @@
     "PROJECT_YEAR_PLACEHOLDER": "Enter year",
     "FEATURE_PROJECT": "Feature project on main page?",
     "IMAGE_TITLE": "Upload Project Image",
-    "FIELDS_HAVE_ERRORS": "Please fix all errors before creating entry!",
+    "FIELDS_HAVE_ERRORS": "Please fix all errors before creating project!",
     "UNEXPECTED_ERROR": "There was an error while creating project. Please try again.",
     "PROJECT_CREATED_SUCCESSFUL": "Project was created successfully!",
     "PROJECT_UPDATED_SUCCESSFUL": "Project was updated successfully!"

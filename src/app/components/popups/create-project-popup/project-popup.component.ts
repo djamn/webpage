@@ -6,6 +6,7 @@ import {ConfigService} from "../../../services/config.service";
 import {GuestbookService} from "../../../services/guestbook.service";
 import {Snackbar} from "../../../utility/snackbar";
 import {TranslateService} from "@ngx-translate/core";
+import {ProjectsService} from "../../../services/projects.service";
 
 @Component({
   selector: 'app-create-project-popup',
@@ -18,25 +19,11 @@ export class ProjectPopupComponent {
   projectId: string | null = null;
   isEditMode: boolean = false;
 
-  quillModules = {
-    toolbar: [
-      [{'font': []}],
-      ['bold', 'italic', 'underline'],
-      ['code-block'],
-      [{'list': 'ordered'}],
-      [{'script': 'sub'}, {'script': 'super'}],
-      [{'color': []}, {'background': []}],
-      ['clean'],
-      ['emoji']  // Add emoji to the toolbar
-    ],
-    'emoji-toolbar': false,
-  }
-
   constructor(public dialogRef: MatDialogRef<ProjectPopupComponent>,
               @Inject(MAT_DIALOG_DATA)
               public data: any,
               private configService: ConfigService,
-              private guestbookService: GuestbookService,
+              private projectService: ProjectsService,
               private snackbar: Snackbar,
               private translate: TranslateService) {
     this.config = this.configService.getConfig();
@@ -45,60 +32,58 @@ export class ProjectPopupComponent {
       title: new UntypedFormControl('', [
         Validators.required,
       ]),
-      username: new UntypedFormControl('', [
-        Validators.required,
-        Validators.maxLength(this.config.GUESTBOOK_USERNAME_MAX_LENGTH),
-        Validators.pattern(this.config.GUESTBOOK_USERNAME_CHARACTER_PATTERN)
-      ]),
-      entry_message: new UntypedFormControl('', [
+      short_desc: new UntypedFormControl('', [
         Validators.required,
       ]),
-      recaptcha: new UntypedFormControl(),
-      confirmation_checkbox: new UntypedFormControl('', [
-        Validators.requiredTrue,
+      long_desc: new UntypedFormControl('', [
+        Validators.required,
       ]),
-      silent_edit: new UntypedFormControl(false)
+      repo_url: new UntypedFormControl('', []),
+      external_url: new UntypedFormControl('', []),
+      project_year: new UntypedFormControl('', [
+        Validators.required,
+      ]),
+      is_featured: new UntypedFormControl('', []),
     })
 
     if (data) {
-      const entry = data;
+      const project = data;
       this.isEditMode = true;
-      this.projectId = entry.id;
+      this.projectId = project.id;
       this.projectForm.patchValue({
-        title: entry.title,
-        username: entry.username,
-        entry_message: entry.entry_message,
+        title: project.title,
+        short_desc: project.username,
+        long_desc: project.entry_message,
+        repo_url: project.repo_url,
+        external_url: project.external_url,
+        project_year: project.year_created,
+        is_featured: project.is_featured,
       })
-      this.projectForm.get('recaptcha')?.disable();
-      this.projectForm.get('confirmation_checkbox')?.disable();
     }
   }
 
   async confirm() {
-    if (!this.config.GUESTBOOK_ENTRY_CREATION_POSSIBLE && !this.isEditMode) return;
-
     if (this.projectForm.invalid) {
       this.projectForm.markAllAsTouched();
-      this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ERRORS.FIELDS_HAVE_ERRORS'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+      this.snackbar.showSnackbar(this.translate.instant('PROJECTS.FIELDS_HAVE_ERRORS'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
       return;
     }
 
-    const formEntry = this.projectForm.value;
-    const trimmedUsername = formEntry.username.trim();
+    const project = this.projectForm.value;
 
     try {
       if (this.isEditMode) {
-        await this.guestbookService.updateEntry(this.projectId!, trimmedUsername, formEntry.title, Date.now(), formEntry.silent_edit, formEntry.entry_message);
-        this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ENTRY_UPDATED_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION)
+        await this.projectService.updateProject(this.projectId!, project.title, Date.now(), project.short_desc, project.long_desc, '', project.repo_url, project.external_url, project.is_featured, project.project_year, '/assets/no-image.svg');
+        this.snackbar.showSnackbar(this.translate.instant('PROJECTS.PROJECT_UPDATED_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION)
       } else {
-        await this.guestbookService.addEntry(trimmedUsername, Date.now(), formEntry.title, true, formEntry.entry_message);
-        this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.CREATE.ENTRY_CREATED_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION)
+        await this.projectService.addProject(project.title, Date.now(), project.short_desc, project.long_desc, '', project.repo_url, project.external_url, project.is_featured, project.project_year, '/assets/no-image.svg');
+        this.snackbar.showSnackbar(this.translate.instant('PROJECTS.PROJECT_CREATED_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION)
       }
       this.dialogRef.close(true);
 
     } catch (e) {
-      console.error("Guestbook entry creation error:", e);
-      this.snackbar.showSnackbar(this.translate.instant('GUESTBOOK.UNEXPECTED_ERROR'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+      console.error("Project creation error:", e);
+      this.snackbar.showSnackbar(this.translate.instant('PROJECTS.UNEXPECTED_ERROR'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
     }
   }
 

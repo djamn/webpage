@@ -3,14 +3,16 @@ export interface Project {
   title: string;
   short_desc: string;
   long_desc: string;
-  subpage_url: string,
+
+  sub_page_url: string,
   repo_url: string;
   external_url: string;
   image_url: string;
   tags: string[];
   is_featured: boolean;
-  year_created: number;
-  project_entry_creation_timestamp: number;
+  project_year: number;
+  entry_created_at: number;
+  entry_last_updated_at: number;
   likes: number;
   views: number
 }

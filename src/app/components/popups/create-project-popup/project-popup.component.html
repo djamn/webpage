@@ -1,4 +1,5 @@
-<div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+<div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true"
+     xmlns="http://www.w3.org/1999/html">
   <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
   <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
     <div class="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
@@ -9,19 +10,19 @@
             <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
               <h3 class="text-lg font-semibold leading-6 text-gray-900 dark:text-title-dark-mode-text"
                   id="modal-title">
-                <span *ngIf="!isEditMode">{{ 'GUESTBOOK.CREATE.CREATE_ENTRY_TITLE' | translate }}</span>
-                <span *ngIf="isEditMode">{{ 'GUESTBOOK.CREATE.UPDATE_ENTRY_TITLE' | translate }}</span>
+                <span *ngIf="!isEditMode">{{ 'PROJECTS.CREATE_PROJECT_TITLE' | translate }}</span>
+                <span *ngIf="isEditMode">{{ 'PROJECTS.UPDATE_PROJECT_TITLE' | translate }}</span>
               </h3>
 
               <div
                 class="mt-4 flex flex-row max-sm:flex-col space-x-10 max-sm:space-x-0 justify-center max-sm:justify-start ">
                 <div class="w-full max-sm:w-full">
-                  <label for="title" class="tw-input-label">{{ 'GUESTBOOK.CREATE.TITLE_LABEL' | translate }}</label>
+                  <label for="title" class="tw-input-label">{{ 'PROJECTS.TITLE_LABEL' | translate }}</label>
                   <input class="tw-input h-[40px] p-2"
                          id="title"
                          [ngClass]="{'tw-input-error': isControlInvalid(this.projectForm, 'title')}"
                          formControlName="title"
-                         [placeholder]="'GUESTBOOK.CREATE.TITLE_PLACEHOLDER' | translate"
+                         [placeholder]="'PROJECTS.TITLE_PLACEHOLDER' | translate"
                          type="text">
                   <div class="relative">
                     <div
@@ -43,30 +44,23 @@
               <div
                 class="mt-4 flex flex-row max-sm:flex-col space-x-10 max-sm:space-x-0 justify-center max-sm:justify-start ">
                 <div class="w-full max-sm:w-full">
-                  <label for="username"
-                         class="tw-input-label">{{ 'GUESTBOOK.CREATE.USERNAME_LABEL' | translate }}</label>
+                  <label for="short_desc"
+                         class="tw-input-label">{{ 'PROJECTS.SHORT_DESC_LABEL' | translate }}</label>
                   <input class="tw-input h-[40px] p-2"
-                         id="username"
-                         [ngClass]="{'tw-input-error': isControlInvalid(this.projectForm, 'username')}"
-                         formControlName="username"
-                         [placeholder]="'GUESTBOOK.CREATE.USERNAME_PLACEHOLDER' | translate"
+                         id="short_desc"
+                         [ngClass]="{'tw-input-error': isControlInvalid(this.projectForm, 'short_desc')}"
+                         formControlName="short_desc"
+                         [placeholder]="'PROJECTS.SHORT_DESC_PLACEHOLDER' | translate"
                          type="text">
                   <div class="relative">
                     <div
                       [ngClass]="{
-                        'opacity-100 visible': isControlInvalid(projectForm, 'username'),
-                        'opacity-0 invisible': !isControlInvalid(projectForm, 'username')
+                        'opacity-100 visible': isControlInvalid(projectForm, 'short_desc'),
+                        'opacity-0 invisible': !isControlInvalid(projectForm, 'short_desc')
                       }"
                       class="tw-input-error-label">
-                      <div *ngIf="projectForm.get('username')?.hasError('required')">
-                        {{ "GUESTBOOK.CREATE.ERRORS.REQUIRED_FIELD" | translate }}
-                      </div>
-                      <div *ngIf="projectForm.get('username')?.hasError('maxlength')">
-                        {{ "GUESTBOOK.CREATE.ERRORS.USERNAME_MAX_LENGTH" | translate: {maxLength: config.GUESTBOOK_USERNAME_MAX_LENGTH} }}
-                      </div>
-                      <div
-                        *ngIf="projectForm.get('username')?.hasError('pattern')">
-                        {{ 'REGISTER.ERRORS.INVALID_USERNAME_PATTERN'| translate }}
+                      <div *ngIf="projectForm.get('short_desc')?.hasError('required')">
+                        {{ "ERRORS.REQUIRED" | translate }}
                       </div>
 
                     </div>
@@ -74,60 +68,103 @@
                 </div>
               </div>
 
-              <!--              TODO REWORK EDITOR -->
               <div class=" mt-4">
-                <label for="entry-text"
-                       class="tw-input-label mb-0">{{ 'GUESTBOOK.CREATE.MESSAGE_LABEL' | translate }}</label>
-                <quill-editor
-                  class="w-full min-h-[50px] h-[150px] cursor-auto max-h-[300px]"
-                  id="entry-text"
-                  formControlName="entry_message"
-                  [theme]="'snow'"
-                  [placeholder]="'GUESTBOOK.CREATE.MESSAGE_PLACEHOLDER' | translate"
-                  [modules]="quillModules"
-                  [formats]="['header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'indent', 'link', 'image', 'align', 'emoji', 'script', 'code-block', 'color', 'background', 'font']">
-                </quill-editor>
+                <label for="long_desc"
+                       class="tw-input-label mb-0">{{ 'PROJECTS.LONG_DESC_TITLE' | translate }}</label>
+                <textarea
+                  class="tw-textarea w-full min-h-[50px] h-[150px] cursor-auto max-h-[300px]"
+                  id="long_desc"
+                  formControlName="long_desc"
+                  [ngClass]="{'tw-textarea-error': isControlInvalid(this.projectForm, 'long_desc')}"
+                  [placeholder]="'PROJECTS.LONG_DESC_PLACEHOLDER' | translate">
+                </textarea>
                 <div class="relative">
                   <div
                     [ngClass]="{
-                      'opacity-100 visible': isControlInvalid(projectForm, 'entry_message'),
-                      'opacity-0 invisible': !isControlInvalid(projectForm, 'entry_message')
+                      'opacity-100 visible': isControlInvalid(projectForm, 'long_desc'),
+                      'opacity-0 invisible': !isControlInvalid(projectForm, 'long_desc')
                     }"
                     class="tw-input-error-label">
-                    <div *ngIf="projectForm.get('entry_message')?.hasError('required')">
-                      {{ "DIALOG.REQUIRED_FIELD" | translate }}
+                    <div *ngIf="projectForm.get('long_desc')?.hasError('required')">
+                      {{ "ERRORS.REQUIRED" | translate }}
                     </div>
                   </div>
                 </div>
 
-                <div *ngIf="!isEditMode" class="text-start flex flex-row items-center mt-4">
-                  <input
-                    type="checkbox"
-                    class="checkbox"
-                    formControlName="confirmation_checkbox">
-
-                  <span class="text-hint-style">
-                        {{ "GUESTBOOK.CREATE.DATA_PRIVACY_CONFIRMATION" | translate }}
-                    <span
-                      class="text-red-600 transition-all duration-300"
-                      [ngStyle]="{
-                        opacity: isControlInvalid(projectForm, 'confirmation_checkbox') ? '1' : '0',
-                        visibility: isControlInvalid(projectForm, 'confirmation_checkbox') ? 'visible' : 'hidden'
-                      }">
-                      {{ 'GUESTBOOK.CREATE.ERRORS.CHECKBOX_REQUIRED' | translate }}
-                    </span>
-                  </span>
+                <div
+                  class="mt-4 flex flex-row max-sm:flex-col space-x-10 max-sm:space-x-0 justify-center max-sm:justify-start ">
+                  <div class="w-full max-sm:w-full">
+                    <label for="repo_url" class="tw-input-label">{{ 'PROJECTS.REPO_URL_TITLE' | translate }}</label>
+                    <input class="tw-input h-[40px] p-2"
+                           id="repo_url"
+                           [ngClass]="{'tw-input-error': isControlInvalid(this.projectForm, 'repo_url')}"
+                           formControlName="repo_url"
+                           [placeholder]="'PROJECTS.REPO_URL_PLACEHOLDER' | translate"
+                           type="text">
+                  </div>
                 </div>
 
-                <div *ngIf="isEditMode" class="text-start flex flex-row items-center mt-4">
-                  <input
-                    type="checkbox"
-                    class="checkbox"
-                    formControlName="silent_edit">
+                <div
+                  class="mt-4 flex flex-row max-sm:flex-col space-x-10 max-sm:space-x-0 justify-center max-sm:justify-start ">
+                  <div class="w-full max-sm:w-full">
+                    <label for="external_url"
+                           class="tw-input-label">{{ 'PROJECTS.EXTERNAL_URL_TITLE' | translate }}</label>
+                    <input class="tw-input h-[40px] p-2"
+                           id="external_url"
+                           [ngClass]="{'tw-input-error': isControlInvalid(this.projectForm, 'external_url')}"
+                           formControlName="external_url"
+                           [placeholder]="'PROJECTS.EXTERNAL_URL_PLACEHOLDER' | translate"
+                           type="text">
+                  </div>
+                </div>
 
-                  <span class="text-info-style">
-                        {{ "GUESTBOOK.CREATE.SILENT_EDIT" | translate }}
+                <div
+                  class="mt-4 flex flex-row max-sm:flex-col space-x-10 max-sm:space-x-0 max-sm:justify-start">
+                  <div class="w-[30%] max-sm:w-full">
+                    <label for="project_year"
+                           class="tw-input-label">{{ 'PROJECTS.PROJECT_YEAR_TITLE' | translate }}</label>
+                    <input class="tw-input h-[40px] p-2"
+                           id="project_year"
+                           [ngClass]="{'tw-input-error': isControlInvalid(this.projectForm, 'project_year')}"
+                           formControlName="project_year"
+                           [placeholder]="'PROJECTS.PROJECT_YEAR_PLACEHOLDER' | translate"
+                           type="number">
+                    <div class="relative">
+                      <div
+                        [ngClass]="{
+                      'opacity-100 visible': isControlInvalid(projectForm, 'project_year'),
+                      'opacity-0 invisible': !isControlInvalid(projectForm, 'project_year')
+                    }"
+                        class="tw-input-error-label">
+                        <div *ngIf="projectForm.get('project_year')?.hasError('required')">
+                          {{ "ERRORS.REQUIRED" | translate }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="w-[70%] max-sm:w-full text-start flex flex-row items-center mt-4 justify-end max-sm:justify-center">
+                    <input
+                      type="checkbox"
+                      class="checkbox"
+                      formControlName="is_featured">
+
+                    <span class="text-hint-style">
+                        {{ "PROJECTS.FEATURE_PROJECT" | translate }}
                   </span>
+                  </div>
+                </div>
+
+                <div class="tw-input-label mt-4">{{ 'PROJECTS.IMAGE_TITLE' | translate }}</div>
+                <div class="flex flex-row justify-between space-x-10 h-24">
+                  <div class="w-auto flex flex-col space-y-5 justify-center ">
+                    <button type="button" class="btn-primary btn-green p-1">Upload Image</button>
+                    <button type="button" class="btn-primary btn-red p-1">Delete Image</button>
+                  </div>
+                  <div class="w-[60%]">
+                    <img [attr.src]="'/assets/no-image.svg'" alt="logo" class="w-full h-full box-border object-cover rounded-lg"/>
+                  </div>
                 </div>
 
               </div>

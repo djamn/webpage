@@ -1,18 +1,19 @@
 <div class="tw-component-container border-1">
   <div class="tw-heading">
     Katze gefüttert?
-    <div class="text-hint-style">Hinweis: Klicke auf die Katze, wenn du sie füttterst!</div>
+    <div class="text-hint-style">Hinweis: Klicke auf die Katze, wenn du sie fütterst!</div>
   </div>
 
   <div class="flex flex-row space-x-5">
     <div
+      (click)="feedCat()"
       class="border-solid border  border-[#1b1f2326] rounded-lg cursor-pointer transition ease-in-out hover:-translate-y-1 hover:scale-102 duration-200">
       <fa-icon class="text-9xl" [icon]="faCat"></fa-icon>
     </div>
     <div class="flex flex-col border-1">
-      <span class="text-xl">Zuletzt gefüttert: <span class="font-semibold"> 0</span></span>
-      <span class="text-xl">Fütterungen an diesem Tag: <span class="font-semibold"> 0</span></span>
-      <span class="text-xl">Dursch. Fütterungen pro Tag: <span class="font-semibold"> 0</span></span>
+      <span class="text-xl">Zuletzt gefüttert: <span class="font-semibold"> {{ lastFeedingSession }} </span></span>
+      <span class="text-xl">Fütterungen an diesem Tag: <span class="font-semibold"> {{ feedsToday }}</span></span>
+      <span class="text-xl">Fütterungen gestern: <span class="font-semibold"> {{ feedsYesterday }}</span></span>
     </div>
   </div>
   <div class="w-full flex justify-end mt-5">

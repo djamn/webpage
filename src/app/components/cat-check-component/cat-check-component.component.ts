@@ -60,36 +60,24 @@ export class CatCheckComponent {
     this.lastFeedingSession = this.processTimestamp(this.feedingSessions[0].timestamp)
   }
 
-  // TODO utility function
-  processTimestamp(timestamp: any) {
-    const date = new Date(timestamp)
-    const formattedDate = date.toLocaleDateString();
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-    return `${formattedDate} (${hours}:${minutes})`
-  }
-
   fetchTodaysFeedingSessions() {
+    const todayDate = this.getMidnightDate();
+
     const sessionsToday = this.feedingSessions.filter(session => {
       const sessionDate = new Date(session.timestamp);
-      return sessionDate >= this.getMidnightDate();
+      return this.isToday(sessionDate, todayDate);
     });
 
     this.feedsToday = sessionsToday.length;
   }
 
+
   fetchYesterdaysFeedingSessions() {
     const todayDate = this.getMidnightDate();
 
-    const startOfYesterday = new Date(todayDate);
-    startOfYesterday.setDate(todayDate.getDate() - 1); // Move one day back
-
-    const endOfYesterday = new Date(todayDate);
-    endOfYesterday.setMilliseconds(-1); // One millisecond before today's midnight
-
     const sessionsYesterday = this.feedingSessions.filter(session => {
       const sessionDate = new Date(session.timestamp);
-      return sessionDate >= startOfYesterday && sessionDate <= endOfYesterday;
+      return this.isYesterday(sessionDate, todayDate); // Reuse isYesterday() method
     });
 
     this.feedsYesterday = sessionsYesterday.length;
@@ -141,6 +129,53 @@ export class CatCheckComponent {
       this.snackbar.showSnackbar('Fehler beim Hinzufügen einer Fütterung - Admin kontaktieren!', 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
     }
   }
+
+
+  processTimestamp(timestamp: any) {
+    const date = new Date(timestamp);
+
+    const formattedDate = this.getFormattedDate(date);
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+
+    return `${formattedDate} (${hours}:${minutes})`;
+  }
+
+  getFormattedDate(date: Date): string {
+    const todayDate = this.getMidnightDate();
+
+    if (this.isToday(date, todayDate)) {
+      return 'Heute';
+    } else if (this.isYesterday(date, todayDate)) {
+      return 'Gestern';
+    } else {
+      return date.toLocaleDateString();
+    }
+
+  }
+
+  isToday(date: Date, todayDate: Date): boolean {
+    return date >= todayDate;
+  }
+
+  isYesterday(date: Date, todayDate: Date): boolean {
+    const startOfYesterday = this.getStartOfYesterday(todayDate);
+    const endOfYesterday = this.getEndOfYesterday(todayDate);
+    return date >= startOfYesterday && date <= endOfYesterday;
+  }
+
+  getStartOfYesterday(todayDate: Date): Date {
+    const startOfYesterday = new Date(todayDate);
+    startOfYesterday.setDate(todayDate.getDate() - 1); // Move one day back
+    return startOfYesterday;
+  }
+
+  getEndOfYesterday(todayDate: Date): Date {
+    const endOfYesterday = new Date(todayDate);
+    endOfYesterday.setMilliseconds(-1); // One millisecond before today's midnight
+    return endOfYesterday;
+  }
+
 
   protected readonly faCat = faCat;
   protected readonly faCheck = faCheck;

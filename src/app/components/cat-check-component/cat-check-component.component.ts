@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {faCat, faCheck, faXmark} from '@fortawesome/free-solid-svg-icons'
+import {faCat, faCheck, faTrashCan, faXmark} from '@fortawesome/free-solid-svg-icons'
 import {Snackbar} from "../../utility/snackbar";
 import {CheckerService} from "./checker.service";
 import {CatChecker} from "./checker.type";
@@ -22,7 +22,10 @@ export class CatCheckComponent {
   lastFeedingSession: string = 'Unbekannt'
   config: any;
   feedingDone: boolean = false;
+  feedingDeleted: boolean = false;
   isError: boolean = false;
+
+  isLastFeedingSession = false;
 
   constructor(private snackbar: Snackbar, private checker: CheckerService, private configService: ConfigService) {
     this.config = this.configService.getConfig();
@@ -32,11 +35,20 @@ export class CatCheckComponent {
   fetchFeedingSessions(): void {
     this.checker.getFeedingSessions().subscribe({
       next: (data) => {
-        this.feedingSessions = data;
-        this.feedingCount = this.feedingSessions.length;
-        this.getLastFeedingSession();
-        this.fetchTodaysFeedingSessions();
-        this.fetchYesterdaysFeedingSessions();
+        if (data.length > 0) {
+          this.feedingSessions = data;
+          this.feedingCount = this.feedingSessions.length;
+          this.getLastFeedingSession();
+          this.fetchTodaysFeedingSessions();
+          this.fetchYesterdaysFeedingSessions();
+        } else {
+          this.feedingSessions = []
+          this.feedingCount = 0;
+          this.feedsToday = 0;
+          this.lastFeedingSession = 'Unbekannt'
+          this.feedsYesterday = 0;
+          console.log("No data available");
+        }
       },
       error: (err) => {
         console.error('Error fetching feeding sessions:', err);
@@ -89,11 +101,34 @@ export class CatCheckComponent {
     return startOfDay;
   }
 
+  async deleteLastFeedingSession() {
+    if (this.feedingSessions.length <= 0 || !this.isLastFeedingSession) return;
+
+    try {
+      await this.checker.deleteFeedingSession(this.feedingSessions[0].id);
+
+      this.feedingDeleted = true;
+
+      setTimeout(() => {
+        this.feedingDeleted = false;
+        this.isLastFeedingSession = false;
+        console.debug("Feeding deletion session reset!");
+      }, 2000);
+
+    } catch (error) {
+      console.error("Error deletion feeding session", error)
+      this.snackbar.showSnackbar('Fehler beim Löschen der Fütterung - Admin kontaktieren!', 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+    }
+  }
+
   async feedCat() {
+    if (this.feedingDone) return;
+
     try {
       await this.checker.addFeedingSession(Date.now())
       this.isError = false;
       this.feedingDone = true;
+      this.isLastFeedingSession = true;
 
       setTimeout(() => {
         this.feedingDone = false;
@@ -103,11 +138,12 @@ export class CatCheckComponent {
     } catch (error) {
       console.error("Error adding feeding session", error)
       this.isError = true;
-      this.snackbar.showSnackbar('Fehler beim Ändern der Werte - Admin kontaktieren!', 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+      this.snackbar.showSnackbar('Fehler beim Hinzufügen einer Fütterung - Admin kontaktieren!', 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
     }
   }
 
   protected readonly faCat = faCat;
   protected readonly faCheck = faCheck;
   protected readonly faXmark = faXmark;
+  protected readonly faTrashCan = faTrashCan;
 }

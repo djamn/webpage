@@ -16,6 +16,12 @@
       <span class="text-xl">Zuletzt gefüttert: <span class="font-semibold"> {{ lastFeedingSession }} </span></span>
       <span class="text-xl">Fütterungen an diesem Tag: <span class="font-semibold"> {{ feedsToday }}</span></span>
       <span class="text-xl">Fütterungen gestern: <span class="font-semibold"> {{ feedsYesterday }}</span></span>
+
+      <div *ngIf="this.feedingSessions.length > 0 && isLastFeedingSession" class="flex flex-row space-x-2">
+        <span class="text-xl">Letzte Fütterung löschen: </span>
+        <fa-icon (click)="deleteLastFeedingSession()" *ngIf="!feedingDeleted" class="text-2xl" [icon]="faTrashCan"></fa-icon>
+        <fa-icon *ngIf="feedingDeleted" class="text-2xl text-[#63E6BE]" [icon]="faCheck"></fa-icon>
+      </div>
     </div>
   </div>
   <div *ngIf="false" class="w-full flex justify-end mt-5">

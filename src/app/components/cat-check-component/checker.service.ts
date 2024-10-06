@@ -24,6 +24,14 @@ export class CheckerService {
     }
   }
 
+  async deleteFeedingSession(id: string) {
+    try {
+      await this.firestore.collection(catCheckerCollectionName).doc(id).delete();
+    } catch (error) {
+      throw error;
+    }
+  }
+
   getFeedingSessions() {
     return this.firestore.collection(catCheckerCollectionName, ref => ref.orderBy('timestamp', 'desc'))
       .snapshotChanges()

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {faCat, faCheck, faTrashCan, faXmark} from '@fortawesome/free-solid-svg-icons'
 import {Snackbar} from "../../utility/snackbar";
@@ -14,7 +14,7 @@ import {NgIf} from "@angular/common";
   templateUrl: './cat-check-component.component.html',
   styleUrl: './cat-check-component.component.css'
 })
-export class CatCheckComponent {
+export class CatCheckComponent implements OnInit, OnDestroy {
   feedingSessions: CatChecker[] = [];
   feedingCount: number = 0;
   feedsToday: number = 0;
@@ -25,11 +25,33 @@ export class CatCheckComponent {
   feedingDeleted: boolean = false;
   isError: boolean = false;
 
+  private timer: any;
+  currentTime: string = '';
+
   isLastFeedingSession = false;
 
   constructor(private snackbar: Snackbar, private checker: CheckerService, private configService: ConfigService) {
     this.config = this.configService.getConfig();
     this.fetchFeedingSessions();
+  }
+
+  ngOnInit() {
+    this.updateTime();
+    this.timer = setInterval(() => this.updateTime(), 60000); // Update every minute
+  }
+
+  ngOnDestroy() {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+  }
+
+  // TODO timestamp utility function
+  updateTime() {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    this.currentTime = `${hours}:${minutes}`;
   }
 
   fetchFeedingSessions(): void {

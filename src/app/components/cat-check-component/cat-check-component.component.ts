@@ -1,26 +1,31 @@
 import {Component} from '@angular/core';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {faCat} from '@fortawesome/free-solid-svg-icons'
+import {faCat, faCheck, faXmark} from '@fortawesome/free-solid-svg-icons'
 import {Snackbar} from "../../utility/snackbar";
 import {CheckerService} from "./checker.service";
 import {CatChecker} from "./checker.type";
+import {ConfigService} from "../../services/config.service";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'cat-check-component',
   standalone: true,
-  imports: [FontAwesomeModule],
+  imports: [FontAwesomeModule, NgIf],
   templateUrl: './cat-check-component.component.html',
   styleUrl: './cat-check-component.component.css'
 })
 export class CatCheckComponent {
-  faCat = faCat
   feedingSessions: CatChecker[] = [];
   feedingCount: number = 0;
   feedsToday: number = 0;
   feedsYesterday: number = 0;
   lastFeedingSession: string = 'Unbekannt'
+  config: any;
+  feedingDone: boolean = false;
+  isError: boolean = false;
 
-  constructor(private snackbar: Snackbar, private checker: CheckerService) {
+  constructor(private snackbar: Snackbar, private checker: CheckerService, private configService: ConfigService) {
+    this.config = this.configService.getConfig();
     this.fetchFeedingSessions();
   }
 
@@ -32,7 +37,6 @@ export class CatCheckComponent {
         this.getLastFeedingSession();
         this.fetchTodaysFeedingSessions();
         this.fetchYesterdaysFeedingSessions();
-        this.fetchDailyAverage();
       },
       error: (err) => {
         console.error('Error fetching feeding sessions:', err);
@@ -85,12 +89,25 @@ export class CatCheckComponent {
     return startOfDay;
   }
 
-  fetchDailyAverage() {
+  async feedCat() {
+    try {
+      await this.checker.addFeedingSession(Date.now())
+      this.isError = false;
+      this.feedingDone = true;
 
+      setTimeout(() => {
+        this.feedingDone = false;
+        console.debug("Feeding session reset!");
+      }, 2000);
+      console.debug("Feeding worked!")
+    } catch (error) {
+      console.error("Error adding feeding session", error)
+      this.isError = true;
+      this.snackbar.showSnackbar('Fehler beim Ändern der Werte - Admin kontaktieren!', 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+    }
   }
 
-
-  feedCat() {
-
-  }
+  protected readonly faCat = faCat;
+  protected readonly faCheck = faCheck;
+  protected readonly faXmark = faXmark;
 }

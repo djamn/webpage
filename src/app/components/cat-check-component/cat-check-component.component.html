@@ -1,29 +1,29 @@
-<div class="tw-component-container py-1">
-  <div class="w-full text-right text-2xl font-medium">
+<div class="tw-component-container py-1 select-none">
+  <div class="w-full text-right text-3xl font-medium">
     {{currentTime}}
   </div>
-  <div class="tw-heading pt-0">
+  <div class="tw-heading text-[50px] pt-0 mb-2">
     Katze gefüttert?
-    <div class="text-hint-style">Hinweis: Klicke auf die Katze, wenn du sie fütterst!</div>
+    <div class="text-hint-style text-[20px]">Hinweis: Klicke auf die Katze, wenn du sie fütterst!</div>
   </div>
 
   <div class="flex flex-row space-x-5">
     <div
       (click)="feedCat()"
-      class="border-solid border  border-[#1b1f2326] rounded-lg cursor-pointer transition ease-in-out hover:-translate-y-1 hover:scale-102 duration-200">
-      <fa-icon *ngIf="!isError && !feedingDone" class="text-9xl" [icon]="faCat"></fa-icon>
-      <fa-icon *ngIf="feedingDone" class="text-9xl text-[#63E6BE]" [icon]="faCheck"></fa-icon>
-      <fa-icon *ngIf="isError" class="text-9xl text-[#f23a5f]" [icon]="faXmark"></fa-icon>
+      class="border-solid border border-[#1b1f2326] rounded-lg cursor-pointer transition ease-in-out hover:-translate-y-1 hover:scale-102 duration-200 w-[200px] h-[200px] flex items-center justify-center">
+      <fa-icon *ngIf="!isError && !feedingDone" class="text-[150px]" [icon]="faCat"></fa-icon>
+      <fa-icon *ngIf="feedingDone" class="text-[150px] text-[#63E6BE]" [icon]="faCheck"></fa-icon>
+      <fa-icon *ngIf="isError" class="text-[150px] text-[#f23a5f]" [icon]="faXmark"></fa-icon>
     </div>
     <div class="flex flex-col">
-      <span class="text-xl">Zuletzt gefüttert: <span class="font-semibold"> {{ lastFeedingSession }} </span></span>
-      <span class="text-xl">Fütterungen an diesem Tag: <span class="font-semibold"> {{ feedsToday }}</span></span>
-      <span class="text-xl">Fütterungen gestern: <span class="font-semibold"> {{ feedsYesterday }}</span></span>
+      <span class="text-[30px]">Zuletzt gefüttert: <span class="font-semibold"> {{ lastFeedingSession }} </span></span>
+      <span class="text-[30px]">Fütterungen heute: <span class="font-semibold"> {{ feedsToday }}</span></span>
+      <span class="text-[30px]">Fütterungen gestern: <span class="font-semibold"> {{ feedsYesterday }}</span></span>
 
-      <div *ngIf="this.feedingSessions.length > 0 && isLastFeedingSession" class="flex flex-row space-x-2">
-        <span class="text-xl">Letzte Fütterung löschen: </span>
-        <fa-icon (click)="deleteLastFeedingSession()" *ngIf="!feedingDeleted" class="text-2xl" [icon]="faTrashCan"></fa-icon>
-        <fa-icon *ngIf="feedingDeleted" class="text-2xl text-[#63E6BE]" [icon]="faCheck"></fa-icon>
+      <div *ngIf="this.feedingSessions.length > 0 && isLastFeedingSession" class="flex flex-row space-x-2 mt-2">
+        <span class="text-[30px]">Letzte Fütterung löschen: </span>
+        <fa-icon (click)="deleteLastFeedingSession()" *ngIf="!feedingDeleted" class="text-4xl" [icon]="faTrashCan"></fa-icon>
+        <fa-icon *ngIf="feedingDeleted" class="text-4xl text-[#63E6BE]" [icon]="faCheck"></fa-icon>
       </div>
     </div>
   </div>

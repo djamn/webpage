@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ConfigService} from "../../services/config.service";
 import Build from "../../../build";
+import {faInstagram, faLinkedin, faYoutube} from "@fortawesome/free-brands-svg-icons";
 
 @Component({
   selector: 'footer-component',
@@ -19,4 +20,7 @@ export class FooterComponent implements OnInit {
   }
 
   protected readonly build = Build;
+  protected readonly faLinkedin = faLinkedin;
+  protected readonly faYoutube = faYoutube;
+  protected readonly faInstagram = faInstagram;
 }

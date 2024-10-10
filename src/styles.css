@@ -22,6 +22,11 @@
 }
 
 @layer components {
+  .tw-icon {
+    @apply
+    transition-all hover:scale-105 cursor-pointer text-xl px-1
+  }
+
   .tw-heading {
     @apply
     text-[40px]

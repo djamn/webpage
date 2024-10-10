@@ -8,6 +8,7 @@ import {Snackbar} from "../../../utility/snackbar";
 import {TranslateService} from "@ngx-translate/core";
 import {isControlInvalid} from "../../../utility/form-utils";
 import {confirmPasswordValidator} from "./confirm-password.validator";
+import {faEnvelope, faEye, faEyeSlash, faLock, faUser} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'register-component',
@@ -129,4 +130,9 @@ export class RegisterComponent implements OnInit {
   }
 
   protected readonly isControlInvalid = isControlInvalid;
+    protected readonly faEnvelope = faEnvelope;
+  protected readonly faLock = faLock;
+  protected readonly faEyeSlash = faEyeSlash;
+  protected readonly faEye = faEye;
+  protected readonly faUser = faUser;
 }

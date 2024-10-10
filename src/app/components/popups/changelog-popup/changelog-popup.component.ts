@@ -5,6 +5,7 @@ import {ConfigService} from "../../../services/config.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {DialogPopupComponent} from "../dialog-popup/dialog-popup.component";
 import {CreateEntryPopupComponent} from "../create-entry-popup/create-entry-popup.component";
+import {faClock} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-changelog-popup',
@@ -82,4 +83,5 @@ export class ChangelogPopupComponent {
   }
 
   protected readonly isControlInvalid = isControlInvalid;
+  protected readonly faClock = faClock;
 }

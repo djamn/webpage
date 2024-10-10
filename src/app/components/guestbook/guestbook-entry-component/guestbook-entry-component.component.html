@@ -35,7 +35,7 @@
            class="flex space-x-6 max-sm:space-x-10 animate-fadeInLeft max-sm:justify-center max-sm:mt-3">
         <fa-icon (click)="toggleEntryVisibility()" class="tw-icon"
                  [icon]="entry.is_visible ? faEyeSlash : faEye"
-                 [title]="'GUESTBOOK.CHANGE_VISIBILITY_ENTRY_DESC'"></fa-icon>
+                 [title]="'GUESTBOOK.CHANGE_VISIBILITY_ENTRY_DESC' | translate"></fa-icon>
         <fa-icon (click)="addComment()" class="tw-icon" [icon]="faComment"
                  [title]="'GUESTBOOK.COMMENT_ENTRY_DESC' | translate"></fa-icon>
         <fa-icon (click)="editEntry()" class="tw-icon" [icon]="faGear"

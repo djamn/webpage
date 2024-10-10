@@ -8,7 +8,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {Snackbar} from "../../utility/snackbar";
 import {ConfigService} from "../../services/config.service";
 import build from "../../../build";
-import {faGear, faTrashCan} from "@fortawesome/free-solid-svg-icons";
+import {faGear, faPlus, faTrashCan} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'changelog-component',
@@ -166,4 +166,5 @@ export class ChangelogComponent implements OnInit {
   protected readonly build = build;
     protected readonly faGear = faGear;
   protected readonly faTrashCan = faTrashCan;
+  protected readonly faPlus = faPlus;
 }

@@ -6,6 +6,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {Project} from "../../../types/projects.type";
 import {firstValueFrom} from "rxjs";
 import {PopupService} from "../../../services/popup.service";
+import {faPlus} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'projects-main-component',
@@ -117,4 +118,5 @@ export class ProjectsMainComponent {
   }
 
   protected readonly build = build;
+  protected readonly faPlus = faPlus;
 }

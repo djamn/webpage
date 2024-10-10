@@ -7,6 +7,13 @@ import {ProjectsService} from "../../../services/projects.service";
 import {Snackbar} from "../../../utility/snackbar";
 import {ConfigService} from "../../../services/config.service";
 import {PopupService} from "../../../services/popup.service";
+import {
+  faArrowUpRightFromSquare,
+  faListCheck,
+  faHeart as faHeartSolid,
+  faStar as faStarSolid, faGear, faTrashCan
+} from "@fortawesome/free-solid-svg-icons";
+import {faHeart, faStar} from "@fortawesome/free-regular-svg-icons";
 
 @Component({
   selector: 'project-template',
@@ -81,4 +88,13 @@ export class ProjectTemplateComponent {
       }
     }
   }
+
+  protected readonly faListCheck = faListCheck;
+  protected readonly faArrowUpRightFromSquare = faArrowUpRightFromSquare;
+  protected readonly faHeart = faHeart;
+  protected readonly faHeartSolid = faHeartSolid;
+  protected readonly faStarSolid = faStarSolid;
+  protected readonly faStar = faStar;
+  protected readonly faGear = faGear;
+  protected readonly faTrashCan = faTrashCan;
 }

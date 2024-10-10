@@ -24,7 +24,7 @@
 @layer components {
   .tw-icon {
     @apply
-    transition-all hover:scale-105 cursor-pointer text-lg
+    transition-all hover:scale-105 cursor-pointer text-lg duration-200
     text-gray-700 dark:text-gray-300
   }
 

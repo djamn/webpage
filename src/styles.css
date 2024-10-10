@@ -25,6 +25,7 @@
   .tw-icon {
     @apply
     transition-all hover:scale-105 cursor-pointer text-xl px-1
+    text-gray-700 dark:text-gray-300
   }
 
   .tw-heading {

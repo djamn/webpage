@@ -32,10 +32,12 @@
              style="animation-delay: 0.2s; animation-fill-mode: forwards;">
           {{ processTimestamp(entry.timestamp) }}
 
-          <span>(</span>
-          <ng-container *ngIf="entry.version_category !== 'General'">{{ entry.version_category }}
+          <ng-container *ngIf="entry.version_category !== 'General'">
+            ({{ entry.version_category }} {{ entry.version }})
           </ng-container>
-          {{ entry.version }}<span>)</span>
+          <ng-container *ngIf="entry.version_category === 'General'">
+            ({{ entry.version }})
+          </ng-container>
 
         </div>
         <div *ngIf="!loading && (permissionService.hasPermission('manage-changelog-entries') | async)"

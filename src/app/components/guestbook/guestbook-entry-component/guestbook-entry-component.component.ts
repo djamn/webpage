@@ -8,6 +8,7 @@ import {PopupService} from "../../../services/popup.service";
 import {Router} from "@angular/router";
 import {firstValueFrom} from "rxjs";
 import {PermissionService} from "../../../services/permission.service";
+import {faComment, faEye, faEyeSlash, faGear, faTrashCan} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'guestbook-entry-component',
@@ -126,4 +127,10 @@ export class GuestbookEntryComponent implements OnInit {
   sanitizeHtml(html: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
+
+    protected readonly faGear = faGear;
+  protected readonly faTrashCan = faTrashCan;
+  protected readonly faComment = faComment;
+  protected readonly faEyeSlash = faEyeSlash;
+  protected readonly faEye = faEye;
 }

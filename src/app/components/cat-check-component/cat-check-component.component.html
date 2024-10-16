@@ -1,10 +1,10 @@
 <div class="tw-component-container py-1 select-none">
-  <div class="w-full text-right text-3xl font-medium">
+  <div class="w-full text-right text-4xl font-medium">
     {{currentTime}}
   </div>
   <div class="tw-heading text-[50px] pt-0 mb-2">
     Katze gefüttert?
-    <div class="text-hint-style text-[20px]">Hinweis: Klicke auf die Katze, wenn du sie fütterst!</div>
+    <div class="text-hint-style text-[22px]">Hinweis: Klicke auf die Katze, wenn du sie fütterst!</div>
   </div>
 
   <div class="flex flex-row space-x-5">
@@ -16,9 +16,9 @@
       <fa-icon *ngIf="isError" class="text-[150px] text-[#f23a5f]" [icon]="faXmark"></fa-icon>
     </div>
     <div class="flex flex-col">
-      <span class="text-[30px]">Zuletzt gefüttert: <span class="font-semibold"> {{ lastFeedingSession }} </span></span>
-      <span class="text-[30px]">Fütterungen heute: <span class="font-semibold"> {{ feedsToday }}</span></span>
-      <span class="text-[30px]">Fütterungen gestern: <span class="font-semibold"> {{ feedsYesterday }}</span></span>
+      <span class="text-[30px]">Zuletzt gefüttert: <span class="font-semibold"> {{ lastFeedingSession }}</span></span>
+      <span class="text-[30px]">Fütterungen heute: <span class="font-semibold"> {{ feedsToday }}x</span></span>
+      <span class="text-[30px]">Fütterungen gestern: <span class="font-semibold"> {{ feedsYesterday }}x</span></span>
 
       <div *ngIf="this.feedingSessions.length > 0 && isLastFeedingSession" class="flex flex-row space-x-2 mt-2">
         <span class="text-[30px]">Letzte Fütterung löschen: </span>

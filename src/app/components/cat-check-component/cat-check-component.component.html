@@ -1,7 +1,7 @@
 <div class="tw-component-container py-1 select-none">
   <div class="flex flex-row w-full">
     <div class="flex flex-row w-[50%] text-hint-style items-center">
-      v2.0 (21.10.2024)
+      v2.1 (21.10.2024)
     </div>
     <div class="w-[50%] text-right text-4xl font-medium">
       {{ currentTime }}
@@ -16,10 +16,10 @@
     <div
       (click)="feedCat()"
       class="border-solid order border-[#1b1f2326] rounded-lg cursor-pointer transition ease-in-out hover:-translate-y-1 hover:scale-102 duration-200 w-[200px] h-[200px] flex items-center justify-center select-none">
-      <img *ngIf="!isError && !feedingDone && feedsToday == -1" draggable="false" src="assets/icons/checker/cat-solid.svg" class="w-full h-full" />
-      <img *ngIf="!isError && !feedingDone && feedsToday == 0" draggable="false" src="assets/icons/checker/cat-sad-hunger.svg" class="w-full h-full" />
-      <img *ngIf="!isError && !feedingDone && feedsToday > 0 && feedsToday < 5" draggable="false" src="assets/icons/checker/cat-happy.svg" class="w-full h-full" />
-      <img *ngIf="!isError && !feedingDone && feedsToday >= 5" draggable="false" src="assets/icons/checker/cat-happy-fat-v2.svg" class="w-full h-full" />
+      <img *ngIf="!isError && !feedingDone && feedsToday == -1" draggable="false" src="assets/icons/checker/cat-solid.svg" class="w-full h-full"  alt=""/>
+      <img *ngIf="!isError && !feedingDone && feedsToday == 0" draggable="false" src="assets/icons/checker/cat-sad-hunger.svg" class="w-full h-full"  alt=""/>
+      <img *ngIf="!isError && !feedingDone && feedsToday > 0 && feedsToday < 5" draggable="false" src="assets/icons/checker/cat-happy.svg" class="w-full h-full"  alt=""/>
+      <img *ngIf="!isError && !feedingDone && feedsToday >= 5" draggable="false" src="assets/icons/checker/cat-happy-fat-v2.svg" class="w-full h-full"  alt=""/>
 
       <fa-icon *ngIf="feedingDone" class="text-[150px] text-[#63E6BE]" [icon]="faCheck"></fa-icon>
       <fa-icon *ngIf="isError" class="text-[150px] text-[#f23a5f]" [icon]="faXmark"></fa-icon>

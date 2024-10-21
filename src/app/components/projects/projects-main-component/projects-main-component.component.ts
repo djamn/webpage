@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import build from "../../../../build";
 import {PermissionService} from "../../../services/permission.service";
 import {ProjectsService} from "../../../services/projects.service";
 import {TranslateService} from "@ngx-translate/core";
@@ -117,6 +116,5 @@ export class ProjectsMainComponent {
     }
   }
 
-  protected readonly build = build;
   protected readonly faPlus = faPlus;
 }

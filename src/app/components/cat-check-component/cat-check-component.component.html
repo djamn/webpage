@@ -1,6 +1,11 @@
 <div class="tw-component-container py-1 select-none">
-  <div class="w-full text-right text-4xl font-medium">
-    {{currentTime}}
+  <div class="flex flex-row w-full">
+    <div class="flex flex-row w-[50%] text-hint-style items-center">
+      v1.5 (21.10.2024)
+    </div>
+    <div class="w-[50%] text-right text-4xl font-medium">
+      {{ currentTime }}
+    </div>
   </div>
   <div class="tw-heading text-[50px] pt-0 mb-2">
     Katze gefüttert?
@@ -22,7 +27,8 @@
 
       <div *ngIf="this.feedingSessions.length > 0 && isLastFeedingSession" class="flex flex-row space-x-2 mt-2">
         <span class="text-[30px]">Letzte Fütterung löschen: </span>
-        <fa-icon (click)="deleteLastFeedingSession()" *ngIf="!feedingDeleted" class="text-4xl" [icon]="faTrashCan"></fa-icon>
+        <fa-icon (click)="deleteLastFeedingSession()" *ngIf="!feedingDeleted" class="text-4xl"
+                 [icon]="faTrashCan"></fa-icon>
         <fa-icon *ngIf="feedingDeleted" class="text-4xl text-[#63E6BE]" [icon]="faCheck"></fa-icon>
       </div>
     </div>

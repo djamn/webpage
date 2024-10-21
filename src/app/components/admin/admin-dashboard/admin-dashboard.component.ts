@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {PermissionService} from "../../../services/permission.service";
 
 @Component({
   selector: 'admin-dashboard-component',
@@ -7,5 +8,8 @@ import {Component} from '@angular/core';
 })
 
 export class AdminDashboardComponent {
+
+  constructor(protected permissionService : PermissionService) {
+  }
 
 }

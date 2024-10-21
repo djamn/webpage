@@ -1,3 +1,16 @@
-Dashboard works!
+<div class="tw-component-container">
+  <div class="flex flex-row w-full space-x-5 max-sm:flex-col space-y-5">
+    <div *ngIf="(permissionService.hasPermission('manage-checker-entries') | async)"
+         class="w-[50%] max-sm:w-full border-2 border-gray-300 border-solid rounded">
+      <cat-check-admin-component></cat-check-admin-component>
+    </div>
+    <!--    <div class="w-[50%] max-sm:w-full">-->
+    <!--    </div>-->
+  </div>
+</div>
 
-<cat-check-admin-component></cat-check-admin-component>
+
+
+
+
+

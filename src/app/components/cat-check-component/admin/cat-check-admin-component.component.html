@@ -1,3 +1,21 @@
-<div class="tw-component-container py-1 select-none">
- Cat Component
+<div class="tw-component-container py-1">
+  <div class="tw-subheading">Cat Checker Management</div>
+  <div class="flex justify-start flex-col w-full">
+    <label class="tw-input-label" for="timestamp">Enter Timestamp to delete</label>
+    <div class="flex flex-row space-x-5 items-center mb-4">
+      <input
+        class="tw-input w-[100%] max-sm:w-[90%] h-10 pl-2"
+        id="timestamp"
+        [placeholder]="'Enter timestamp'"
+        type="number"
+        [(ngModel)]="timestamp"
+      />
+      <fa-icon (click)="deleteFeedingSession()" class="tw-icon text-3xl max-sm:text-2xl"
+               [icon]="faTrashCan"></fa-icon>
+    </div>
+    <span>All timestamps of today: <span class="font-medium">{{ feedsToday }}</span> <span
+      *ngIf="feedsToday>0"> -</span> {{ feedsTodayFormatted }}</span>
+    <span>All timestamps of yesterday: <span class="font-medium">{{ feedsYesterday }}</span> <span
+      *ngIf="feedsYesterday>0"> -</span> {{ feedsYesterdayFormatted }}</span>
+  </div>
 </div>

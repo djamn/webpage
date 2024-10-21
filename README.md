@@ -17,6 +17,8 @@ Gutes GitHub: https://github.com/PranavBhatia/ng-crypto/blob/Firebase-Authentica
 - manage-users
 - manage-changelog-entries
 - manage-projects
+- manage-checker-entries
+- cat-checker (Rolle)
 
 ## Link Problem
 Um das Link-Problem am Server zu lösen muss im Root der Domain folgende .htaccess hinzugefügt werden:

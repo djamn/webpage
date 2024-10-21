@@ -1,109 +1,138 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {faCat, faCheck, faTrashCan, faXmark} from '@fortawesome/free-solid-svg-icons'
+import {faTrashCan} from '@fortawesome/free-solid-svg-icons';
 import {NgIf} from "@angular/common";
 import {CatChecker} from "../checker.type";
 import {CheckerService} from "../checker.service";
 import {ConfigService} from "../../../services/config.service";
 import {Snackbar} from "../../../utility/snackbar";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {TranslateModule} from "@ngx-translate/core";
+import {PopupService} from "../../../services/popup.service";
+
+// TODO internationalisieren + aufräumen (utility funktionen)
 
 @Component({
   selector: 'cat-check-admin-component',
   standalone: true,
-  imports: [FontAwesomeModule, NgIf],
+  imports: [FontAwesomeModule, NgIf, ReactiveFormsModule, TranslateModule, FormsModule],
   templateUrl: './cat-check-admin-component.component.html',
-  styleUrl: './cat-check-admin-component.component.css'
+  styleUrls: ['./cat-check-admin-component.component.css']
 })
-export class CatCheckAdminComponent implements OnInit, OnDestroy {
+export class CatCheckAdminComponent {
+  timestamp: number | null = null;
   feedingSessions: CatChecker[] = [];
   feedingCount: number = 0;
   feedsToday: number = -1;
   feedsYesterday: number = 0;
-  lastFeedingSession: string = 'Unbekannt'
+  lastFeedingSession: string = 'Unbekannt';
+  feedsTodayFormatted: string = '';
+  feedsYesterdayFormatted: string = '';
   config: any;
-  feedingDone: boolean = false;
-  feedingDeleted: boolean = false;
-  isError: boolean = false;
 
-  private timer: any;
-  currentTime: string = '';
-
-  isLastFeedingSession = false;
-
-  constructor(private snackbar: Snackbar, private checker: CheckerService, private configService: ConfigService) {
+  constructor(
+    private snackbar: Snackbar,
+    private checker: CheckerService,
+    private configService: ConfigService,
+    private popupService: PopupService
+  ) {
     this.config = this.configService.getConfig();
     this.fetchFeedingSessions();
   }
 
-  ngOnInit() {
-    this.updateTime();
-    this.timer = setInterval(() => this.updateTime(), 60000); // Update every minute
-  }
-
-  ngOnDestroy() {
-    if (this.timer) {
-      clearInterval(this.timer);
+  async deleteFeedingSession() {
+    if (!this.timestamp) {
+      this.snackbar.showSnackbar('Enter a valid timestamp!', 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+      return;
     }
-  }
 
-  // TODO timestamp utility function
-  updateTime() {
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    this.currentTime = `${hours}:${minutes}`;
+    this.popupService.openPopup("Do you want to delete the specific timestamp?", "Delete").subscribe(async (result) => {
+      if (result) {
+        try {
+          const session = this.feedingSessions.find(session => session.timestamp === this.timestamp);
+
+          if (!session) {
+            this.snackbar.showSnackbar(`No feeding session with timestamp ${this.timestamp} exists!`, 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+            return;
+          }
+
+          const id = session.id;
+          await this.checker.deleteFeedingSession(id);
+          this.timestamp = null;
+
+          this.snackbar.showSnackbar('Successfully deleted feeding session!', 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
+        } catch (err) {
+          this.snackbar.showSnackbar('There was an error deleting feeding session, check console.', 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+          console.error("Error deleting feeding session", err);
+        }
+      }
+    });
   }
 
   fetchFeedingSessions(): void {
     this.checker.getFeedingSessions().subscribe({
       next: (data) => {
         if (data.length > 0) {
-          console.log(data)
+          console.log(data);
           this.feedingSessions = data;
           this.feedingCount = this.feedingSessions.length;
           this.getLastFeedingSession();
           this.fetchTodaysFeedingSessions();
           this.fetchYesterdaysFeedingSessions();
         } else {
-          this.feedingSessions = []
-          this.feedingCount = 0;
-          this.feedsToday = 0;
-          this.lastFeedingSession = 'Unbekannt'
-          this.feedsYesterday = 0;
+          this.resetFeedingSessionData();
           console.log("No data available");
         }
       },
       error: (err) => {
         console.error('Error fetching feeding sessions:', err);
       }
-    })
+    });
+  }
+
+  resetFeedingSessionData() {
+    this.feedingSessions = [];
+    this.feedingCount = 0;
+    this.feedsToday = 0;
+    this.lastFeedingSession = 'Unbekannt';
+    this.feedsYesterday = 0;
+    this.feedsTodayFormatted = '';
+    this.feedsYesterdayFormatted = '';
   }
 
   getLastFeedingSession() {
-    this.lastFeedingSession = this.processTimestamp(this.feedingSessions[0].timestamp)
+    this.lastFeedingSession = this.processTimestamp(this.feedingSessions[0].timestamp);
   }
 
   fetchTodaysFeedingSessions() {
     const todayDate = this.getMidnightDate();
-
     const sessionsToday = this.feedingSessions.filter(session => {
       const sessionDate = new Date(session.timestamp);
       return this.isToday(sessionDate, todayDate);
     });
 
     this.feedsToday = sessionsToday.length;
+    this.feedsTodayFormatted = this.formatFeedingSessions(sessionsToday);
   }
-
 
   fetchYesterdaysFeedingSessions() {
     const todayDate = this.getMidnightDate();
-
     const sessionsYesterday = this.feedingSessions.filter(session => {
       const sessionDate = new Date(session.timestamp);
-      return this.isYesterday(sessionDate, todayDate); // Reuse isYesterday() method
+      return this.isYesterday(sessionDate, todayDate);
     });
 
     this.feedsYesterday = sessionsYesterday.length;
+    this.feedsYesterdayFormatted = this.formatFeedingSessions(sessionsYesterday);
+  }
+
+  formatFeedingSessions(sessions: CatChecker[]): string {
+    return sessions.map(session => {
+      const date = new Date(session.timestamp);
+      const hours = date.getHours().toString().padStart(2, '0');
+      const minutes = date.getMinutes().toString().padStart(2, '0');
+      return `${hours}:${minutes} (${session.timestamp})`;
+    }).join(', ');
   }
 
   getMidnightDate(): Date {
@@ -112,55 +141,11 @@ export class CatCheckAdminComponent implements OnInit, OnDestroy {
     return startOfDay;
   }
 
-  async deleteLastFeedingSession() {
-    if (this.feedingSessions.length <= 0 || !this.isLastFeedingSession) return;
-
-    try {
-      await this.checker.deleteFeedingSession(this.feedingSessions[0].id);
-
-      this.feedingDeleted = true;
-
-      setTimeout(() => {
-        this.feedingDeleted = false;
-        this.isLastFeedingSession = false;
-        console.debug("Feeding deletion session reset!");
-      }, 2000);
-
-    } catch (error) {
-      console.error("Error deletion feeding session", error)
-      this.snackbar.showSnackbar('Fehler beim Löschen der Fütterung - Admin kontaktieren!', 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
-    }
-  }
-
-  async feedCat() {
-    if (this.feedingDone) return;
-
-    try {
-      await this.checker.addFeedingSession(Date.now())
-      this.isError = false;
-      this.feedingDone = true;
-      this.isLastFeedingSession = true;
-
-      setTimeout(() => {
-        this.feedingDone = false;
-        console.debug("Feeding session reset!");
-      }, 2000);
-      console.debug("Feeding worked!")
-    } catch (error) {
-      console.error("Error adding feeding session", error)
-      this.isError = true;
-      this.snackbar.showSnackbar('Fehler beim Hinzufügen einer Fütterung - Admin kontaktieren!', 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
-    }
-  }
-
-
   processTimestamp(timestamp: any) {
     const date = new Date(timestamp);
-
     const formattedDate = this.getFormattedDate(date);
     const hours = date.getHours().toString().padStart(2, '0');
     const minutes = date.getMinutes().toString().padStart(2, '0');
-
     return `${formattedDate} (${hours}:${minutes})`;
   }
 
@@ -174,7 +159,6 @@ export class CatCheckAdminComponent implements OnInit, OnDestroy {
     } else {
       return date.toLocaleDateString();
     }
-
   }
 
   isToday(date: Date, todayDate: Date): boolean {
@@ -199,9 +183,5 @@ export class CatCheckAdminComponent implements OnInit, OnDestroy {
     return endOfYesterday;
   }
 
-
-  protected readonly faCat = faCat;
-  protected readonly faCheck = faCheck;
-  protected readonly faXmark = faXmark;
   protected readonly faTrashCan = faTrashCan;
 }

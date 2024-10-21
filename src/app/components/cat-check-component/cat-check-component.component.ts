@@ -17,7 +17,7 @@ import {NgIf} from "@angular/common";
 export class CatCheckComponent implements OnInit, OnDestroy {
   feedingSessions: CatChecker[] = [];
   feedingCount: number = 0;
-  feedsToday: number = 0;
+  feedsToday: number = -1;
   feedsYesterday: number = 0;
   lastFeedingSession: string = 'Unbekannt'
   config: any;
@@ -58,6 +58,7 @@ export class CatCheckComponent implements OnInit, OnDestroy {
     this.checker.getFeedingSessions().subscribe({
       next: (data) => {
         if (data.length > 0) {
+          console.log(data)
           this.feedingSessions = data;
           this.feedingCount = this.feedingSessions.length;
           this.getLastFeedingSession();

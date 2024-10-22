@@ -81,6 +81,9 @@ export class LoginComponent implements OnInit {
         case 'auth/user-not-found':
           this.snackbar.showSnackbar(this.translate.instant('LOGIN.ERRORS.USER_NOT_FOUND'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
           break;
+        case 'auth/user-disabled':
+          this.snackbar.showSnackbar(this.translate.instant('LOGIN.ERRORS.USER_DISABLED'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+          break;
         default:
           console.error("Unexpected error during login:", err.message);
           this.snackbar.showSnackbar(this.translate.instant('LOGIN.ERRORS.UNEXPECTED_ERROR'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);

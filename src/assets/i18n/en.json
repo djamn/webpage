@@ -16,7 +16,8 @@
       "INVALID_CREDENTIALS": "Invalid login data!",
       "UNEXPECTED_ERROR": "An error occurred during login. Please try again.",
       "REQUIRED_FIELD": "This field is required!",
-      "USER_NOT_FOUND": "No user was found"
+      "USER_NOT_FOUND": "No user was found",
+      "USER_DISABLED": "This account was disabled by an administrator"
     }
   },
   "REGISTER": {

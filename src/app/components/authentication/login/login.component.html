@@ -71,22 +71,12 @@
         </div>
       </div>
 
-      <div class="flex flex-row w-full mb-6">
-        <div class="w-1/2">
-          <input class="checkbox"
-                 id="remember-me-box"
-                 type="checkbox"
-                 (change)="updateCheckbox($event)"
-                 value="">
-          <label for="remember-me-box" class="text-hint-style">{{ 'LOGIN.REMEMBER_ME_TEXT' | translate }}</label>
-        </div>
-        <div class="w-1/2 flex justify-end">
+      <div class="flex flex-row w-full mb-6 justify-end">
           <a
             class="text-end  text-base text-link-style max-sm:text-center"
             routerLink="/reset-password">
             {{ 'LOGIN.FORGOT_PASSWORD_LINK_TEXT' | translate }}
           </a>
-        </div>
       </div>
 
       <div class="w-full mb-2">

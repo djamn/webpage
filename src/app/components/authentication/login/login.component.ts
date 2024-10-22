@@ -39,10 +39,6 @@ export class LoginComponent implements OnInit {
     this.hidePassword = !this.hidePassword;
   }
 
-  updateCheckbox(event: any) {
-    console.log("Check") // TODO
-  }
-
   async login() {
     if(this.isLoading) return;
 

@@ -46,8 +46,25 @@ export class AuthService {
       );
   }
 
-  // TODO register -> verification -> auto login
-  // TODO ansonsten kein login möglich
+  async verifyEmail(uid: string) {
+    try {
+      await this.firestore.collection('users').doc(uid).update({
+        emailVerified: true,
+      })
+    } catch (err) {
+      console.error("Error setting email verified to true:", err)
+    }
+  }
+
+  async updateLoginDate(uid: string) {
+    try {
+      await this.firestore.collection('users').doc(uid).update({
+        lastLogin: Date.now(),
+      })
+    } catch (err) {
+      console.error("Error updating last login date:", err)
+    }
+  }
 
   async register(email: string, username: string, password: string) {
     try {
@@ -72,7 +89,10 @@ export class AuthService {
         uid: userId,
         email: email,
         username: username,
-        roles: ['user']
+        roles: ['user'],
+        createdAt: Date.now(),
+        lastLogin: null,
+        emailVerified: false
       });
     } catch (err) {
       throw err;
@@ -92,17 +112,20 @@ export class AuthService {
   }
 
   async login(email: string, password: string) {
-      const userCredential = await this.fireAuth.signInWithEmailAndPassword(email, password);
-      const user = userCredential.user;
+    const userCredential = await this.fireAuth.signInWithEmailAndPassword(email, password);
+    const user = userCredential.user;
 
-      if (!user) {
-        throw {code: 'auth/user-not-found'};
-      }
+    if (!user) {
+      throw {code: 'auth/user-not-found'};
+    }
 
-      if (!user.emailVerified) {
-        await this.fireAuth.signOut();
-        throw {code: 'auth/email-not-verified'};
-      }
+    if (!user.emailVerified) {
+      await this.fireAuth.signOut();
+      throw {code: 'auth/email-not-verified'};
+    }
+
+    // await this.verifyEmail(user.uid)   // TODO
+    await this.updateLoginDate(user.uid)
   }
 
 

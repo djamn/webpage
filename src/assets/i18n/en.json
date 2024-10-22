@@ -26,7 +26,7 @@
     "PASSWORD_PLACEHOLDER": "*******",
     "REGISTER_BUTTON": "Register",
     "REGISTER_HINT": "By clicking Register you accept the HOST Terms of Use and acknowledge the Privacy Statement and Cookie Policy",
-    "REGISTRATION_SUCCESSFUL": "Account successfully created and logged in!",
+    "REGISTRATION_SUCCESSFUL": "Account successfully created - Email verification sent!",
     "ERRORS": {
       "FORM_INVALID": "Your form is not valid!",
       "EMAIL_EXISTS": "Email already exists!",

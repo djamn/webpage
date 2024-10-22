@@ -46,13 +46,21 @@ export class AuthService {
       );
   }
 
+  // TODO register -> verification -> auto login
+  // TODO ansonsten kein login möglich
+
   async register(email: string, username: string, password: string) {
     try {
-      await this.fireAuth.createUserWithEmailAndPassword(email, password).then(async (userCredential) => {
-        const user = userCredential.user;
+      const userCredential = await this.fireAuth.createUserWithEmailAndPassword(email, password);
+      const user = userCredential.user;
 
-        if (user) await this.registerUser(user.uid, email, username);
-      })
+      if (user) {
+        await this.registerUser(user.uid, email, username);
+        await user.sendEmailVerification();
+        console.debug("Verification send");
+        await this.logout();
+        await this.router.navigate(['/login']);
+      }
     } catch (err) {
       throw err; // Rethrow Error
     }
@@ -72,9 +80,22 @@ export class AuthService {
   }
 
 
+  // TODO must be adapted
   async login(email: string, password: string) {
     try {
-      await this.fireAuth.signInWithEmailAndPassword(email, password);
+      const userCredential = await this.fireAuth.signInWithEmailAndPassword(email, password);
+      const user = userCredential.user;
+
+      if (user) {
+        if (user.emailVerified) {
+          console.log('User email is verified');
+          await this.router.navigate(['/']);
+        } else {
+          console.error('Email not verified');
+          await this.fireAuth.signOut();
+          alert('Please verify your email first. A verification link has been sent to your email.');
+        }
+      }
     } catch (err) {
       throw err; // rethrow error
     }

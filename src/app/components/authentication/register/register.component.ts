@@ -97,15 +97,12 @@ export class RegisterComponent implements OnInit {
         this.snackbar.showSnackbar(this.translate.instant('REGISTER.ERRORS.USERNAME_TAKEN'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
         this.isLoading = false;
         return;
-
       }
 
       await this.authService.register(email, username, this.signupForm.value.password);
       this.snackbar.showSnackbar(this.translate.instant('REGISTER.REGISTRATION_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
       this.signupForm.reset();
-
       this.isLoading = false;
-      await this.router.navigate(['/'])
     } catch (err) {
       console.error("Registration error:", err);
       this.snackbar.showSnackbar(this.translate.instant('REGISTER.ERRORS.UNEXPECTED_ERROR'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);

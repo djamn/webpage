@@ -105,7 +105,7 @@ export class RegisterComponent implements OnInit {
       this.signupForm.reset();
 
       this.isLoading = false;
-      await this.router.navigate(['/login'])
+      await this.router.navigate(['/'])
     } catch (err) {
       console.error("Registration error:", err);
       this.snackbar.showSnackbar(this.translate.instant('REGISTER.ERRORS.UNEXPECTED_ERROR'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);

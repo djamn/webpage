@@ -64,7 +64,7 @@ export class AuthService {
         uid: userId,
         email: email,
         username: username,
-        roles: ['guest']
+        roles: ['user']
       });
     } catch (err) {
       throw err;

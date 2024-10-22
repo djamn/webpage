@@ -8,8 +8,7 @@
 <span>You are currently logged in as: {{getAuth().currentUser?.uid ? getAuth().currentUser?.uid : "Not logged in" }}</span><br>
 <span *ngIf="userRole$ | async as role">Your role: {{ role }}</span><br>
 <div>
-  <span>Your Permissions:</span>
-  <p>{{ (userPermissions$ | async)?.join(', ') }}</p>
+  <span>Your Permissions: {{ (userPermissions$ | async)?.join(', ') }}</span>
 </div><br>
 <button class="btn-primary btn-green" *ngIf="isAdmin$ | async" routerLink="/admin">Admin Panel</button><br>
 <h1 class="text-3xl font-bold underline">

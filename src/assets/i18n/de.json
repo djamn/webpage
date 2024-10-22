@@ -24,7 +24,7 @@
     "PASSWORD_PLACEHOLDER": "*******",
     "REGISTER_BUTTON": "Registrieren",
     "REGISTER_HINT": "Mit einem Klick auf Registrieren akzeptieren Sie die HOST-Nutzungsbedingungen und erkennen die Datenschutzerklärung sowie die Cookie-Richtlinie an.",
-    "REGISTRATION_SUCCESSFUL": "Konto erfolgreich erstellt!",
+    "REGISTRATION_SUCCESSFUL": "Konto erfolgreich erstellt und angemeldet!",
     "ERRORS": {
       "FORM_INVALID": "Ihr Formular ist ungültig!",
       "EMAIL_EXISTS": "Diese E-Mail existiert bereits!",

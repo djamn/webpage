@@ -11,6 +11,7 @@
     "LOGIN_BUTTON": "Login",
     "SHOW_PASSWORD_HINT": "Toggle password visibility",
     "ERRORS": {
+      "EMAIL_NOT_VERIFIED": "Please verify your email or resend email verification!",
       "INVALID_CREDENTIALS": "Invalid login data!",
       "UNEXPECTED_ERROR": "An error occurred during login. Please try again.",
       "REQUIRED_FIELD": "This field is required!"

@@ -39,8 +39,47 @@ export class LoginComponent implements OnInit {
     this.hidePassword = !this.hidePassword;
   }
 
+  /*
   async login() {
-    if(this.isLoading) return;
+  if (this.isLoading) return;
+
+  if (!this.loginForm.valid) {
+    this.loginForm.markAllAsTouched();
+    console.debug("Login Form invalid");
+    return;
+  }
+
+  this.isLoading = true;
+
+  try {
+    let usernameOrEmail = this.loginForm.value.usernameOrEmail.trim().toLowerCase();
+
+    // Introduce a delay if needed for rate-limiting purposes.
+    await this.slowDownLogin();
+
+    // If the input is a username (doesn't contain '@'), resolve it to an email.
+    if (!usernameOrEmail.includes('@')) {
+      usernameOrEmail = await this.resolveUsernameToEmail(usernameOrEmail);
+    }
+
+    // Attempt login
+    await this.authService.login(usernameOrEmail, this.loginForm.value.password);
+
+    // On successful login, reset the form and navigate
+    this.loginForm.reset();
+    this.isLoading = false;
+    await this.router.navigate(['/']);
+
+  } catch (err) {
+    this.isLoading = false;
+    this.handleError(err);
+  }
+}
+
+   */
+
+  async login() {
+    if (this.isLoading) return;
 
     if (!this.loginForm.valid) {
       this.loginForm.markAllAsTouched();
@@ -49,38 +88,44 @@ export class LoginComponent implements OnInit {
     }
 
     this.isLoading = true;
-    let usernameOrEmail = this.loginForm.value.usernameOrEmail.trim().toLowerCase();
 
     try {
-      // Slow down bruteforce attacks
+      let usernameOrEmail = this.loginForm.value.usernameOrEmail.trim().toLowerCase();
       await new Promise(resolve => setTimeout(resolve, this.config.LOGIN_SLOW_DOWN_DURATION));
 
-      const isEmail = usernameOrEmail.includes('@');
-      if (!isEmail) usernameOrEmail = await this.authService.fetchEmailByUsername(usernameOrEmail);
+      if (!usernameOrEmail.includes('@')) usernameOrEmail = await this.authService.fetchEmailByUsername(usernameOrEmail);
 
       await this.authService.login(usernameOrEmail, this.loginForm.value.password);
+
       this.loginForm.reset();
       this.isLoading = false;
-      await this.router.navigate(['']);
+      // TODO snackbar für erfolgreiches anmelden
+      await this.router.navigate(['/']);
     } catch (err) {
-      // TODO recode
       this.isLoading = false;
-      if (this.isFirebaseError(err) && err.code === 'auth/invalid-credential' || err instanceof Error && err.message === 'auth/invalid-credential') {
-        this.snackbar.showSnackbar(this.translate.instant('LOGIN.ERRORS.INVALID_CREDENTIALS'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
-      } else {
-        this.snackbar.showSnackbar(this.translate.instant('LOGIN.ERRORS.UNEXPECTED_ERROR'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
-        console.error("Unexpected error occurred in login():", err)
-      }
+      this.handleError(err as Error);
     }
   }
 
-  // Type guard to check if error is a Firebase error
-  private isFirebaseError(err: any): err is { code: string } {
-    return typeof err === 'object' && err !== null && 'code' in err;
+  private handleError(err: Error) {
+    // TODO firebase errors will not be handled
+    switch (err.message) {
+      case 'auth/invalid-credential':
+        this.snackbar.showSnackbar('LOGIN.ERRORS.INVALID_CREDENTIALS', 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+        break;
+      case 'auth/email-not-verified':
+        this.snackbar.showSnackbar('LOGIN.ERRORS.EMAIL_NOT_VERIFIED', 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+        break;
+      case 'auth/user-not-found':
+        this.snackbar.showSnackbar('LOGIN.ERRORS.USER_NOT_FOUND', 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+        break;
+      default:
+        this.snackbar.showSnackbar('LOGIN.ERRORS.UNEXPECTED_ERROR', 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+        console.error("Unexpected error during login:", err.message);
+    }
   }
 
   protected readonly isControlInvalid = isControlInvalid;
-    protected readonly faPlus = faPlus;
   protected readonly faEnvelope = faEnvelope;
   protected readonly faLock = faLock;
   protected readonly faEye = faEye;

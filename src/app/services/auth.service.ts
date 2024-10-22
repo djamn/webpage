@@ -81,23 +81,30 @@ export class AuthService {
 
 
   // TODO must be adapted
-  async login(email: string, password: string) {
-    try {
-      const userCredential = await this.fireAuth.signInWithEmailAndPassword(email, password);
-      const user = userCredential.user;
+// AuthService
+  async fetchEmailByUsername(username: string) {
+    const userDoc = this.firestore.collection('users', ref => ref.where('username', '==', username)).get();
+    const userSnapshot = await firstValueFrom(userDoc);
 
-      if (user) {
-        if (user.emailVerified) {
-          console.log('User email is verified');
-          await this.router.navigate(['/']);
-        } else {
-          console.error('Email not verified');
-          await this.fireAuth.signOut();
-          alert('Please verify your email first. A verification link has been sent to your email.');
-        }
-      }
-    } catch (err) {
-      throw err; // rethrow error
+    if (!userSnapshot.empty) {
+      const user = userSnapshot.docs[0].data() as User;
+      return user.email;
+    }
+
+    throw new Error('auth/invalid-credential');
+  }
+
+  async login(email: string, password: string) {
+    const userCredential = await this.fireAuth.signInWithEmailAndPassword(email, password);
+    const user = userCredential.user;
+
+    if (!user) {
+      throw new Error('auth/user-not-found');
+    }
+
+    if (!user.emailVerified) {
+      await this.fireAuth.signOut();
+      throw new Error('auth/email-not-verified');
     }
   }
 
@@ -114,14 +121,14 @@ export class AuthService {
     return this.user$;
   }
 
-  async fetchEmailByUsername(username: string) {
-    const userDoc = this.firestore.collection('users', ref => ref.where('username', '==', username)).get();
-    const userSnapshot = await firstValueFrom(userDoc);
-    if (!userSnapshot.empty) {
-      const user = userSnapshot.docs[0].data() as User;
-      return user.email;
-    }
-    throw new Error('auth/invalid-credential');
+  private isFirebaseError(err: any): err is {
+    message: any; code: string
+  } {
+    return typeof err === 'object' && err !== null && 'code' in err && err.code.startsWith('auth/');
   }
+
+  // private isFirebaseError(error: any): boolean {
+  //   return error && typeof error.code === 'string' && error.code.startsWith('auth/');
+  // }
 }
 

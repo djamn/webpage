@@ -39,45 +39,6 @@ export class LoginComponent implements OnInit {
     this.hidePassword = !this.hidePassword;
   }
 
-  /*
-  async login() {
-  if (this.isLoading) return;
-
-  if (!this.loginForm.valid) {
-    this.loginForm.markAllAsTouched();
-    console.debug("Login Form invalid");
-    return;
-  }
-
-  this.isLoading = true;
-
-  try {
-    let usernameOrEmail = this.loginForm.value.usernameOrEmail.trim().toLowerCase();
-
-    // Introduce a delay if needed for rate-limiting purposes.
-    await this.slowDownLogin();
-
-    // If the input is a username (doesn't contain '@'), resolve it to an email.
-    if (!usernameOrEmail.includes('@')) {
-      usernameOrEmail = await this.resolveUsernameToEmail(usernameOrEmail);
-    }
-
-    // Attempt login
-    await this.authService.login(usernameOrEmail, this.loginForm.value.password);
-
-    // On successful login, reset the form and navigate
-    this.loginForm.reset();
-    this.isLoading = false;
-    await this.router.navigate(['/']);
-
-  } catch (err) {
-    this.isLoading = false;
-    this.handleError(err);
-  }
-}
-
-   */
-
   async login() {
     if (this.isLoading) return;
 
@@ -99,7 +60,7 @@ export class LoginComponent implements OnInit {
 
       this.loginForm.reset();
       this.isLoading = false;
-      // TODO snackbar für erfolgreiches anmelden
+      this.snackbar.showSnackbar(this.translate.instant('LOGIN.LOGIN_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION)
       await this.router.navigate(['/']);
     } catch (err) {
       this.isLoading = false;
@@ -108,21 +69,31 @@ export class LoginComponent implements OnInit {
   }
 
   private handleError(err: Error) {
-    // TODO firebase errors will not be handled
-    switch (err.message) {
-      case 'auth/invalid-credential':
-        this.snackbar.showSnackbar('LOGIN.ERRORS.INVALID_CREDENTIALS', 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
-        break;
-      case 'auth/email-not-verified':
-        this.snackbar.showSnackbar('LOGIN.ERRORS.EMAIL_NOT_VERIFIED', 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
-        break;
-      case 'auth/user-not-found':
-        this.snackbar.showSnackbar('LOGIN.ERRORS.USER_NOT_FOUND', 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
-        break;
-      default:
-        this.snackbar.showSnackbar('LOGIN.ERRORS.UNEXPECTED_ERROR', 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
-        console.error("Unexpected error during login:", err.message);
+    if (this.isFirebaseError(err)) {
+      switch (err.code) {
+        case 'auth/invalid-credential':
+        case 'auth/invalid-email':
+          this.snackbar.showSnackbar(this.translate.instant('LOGIN.ERRORS.INVALID_CREDENTIALS'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+          break;
+        case 'auth/email-not-verified':
+          this.snackbar.showSnackbar(this.translate.instant('LOGIN.ERRORS.EMAIL_NOT_VERIFIED'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+          break;
+        case 'auth/user-not-found':
+          this.snackbar.showSnackbar(this.translate.instant('LOGIN.ERRORS.USER_NOT_FOUND'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+          break;
+        default:
+          console.error("Unexpected error during login:", err.message);
+          this.snackbar.showSnackbar(this.translate.instant('LOGIN.ERRORS.UNEXPECTED_ERROR'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
+          break;
+      }
+    } else {
+      console.error("Non-Firebase error during login:", err.message);
+      this.snackbar.showSnackbar(this.translate.instant('LOGIN.ERRORS.UNEXPECTED_ERROR'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
     }
+  }
+
+  private isFirebaseError(err: any): err is { code: string } {
+    return typeof err === 'object' && err !== null && 'code' in err;
   }
 
   protected readonly isControlInvalid = isControlInvalid;

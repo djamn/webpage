@@ -79,9 +79,6 @@ export class AuthService {
     }
   }
 
-
-  // TODO must be adapted
-// AuthService
   async fetchEmailByUsername(username: string) {
     const userDoc = this.firestore.collection('users', ref => ref.where('username', '==', username)).get();
     const userSnapshot = await firstValueFrom(userDoc);
@@ -91,22 +88,23 @@ export class AuthService {
       return user.email;
     }
 
-    throw new Error('auth/invalid-credential');
+    throw {code: 'auth/invalid-credential'};
   }
 
   async login(email: string, password: string) {
-    const userCredential = await this.fireAuth.signInWithEmailAndPassword(email, password);
-    const user = userCredential.user;
+      const userCredential = await this.fireAuth.signInWithEmailAndPassword(email, password);
+      const user = userCredential.user;
 
-    if (!user) {
-      throw new Error('auth/user-not-found');
-    }
+      if (!user) {
+        throw {code: 'auth/user-not-found'};
+      }
 
-    if (!user.emailVerified) {
-      await this.fireAuth.signOut();
-      throw new Error('auth/email-not-verified');
-    }
+      if (!user.emailVerified) {
+        await this.fireAuth.signOut();
+        throw {code: 'auth/email-not-verified'};
+      }
   }
+
 
   async logout() {
     await this.fireAuth.signOut();
@@ -120,15 +118,5 @@ export class AuthService {
   getUser(): Observable<User | null | undefined> {
     return this.user$;
   }
-
-  private isFirebaseError(err: any): err is {
-    message: any; code: string
-  } {
-    return typeof err === 'object' && err !== null && 'code' in err && err.code.startsWith('auth/');
-  }
-
-  // private isFirebaseError(error: any): boolean {
-  //   return error && typeof error.code === 'string' && error.code.startsWith('auth/');
-  // }
 }
 

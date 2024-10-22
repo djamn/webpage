@@ -10,11 +10,13 @@
     "REGISTER_LINK_TEXT": "Click here to register",
     "LOGIN_BUTTON": "Login",
     "SHOW_PASSWORD_HINT": "Toggle password visibility",
+    "LOGIN_SUCCESSFUL": "Successfully logged in!",
     "ERRORS": {
       "EMAIL_NOT_VERIFIED": "Please verify your email or resend email verification!",
       "INVALID_CREDENTIALS": "Invalid login data!",
       "UNEXPECTED_ERROR": "An error occurred during login. Please try again.",
-      "REQUIRED_FIELD": "This field is required!"
+      "REQUIRED_FIELD": "This field is required!",
+      "USER_NOT_FOUND": "No user was found"
     }
   },
   "REGISTER": {

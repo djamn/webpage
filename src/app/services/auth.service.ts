@@ -128,6 +128,16 @@ export class AuthService {
     await this.updateLoginDate(user.uid)
   }
 
+  async resetPassword(email: string): Promise<void> {
+    try {
+      await this.fireAuth.sendPasswordResetEmail(email);
+      console.log('Password reset email sent');
+    } catch (err) {
+      console.error('Error sending password reset email:', err);
+      throw err;
+    }
+  }
+
 
   async logout() {
     await this.fireAuth.signOut();

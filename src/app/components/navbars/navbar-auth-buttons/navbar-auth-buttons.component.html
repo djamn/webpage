@@ -1,0 +1,14 @@
+<div *ngIf="!getAuth().currentUser" class="flex mt-4 items-start flex-row space-x-4">
+  <a
+    class="text-black cursor-pointer inline-block px-4 py-2 transition-all duration-300 border border-black rounded bg-white hover:bg-gray-100 border-hidden"
+    routerLink="/login"
+  >
+    {{ 'NAVBAR.LOGIN_BUTTON' | translate }}
+  </a>
+  <a
+    class="text-black cursor-pointer inline-block px-4 py-2 transition-all duration-300 border border-black rounded bg-white hover:bg-gray-100 border-solid"
+    routerLink="/register"
+  >
+    {{ 'NAVBAR.REGISTER_BUTTON' | translate }}
+  </a>
+</div>

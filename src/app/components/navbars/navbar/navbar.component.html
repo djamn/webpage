@@ -1,169 +1,106 @@
-<div class="tw-component-container p-0">
-  <header class="navbar-general">
+<div class="tw-component-container p-0 ">
+  <header class="w-full h-full flex items-center justify-between py-4 px-8 max-lg:px-8 max-sm:p-4">
     <a routerLink="/">
-      <img [attr.src]="config.NAVBAR_LOGO_SRC" alt="logo" class="navbar-logo"/>
+      <img [attr.src]="config.NAVBAR_LOGO_SRC" alt="logo" class="h-8 pr-8 max-lg:p-0 decoration-0"/>
     </a>
-    <div class="navbar-desktop-menu">
 
 
-      <nav class="navbar-links">
-        <ng-container *ngFor="let link of getNavLinks()">
-          <a *ngIf="!link.permission || (permissionService.hasPermission(link.permission) | async)"
-             class="navbar-link-style" [routerLink]="link.path">
-            {{ link.label }}
-          </a>
-        </ng-container>
-
-        <div *ngIf="hasAccessToServices$ | async" class="relative inline-block text-left select-none">
-          <!-- Dropdown Toggle Button -->
-          <button (click)="toggleDropdown()"
-                  class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600
-                 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2
-                 focus:ring-offset-gray-100 focus:ring-blue-500">
-            Services
-            <fa-icon [icon]="faAngleDown" class="text-[16px] font-bold -mr-1 ml-2"></fa-icon>
-          </button>
-
-          <!-- Dropdown Menu -->
-          <div *ngIf="dropdownOpen"
-               class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1
-              ring-black ring-opacity-5 focus:outline-none z-20">
-            <ng-container *ngFor="let link of getServiceLinks()">
-              <a *ngIf="!link.permission || (permissionService.hasPermission(link.permission) | async)"
-                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                 [routerLink]="link.path">
-                {{ link.label }}
-              </a>
-            </ng-container>
-          </div>
-        </div>
+    <div class="flex-1 flex justify-between max-lg:hidden">
+      <nav class="flex-1 flex items-center flex-row justify-start">
+        <navbar-links></navbar-links>
       </nav>
 
 
-      <div class="navbar-buttons">
-        <div class="language-switch-dropdown-main">
-          <ng-select [items]="config.LANGUAGES"
-                     [searchable]="false"
-                     [clearable]="false"
-                     (change)="onLanguageChange($event)"
-                     [(ngModel)]="translate.currentLang">
-            <ng-template ng-label-tmp let-item="item">
-              <div class="language-switch-dropdown-label">
-                <img class=language-switch-item-icon
-                     [attr.src]="getAvatarByCode(translate.currentLang)" alt=""/>
-                <span class="language-switch-item-name">{{ translate.currentLang | uppercase }}</span>
-              </div>
-            </ng-template>
-            <ng-template ng-option-tmp let-item="item" let-index="index">
-              <div class="language-switch-dropdown-label">
-                <img class="language-switch-item-icon" [attr.src]="item.icon" alt=""/>
-                <span class="language-switch-item-name">{{ item.code | uppercase }}</span>
-              </div>
-            </ng-template>
-          </ng-select>
-        </div>
-        <div *ngIf="!getAuth().currentUser">
-          <a
-            class="navbar-button navbar-button-login"
-            routerLink="/login"
-          >
-            {{ 'NAVBAR.LOGIN_BUTTON' | translate }}
-          </a>
-          <a
-            class="navbar-button navbar-button-register"
-            routerLink="/register"
-          >
-            {{ 'NAVBAR.REGISTER_BUTTON' | translate }}
-          </a>
-        </div>
+      <!--      TODO -->
+      <div class="flex items-center flex-row justify-between">
+        <!--        <div class="language-switch-dropdown-main">
+                  <ng-select [items]="config.LANGUAGES"
+                             [searchable]="false"
+                             [clearable]="false"
+                             (change)="onLanguageChange($event)"
+                             [(ngModel)]="translate.currentLang">
+                    <ng-template ng-label-tmp let-item="item">
+                      <div class="language-switch-dropdown-label">
+                        <img class=language-switch-item-icon
+                             [attr.src]="getAvatarByCode(translate.currentLang)" alt=""/>
+                        <span class="language-switch-item-name">{{ translate.currentLang | uppercase }}</span>
+                      </div>
+                    </ng-template>
+                    <ng-template ng-option-tmp let-item="item" let-index="index">
+                      <div class="language-switch-dropdown-label">
+                        <img class="language-switch-item-icon" [attr.src]="item.icon" alt=""/>
+                        <span class="language-switch-item-name">{{ item.code | uppercase }}</span>
+                      </div>
+                    </ng-template>
+                  </ng-select>
+                </div>-->
+        <navbar-auth-buttons></navbar-auth-buttons>
+
         <!--        TODO implement account settings -->
-        <a *ngIf="getAuth().currentUser" class="navbar-account" routerLink="/account">
+        <a *ngIf="getAuth().currentUser" class="rounded-full" routerLink="/account">
           <img
             src="/assets/no-image.svg"
-            class="navbar-account-image"
+            class="w-12 h-12 object-cover rounded-full decoration-0"
             alt=""/>
         </a>
       </div>
     </div>
 
     <!--    Mobile -->
-    <div class="navbar-burger-menu" (click)="toggleMenu()">
-      <svg class="navbar-burger-icon-mobile" viewBox="0 0 1024 1024">
-        <path
-          d="M128 554.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 298.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 810.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"
-        ></path>
-      </svg>
+    <div class="hidden max-lg:flex max-lg:items-center max-lg:justify-center " (click)="toggleMenu()">
+      <fa-icon [icon]="faBars" class="tw-icon text-3xl"></fa-icon>
     </div>
 
-    <div class="navbar-mobile-menu" [ngClass]="{'is-active': isMenuOpen}">
-      <div class="navbar-container">
-        <div class="navbar-top-container">
-          <img [attr.src]="config.NAVBAR_LOGO_SRC" alt="image" class="navbar-logo-mobile"/>
-          <div class="navbar-close-container" (click)="closeMenu()">
-            <svg class="navbar-close-icon-mobile" viewBox="0 0 1024 1024">
-              <path
-                d="M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z"
-              ></path>
-            </svg>
+    <div class="navbar-mobile-menu " [ngClass]="{'is-active': isMenuOpen}">
+      <div class="flex flex-start flex-col ">
+        <div class="select-none w-full flex items-center mb-4 justify-between ">
+          <img [attr.src]="config.NAVBAR_LOGO_SRC" alt="image" class="h-8"/>
+          <div class="flex items-center justify-center" (click)="closeMenu()">
+            <fa-icon [icon]="faXmark" class="tw-icon text-3xl"></fa-icon>
           </div>
         </div>
 
+        <!--        TODO -->
         <div class="language-account-container">
-          <div class="language-switch-dropdown-main-mobile">
-            <ng-select [items]="config.LANGUAGES"
-                       [searchable]="false"
-                       [clearable]="false"
-                       (change)="onLanguageChange($event)"
-                       [(ngModel)]="translate.currentLang">
-              <ng-template ng-label-tmp let-item="item">
-                <div class="language-switch-dropdown-label-mobile">
-                  <img class="language-switch-item-icon-mobile"
-                       [attr.src]="getAvatarByCode(translate.currentLang)" alt=""/>
-                  <span class="language-switch-item-name-mobile">{{ translate.currentLang | uppercase }}</span>
-                </div>
-              </ng-template>
-              <ng-template ng-option-tmp let-item="item" let-index="index">
-                <div class="language-switch-dropdown-label-mobile">
-                  <img class="language-switch-item-icon-mobile" [attr.src]="item.icon" alt=""/>
-                  <span class="language-switch-item-name-mobile">{{ item.code | uppercase }}</span>
-                </div>
-              </ng-template>
-            </ng-select>
-          </div>
+          <!--
+                    <div class="language-switch-dropdown-main-mobile">
+                      <ng-select [items]="config.LANGUAGES"
+                                 [searchable]="false"
+                                 [clearable]="false"
+                                 (change)="onLanguageChange($event)"
+                                 [(ngModel)]="translate.currentLang">
+                        <ng-template ng-label-tmp let-item="item">
+                          <div class="language-switch-dropdown-label-mobile">
+                            <img class="language-switch-item-icon-mobile"
+                                 [attr.src]="getAvatarByCode(translate.currentLang)" alt=""/>
+                            <span class="language-switch-item-name-mobile">{{ translate.currentLang | uppercase }}</span>
+                          </div>
+                        </ng-template>
+                        <ng-template ng-option-tmp let-item="item" let-index="index">
+                          <div class="language-switch-dropdown-label-mobile">
+                            <img class="language-switch-item-icon-mobile" [attr.src]="item.icon" alt=""/>
+                            <span class="language-switch-item-name-mobile">{{ item.code | uppercase }}</span>
+                          </div>
+                        </ng-template>
+                      </ng-select>
+                    </div>
+          -->
 
-          <div *ngIf="getAuth().currentUser" class="account-mobile-container">
-            <a class="navbar-account-mobile" routerLink="/account">
+
+          <div *ngIf="getAuth().currentUser" class="ml-2">
+            <a *ngIf="getAuth().currentUser" class="rounded-full" routerLink="/account">
               <img
                 src="/assets/no-image.svg"
-                class="navbar-account-image-mobile"
+                class="w-12 h-12 object-cover rounded-full decoration-0"
                 alt=""/>
             </a>
           </div>
         </div>
 
-        <nav class="navbar-links-mobile">
-          <ng-container *ngFor="let link of getNavLinks()">
-            <a *ngIf="!link.permission || (permissionService.hasPermission(link.permission) | async)"
-               class="navbar-link-style-mobile" [routerLink]="link.path">
-              {{ link.label }}
-            </a>
-          </ng-container>
-        </nav>
+        <navbar-links></navbar-links>
+        <navbar-auth-buttons></navbar-auth-buttons>
 
-        <div *ngIf="!getAuth().currentUser" class="navbar-buttons-mobile">
-          <a
-            class="navbar-button navbar-button-login-mobile"
-            routerLink="/login"
-          >
-            {{ 'NAVBAR.LOGIN_BUTTON' | translate }}
-          </a>
-          <a
-            class="navbar-button"
-            routerLink="/register"
-          >
-            {{ 'NAVBAR.REGISTER_BUTTON' | translate }}
-          </a>
-        </div>
+
       </div>
     </div>
   </header>

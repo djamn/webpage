@@ -18,6 +18,7 @@ Gutes GitHub: https://github.com/PranavBhatia/ng-crypto/blob/Firebase-Authentica
 - manage-changelog-entries
 - manage-projects
 - manage-checker-entries
+- view-cat-checker   (TODO)
 - cat-checker (Rolle)
 
 ## Link Problem

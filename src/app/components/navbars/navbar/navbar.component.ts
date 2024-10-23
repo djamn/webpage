@@ -5,6 +5,9 @@ import {Language} from "../../../types/language.type";
 import {getAuth} from "firebase/auth";
 import {PermissionService} from "../../../services/permission.service";
 import {AuthService} from "../../../services/auth.service";
+import {combineLatest, of} from 'rxjs';
+import {map} from "rxjs/operators";
+import {faAngleDown, faChevronDown} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-navbar',
@@ -16,6 +19,9 @@ export class Navbar {
   isMenuOpen: boolean = false;
   dropdownOpen = false;
   generalLinks: any[] = [];
+  serviceLinks: any[] = [];
+
+  hasAccessToServices$ = this.checkUserAccess();
 
   constructor(private authService: AuthService,
               public translate: TranslateService,
@@ -83,14 +89,39 @@ export class Navbar {
         label: this.translate.instant('NAVBAR.CHANGELOG_LINK_TITLE'),
         path: '/changelog',
       },
+      ...this.generalLinks
+    ];
+  }
+
+  getServiceLinks() {
+    return [
       {
         label: this.translate.instant('NAVBAR.MANAGE_USERS_LINK_TITLE'),
         path: '/',
         permission: 'manage-users',
       },
-      ...this.generalLinks
-    ];
+      {
+        label: this.translate.instant('NAVBAR._CAT_CHECKER_TITLE'),
+        path: '/cat-checker',
+        permission: 'view-cat-checker',
+      },
+      ...this.serviceLinks
+    ]
+  }
+
+  checkUserAccess() {
+    const links = this.getServiceLinks();
+
+    // Convert each permission check into an observable
+    const permissionChecks$ = links.map(link => !link.permission ? of(true) : this.permissionService.hasPermission(link.permission));
+
+    return combineLatest(permissionChecks$).pipe(
+      // If at least one permission check returns true, return true
+      map(results => results.some(access => access === true))
+    );
   }
 
   protected readonly getAuth = getAuth;
+  protected readonly faChevronDown = faChevronDown;
+  protected readonly faAngleDown = faAngleDown;
 }

@@ -14,7 +14,7 @@ import {AuthService} from "../../../services/auth.service";
 export class Navbar {
   config: any;
   isMenuOpen: boolean = false;
-
+  dropdownOpen = false;
   generalLinks: any[] = [];
 
   constructor(private authService: AuthService,
@@ -49,6 +49,10 @@ export class Navbar {
 
   async logout() {
     await this.authService.logout();
+  }
+
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
   }
 
   // TODO move to config

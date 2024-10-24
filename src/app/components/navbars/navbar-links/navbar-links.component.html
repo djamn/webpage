@@ -22,7 +22,7 @@
               ring-black ring-opacity-5 focus:outline-none z-20">
       <ng-container *ngFor="let link of getServiceLinks()">
         <a *ngIf="!link.permission || (permissionService.hasPermission(link.permission) | async)"
-           class="w-auto block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 whitespace-nowrap"
+           class="w-auto block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 whitespace-nowrap"
            [routerLink]="link.path">
           {{ link.label }}
         </a>

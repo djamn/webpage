@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, HostListener} from '@angular/core';
 import {AuthService} from "../../../services/auth.service";
 import {TranslateService} from "@ngx-translate/core";
 import {PermissionService} from "../../../services/permission.service";
@@ -19,6 +19,7 @@ export class NavbarLinksComponent {
   hasAccessToServices$ = this.checkUserAccess();
 
   constructor(private authService: AuthService,
+              private eRef: ElementRef,
               public translate: TranslateService,
               protected permissionService: PermissionService) {
   }
@@ -91,6 +92,13 @@ export class NavbarLinksComponent {
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
   }
+
+  // Close dropdown if clicked outside of it
+  @HostListener('document:click', ['$event'])
+  handleClickOutside(event: Event) {
+    if (this.dropdownOpen && !this.eRef.nativeElement.contains(event.target)) this.dropdownOpen = false;
+  }
+
 
   protected readonly faAngleDown = faAngleDown;
 }

@@ -446,6 +446,16 @@ body {
   }
 }
 
+.warning-snackbar {
+  --mdc-snackbar-container-color: #ec5d27;
+  --mdc-snackbar-supporting-text-color: white !important;
+
+  .mat-mdc-button {
+    /*background-color: blue;*/
+    color: white !important;
+  }
+}
+
 .error-snackbar {
   --mdc-snackbar-container-color: var(--error-color);
   --mdc-snackbar-supporting-text-color: white !important;

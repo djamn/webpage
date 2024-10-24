@@ -5,7 +5,7 @@ import {Language} from "../../../types/language.type";
 import {getAuth} from "firebase/auth";
 import {PermissionService} from "../../../services/permission.service";
 import {AuthService} from "../../../services/auth.service";
-import {faAngleDown, faBars, faDesktop, faMoon, faSun, faXmark} from "@fortawesome/free-solid-svg-icons";
+import {faBars, faDesktop, faMoon, faSun, faXmark} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-navbar',
@@ -15,20 +15,32 @@ import {faAngleDown, faBars, faDesktop, faMoon, faSun, faXmark} from "@fortaweso
 export class Navbar {
   config: any;
   isMenuOpen: boolean = false;
-
   selectedTheme: 'light' | 'dark' | 'system' = 'light'; // Default theme
-  dropdownOpen = false
+  dropdownOpen = false;
 
-  constructor(private authService: AuthService,
-              public translate: TranslateService,
-              private eRef: ElementRef,
-              private configService: ConfigService,
-              protected permissionService: PermissionService) {
+  constructor(
+    private authService: AuthService,
+    public translate: TranslateService,
+    private eRef: ElementRef,
+    configService: ConfigService,
+    protected permissionService: PermissionService
+  ) {
     this.config = configService.getConfig();
+
+    // Load the saved theme from localStorage or set to system by default
+    const savedTheme = window.localStorage.getItem('SELECTED_THEME') as 'light' | 'dark' | 'system';
+    this.selectedTheme = savedTheme ? savedTheme : 'system';
+
+    // Apply the theme on initial load
+    this.applyTheme(this.selectedTheme);
+
+    // Add a listener to handle changes in system theme preference
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', this.handleSystemThemeChange.bind(this));
   }
 
   onLanguageChange(langCode: any) {
-    console.debug("Setting new language: ", langCode)
+    console.debug("Setting new language: ", langCode);
     this.translate.use(langCode.code);
     window.localStorage.setItem('SELECTED_LANGUAGE', langCode.code);
   }
@@ -63,38 +75,45 @@ export class Navbar {
     this.selectedTheme = theme;
     this.dropdownOpen = false;
 
-    // Apply the selected theme
+    window.localStorage.setItem('SELECTED_THEME', theme);
+
     this.applyTheme(theme);
   }
 
-  // Function to actually apply the theme (you can implement the logic here)
+  // Apply the theme
   applyTheme(theme: 'light' | 'dark' | 'system') {
-    if (theme === 'light') {
-      document.body.classList.remove('dark');
-    } else if (theme === 'dark') {
-      document.body.classList.add('dark');
-    } else {
-      // You can implement system preference logic here
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (prefersDark) {
-        document.body.classList.add('dark');
-      } else {
+    switch (theme) {
+      case 'light':
         document.body.classList.remove('dark');
-      }
+        break;
+      case 'dark':
+        document.body.classList.add('dark');
+        break;
+      default:
+        this.applySystemTheme();
+    }
+  }
+
+  // Handle applying the system theme
+  applySystemTheme() {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    prefersDark ? document.body.classList.add('dark') : document.body.classList.remove('dark');
+  }
+
+  // Handle changes in the system theme preference
+  handleSystemThemeChange(event: MediaQueryListEvent) {
+    if (this.selectedTheme === 'system') {
+      event.matches ? document.body.classList.add('dark') : document.body.classList.remove('dark');
     }
   }
 
   // Close dropdown if clicked outside of it
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: Event) {
-    if (this.dropdownOpen && !this.eRef.nativeElement.contains(event.target)) {
-      this.dropdownOpen = false;
-    }
+    if (this.dropdownOpen && !this.eRef.nativeElement.contains(event.target)) this.dropdownOpen = false;
   }
 
-
   protected readonly getAuth = getAuth;
-  protected readonly faAngleDown = faAngleDown;
   protected readonly faXmark = faXmark;
   protected readonly faBars = faBars;
   protected readonly faSun = faSun;

@@ -69,8 +69,8 @@ export class NavbarLinksComponent {
         permission: 'manage-users',
       },
       {
-        label: this.translate.instant('NAVBAR._CAT_CHECKER_TITLE'),
-        path: '/cat-checker',
+        label: this.translate.instant('NAVBAR.CAT_CHECKER_TITLE'),
+        path: '/cat-check',
         permission: 'view-cat-checker',
       },
       ...this.serviceLinks

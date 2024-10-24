@@ -38,6 +38,8 @@ import {ProjectsMainComponent} from "./projects/projects-main-component/projects
 import {ProjectPopupComponent} from "./popups/create-project-popup/project-popup.component";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {CatCheckAdminComponent} from "./cat-check-component/admin/cat-check-admin-component.component";
+import {NavbarLinksComponent} from "./navbars/navbar-links/navbar-links.component";
+import {NavbarAuthButtonsComponent} from "./navbars/navbar-auth-buttons/navbar-auth-buttons.component";
 
 Quill.register("modules/emoji", Emoji);
 
@@ -66,7 +68,9 @@ Quill.register("modules/emoji", Emoji);
     ProjectsComponent,
     ProjectTemplateComponent,
     ProjectsMainComponent,
-    ProjectPopupComponent
+    ProjectPopupComponent,
+    NavbarLinksComponent,
+    NavbarAuthButtonsComponent
   ],
   imports: [
     CommonModule,
@@ -106,7 +110,9 @@ Quill.register("modules/emoji", Emoji);
     ProjectsComponent,
     ProjectTemplateComponent,
     ProjectsMainComponent,
-    ProjectPopupComponent
+    ProjectPopupComponent,
+    NavbarLinksComponent,
+    NavbarAuthButtonsComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -56,7 +56,18 @@ export class LoginComponent implements OnInit {
 
       if (!usernameOrEmail.includes('@')) usernameOrEmail = await this.authService.fetchEmailByUsername(usernameOrEmail);
 
-      await this.authService.login(usernameOrEmail, this.loginForm.value.password);
+      const loginResult = await this.authService.login(usernameOrEmail, this.loginForm.value.password);
+
+      if (!loginResult.emailVerified) {
+        this.snackbar.showEmailSnackbar().onAction().subscribe(async () => {
+          console.log("Resending email verification...");
+          await this.authService.sendEmailVerification(loginResult.user);
+          this.snackbar.showSnackbar(this.translate.instant('LOGIN.VERIFICATION_EMAIL_SENT'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
+        });
+
+        this.isLoading = false;
+        return;
+      }
 
       this.loginForm.reset();
       this.isLoading = false;
@@ -74,9 +85,6 @@ export class LoginComponent implements OnInit {
         case 'auth/invalid-credential':
         case 'auth/invalid-email':
           this.snackbar.showSnackbar(this.translate.instant('LOGIN.ERRORS.INVALID_CREDENTIALS'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
-          break;
-        case 'auth/email-not-verified':
-          this.snackbar.showSnackbar(this.translate.instant('LOGIN.ERRORS.EMAIL_NOT_VERIFIED'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
           break;
         case 'auth/user-not-found':
           this.snackbar.showSnackbar(this.translate.instant('LOGIN.ERRORS.USER_NOT_FOUND'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);

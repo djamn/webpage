@@ -4,6 +4,7 @@ import {catchError, firstValueFrom, map, Observable, of, switchMap} from "rxjs";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {User} from "../types/user.type";
 import {Router} from "@angular/router";
+import {Snackbar} from "../utility/snackbar";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
   user$: Observable<User | null | undefined>;
   userRoles$: Observable<string[]>;
 
-  constructor(private firestore: AngularFirestore, private fireAuth: AngularFireAuth, private router: Router) {
+  constructor(private firestore: AngularFirestore, private fireAuth: AngularFireAuth, private router: Router, private snackbar: Snackbar) {
     this.user$ = this.fireAuth.authState.pipe(
       switchMap(user => {
         if (user) {
@@ -44,6 +45,10 @@ export class AuthService {
         map(users => users.length > 0),
         catchError(() => of(false))
       );
+  }
+
+  async sendEmailVerification(user: any) {
+    if (user) await user.sendEmailVerification();
   }
 
   async verifyEmail(uid: string) {
@@ -121,11 +126,12 @@ export class AuthService {
 
     if (!user.emailVerified) {
       await this.fireAuth.signOut();
-      throw {code: 'auth/email-not-verified'};
+      return {user, emailVerified: false};
     }
 
     // await this.verifyEmail(user.uid)   // TODO
     await this.updateLoginDate(user.uid)
+    return {user, emailVerified: true};
   }
 
   async resetPassword(email: string): Promise<void> {

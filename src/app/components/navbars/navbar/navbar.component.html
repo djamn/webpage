@@ -68,7 +68,7 @@
 
     <!--    Mobile -->
     <div class="hidden max-lg:flex max-lg:items-center max-lg:justify-center " (click)="toggleMenu()">
-      <fa-icon [icon]="faBars" class="tw-icon text-3xl"></fa-icon>
+      <fa-icon [icon]="faBars" class="tw-icon text-xl"></fa-icon>
     </div>
 
     <div class="navbar-mobile-menu " [ngClass]="{'is-active': isMenuOpen}">
@@ -76,7 +76,7 @@
         <div class="select-none w-full flex items-center mb-4 justify-between ">
           <img [attr.src]="config.NAVBAR_LOGO_SRC" alt="image" class="h-8"/>
           <div class="flex items-center justify-center" (click)="closeMenu()">
-            <fa-icon [icon]="faXmark" class="tw-icon text-3xl"></fa-icon>
+            <fa-icon [icon]="faXmark" class="tw-icon text-xl"></fa-icon>
           </div>
         </div>
 

@@ -138,7 +138,8 @@
     "MARIO_GAME_LINK_TITLE": "Mario Game",
     "ABOUT_LINK_TITLE": "About",
     "CHANGELOG_LINK_TITLE": "Changelog",
-    "MANAGE_USERS_LINK_TITLE": "Manage Users"
+    "MANAGE_USERS_LINK_TITLE": "Manage Users",
+    "SERVICES_BUTTON": "Services"
   },
   "BUTTONS": {
     "BUTTON_YES": "Yes",

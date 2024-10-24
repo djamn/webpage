@@ -63,6 +63,11 @@ export class NavbarLinksComponent {
         permission: 'manage-users',
       },
       {
+        label: this.translate.instant('Manage my whole live'),
+        path: '/',
+        permission: 'manage-users',
+      },
+      {
         label: this.translate.instant('NAVBAR._CAT_CHECKER_TITLE'),
         path: '/cat-checker',
         permission: 'view-cat-checker',

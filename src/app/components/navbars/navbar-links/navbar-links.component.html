@@ -1,4 +1,5 @@
-<nav class="lg:flex-1 lg:flex lg:items-center lg:flex-row lg:justify-start max-lg:flex max-lg:items-start max-lg:self-start max-lg:flex-col">
+<nav
+  class="lg:flex-1 lg:flex lg:items-center lg:flex-row lg:justify-start max-lg:flex max-lg:items-start max-lg:self-start max-lg:flex-col">
   <ng-container *ngFor="let link of getNavLinks()">
     <a *ngIf="!link.permission || (permissionService.hasPermission(link.permission) | async)"
        class="lg:ml-6 text-center transition-all duration-300 decoration-0 hover:text-blue-500 font-medium max-lg:mb-3"
@@ -7,23 +8,21 @@
     </a>
   </ng-container>
 
-  <div *ngIf="hasAccessToServices$ | async" class="relative inline-block text-left select-none">
+  <div *ngIf="hasAccessToServices$ | async" class="relative inline-block text-left select-none ml-6 max-lg:ml-0">
     <!-- Dropdown Toggle Button -->
     <button (click)="toggleDropdown()"
-            class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600
-                 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2
-                 focus:ring-offset-gray-100 focus:ring-blue-500">
-      Services
+            class="btn-primary btn-blue">
+      {{ 'NAVBAR.SERVICES_BUTTON' | translate }}
       <fa-icon [icon]="faAngleDown" class="text-[16px] font-bold -mr-1 ml-2"></fa-icon>
     </button>
 
     <!-- Dropdown Menu -->
     <div *ngIf="dropdownOpen"
-         class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1
+         class="origin-top-right absolute mt-2 rounded-md shadow-lg bg-white ring-1
               ring-black ring-opacity-5 focus:outline-none z-20">
       <ng-container *ngFor="let link of getServiceLinks()">
         <a *ngIf="!link.permission || (permissionService.hasPermission(link.permission) | async)"
-           class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+           class="w-auto block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 whitespace-nowrap"
            [routerLink]="link.path">
           {{ link.label }}
         </a>

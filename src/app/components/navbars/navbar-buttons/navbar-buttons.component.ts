@@ -101,7 +101,7 @@ export class NavbarButtonsComponent {
     }
   }
 
-  handleCommandClick() {
+  handleAccountClick() {
     this.dropdownThemeOpen &&= false;
     this.dropdownLanguageOpen &&= false;
   }

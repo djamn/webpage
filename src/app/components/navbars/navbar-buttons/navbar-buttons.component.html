@@ -19,7 +19,8 @@
 
   <div class="tw-navbar-icon-container">
     <button (click)="toggleThemeDropdown()" class="navbar-button-container">
-      <fa-icon *ngIf="selectedTheme === 'light'" [icon]="faSun" class="tw-icon text-2xl"></fa-icon>
+      <img *ngIf="selectedTheme === 'light'" draggable="false" src="assets/icons/sun.svg" class="tw-icon w-20 h-20"  alt=""/>
+<!--      <fa-icon *ngIf="selectedTheme === 'light'" [icon]="faSun" class="tw-icon text-2xl"></fa-icon>-->
       <fa-icon *ngIf="selectedTheme === 'dark'" [icon]="faMoon" class="tw-icon text-2xl "></fa-icon>
       <fa-icon *ngIf="selectedTheme === 'system'" [icon]="faDesktop"
                class="tw-icon text-2xl max-lg:text-base"></fa-icon>
@@ -28,7 +29,8 @@
     <div *ngIf="dropdownThemeOpen" class="right-0 w-24 tw-dropdown-inner-layout">
       <a (click)="selectTheme('light')"
          class="navbar-dropdown-icons">
-        <fa-icon [icon]="faSun" class="navbar-dropdown-icon"></fa-icon>
+<!--        <fa-icon [icon]="faSun" class="navbar-dropdown-icon"></fa-icon>-->
+        <img draggable="false" src="assets/icons/sun.svg" class="navbar-dropdown-icon"  alt=""/>
         {{ 'NAVBAR.LIGHT_TITLE' | translate }}
       </a>
       <a (click)="selectTheme('dark')"
@@ -44,7 +46,7 @@
     </div>
   </div>
 
-  <a *ngIf="getAuth().currentUser" class="rounded-full" routerLink="/account">
+  <a *ngIf="getAuth().currentUser" (click)="handleAccountClick()" class="rounded-full">
     <img
       src="/assets/no-image.svg"
       class="w-10 h-10 object-cover rounded-full decoration-0"

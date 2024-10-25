@@ -55,10 +55,12 @@ export class NavbarButtonsComponent {
 
   toggleThemeDropdown() {
     this.dropdownThemeOpen = !this.dropdownThemeOpen;
+    this.dropdownLanguageOpen &&= false;
   }
 
   toggleLanguageDropdown() {
     this.dropdownLanguageOpen = !this.dropdownLanguageOpen;
+    this.dropdownThemeOpen &&= false;
   }
 
   // Change theme and close dropdown
@@ -99,7 +101,8 @@ export class NavbarButtonsComponent {
   }
 
   handleCommandClick() {
-
+    this.dropdownThemeOpen &&= false;
+    this.dropdownLanguageOpen &&= false;
   }
 
   // Close dropdown if clicked outside of it

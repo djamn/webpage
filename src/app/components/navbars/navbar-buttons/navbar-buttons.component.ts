@@ -4,6 +4,7 @@ import {Language} from "../../../types/language.type";
 import {TranslateService} from "@ngx-translate/core";
 import {ConfigService} from "../../../services/config.service";
 import {PermissionService} from "../../../services/permission.service";
+import {getAuth} from "firebase/auth";
 
 @Component({
   selector: 'navbar-buttons',
@@ -115,4 +116,5 @@ export class NavbarButtonsComponent {
   protected readonly faSun = faSun;
   protected readonly faDesktop = faDesktop;
   protected readonly faMoon = faMoon;
+  protected readonly getAuth = getAuth;
 }

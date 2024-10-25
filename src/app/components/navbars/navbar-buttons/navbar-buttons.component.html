@@ -1,4 +1,4 @@
-<div class="flex items-center flex-row justify-between space-x-5 ml-2">
+<div class="flex items-center flex-row justify-between space-x-6 max-lg:space-x-4 ml-2">
   <div class="tw-navbar-icon-container">
     <button (click)="toggleLanguageDropdown()"
             class="navbar-button-container">
@@ -8,7 +8,7 @@
     <div *ngIf="dropdownLanguageOpen" class="right-0 tw-dropdown-inner-layout">
       <div *ngFor="let language of config.LANGUAGES">
         <img (click)="selectLanguage($event)"
-             class="w-10 h-10 px-2 py-2 hover:bg-gray-100 flex items-center"
+             class="navbar-dropdown-icons w-10 h-10"
              [attr.data-lang-code]="language.code"
              [attr.src]="language.icon"
              alt=""/>
@@ -28,23 +28,30 @@
     <div *ngIf="dropdownThemeOpen" class="right-0 w-24 tw-dropdown-inner-layout">
       <a (click)="selectTheme('light')"
          class="navbar-dropdown-icons">
-        <fa-icon [icon]="faSun" class="mr-2"></fa-icon>
+        <fa-icon [icon]="faSun" class="navbar-dropdown-icon"></fa-icon>
         {{ 'NAVBAR.LIGHT_TITLE' | translate }}
       </a>
       <a (click)="selectTheme('dark')"
          class="navbar-dropdown-icons">
-        <fa-icon [icon]="faMoon" class="mr-2"></fa-icon>
+        <fa-icon [icon]="faMoon" class="navbar-dropdown-icon"></fa-icon>
         {{ 'NAVBAR.DARK_TITLE' | translate }}
       </a>
       <a (click)="selectTheme('system')"
          class="navbar-dropdown-icons">
-        <fa-icon [icon]="faDesktop" class="mr-2"></fa-icon>
+        <fa-icon [icon]="faDesktop" class="navbar-dropdown-icon"></fa-icon>
         {{ 'NAVBAR.SYSTEM_TITLE' | translate }}
       </a>
     </div>
   </div>
 
-  <div class="tw-navbar-icon-container">
+  <a *ngIf="getAuth().currentUser" class="rounded-full" routerLink="/account">
+    <img
+      src="/assets/no-image.svg"
+      class="w-10 h-10 object-cover rounded-full decoration-0"
+      alt=""/>
+  </a>
+
+<!--  <div class="tw-navbar-icon-container">
     <button (click)="handleCommandClick()"
             class="navbar-button-container">
       <svg class="max-lg:w-5 max-lg:h-5"
@@ -58,7 +65,7 @@
 		h7.999c4.418,0,8,3.582,8,8S68.418,72,64,72z"/>
       </svg>
     </button>
-  </div>
+  </div>-->
 </div>
 
 <!--TODO adjust icon sizes for mobile and browser-->

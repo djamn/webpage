@@ -12,7 +12,7 @@ module.exports = {
         'rosa-gradient': 'linear-gradient(to right, #7f00de, #ff007f)',
       },
       padding: {
-        '0.25': '0.09rem'
+        '0.25': '0.09rem',
       },
       scale: {
         '101': '1.01',

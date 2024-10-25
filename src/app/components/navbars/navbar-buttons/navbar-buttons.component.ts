@@ -1,7 +1,6 @@
 import {Component, ElementRef, HostListener} from '@angular/core';
 import {faDesktop, faMoon, faSun} from "@fortawesome/free-solid-svg-icons";
 import {Language} from "../../../types/language.type";
-import {AuthService} from "../../../services/auth.service";
 import {TranslateService} from "@ngx-translate/core";
 import {ConfigService} from "../../../services/config.service";
 import {PermissionService} from "../../../services/permission.service";
@@ -97,6 +96,10 @@ export class NavbarButtonsComponent {
     if (this.selectedTheme === 'system') {
       event.matches ? document.body.classList.add('dark') : document.body.classList.remove('dark');
     }
+  }
+
+  handleCommandClick() {
+
   }
 
   // Close dropdown if clicked outside of it

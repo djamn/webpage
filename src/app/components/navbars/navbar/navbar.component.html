@@ -11,58 +11,51 @@
       </nav>
 
 
-      <!--      TODO -->
       <div class="flex items-center flex-row justify-between">
-        <!--        <div class="language-switch-dropdown-main">
-                  <ng-select [items]="config.LANGUAGES"
-                             [searchable]="false"
-                             [clearable]="false"
-                             (change)="onLanguageChange($event)"
-                             [(ngModel)]="translate.currentLang">
-                    <ng-template ng-label-tmp let-item="item">
-                      <div class="language-switch-dropdown-label">
-                        <img class=language-switch-item-icon
-                             [attr.src]="getAvatarByCode(translate.currentLang)" alt=""/>
-                        <span class="language-switch-item-name">{{ translate.currentLang | uppercase }}</span>
-                      </div>
-                    </ng-template>
-                    <ng-template ng-option-tmp let-item="item" let-index="index">
-                      <div class="language-switch-dropdown-label">
-                        <img class="language-switch-item-icon" [attr.src]="item.icon" alt=""/>
-                        <span class="language-switch-item-name">{{ item.code | uppercase }}</span>
-                      </div>
-                    </ng-template>
-                  </ng-select>
-                </div>-->
-        <navbar-auth-buttons></navbar-auth-buttons>
+        <!--        <navbar-auth-buttons></navbar-auth-buttons>--> <!--      TODO -->
+        <div
+          class="inline-block justify-center items-center relative  text-left border border-solid border-gray-300 rounded shadow-xl w-10 h-10">
+          <button (click)="toggleLanguageDropdown()"
+                  class="btn-primary btn-gray border-transparent p-0 w-full h-full flex justify-center items-center">
+            <img class="w-6 h-6 max-lg:w-4 max-lg:h-4" [attr.src]="getAvatarByCode(translate.currentLang)" alt=""/>
+          </button>
 
-        <div class="relative inline-block text-left">
+          <div *ngIf="dropdownLanguageOpen" class="right-0 tw-dropdown-inner-layout">
+            <div *ngFor="let language of config.LANGUAGES">
+              <img (click)="selectLanguage($event)"
+                   class="w-10 h-10 max-lg:w-4 max-lg:h-4 px-2 py-2 hover:bg-gray-100 flex items-center"
+                   [attr.data-lang-code]="language.code"
+                   [attr.src]="language.icon"
+                   alt=""/>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative inline-block text-left border border-solid border-gray-300 rounded shadow-xl w-10 h-10">
           <button (click)="toggleThemeDropdown()" class="btn-primary btn-gray border-transparent py-1 px-2">
             <fa-icon *ngIf="selectedTheme === 'light'" [icon]="faSun" class="tw-icon text-lg"></fa-icon>
             <fa-icon *ngIf="selectedTheme === 'dark'" [icon]="faMoon" class="tw-icon text-lg"></fa-icon>
             <fa-icon *ngIf="selectedTheme === 'system'" [icon]="faDesktop" class="tw-icon text-lg"></fa-icon>
           </button>
 
-          <div *ngIf="dropdownOpen" class="right-0 origin-top-right absolute mt-2 w-24 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-20">
-            <a (click)="selectTheme('light')" class="px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center">
-              <fa-icon [icon]="faSun" class="mr-2"></fa-icon> Light
+          <div *ngIf="dropdownThemeOpen" class="right-0 w-24 tw-dropdown-inner-layout">
+            <a (click)="selectTheme('light')"
+               class="px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center">
+              <fa-icon [icon]="faSun" class="mr-2"></fa-icon>
+              {{'NAVBAR.LIGHT_TITLE' | translate}}
             </a>
-            <a (click)="selectTheme('dark')" class="px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center">
-              <fa-icon [icon]="faMoon" class="mr-2"></fa-icon> Dark
+            <a (click)="selectTheme('dark')"
+               class="px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center">
+              <fa-icon [icon]="faMoon" class="mr-2"></fa-icon>
+              {{'NAVBAR.DARK_TITLE' | translate}}
             </a>
-            <a (click)="selectTheme('system')" class="px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center">
-              <fa-icon [icon]="faDesktop" class="mr-2"></fa-icon> System
+            <a (click)="selectTheme('system')"
+               class="px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center">
+              <fa-icon [icon]="faDesktop" class="mr-2"></fa-icon>
+              {{'NAVBAR.SYSTEM_TITLE' | translate}}
             </a>
           </div>
         </div>
-
-        <!--        TODO implement account settings -->
-<!--        <a *ngIf="getAuth().currentUser" class="rounded-full" routerLink="/account">-->
-<!--          <img-->
-<!--            src="/assets/no-image.svg"-->
-<!--            class="w-12 h-12 object-cover rounded-full decoration-0"-->
-<!--            alt=""/>-->
-<!--        </a>-->
       </div>
     </div>
 

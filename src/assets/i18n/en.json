@@ -139,7 +139,10 @@
     "ABOUT_LINK_TITLE": "About",
     "CHANGELOG_LINK_TITLE": "Changelog",
     "MANAGE_USERS_LINK_TITLE": "Manage Users",
-    "SERVICES_BUTTON": "Services"
+    "SERVICES_BUTTON": "Services",
+    "LIGHT_TITLE": "light",
+    "DARK_TITLE": "Dark",
+    "SYSTEM_TITLE": "System"
   },
   "BUTTONS": {
     "BUTTON_YES": "Yes",

@@ -16,7 +16,8 @@ export class Navbar {
   config: any;
   isMenuOpen: boolean = false;
   selectedTheme: 'light' | 'dark' | 'system' = 'light'; // Default theme
-  dropdownOpen = false;
+  dropdownThemeOpen = false;
+  dropdownLanguageOpen = false;
 
   constructor(
     private authService: AuthService,
@@ -29,7 +30,7 @@ export class Navbar {
 
     // Load the saved theme from localStorage or set to system by default
     const savedTheme = window.localStorage.getItem('SELECTED_THEME') as 'light' | 'dark' | 'system';
-    this.selectedTheme = savedTheme ? savedTheme : 'system';
+    this.selectedTheme = savedTheme ? savedTheme : 'light'; // Select default theme if no theme is selected
 
     // Apply the theme on initial load
     this.applyTheme(this.selectedTheme);
@@ -39,10 +40,12 @@ export class Navbar {
     mediaQuery.addEventListener('change', this.handleSystemThemeChange.bind(this));
   }
 
-  onLanguageChange(langCode: any) {
+  selectLanguage(event: any) {
+    const langCode = event.target.getAttribute('data-lang-code');
     console.debug("Setting new language: ", langCode);
-    this.translate.use(langCode.code);
-    window.localStorage.setItem('SELECTED_LANGUAGE', langCode.code);
+    this.translate.use(langCode);
+    window.localStorage.setItem('SELECTED_LANGUAGE', langCode);
+    this.dropdownLanguageOpen = false;
   }
 
   getAvatarByCode(langCode: string): string | null {
@@ -67,13 +70,17 @@ export class Navbar {
   }
 
   toggleThemeDropdown() {
-    this.dropdownOpen = !this.dropdownOpen;
+    this.dropdownThemeOpen = !this.dropdownThemeOpen;
+  }
+
+  toggleLanguageDropdown() {
+    this.dropdownLanguageOpen = !this.dropdownLanguageOpen;
   }
 
   // Change theme and close dropdown
   selectTheme(theme: 'light' | 'dark' | 'system') {
     this.selectedTheme = theme;
-    this.dropdownOpen = false;
+    this.dropdownThemeOpen = false;
 
     window.localStorage.setItem('SELECTED_THEME', theme);
 
@@ -110,7 +117,8 @@ export class Navbar {
   // Close dropdown if clicked outside of it
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: Event) {
-    if (this.dropdownOpen && !this.eRef.nativeElement.contains(event.target)) this.dropdownOpen = false;
+    if (this.dropdownThemeOpen && !this.eRef.nativeElement.contains(event.target)) this.dropdownThemeOpen = false;
+    else if (this.dropdownLanguageOpen && !this.eRef.nativeElement.contains(event.target)) this.dropdownLanguageOpen = false;
   }
 
   protected readonly getAuth = getAuth;

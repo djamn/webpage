@@ -9,17 +9,6 @@
   margin-right: var(--dl-space-space-unit);
 }
 
-.language-switch-dropdown-label {
-  display: flex;
-  align-items: center;
-}
-
-.language-switch-item-icon {
-  height: 20px;
-  width: 20px;
-  margin-right: 8px;
-}
-
 .language-switch-item-name {
   display: inline;
 }
@@ -61,16 +50,8 @@
   width: 80px;
 }
 
-.language-switch-dropdown-label-mobile {
-  display: flex;
-  align-items: center;
-}
 
-.language-switch-item-icon-mobile {
-  height: 16px;
-  width: 16px;
-  margin-right: 8px;
-}
+
 
 .language-switch-item-name-mobile {
   font-size: 14px;

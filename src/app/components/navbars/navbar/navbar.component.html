@@ -1,5 +1,5 @@
 <div class="tw-component-container p-0 ">
-  <header class="w-full h-full flex items-center justify-between py-4 px-8 max-lg:px-8 max-sm:p-4">
+  <div class="w-full h-full flex items-center justify-between py-4 px-8 max-lg:px-8 max-sm:p-4">
     <a routerLink="/">
       <img [attr.src]="config.NAVBAR_LOGO_SRC" alt="logo" class="h-8 pr-8 max-lg:p-0 decoration-0"/>
     </a>
@@ -9,15 +9,17 @@
       <nav class="flex-1 flex items-center flex-row justify-start">
         <navbar-links></navbar-links>
       </nav>
+    </div>
 
 
+    <div class="flex justify-end max-lg:w-full max-lg:justify-end mr-5">
       <navbar-buttons></navbar-buttons>
     </div>
 
 
     <!--    Mobile -->
     <div class="hidden max-lg:flex max-lg:items-center max-lg:justify-center " (click)="toggleMenu()">
-      <fa-icon [icon]="faBars" class="tw-icon text-xl"></fa-icon>
+      <fa-icon [icon]="faBars" class="tw-icon text-2xl"></fa-icon>
     </div>
 
     <div class="navbar-mobile-menu " [ngClass]="{'is-active': isMenuOpen}">
@@ -25,7 +27,7 @@
         <div class="select-none w-full flex items-center mb-4 justify-between ">
           <img [attr.src]="config.NAVBAR_LOGO_SRC" alt="image" class="h-8"/>
           <div class="flex items-center justify-center" (click)="closeMenu()">
-            <fa-icon [icon]="faXmark" class="tw-icon text-xl"></fa-icon>
+            <fa-icon [icon]="faXmark" class="tw-icon text-2xl"></fa-icon>
           </div>
         </div>
 
@@ -35,5 +37,5 @@
 
       </div>
     </div>
-  </header>
+  </div>
 </div>

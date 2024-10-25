@@ -1,5 +1,5 @@
 .tw-navbar-icon-container {
-  @apply inline-block relative text-left rounded shadow w-10 h-10
+  @apply inline-block relative text-left rounded w-10 h-10
 }
 
 .navbar-button-container {

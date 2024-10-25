@@ -1,4 +1,4 @@
-<div class="flex items-center flex-row justify-between space-x-3 ml-2">
+<div class="flex items-center flex-row justify-between space-x-5 ml-2">
   <div class="tw-navbar-icon-container">
     <button (click)="toggleLanguageDropdown()"
             class="navbar-button-container">
@@ -8,7 +8,7 @@
     <div *ngIf="dropdownLanguageOpen" class="right-0 tw-dropdown-inner-layout">
       <div *ngFor="let language of config.LANGUAGES">
         <img (click)="selectLanguage($event)"
-             class="w-10 h-10 max-lg:w-4 max-lg:h-4 px-2 py-2 hover:bg-gray-100 flex items-center"
+             class="w-10 h-10 px-2 py-2 hover:bg-gray-100 flex items-center"
              [attr.data-lang-code]="language.code"
              [attr.src]="language.icon"
              alt=""/>
@@ -19,8 +19,8 @@
 
   <div class="tw-navbar-icon-container">
     <button (click)="toggleThemeDropdown()" class="navbar-button-container">
-      <fa-icon *ngIf="selectedTheme === 'light'" [icon]="faSun" class="tw-icon text-2xl max-lg:text-base"></fa-icon>
-      <fa-icon *ngIf="selectedTheme === 'dark'" [icon]="faMoon" class="tw-icon text-2xl max-lg:text-base"></fa-icon>
+      <fa-icon *ngIf="selectedTheme === 'light'" [icon]="faSun" class="tw-icon text-2xl"></fa-icon>
+      <fa-icon *ngIf="selectedTheme === 'dark'" [icon]="faMoon" class="tw-icon text-2xl "></fa-icon>
       <fa-icon *ngIf="selectedTheme === 'system'" [icon]="faDesktop"
                class="tw-icon text-2xl max-lg:text-base"></fa-icon>
     </button>
@@ -47,7 +47,8 @@
   <div class="tw-navbar-icon-container">
     <button (click)="handleCommandClick()"
             class="navbar-button-container">
-      <svg xmlns="http://www.w3.org/2000/svg"
+      <svg class="max-lg:w-5 max-lg:h-5"
+        xmlns="http://www.w3.org/2000/svg"
            viewBox="0 0 80 80">
         <path d="M64,48L64,48h-8V32h8c8.836,0,16-7.164,16-16S72.836,0,64,0c-8.837,0-16,7.164-16,16v8H32v-8c0-8.836-7.164-16-16-16
 		S0,7.164,0,16s7.164,16,16,16h8v16h-8l0,0l0,0C7.164,48,0,55.164,0,64s7.164,16,16,16c8.837,0,16-7.164,16-16l0,0v-8h16v7.98
@@ -59,6 +60,8 @@
     </button>
   </div>
 </div>
+
+<!--TODO adjust icon sizes for mobile and browser-->
 
 <!--
 <div class="w-full dark:bg-dark-mode border-transparent rounded-full p-[0.04rem] bg-gray-200 m-0">

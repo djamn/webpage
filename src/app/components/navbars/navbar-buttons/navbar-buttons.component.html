@@ -1,1 +1,46 @@
-<p>navbar-buttons works!</p>
+<div class="flex items-center flex-row justify-between">
+  <!--        <navbar-auth-buttons></navbar-auth-buttons>--> <!--      TODO -->
+  <div
+    class="inline-block justify-center items-center relative  text-left border border-solid border-gray-300 rounded shadow-xl w-10 h-10">
+    <button (click)="toggleLanguageDropdown()"
+            class="btn-primary btn-gray border-transparent p-0 w-full h-full flex justify-center items-center">
+      <img class="w-6 h-6 max-lg:w-4 max-lg:h-4" [attr.src]="getAvatarByCode(translate.currentLang)" alt=""/>
+    </button>
+
+    <div *ngIf="dropdownLanguageOpen" class="right-0 tw-dropdown-inner-layout">
+      <div *ngFor="let language of config.LANGUAGES">
+        <img (click)="selectLanguage($event)"
+             class="w-10 h-10 max-lg:w-4 max-lg:h-4 px-2 py-2 hover:bg-gray-100 flex items-center"
+             [attr.data-lang-code]="language.code"
+             [attr.src]="language.icon"
+             alt=""/>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative inline-block text-left border border-solid border-gray-300 rounded shadow-xl w-10 h-10">
+    <button (click)="toggleThemeDropdown()" class="btn-primary btn-gray border-transparent py-1 px-2">
+      <fa-icon *ngIf="selectedTheme === 'light'" [icon]="faSun" class="tw-icon text-lg"></fa-icon>
+      <fa-icon *ngIf="selectedTheme === 'dark'" [icon]="faMoon" class="tw-icon text-lg"></fa-icon>
+      <fa-icon *ngIf="selectedTheme === 'system'" [icon]="faDesktop" class="tw-icon text-lg"></fa-icon>
+    </button>
+
+    <div *ngIf="dropdownThemeOpen" class="right-0 w-24 tw-dropdown-inner-layout">
+      <a (click)="selectTheme('light')"
+         class="px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center">
+        <fa-icon [icon]="faSun" class="mr-2"></fa-icon>
+        {{'NAVBAR.LIGHT_TITLE' | translate}}
+      </a>
+      <a (click)="selectTheme('dark')"
+         class="px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center">
+        <fa-icon [icon]="faMoon" class="mr-2"></fa-icon>
+        {{'NAVBAR.DARK_TITLE' | translate}}
+      </a>
+      <a (click)="selectTheme('system')"
+         class="px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center">
+        <fa-icon [icon]="faDesktop" class="mr-2"></fa-icon>
+        {{'NAVBAR.SYSTEM_TITLE' | translate}}
+      </a>
+    </div>
+  </div>
+</div>

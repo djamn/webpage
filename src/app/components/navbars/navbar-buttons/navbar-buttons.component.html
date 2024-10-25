@@ -1,10 +1,8 @@
-<div class="flex items-center flex-row justify-between">
-  <!--        <navbar-auth-buttons></navbar-auth-buttons>--> <!--      TODO -->
-  <div
-    class="inline-block relative text-left border border-solid border-gray-300 rounded shadow-xl w-10 h-10">
+<div class="flex items-center flex-row justify-between space-x-3 ml-2">
+  <div class="tw-navbar-icon-container">
     <button (click)="toggleLanguageDropdown()"
-            class="btn-primary btn-gray border-transparent p-0 w-full h-full flex justify-center items-center">
-      <img class="w-6 h-6 max-lg:w-4 max-lg:h-4" [attr.src]="getAvatarByCode(translate.currentLang)" alt=""/>
+            class="navbar-button-container">
+      <img [attr.src]="getAvatarByCode(translate.currentLang)" alt=""/>
     </button>
 
     <div *ngIf="dropdownLanguageOpen" class="right-0 tw-dropdown-inner-layout">
@@ -19,40 +17,39 @@
   </div>
 
 
-
-  <div class="relative inline-block text-left border border-solid border-gray-300 rounded shadow-xl w-10 h-10">
-    <button (click)="toggleThemeDropdown()" class="btn-primary btn-gray border-transparent py-1 px-2">
-      <fa-icon *ngIf="selectedTheme === 'light'" [icon]="faSun" class="tw-icon text-lg"></fa-icon>
-      <fa-icon *ngIf="selectedTheme === 'dark'" [icon]="faMoon" class="tw-icon text-lg"></fa-icon>
-      <fa-icon *ngIf="selectedTheme === 'system'" [icon]="faDesktop" class="tw-icon text-lg"></fa-icon>
+  <div class="tw-navbar-icon-container">
+    <button (click)="toggleThemeDropdown()" class="navbar-button-container">
+      <fa-icon *ngIf="selectedTheme === 'light'" [icon]="faSun" class="tw-icon text-2xl max-lg:text-base"></fa-icon>
+      <fa-icon *ngIf="selectedTheme === 'dark'" [icon]="faMoon" class="tw-icon text-2xl max-lg:text-base"></fa-icon>
+      <fa-icon *ngIf="selectedTheme === 'system'" [icon]="faDesktop"
+               class="tw-icon text-2xl max-lg:text-base"></fa-icon>
     </button>
 
     <div *ngIf="dropdownThemeOpen" class="right-0 w-24 tw-dropdown-inner-layout">
       <a (click)="selectTheme('light')"
-         class="px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center">
+         class="navbar-dropdown-icons">
         <fa-icon [icon]="faSun" class="mr-2"></fa-icon>
         {{ 'NAVBAR.LIGHT_TITLE' | translate }}
       </a>
       <a (click)="selectTheme('dark')"
-         class="px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center">
+         class="navbar-dropdown-icons">
         <fa-icon [icon]="faMoon" class="mr-2"></fa-icon>
         {{ 'NAVBAR.DARK_TITLE' | translate }}
       </a>
       <a (click)="selectTheme('system')"
-         class="px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center">
+         class="navbar-dropdown-icons">
         <fa-icon [icon]="faDesktop" class="mr-2"></fa-icon>
         {{ 'NAVBAR.SYSTEM_TITLE' | translate }}
       </a>
     </div>
   </div>
 
-  <div class="inline-block relative text-left border border-solid border-gray-300 rounded shadow-xl w-10 h-10">
+  <div class="tw-navbar-icon-container">
     <button (click)="handleCommandClick()"
-            class="btn-primary btn-gray border-transparent py-1 px-2 w-full h-full flex justify-center items-center">
-      <svg class="w-5 h-5"
-           xmlns="http://www.w3.org/2000/svg"
+            class="navbar-button-container">
+      <svg xmlns="http://www.w3.org/2000/svg"
            viewBox="0 0 80 80">
-          <path d="M64,48L64,48h-8V32h8c8.836,0,16-7.164,16-16S72.836,0,64,0c-8.837,0-16,7.164-16,16v8H32v-8c0-8.836-7.164-16-16-16
+        <path d="M64,48L64,48h-8V32h8c8.836,0,16-7.164,16-16S72.836,0,64,0c-8.837,0-16,7.164-16,16v8H32v-8c0-8.836-7.164-16-16-16
 		S0,7.164,0,16s7.164,16,16,16h8v16h-8l0,0l0,0C7.164,48,0,55.164,0,64s7.164,16,16,16c8.837,0,16-7.164,16-16l0,0v-8h16v7.98
 		c0,0.008-0.001,0.014-0.001,0.02c0,8.836,7.164,16,16,16s16-7.164,16-16S72.836,48.002,64,48z M64,8c4.418,0,8,3.582,8,8
 		s-3.582,8-8,8h-8v-8C56,11.582,59.582,8,64,8z M8,16c0-4.418,3.582-8,8-8s8,3.582,8,8v8h-8C11.582,24,8,20.417,8,16z M16,72
@@ -63,6 +60,7 @@
   </div>
 </div>
 
+<!--
 <div class="w-full dark:bg-dark-mode border-transparent rounded-full p-[0.04rem] bg-gray-200 m-0">
   <div class="w-full h-full"></div>
-</div>
+</div>-->

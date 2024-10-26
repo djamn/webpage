@@ -10,7 +10,11 @@ import {Snackbar} from "../utility/snackbar";
   providedIn: 'root'
 })
 export class AuthService {
+  isLoggedIn$: Observable<boolean>;
+  /** User data of database */
   user$: Observable<User | null | undefined>;
+  /** User data of firebase authentication */
+    // currentUserAuth$: Observable<User | null>; // TODO (equivalent to getAuth.currentUser)
   userRoles$: Observable<string[]>;
 
   constructor(private firestore: AngularFirestore, private fireAuth: AngularFireAuth, private router: Router, private snackbar: Snackbar) {
@@ -22,6 +26,10 @@ export class AuthService {
           return new Observable<User | null>(observer => observer.next(null));
         }
       })
+    );
+
+    this.isLoggedIn$ = this.fireAuth.authState.pipe(
+      map(user => !!user) // Emit true if user exists, else false
     );
 
     this.userRoles$ = this.user$.pipe(
@@ -152,10 +160,6 @@ export class AuthService {
 
   getUserRoles(): Observable<string[]> {
     return this.userRoles$;
-  }
-
-  getUser(): Observable<User | null | undefined> {
-    return this.user$;
   }
 }
 

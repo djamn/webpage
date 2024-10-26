@@ -1,4 +1,4 @@
-import {Component, ElementRef} from '@angular/core'
+import {Component, ElementRef, OnInit} from '@angular/core'
 import {TranslateService} from "@ngx-translate/core";
 import {ConfigService} from "../../../services/config.service";
 import {getAuth} from "firebase/auth";
@@ -11,21 +11,28 @@ import {faBars, faXmark} from "@fortawesome/free-solid-svg-icons";
   templateUrl: 'navbar.component.html',
   styleUrls: ['navbar.component.css'],
 })
-export class Navbar {
+export class Navbar implements OnInit{
   config: any;
   isMenuOpen: boolean = false;
-  selectedTheme: 'light' | 'dark' | 'system' = 'light'; // Default theme
-  dropdownThemeOpen = false;
-  dropdownLanguageOpen = false;
+  isLoggedIn = false;
+  loading = true;
 
   constructor(
     private authService: AuthService,
     public translate: TranslateService,
     private eRef: ElementRef,
     configService: ConfigService,
+    protected auth : AuthService,
     protected permissionService: PermissionService
   ) {
     this.config = configService.getConfig();
+  }
+
+  ngOnInit() {
+    this.authService.isLoggedIn$.subscribe((loggedIn) => {
+      this.isLoggedIn = loggedIn;
+      this.loading = false; // Loading is done once we have the login state
+    });
   }
 
 
@@ -42,8 +49,6 @@ export class Navbar {
     await this.authService.logout();
   }
 
-
-  protected readonly getAuth = getAuth;
   protected readonly faXmark = faXmark;
   protected readonly faBars = faBars;
 }

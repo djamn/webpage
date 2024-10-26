@@ -1,10 +1,11 @@
 import {Component, ElementRef, HostListener} from '@angular/core';
-import {faDesktop, faMoon, faSun} from "@fortawesome/free-solid-svg-icons";
+import {faDesktop, faMoon, faSignOut, faSun, faUser} from "@fortawesome/free-solid-svg-icons";
 import {Language} from "../../../types/language.type";
 import {TranslateService} from "@ngx-translate/core";
 import {ConfigService} from "../../../services/config.service";
 import {PermissionService} from "../../../services/permission.service";
 import {getAuth} from "firebase/auth";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'navbar-buttons',
@@ -16,14 +17,20 @@ export class NavbarButtonsComponent {
   selectedTheme: 'light' | 'dark' | 'system' = 'light'; // Default theme
   dropdownThemeOpen = false;
   dropdownLanguageOpen = false;
+  dropdownAccountOpen = false;
+  username: string | undefined = '';
 
   constructor(
     public translate: TranslateService,
     private eRef: ElementRef,
+    private authService: AuthService,
     configService: ConfigService,
-    protected permissionService: PermissionService
-  ) {
+    protected permissionService: PermissionService) {
     this.config = configService.getConfig();
+
+    this.authService.user$.subscribe((user) => {
+      this.username = user?.username;
+    });
 
     // Load the saved theme from localStorage or set to system by default
     const savedTheme = window.localStorage.getItem('SELECTED_THEME') as 'light' | 'dark' | 'system';
@@ -57,14 +64,25 @@ export class NavbarButtonsComponent {
   toggleThemeDropdown() {
     this.dropdownThemeOpen = !this.dropdownThemeOpen;
     this.dropdownLanguageOpen &&= false;
+    this.dropdownAccountOpen &&= false;
   }
 
   toggleLanguageDropdown() {
     this.dropdownLanguageOpen = !this.dropdownLanguageOpen;
     this.dropdownThemeOpen &&= false;
+    this.dropdownAccountOpen &&= false;
   }
 
-  // Change theme and close dropdown
+  handleAccountClick() {
+    this.dropdownAccountOpen = !this.dropdownAccountOpen;
+    this.dropdownThemeOpen &&= false;
+    this.dropdownLanguageOpen &&= false;
+  }
+
+  async logout() {
+    await this.authService.logout();
+  }
+
   selectTheme(theme: 'light' | 'dark' | 'system') {
     this.selectedTheme = theme;
     this.dropdownThemeOpen = false;
@@ -74,7 +92,6 @@ export class NavbarButtonsComponent {
     this.applyTheme(theme);
   }
 
-  // Apply the theme
   applyTheme(theme: 'light' | 'dark' | 'system') {
     switch (theme) {
       case 'light':
@@ -101,20 +118,17 @@ export class NavbarButtonsComponent {
     }
   }
 
-  handleAccountClick() {
-    this.dropdownThemeOpen &&= false;
-    this.dropdownLanguageOpen &&= false;
-  }
-
   // Close dropdown if clicked outside of it
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: Event) {
     if (this.dropdownThemeOpen && !this.eRef.nativeElement.contains(event.target)) this.dropdownThemeOpen = false;
     else if (this.dropdownLanguageOpen && !this.eRef.nativeElement.contains(event.target)) this.dropdownLanguageOpen = false;
+    else if (this.dropdownAccountOpen && !this.eRef.nativeElement.contains(event.target)) this.dropdownAccountOpen = false;
   }
 
-  protected readonly faSun = faSun;
   protected readonly faDesktop = faDesktop;
   protected readonly faMoon = faMoon;
   protected readonly getAuth = getAuth;
+  protected readonly faSignOut = faSignOut;
+  protected readonly faUser = faUser;
 }

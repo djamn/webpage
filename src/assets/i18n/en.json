@@ -142,7 +142,10 @@
     "SERVICES_BUTTON": "Services",
     "LIGHT_TITLE": "Light",
     "DARK_TITLE": "Dark",
-    "SYSTEM_TITLE": "System"
+    "SYSTEM_TITLE": "System",
+    "ACCOUNT_USERNAME_TITLE": "Username:",
+    "ACCOUNT_EDIT_PROFILE_TITLE": "Edit Profile",
+    "ACCOUNT_SIGN_OUT_TITLE": "Sign Out"
   },
   "BUTTONS": {
     "BUTTON_YES": "Yes",

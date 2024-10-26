@@ -19,8 +19,9 @@
 
   <div class="tw-navbar-icon-container">
     <button (click)="toggleThemeDropdown()" class="navbar-button-container">
-      <img *ngIf="selectedTheme === 'light'" draggable="false" src="assets/icons/sun.svg" class="tw-icon w-20 h-20"  alt=""/>
-<!--      <fa-icon *ngIf="selectedTheme === 'light'" [icon]="faSun" class="tw-icon text-2xl"></fa-icon>-->
+      <img *ngIf="selectedTheme === 'light'" draggable="false" src="assets/icons/sun.svg" class="tw-icon w-20 h-20"
+           alt=""/>
+      <!--      <fa-icon *ngIf="selectedTheme === 'light'" [icon]="faSun" class="tw-icon text-2xl"></fa-icon>-->
       <fa-icon *ngIf="selectedTheme === 'dark'" [icon]="faMoon" class="tw-icon text-2xl "></fa-icon>
       <fa-icon *ngIf="selectedTheme === 'system'" [icon]="faDesktop"
                class="tw-icon text-2xl max-lg:text-base"></fa-icon>
@@ -29,8 +30,8 @@
     <div *ngIf="dropdownThemeOpen" class="right-0 w-24 tw-dropdown-inner-layout">
       <a (click)="selectTheme('light')"
          class="navbar-dropdown-icons">
-<!--        <fa-icon [icon]="faSun" class="navbar-dropdown-icon"></fa-icon>-->
-        <img draggable="false" src="assets/icons/sun.svg" class="navbar-dropdown-icon"  alt=""/>
+        <!--        <fa-icon [icon]="faSun" class="navbar-dropdown-icon"></fa-icon>-->
+        <img draggable="false" src="assets/icons/sun.svg" class="navbar-dropdown-icon" alt=""/>
         {{ 'NAVBAR.LIGHT_TITLE' | translate }}
       </a>
       <a (click)="selectTheme('dark')"
@@ -46,31 +47,39 @@
     </div>
   </div>
 
-  <a *ngIf="getAuth().currentUser" (click)="handleAccountClick()" class="rounded-full">
-    <img
-      src="/assets/no-image.svg"
-      class="w-10 h-10 object-cover rounded-full decoration-0"
-      alt=""/>
-  </a>
-
-<!--  <div class="tw-navbar-icon-container">
-    <button (click)="handleCommandClick()"
-            class="navbar-button-container">
-      <svg class="max-lg:w-5 max-lg:h-5"
-        xmlns="http://www.w3.org/2000/svg"
-           viewBox="0 0 80 80">
-        <path d="M64,48L64,48h-8V32h8c8.836,0,16-7.164,16-16S72.836,0,64,0c-8.837,0-16,7.164-16,16v8H32v-8c0-8.836-7.164-16-16-16
-		S0,7.164,0,16s7.164,16,16,16h8v16h-8l0,0l0,0C7.164,48,0,55.164,0,64s7.164,16,16,16c8.837,0,16-7.164,16-16l0,0v-8h16v7.98
-		c0,0.008-0.001,0.014-0.001,0.02c0,8.836,7.164,16,16,16s16-7.164,16-16S72.836,48.002,64,48z M64,8c4.418,0,8,3.582,8,8
-		s-3.582,8-8,8h-8v-8C56,11.582,59.582,8,64,8z M8,16c0-4.418,3.582-8,8-8s8,3.582,8,8v8h-8C11.582,24,8,20.417,8,16z M16,72
-		c-4.418,0-8-3.582-8-8s3.582-8,8-8l0,0h8v8C24,68.418,20.418,72,16,72z M32,48V32h16v16H32z M64,72c-4.418,0-8-3.582-8-8l0,0v-8
-		h7.999c4.418,0,8,3.582,8,8S68.418,72,64,72z"/>
-      </svg>
+  <div class="inline-block relative text-left rounded w-auto h-auto ">
+    <button  *ngIf="getAuth().currentUser" (click)="handleAccountClick()"
+            class="btn-primary border-transparent p-0 w-full h-full flex justify-center items-center">
+      <img
+        src="/assets/no-image.svg"
+        class="w-11 h-11 object-cover rounded-full"
+        alt=""
+      />
     </button>
-  </div>-->
+    <div *ngIf="dropdownAccountOpen" class="-right-4 w-40 tw-dropdown-inner-layout">
+      <a class="px-2 py-2 text-sm text-gray-700 flex items-center">
+        <span>{{'NAVBAR.ACCOUNT_USERNAME_TITLE' | translate}}:</span> <span class="font-semibold ml-0.5">{{username}}</span>
+      </a>
+      <div class="w-full dark:bg-dark-mode border-transparent rounded-full p-[0.04rem] bg-gray-200 m-0">
+        <div class="w-full h-full"></div>
+      </div>
+      <a class="navbar-dropdown-icons">
+        <fa-icon [icon]="faUser" class="navbar-dropdown-icon"></fa-icon>
+        {{'NAVBAR.ACCOUNT_EDIT_PROFILE_TITLE' | translate}}
+      </a>
+      <div class="w-full dark:bg-dark-mode border-transparent rounded-full p-[0.04rem] bg-gray-200 m-0">
+        <div class="w-full h-full"></div>
+      </div>
+      <a (click)="logout()" class="navbar-dropdown-icons">
+        <fa-icon [icon]="faSignOut" class="navbar-dropdown-icon"></fa-icon>
+        {{'NAVBAR.ACCOUNT_SIGN_OUT_TITLE' | translate}}
+      </a>
+    </div>
+  </div>
 </div>
 
 <!--TODO adjust icon sizes for mobile and browser-->
+<!-- Handle cursor in dropdown -->
 
 <!--
 <div class="w-full dark:bg-dark-mode border-transparent rounded-full p-[0.04rem] bg-gray-200 m-0">

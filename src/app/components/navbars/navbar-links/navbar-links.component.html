@@ -2,7 +2,7 @@
   class="lg:flex-1 lg:flex lg:items-center lg:flex-row lg:justify-start max-lg:flex max-lg:items-start max-lg:self-start max-lg:flex-col">
   <ng-container *ngFor="let link of getNavLinks()">
     <a *ngIf="!link.permission || (permissionService.hasPermission(link.permission) | async)"
-       class="lg:ml-6 text-center transition-all duration-300 decoration-0 hover:text-blue-500 font-medium max-lg:mb-3"
+       class="text-black dark:text-title-dark-mode-text hover:text-blue-500 lg:ml-6 text-center transition-all duration-300 decoration-0 font-medium max-lg:mb-3"
        [routerLink]="link.path">
       {{ link.label }}
     </a>
@@ -18,11 +18,10 @@
 
     <!-- Dropdown Menu -->
     <div *ngIf="dropdownOpen"
-         class="origin-top-right absolute mt-2 rounded-md shadow-lg bg-white ring-1
-              ring-black ring-opacity-5 focus:outline-none z-20">
+         class="tw-dropdown-inner-layout">
       <ng-container *ngFor="let link of getServiceLinks()">
         <a *ngIf="!link.permission || (permissionService.hasPermission(link.permission) | async)"
-           class="w-auto block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 whitespace-nowrap"
+           class=" text-base text-gray-700 dark:text-title-dark-mode-text hover:bg-gray-100 dark:hover:bg-dark-mode-dropdown-hover w-auto block px-2 py-2 whitespace-nowrap rounded-md"
            [routerLink]="link.path">
           {{ link.label }}
         </a>

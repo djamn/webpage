@@ -189,8 +189,7 @@
       /*overflow-auto*/
     items-center
     justify-center
-    p-6
-
+    p-6 /*TODO padding bei footer und navbar anders*/
     bg-white
     dark:bg-dark-mode
   }
@@ -376,7 +375,21 @@
 
   /*TODO darkmode*/
   .tw-dropdown-inner-layout {
-    @apply origin-top-right absolute mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-20 cursor-pointer select-none
+    @apply
+    origin-top-right
+    absolute
+    mt-2
+    rounded-md
+    shadow-lg
+    bg-white
+    dark:bg-dark-mode-dropdown
+    ring-1
+    ring-black
+    ring-opacity-5
+    focus:outline-none
+    z-20
+    cursor-pointer
+    select-none
   }
 }
 

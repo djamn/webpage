@@ -1,4 +1,4 @@
-<div class="tw-component-container dark:bg-dark-mode-inside rounded-lg py-3 mt-2 border-1 h-16">
+<div class="tw-component-container dark:bg-dark-mode-inside rounded-lg py-3 mt-2 h-16">
   <!--  Browser-->
   <div class="w-full h-full flex items-center justify-between">
     <a routerLink="/">
@@ -9,7 +9,7 @@
         <navbar-links></navbar-links>
       </nav>
     </div>
-    <div class="flex justify-end max-lg:w-full max-lg:justify-end mr-5">
+    <div class="flex justify-end max-lg:w-full max-lg:justify-end">
       <navbar-buttons></navbar-buttons>
       <div *ngIf="!loading && !isLoggedIn" class="max-lg:hidden">
         <navbar-auth-buttons></navbar-auth-buttons>

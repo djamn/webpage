@@ -1,10 +1,10 @@
 <nav
   class="lg:flex-1 lg:flex lg:items-center lg:flex-row lg:justify-start max-lg:flex max-lg:items-start max-lg:self-start max-lg:flex-col">
-  <ng-container *ngFor="let link of getNavLinks()">
+  <ng-container *ngFor="let link of config.NAVBAR_LINKS">
     <a *ngIf="!link.permission || (permissionService.hasPermission(link.permission) | async)"
        class="text-black dark:text-title-dark-mode-text hover:text-blue-500 lg:ml-6 text-center transition-all duration-300 decoration-0 font-medium max-lg:mb-3"
        [routerLink]="link.path">
-      {{ link.label }}
+      {{ link.label | translate }}
     </a>
   </ng-container>
 
@@ -19,11 +19,11 @@
     <!-- Dropdown Menu -->
     <div *ngIf="dropdownOpen"
          class="tw-dropdown-inner-layout">
-      <ng-container *ngFor="let link of getServiceLinks()">
+      <ng-container *ngFor="let link of config.SERVICE_LINKS">
         <a *ngIf="!link.permission || (permissionService.hasPermission(link.permission) | async)"
            class="tw-dropdown-inner-action-layout whitespace-nowrap"
            [routerLink]="link.path">
-          {{ link.label }}
+          {{ link.label | translate }}
         </a>
       </ng-container>
     </div>

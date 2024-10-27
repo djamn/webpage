@@ -21,7 +21,11 @@
   "GUESTBOOK_USERNAME_CHARACTER_PATTERN": "^[A-Za-z0-9]*$",
   "LOGIN_SLOW_DOWN_DURATION": 1000,
   "GUESTBOOK_ENTRIES_PER_PAGE": 2,
-  "VERSION_CATEGORIES": ["General", "MarioGame", "Unknown"],
+  "VERSION_CATEGORIES": [
+    "General",
+    "MarioGame",
+    "Unknown"
+  ],
   "LANGUAGES": [
     {
       "code": "en",
@@ -40,10 +44,58 @@
     }
   ],
   "_comment": "NOTE - Keywords need gap, colors are defined in tailwind-config",
-  "KEYWORDS_LANDING_PAGE": ["Java ", "AngularJS ", "Typescript "],
-  "KEYWORDS_COLOR_LIST": ["bg-rosa-gradient", "bg-blue-gradient", "bg-orange-gradient"],
+  "KEYWORDS_LANDING_PAGE": [
+    "Java ",
+    "AngularJS ",
+    "Typescript "
+  ],
+  "KEYWORDS_COLOR_LIST": [
+    "bg-rosa-gradient",
+    "bg-blue-gradient",
+    "bg-orange-gradient"
+  ],
   "TYPING_SPEED_MS": 150,
   "DELETING_SPEED_MS": 100,
   "FULL_KEYWORD_PAUSE_DURATION_MS": 500,
-  "MAX_FEATURED_PROJECTS": 1
+  "MAX_FEATURED_PROJECTS": 1,
+  "NAVBAR_LINKS": [
+    {
+      "label": "NAVBAR.DASHBOARD_LINK_TITLE",
+      "path": "/dashboard",
+      "permission": "view-admin-dashboard"
+    },
+    {
+      "label": "NAVBAR.MAIN_PAGE_LINK_TITLE",
+      "path": "/"
+    },
+    {
+      "label": "NAVBAR.PROJECTS_LINK_TITLE",
+      "path": "/projects"
+    },
+    {
+      "label": "NAVBAR.MARIO_GAME_LINK_TITLE",
+      "path": "/"
+    },
+    {
+      "label": "NAVBAR.CHANGELOG_LINK_TITLE",
+      "path": "/changelog"
+    }
+  ],
+  "SERVICE_LINKS": [
+    {
+      "label": "NAVBAR.MANAGE_USERS_LINK_TITLE",
+      "path": "/",
+      "permission": "manage-users"
+    },
+    {
+      "label": "COPY",
+      "path": "/",
+      "permission": "manage-users"
+    },
+    {
+      "label": "NAVBAR.CAT_CHECKER_TITLE",
+      "path": "/cat-check",
+      "permission": "view-cat-checker"
+    }
+  ]
 }

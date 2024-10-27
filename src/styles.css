@@ -181,6 +181,7 @@
   .tw-component-container {
     @apply
     w-[95%]
+    max-w-[1400px]
     max-sm:w-full
     h-auto
     relative
@@ -189,7 +190,8 @@
       /*overflow-auto*/
     items-center
     justify-center
-    p-6 /*TODO padding bei footer und navbar anders*/
+    p-6
+    max-sm:p-4
     bg-white
     dark:bg-dark-mode
   }

@@ -12,15 +12,6 @@
   border: 2px solid green;
 }
 
-.subheading {
-  font-size: 24px;
-  align-self: center;
-  font-style: normal;
-  text-align: center;
-  font-weight: 600;
-  margin-bottom: var(--dl-space-space-oneandhalfunits);
-}
-
 @layer components {
   .tw-icon {
     @apply
@@ -409,18 +400,47 @@
   }
 }
 
+/*Changes icon/text colors */
+.ql-toolbar .ql-stroke {
+  @apply fill-none stroke-icon-color dark:stroke-icon-color-dark-mode
+}
+
+.ql-toolbar .ql-fill {
+  @apply stroke-none fill-icon-color dark:fill-icon-color-dark-mode
+}
+
+.ql-toolbar .ql-picker {
+  @apply text-icon-color dark:text-icon-color-dark-mode
+}
+
+/*Placeholder Textarea */
 .ql-editor.ql-blank::before {
-  @apply dark:text-dark-mode-text;
+  @apply dark:text-dark-mode-text not-italic;
 }
 
 .ql-editor, .ql-toolbar {
   @apply
-  border-gray-300
-  dark:border-gray-600
   bg-white
   dark:bg-dark-mode-inside
   text-black
   dark:text-title-dark-mode-text
+  rounded
+}
+
+/*Toolbar Container*/
+.ql-toolbar.ql-snow {
+  @apply
+  border-gray-300
+  dark:border-gray-600
+  rounded-lg
+}
+
+/*Textarea Container*/
+.ql-container.ql-snow {
+  @apply
+  border-gray-300
+  dark:border-gray-600
+  rounded-lg
 }
 
 .ql-editor.ql-blank:focus::before {

@@ -29,7 +29,9 @@ module.exports = {
         'dark-mode-dropdown-hover': '#1b2b31',
         'title-dark-mode-text': '#eaeaea',
         'dark-mode-text': '#909090',
-        'dark-mode-text-hover': '#787878'
+        'dark-mode-text-hover': '#787878',
+        'icon-color': '#111827',
+        'icon-color-dark-mode': '#D1D5DB'
       },
       keyframes: {
         blurIn: {

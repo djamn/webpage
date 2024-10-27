@@ -1,24 +1,24 @@
 <div class="flex items-center flex-row justify-between space-x-6 max-lg:space-x-4 ml-2">
-  <div class="tw-navbar-icon-container">
+  <div class="tw-navbar-dropdown-container">
     <button (click)="toggleLanguageDropdown()"
             class="navbar-button-container btn-primary">
       <img [attr.src]="getAvatarByCode(translate.currentLang)" alt=""/>
     </button>
 
-    <!--    TODO w-12-->
-    <div *ngIf="dropdownLanguageOpen" class="right-0 tw-dropdown-inner-layout">
-      <div *ngFor="let language of config.LANGUAGES">
+    <div *ngIf="dropdownLanguageOpen" class="-left-1/2 tw-dropdown-inner-layout w-16">
+      <div *ngFor="let language of config.LANGUAGES" class="tw-dropdown-inner-action-layout space-x-2">
         <img (click)="selectLanguage($event)"
-             class="tw-dropdown-inner-action-layout w-12 h-12"
+             class="w-5 h-5"
              [attr.data-lang-code]="language.code"
              [attr.src]="language.icon"
              alt=""/>
+        <span>{{ language.code | uppercase}}</span>
       </div>
     </div>
   </div>
 
 
-  <div class="tw-navbar-icon-container">
+  <div class="tw-navbar-dropdown-container">
     <button (click)="toggleThemeDropdown()" class="navbar-button-container btn-primary">
       <img *ngIf="selectedTheme === 'light'" draggable="false" src="assets/icons/sun.svg" class="tw-icon w-20 h-20"
            alt=""/>
@@ -50,7 +50,7 @@
 
   <div class="inline-block relative text-left rounded w-auto h-auto ">
     <button *ngIf="getAuth().currentUser" (click)="handleAccountClick()"
-            class="btn-primary border-transparent navbar-button-container p-0">
+            class="btn-primary navbar-button-container p-0">
       <img
         [attr.src]="'/assets/no-image.svg'"
         class="w-10 h-10 object-cover rounded-full"

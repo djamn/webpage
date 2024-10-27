@@ -1,13 +1,9 @@
-.tw-navbar-icon-container {
+.tw-navbar-dropdown-container {
   @apply inline-block relative text-left rounded w-9 h-9
 }
 
 .navbar-button-container {
   @apply border-transparent py-1 px-1 w-full h-full flex justify-center items-center
-}
-
-.navbar-dropdown-icons {
-  @apply px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center
 }
 
 .navbar-dropdown-icon {

@@ -373,7 +373,6 @@
     @apply h-4 w-4 border-t-transparent border-solid animate-spin rounded-full border-white border-4
   }
 
-  /*TODO darkmode*/
   .tw-dropdown-inner-layout {
     @apply
     origin-top-right
@@ -390,6 +389,21 @@
     z-20
     cursor-pointer
     select-none
+  }
+
+  .tw-dropdown-inner-action-layout {
+    @apply
+    text-base
+    text-gray-700
+    dark:text-title-dark-mode-text
+    hover:bg-gray-100
+    dark:hover:bg-dark-mode-dropdown-hover
+    w-auto
+    px-2
+    py-2
+    rounded-md
+    flex
+    items-center
   }
 }
 

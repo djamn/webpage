@@ -21,7 +21,7 @@
          class="tw-dropdown-inner-layout">
       <ng-container *ngFor="let link of getServiceLinks()">
         <a *ngIf="!link.permission || (permissionService.hasPermission(link.permission) | async)"
-           class=" text-base text-gray-700 dark:text-title-dark-mode-text hover:bg-gray-100 dark:hover:bg-dark-mode-dropdown-hover w-auto block px-2 py-2 whitespace-nowrap rounded-md"
+           class="tw-dropdown-inner-action-layout whitespace-nowrap"
            [routerLink]="link.path">
           {{ link.label }}
         </a>

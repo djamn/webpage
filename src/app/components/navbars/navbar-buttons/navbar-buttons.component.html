@@ -82,14 +82,14 @@
       <a class="px-2 py-2 text-base text-gray-700 dark:text-title-dark-mode-text flex items-center cursor-default">
         <span>{{ 'NAVBAR.ACCOUNT_USERNAME_TITLE' | translate }} <span class="font-medium"> {{ username }}</span></span>
       </a>
-      <div class="w-full bg-gray-200 dark:bg-dark-mode border-transparent rounded-full p-[0.03rem] m-0">
+      <div class="w-full bg-gray-200 dark:bg-dark-mode-inside border-transparent rounded-full p-[0.03rem] m-0">
         <div class="w-full h-full"></div>
       </div>
       <a class="tw-dropdown-inner-action-layout" routerLink="/account">
         <fa-icon [icon]="faUser" class="navbar-dropdown-icon"></fa-icon>
         {{ 'NAVBAR.ACCOUNT_EDIT_PROFILE_TITLE' | translate }}
       </a>
-      <div class="w-full bg-gray-200 dark:bg-dark-mode border-transparent rounded-full p-[0.03rem] m-0">
+      <div class="w-full bg-gray-200 dark:bg-dark-mode-inside border-transparent rounded-full p-[0.03rem] m-0">
         <div class="w-full h-full"></div>
       </div>
       <a (click)="logout()" class="tw-dropdown-inner-action-layout">

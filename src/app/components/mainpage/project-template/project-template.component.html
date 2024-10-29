@@ -4,7 +4,7 @@
     <div class="flex flex-row p-2 space-x-2 items-center justify-between w-full">
       <fa-icon class="tw-icon" [icon]="faListCheck"></fa-icon>
       <div
-        class="text-gray-500 font-medium flex items-center">{{ 'PROJECTS.PROJECT_TITLE' | translate: {year: project.project_year} }}
+        class="text-gray-500 font-medium flex items-center animate-fadeInDown">{{ 'PROJECTS.PROJECT_TITLE' | translate: {year: project.project_year} }}
         <span
           *ngIf="isProjectPage && project.is_featured && (permissionService.hasPermission('manage-projects') | async)"
           class="ml-1 text-red-600 text-sm">{{ 'PROJECTS.FEATURED_HINT' | translate }}</span></div>
@@ -16,15 +16,15 @@
       <img [attr.src]="project.image_url" alt="Background Image"
            class="absolute inset-0 w-full h-full box-border object-cover z-0 rounded-2xl p-0"/>
       <div class="flex flex-row">
-        <div class="w-[90%] relative z-10 text-gray-700 text-lg max-md:text-sm border-1">{{ project.title }}</div>
-        <div class="w-[10%] relative z-10 border-1 flex justify-center items-center">
+        <div class="w-[90%] relative z-10 text-gray-700 text-lg max-md:text-sm border-1 animate-fadeInRight">{{ project.title }}</div>
+        <div class="w-[10%] relative z-10 border-1 flex justify-center items-center animate-fadeInDown">
           <fa-icon class="tw-icon dark:text-gray-800" [icon]="faHeart"></fa-icon>
           <fa-icon class="tw-icon text-[#ff0000] dark:text-[#ff0000]" [icon]="faHeartSolid"></fa-icon>
         </div>
       </div>
       <div class="flex flex-row">
-        <div class="w-[90%] relative z-10 text-gray-600 text-sm max-md:text-xs border-1"> {{ project.short_desc }}</div>
-        <div class="w-[10%] text-center relative z-10 border-1">{{ project.likes }}</div>
+        <div class="w-[90%] relative z-10 text-gray-600 text-sm max-md:text-xs border-1 animate-fadeInRight"> {{ project.short_desc }}</div>
+        <div class="w-[10%] text-center relative z-10 border-1 animate-fadeInUp">{{ project.likes }}</div>
       </div>
     </div>
     <div *ngIf="isProjectPage && (permissionService.hasPermission('manage-projects') | async)"

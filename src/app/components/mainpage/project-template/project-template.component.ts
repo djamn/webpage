@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Project} from "../../../types/projects.type";
 import {PermissionService} from "../../../services/permission.service";
 import {TranslateService} from "@ngx-translate/core";
@@ -22,7 +22,7 @@ import {faHeart, faStar} from "@fortawesome/free-regular-svg-icons";
   templateUrl: './project-template.component.html',
   styleUrl: './project-template.component.css'
 })
-export class ProjectTemplateComponent {
+export class ProjectTemplateComponent implements OnInit{
   @Input()
   project!: Project;
   @Input()
@@ -40,7 +40,10 @@ export class ProjectTemplateComponent {
               private popupService: PopupService,
               private translate: TranslateService) {
     this.config = configService.getConfig();
-    // this.fetchLike();
+  }
+
+  ngOnInit() {
+    this.fetchLike();
   }
 
   fetchLike() {
@@ -58,6 +61,7 @@ export class ProjectTemplateComponent {
     // TODO only if no user is logged in
     this.likedProjects.push(this.project.id);
     localStorage.setItem('LIKED_PROJECTS', JSON.stringify(this.likedProjects));
+    console.log("Successfully liked!");
 
     // TODO db update
 

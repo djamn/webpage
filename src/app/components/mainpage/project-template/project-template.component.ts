@@ -16,13 +16,14 @@ import {
   faTrashCan
 } from "@fortawesome/free-solid-svg-icons";
 import {faHeart, faStar} from "@fortawesome/free-regular-svg-icons";
+import {getAuth} from "@angular/fire/auth";
 
 @Component({
   selector: 'project-template',
   templateUrl: './project-template.component.html',
   styleUrl: './project-template.component.css'
 })
-export class ProjectTemplateComponent implements OnInit{
+export class ProjectTemplateComponent implements OnInit {
   @Input()
   project!: Project;
   @Input()
@@ -48,20 +49,30 @@ export class ProjectTemplateComponent implements OnInit{
 
   fetchLike() {
     this.likedProjects = JSON.parse(localStorage.getItem('LIKED_PROJECTS') || '[]');
-    console.log(this.project);
     this.isLiked = this.likedProjects.includes(this.project.id);
 
-    if(!this.isLiked) {
+    if (!this.isLiked) {
       // TODO make db request
     }
   }
 
-  like() {
+  async like() {
+    console.log(getAuth().currentUser)
+    if (!getAuth().currentUser) {
+      this.likedProjects.push(this.project.id);
+      localStorage.setItem('LIKED_PROJECTS', JSON.stringify(this.likedProjects));
+    } else {
+      // TODO handle user like
+    }
 
-    // TODO only if no user is logged in
-    this.likedProjects.push(this.project.id);
-    localStorage.setItem('LIKED_PROJECTS', JSON.stringify(this.likedProjects));
-    console.log("Successfully liked!");
+    console.log("Trying to like the project")
+    try {
+      await this.projectService.likeProject(this.project.id, this.project.likes);
+      console.log("Successfully liked!");
+    } catch (err) {
+      console.error("There was an error liking the project:", err)
+    }
+
 
     // TODO db update
 

@@ -60,7 +60,7 @@ export class ProjectsService {
     return this.firestore.collection(projectsCollectionName, ref => ref.orderBy('project_year', 'desc'))
       .snapshotChanges()
       .pipe(
-        debounceTime(300), // needed to not load everything twice
+        debounceTime(500), // needed to not load everything twice
         map(actions => {
           return actions.map(a => {
             const data = a.payload.doc.data() as Project

@@ -9,9 +9,11 @@ import {ConfigService} from "../../../services/config.service";
 import {PopupService} from "../../../services/popup.service";
 import {
   faArrowUpRightFromSquare,
-  faListCheck,
+  faGear,
   faHeart as faHeartSolid,
-  faStar as faStarSolid, faGear, faTrashCan
+  faListCheck,
+  faStar as faStarSolid,
+  faTrashCan
 } from "@fortawesome/free-solid-svg-icons";
 import {faHeart, faStar} from "@fortawesome/free-regular-svg-icons";
 
@@ -28,6 +30,8 @@ export class ProjectTemplateComponent {
   @Input()
   featuredCount: number = 0;
   config: any;
+  isLiked: boolean = false;
+  likedProjects: string[] = []
 
   constructor(protected permissionService: PermissionService,
               private projectService: ProjectsService,
@@ -36,10 +40,27 @@ export class ProjectTemplateComponent {
               private popupService: PopupService,
               private translate: TranslateService) {
     this.config = configService.getConfig();
+    // this.fetchLike();
+  }
+
+  fetchLike() {
+    this.likedProjects = JSON.parse(localStorage.getItem('LIKED_PROJECTS') || '[]');
+    console.log(this.project);
+    this.isLiked = this.likedProjects.includes(this.project.id);
+
+    if(!this.isLiked) {
+      // TODO make db request
+    }
   }
 
   like() {
-    console.log("Works")
+
+    // TODO only if no user is logged in
+    this.likedProjects.push(this.project.id);
+    localStorage.setItem('LIKED_PROJECTS', JSON.stringify(this.likedProjects));
+
+    // TODO db update
+
   }
 
   async deleteProject(id: string) {

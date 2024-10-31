@@ -15,6 +15,7 @@ import {faPlus} from "@fortawesome/free-solid-svg-icons";
 export class ProjectsMainComponent {
   loading: boolean = false;
   featuredCount: number = 0;
+  likedProjectsId: string[] = []
   projects: Project[] = [{
     id: 'bla',
     title: 'Bike Management System',

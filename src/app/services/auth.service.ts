@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {catchError, firstValueFrom, map, Observable, of, switchMap} from "rxjs";
+import {catchError, debounceTime, firstValueFrom, map, Observable, of, switchMap} from "rxjs";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {User} from "../types/user.type";
 import {Router} from "@angular/router";
@@ -16,13 +16,16 @@ export class AuthService {
   /** User data of firebase authentication */
     // currentUserAuth$: Observable<User | null>; // TODO (equivalent to getAuth.currentUser)
   userRoles$: Observable<string[]>;
+  userId: string | null = null;
 
   constructor(private firestore: AngularFirestore, private fireAuth: AngularFireAuth, private router: Router, private snackbar: Snackbar) {
     this.user$ = this.fireAuth.authState.pipe(
       switchMap(user => {
         if (user) {
+          this.userId = user.uid;
           return this.firestore.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
+          this.userId = null;
           return new Observable<User | null>(observer => observer.next(null));
         }
       })
@@ -151,7 +154,6 @@ export class AuthService {
       throw err;
     }
   }
-
 
   async logout() {
     await this.fireAuth.signOut();

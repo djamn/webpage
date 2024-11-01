@@ -1,11 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AuthService} from "./auth.service";
-import {debounceTime, map} from "rxjs";
-import {ChangelogEntry} from "../types/changelog.entry.type";
+import {map} from "rxjs";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {User} from "../types/user.type";
 
-const userCollectionName: string = 'user'
+const userCollectionName: string = 'users'
 
 @Injectable({
   providedIn: 'root'
@@ -19,26 +18,26 @@ export class UserService {
 
 
   getUserLikedProjects() {
-    // Replace 'likedProjects' with the exact document name in Firestore
     return this.firestore
-      .collection(userCollectionName)   // Access user collection
-      .doc<User>('likedProjectIds') // Access the 'likedProjects' document
-      .snapshotChanges()                  // Get real-time updates
+      .collection(userCollectionName)
+      .doc(this.auth.userId)
+      .snapshotChanges()
       .pipe(
         map(action => {
           const data = action.payload.data() as User;
-          const id = action.payload.id;
-          return data ? { ...data, id } : null;
+          return data ? data['likedProjectIds'] : null;
         })
       );
   }
 
-  updateUserLikedProjects() {
-
+  async updateUserLikedProjects(likedProjectIds: string[]) {
+    try {
+      console.log(this.auth.userId)
+      await this.firestore.collection(userCollectionName).doc(this.auth.userId).update({
+        likedProjectIds: likedProjectIds
+      })
+    } catch (err) {
+      throw err;
+    }
   }
-
-
-
-
-
 }

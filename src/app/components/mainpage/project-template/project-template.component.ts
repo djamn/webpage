@@ -39,6 +39,7 @@ export class ProjectTemplateComponent implements OnInit {
   constructor(protected permissionService: PermissionService,
               private projectService: ProjectsService,
               private snackbar: Snackbar,
+              private authService: AuthService,
               private userService: UserService,
               private configService: ConfigService,
               private popupService: PopupService,
@@ -51,31 +52,37 @@ export class ProjectTemplateComponent implements OnInit {
   }
 
   fetchLike() {
-    this.likedProjects = JSON.parse(localStorage.getItem('LIKED_PROJECTS') || '[]');
-    this.isLiked = this.likedProjects.includes(this.project.id);
-
-    if (!this.isLiked) {
+    if (getAuth().currentUser) {
       this.userService.getUserLikedProjects().subscribe({
         next: (data) => {
-          console.log(data)
-          // this.loading = false;
+          this.likedProjects = data || [];
+          this.isLiked = data?.includes(this.project.id) || false;
         },
         error: (err) => {
-          console.error('Error fetching changelog entries:', err);
-          // this.loading = false
+          console.error('Error fetching liked projects entries:', err);
         },
       })
-      // TODO make db request
+    } else {
+      this.likedProjects = JSON.parse(localStorage.getItem('LIKED_PROJECTS') || '[]');
+      this.isLiked = this.likedProjects.includes(this.project.id);
     }
   }
 
   async like() {
-    console.log(getAuth().currentUser)
+    this.likedProjects.push(this.project.id);
     if (!getAuth().currentUser) {
-      this.likedProjects.push(this.project.id);
+      console.debug("Adding liked project to storage");
       localStorage.setItem('LIKED_PROJECTS', JSON.stringify(this.likedProjects));
     } else {
-      // TODO handle user like
+      try {
+        console.debug("Adding liked project to user db");
+        await this.userService.updateUserLikedProjects(this.likedProjects)
+        // TODO handle success
+      } catch (err) {
+        console.error('Error liking project:', err);
+        return;
+        // TODO handle error
+      }
     }
 
     console.log("Trying to like the project")
@@ -85,10 +92,6 @@ export class ProjectTemplateComponent implements OnInit {
     } catch (err) {
       console.error("There was an error liking the project:", err)
     }
-
-
-    // TODO db update
-
   }
 
   async deleteProject(id: string) {

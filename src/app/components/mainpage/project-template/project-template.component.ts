@@ -17,7 +17,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {faHeart, faStar} from "@fortawesome/free-regular-svg-icons";
 import {getAuth} from "@angular/fire/auth";
-import {AuthService} from "../../../services/auth.service";
 import {UserService} from "../../../services/user.service";
 import confetti from 'canvas-confetti';
 

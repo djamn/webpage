@@ -3,7 +3,6 @@ import {AuthService} from "../../../services/auth.service";
 import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {firstValueFrom} from "rxjs";
 import {ConfigService} from "../../../services/config.service";
-import {Router} from "@angular/router";
 import {Snackbar} from "../../../utility/snackbar";
 import {TranslateService} from "@ngx-translate/core";
 import {isControlInvalid} from "../../../utility/form-utils";

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {firstValueFrom, Observable} from 'rxjs';
+import {firstValueFrom} from 'rxjs';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Injectable({

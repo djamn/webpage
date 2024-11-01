@@ -1,5 +1,5 @@
 import {Component, ElementRef, HostListener} from '@angular/core';
-import {faDesktop, faMoon, faSignOut, faSun, faUser} from "@fortawesome/free-solid-svg-icons";
+import {faDesktop, faMoon, faSignOut, faUser} from "@fortawesome/free-solid-svg-icons";
 import {Language} from "../../../types/language.type";
 import {TranslateService} from "@ngx-translate/core";
 import {ConfigService} from "../../../services/config.service";

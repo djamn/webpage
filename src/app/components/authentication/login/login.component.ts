@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
 import {Snackbar} from "../../../utility/snackbar";
 import {TranslateService} from "@ngx-translate/core";
 import {isControlInvalid} from "../../../utility/form-utils";
-import {faEnvelope, faEye, faEyeSlash, faLock, faPlus} from "@fortawesome/free-solid-svg-icons";
+import {faEnvelope, faEye, faEyeSlash, faLock} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'login-component',

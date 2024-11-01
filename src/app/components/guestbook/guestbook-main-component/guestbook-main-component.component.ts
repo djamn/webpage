@@ -2,9 +2,6 @@ import {Component, Input} from '@angular/core';
 import {PermissionService} from "../../../services/permission.service";
 import {ConfigService} from "../../../services/config.service";
 import {PopupService} from "../../../services/popup.service";
-import {Snackbar} from "../../../utility/snackbar";
-import {TranslateService} from "@ngx-translate/core";
-import {GuestbookService} from "../../../services/guestbook.service";
 
 @Component({
   selector: 'guestbook-main-component',

@@ -5,7 +5,6 @@ import {Snackbar} from "../../../utility/snackbar";
 import {ConfigService} from "../../../services/config.service";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import {PopupService} from "../../../services/popup.service";
-import {Router} from "@angular/router";
 import {firstValueFrom} from "rxjs";
 import {PermissionService} from "../../../services/permission.service";
 import {faComment, faEye, faEyeSlash, faGear, faTrashCan} from "@fortawesome/free-solid-svg-icons";

@@ -286,14 +286,6 @@
     dark:hover:bg-blue-800
   }
 
-  .btn-red {
-    @apply
-    bg-blue-500
-    hover:bg-blue-600
-    disabled:hover:bg-gray-500
-    dark:text-white
-  }
-
   .btn-gray {
     @apply
     border
@@ -490,22 +482,11 @@ body {
   --dl-color-white: #FFFFFF;
 }
 
-/*TODO */
-.success-snackbar {
-  color: white;
-  --mdc-snackbar-container-color: var(--success-color);
-
-  .mat-simple-snackbar-action {
-    color: white;
-  }
-}
-
 .warning-snackbar {
   --mdc-snackbar-container-color: #ec5d27;
   --mdc-snackbar-supporting-text-color: white !important;
 
   .mat-mdc-button {
-    /*background-color: blue;*/
     color: white !important;
   }
 }

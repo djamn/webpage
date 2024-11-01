@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {catchError, debounceTime, firstValueFrom, map, Observable, of, switchMap} from "rxjs";
+import {catchError, firstValueFrom, map, Observable, of, switchMap} from "rxjs";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {User} from "../types/user.type";
 import {Router} from "@angular/router";
-import {Snackbar} from "../utility/snackbar";
 
 @Injectable({
   providedIn: 'root'

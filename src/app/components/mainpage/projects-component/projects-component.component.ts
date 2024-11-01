@@ -2,9 +2,6 @@ import {Component} from '@angular/core';
 import {Project} from "../../../types/projects.type";
 import {PermissionService} from "../../../services/permission.service";
 import {ProjectsService} from "../../../services/projects.service";
-import {TranslateService} from "@ngx-translate/core";
-import {firstValueFrom} from "rxjs";
-import {PopupService} from "../../../services/popup.service";
 
 @Component({
   selector: 'projects-component',

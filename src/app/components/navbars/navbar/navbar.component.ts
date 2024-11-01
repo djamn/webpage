@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core'
+import {Component, OnInit} from '@angular/core'
 import {TranslateService} from "@ngx-translate/core";
 import {ConfigService} from "../../../services/config.service";
 import {PermissionService} from "../../../services/permission.service";

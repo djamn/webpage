@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {GuestBookEntry} from "../../../types/guestbook.entry.type";
-import {Router} from "@angular/router";
 import {GuestbookService} from "../../../services/guestbook.service";
 import {ConfigService} from "../../../services/config.service";
 import {PermissionService} from "../../../services/permission.service";

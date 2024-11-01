@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {PermissionService} from "../../../services/permission.service";
 import {ProjectsService} from "../../../services/projects.service";
-import {TranslateService} from "@ngx-translate/core";
 import {Project} from "../../../types/projects.type";
 import {firstValueFrom} from "rxjs";
 import {PopupService} from "../../../services/popup.service";

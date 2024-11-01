@@ -9,7 +9,7 @@ import {ConfigService} from "../../../services/config.service";
 export class LoginRegisterImageComponent implements OnInit {
   config: any;
 
-  constructor(private configService: ConfigService) {
+  constructor(readonly configService: ConfigService) {
   }
 
   ngOnInit() {

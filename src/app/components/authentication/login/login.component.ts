@@ -19,11 +19,11 @@ export class LoginComponent implements OnInit {
   config: any;
   isLoading: boolean = false;
 
-  constructor(private authService: AuthService,
-              private snackbar: Snackbar,
-              private configService: ConfigService,
-              private router: Router,
-              private translate: TranslateService) {
+  constructor(readonly authService: AuthService,
+              readonly snackbar: Snackbar,
+              readonly configService: ConfigService,
+              readonly router: Router,
+              readonly translate: TranslateService) {
   }
 
   ngOnInit() {

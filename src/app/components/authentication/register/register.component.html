@@ -103,7 +103,7 @@
             [ngClass]="{'tw-input-error': isControlInvalid(this.signupForm, 'password')}"
             [type]="hidePassword ? 'password' : 'text'"
             formControlName="password"
-            autocomplete="password"
+            autocomplete="current-password"
           >
 
           <button
@@ -148,7 +148,7 @@
             [ngClass]="{'tw-input-error': isControlInvalid(this.signupForm, 'confirmPassword')}"
             [type]="hideConfirmPassword ? 'password' : 'text'"
             formControlName="confirmPassword"
-            autocomplete="new-password"
+            autocomplete="current-password"
           >
 
           <button

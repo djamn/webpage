@@ -106,14 +106,15 @@ export class ProjectTemplateComponent implements OnInit {
   }
 
 
-  async deleteProject(id: string) {
+  async deleteProject() {
     const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-projects'));
 
     if (hasPermission) {
       this.popupService.openPopup(this.translate.instant('DIALOG.DELETE_PROJECT_DESC', {}), this.translate.instant('BUTTONS.BUTTON_DELETE')).subscribe(async (result) => {
         if (result) {
           try {
-            await this.projectService.deleteProject(id);
+            const imageUrl = this.config.PROJECTS_NO_IMAGE_SRC ? null : this.project.image_url;
+            await this.projectService.deleteProject(this.project.id, imageUrl);
             this.snackbar.showSnackbar(this.translate.instant('PROJECTS.DELETION_SUCCESSFUL'), 'success-snackbar', this.config.SNACKBAR_SUCCESS_DURATION);
           } catch (err) {
             console.error('Error deleting project entry:', err);

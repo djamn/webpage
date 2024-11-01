@@ -13,7 +13,7 @@
     </div>
     <div class="h-full rounded-lg flex flex-col p-3 max-lg:p-2 justify-end bg-gray-300 relative ">
       <img [attr.src]="project.image_url" [routerLink]="project.sub_page_url" alt=""
-           class="absolute inset-0 w-full h-full box-border object-cover z-0 rounded-lg p-0"/>
+           class="absolute inset-0 w-full h-full box-border object-cover z-0 rounded-lg p-0 animate-blurIn"/>
       <div class="flex flex-row">
         <div [routerLink]="project.sub_page_url" class="w-[90%] relative z-10 text-gray-900 text-lg max-md:text-sm  animate-fadeInRight">{{ project.title }}</div>
         <div class="w-[10%] relative z-10  flex justify-center items-center animate-fadeInDown">
@@ -40,7 +40,7 @@
                [title]="'PROJECTS.EDIT_PROJECT_DESC' | translate">
       </fa-icon>
 
-      <fa-icon (click)="deleteProject(project.id)"
+      <fa-icon (click)="deleteProject()"
                class="tw-icon"
                [icon]="faTrashCan"
                [title]="'PROJECTS.DELETE_PROJECT_DESC' | translate">

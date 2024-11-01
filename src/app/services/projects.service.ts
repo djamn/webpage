@@ -3,6 +3,7 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {debounceTime} from "rxjs";
 import {map} from "rxjs/operators";
 import {Project} from "../types/projects.type";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
 
 const projectsCollectionName: string = "projects";
 
@@ -11,7 +12,7 @@ const projectsCollectionName: string = "projects";
 })
 export class ProjectsService {
 
-  constructor(readonly firestore: AngularFirestore) {
+  constructor(readonly firestore: AngularFirestore, readonly storage: AngularFireStorage) {
   }
 
   async addProject(title: string, createdAt: number, shortDesc: string, longDesc: string, subPageUrl: string, repoUrl: string, externalUrl: string, isFeatured: boolean, projectYear: number, imageUrl: string) {
@@ -71,9 +72,10 @@ export class ProjectsService {
       )
   }
 
-  async deleteProject(id: string) {
+  async deleteProject(id: string, imageUrl: string | null) {
     try {
       await this.firestore.collection(projectsCollectionName).doc(id).delete();
+      if (imageUrl) this.storage.refFromURL(imageUrl).delete();
     } catch (err) {
       throw err;
     }

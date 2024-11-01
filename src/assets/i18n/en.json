@@ -228,7 +228,8 @@
     "FIELDS_HAVE_ERRORS": "Please fix all errors before creating project!",
     "UNEXPECTED_ERROR": "There was an error while creating project. Please try again.",
     "PROJECT_CREATED_SUCCESSFUL": "Project was created successfully!",
-    "PROJECT_UPDATED_SUCCESSFUL": "Project was updated successfully!"
+    "PROJECT_UPDATED_SUCCESSFUL": "Project was updated successfully!",
+    "LIKING_UNSUCCESSFUL": "There was an error liking the project. Please try again."
   },
   "ERRORS": {
     "REQUIRED": "This field is required!"

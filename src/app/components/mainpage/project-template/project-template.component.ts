@@ -69,28 +69,24 @@ export class ProjectTemplateComponent implements OnInit {
   }
 
   async like() {
-    this.likedProjects.push(this.project.id);
-    if (!getAuth().currentUser) {
-      console.debug("Adding liked project to storage");
-      localStorage.setItem('LIKED_PROJECTS', JSON.stringify(this.likedProjects));
-    } else {
-      try {
-        console.debug("Adding liked project to user db");
-        await this.userService.updateUserLikedProjects(this.likedProjects)
-        // TODO handle success
-      } catch (err) {
-        console.error('Error liking project:', err);
-        return;
-        // TODO handle error
-      }
-    }
+    console.log("Attempting to like the project");
 
-    console.log("Trying to like the project")
+    this.likedProjects.push(this.project.id);
+
     try {
+      if (!getAuth().currentUser) {
+        console.debug("User not authenticated - saving liked projects to storage");
+        localStorage.setItem('LIKED_PROJECTS', JSON.stringify(this.likedProjects));
+      } else {
+        console.debug("User authenticated - updating liked projects in Firestore");
+        await this.userService.updateUserLikedProjects(this.likedProjects);
+      }
+      // TODO liking success animation
       await this.projectService.likeProject(this.project.id, this.project.likes);
-      console.log("Successfully liked!");
-    } catch (err) {
-      console.error("There was an error liking the project:", err)
+      console.log("Project liked successfully!");
+    } catch (error) {
+      console.error("Error liking project:", error);
+      this.snackbar.showSnackbar(this.translate.instant('PROJECTS.LIKING_UNSUCCESSFUL'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
     }
   }
 

@@ -81,8 +81,8 @@ export class ProjectTemplateComponent implements OnInit {
         await this.userService.updateUserLikedProjects(this.likedProjects);
       }
 
+      this.project.likes += 1;
       await this.projectService.likeProject(this.project.id, this.project.likes);
-
       const x = event.clientX / window.innerWidth;
       const y = event.clientY / window.innerHeight;
       this.triggerConfetti(x, y);

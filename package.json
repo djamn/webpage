@@ -31,6 +31,7 @@
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "angular-build-info": "^2.0.1",
+    "canvas-confetti": "^1.9.3",
     "flowbite": "^2.5.2",
     "ng-recaptcha-2": "^14.0.0",
     "ngx-editor": "^18.0.0",

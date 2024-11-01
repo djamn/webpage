@@ -17,7 +17,7 @@
       <div class="flex flex-row">
         <div [routerLink]="project.sub_page_url" class="w-[90%] relative z-10 text-gray-900 text-lg max-md:text-sm border-1 animate-fadeInRight">{{ project.title }}</div>
         <div class="w-[10%] relative z-10 border-1 flex justify-center items-center animate-fadeInDown">
-          <fa-icon *ngIf="!isLiked" (click)="like()" class="text-2xl tw-icon dark:text-gray-800" [icon]="faHeart"></fa-icon>
+          <fa-icon *ngIf="!isLiked" (click)="handleLike($event)" class="text-2xl tw-icon dark:text-gray-800" [icon]="faHeart"></fa-icon>
           <fa-icon *ngIf="isLiked" class="cursor-default text-2xl text-[#ff0000] dark:text-[#ff0000]" [icon]="faHeartSolid"></fa-icon>
         </div>
       </div>

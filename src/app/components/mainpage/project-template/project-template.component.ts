@@ -19,6 +19,7 @@ import {faHeart, faStar} from "@fortawesome/free-regular-svg-icons";
 import {getAuth} from "@angular/fire/auth";
 import {AuthService} from "../../../services/auth.service";
 import {UserService} from "../../../services/user.service";
+import confetti from 'canvas-confetti';
 
 @Component({
   selector: 'project-template',
@@ -68,7 +69,7 @@ export class ProjectTemplateComponent implements OnInit {
     }
   }
 
-  async like() {
+  async handleLike(event: MouseEvent) {
     console.log("Attempting to like the project");
 
     this.likedProjects.push(this.project.id);
@@ -81,14 +82,31 @@ export class ProjectTemplateComponent implements OnInit {
         console.debug("User authenticated - updating liked projects in Firestore");
         await this.userService.updateUserLikedProjects(this.likedProjects);
       }
-      // TODO liking success animation
+
       await this.projectService.likeProject(this.project.id, this.project.likes);
-      console.log("Project liked successfully!");
+
+      const x = event.clientX / window.innerWidth;
+      const y = event.clientY / window.innerHeight;
+      this.triggerConfetti(x, y);
+
     } catch (error) {
       console.error("Error liking project:", error);
       this.snackbar.showSnackbar(this.translate.instant('PROJECTS.LIKING_UNSUCCESSFUL'), 'error-snackbar', this.config.SNACKBAR_ERROR_DURATION);
     }
   }
+
+  // https://github.com/catdad/canvas-confetti
+  triggerConfetti(x: number, y: number) {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      startVelocity: 20, // Lowers initial velocity for reduced height
+      gravity: 1.2,      // Increases gravity for quicker descent
+      scalar: 0.8,       // Scales down particle size slightly
+      origin: {x, y},
+    });
+  }
+
 
   async deleteProject(id: string) {
     const hasPermission = await firstValueFrom(this.permissionService.hasPermission('manage-projects'));

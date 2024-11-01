@@ -35,7 +35,7 @@ export class TestComponentComponent implements OnInit {
   fieldName = 'counter';
   counter: number = -1;
 
-  constructor(private firebaseService: FirestoreService, private authService: AuthService, private router: Router, private permissionService: PermissionService) {
+  constructor(readonly firebaseService: FirestoreService, readonly authService: AuthService, readonly router: Router, readonly permissionService: PermissionService) {
     this.data = [];
   }
 

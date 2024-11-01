@@ -16,7 +16,7 @@ export class ChangelogPopupComponent {
   config: any;
   changelogForm!: UntypedFormGroup;
 
-  constructor(public dialogRef: MatDialogRef<ChangelogPopupComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private configService: ConfigService) {
+  constructor(public dialogRef: MatDialogRef<ChangelogPopupComponent>, @Inject(MAT_DIALOG_DATA) public data: any, readonly configService: ConfigService) {
     this.config = this.configService.getConfig();
     const timeString = new Date().toLocaleTimeString('de-AT', {hour: '2-digit', minute: '2-digit'});
 

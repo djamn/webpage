@@ -23,10 +23,10 @@ export class RegisterComponent implements OnInit {
   isLoading: boolean = false;
 
   constructor(
-    private authService: AuthService,
-    private configService: ConfigService,
-    private snackbar: Snackbar,
-    private translate: TranslateService) {
+    readonly authService: AuthService,
+    readonly configService: ConfigService,
+    readonly snackbar: Snackbar,
+    readonly translate: TranslateService) {
   }
 
   ngOnInit() {

@@ -10,7 +10,7 @@ const changelogCollectionName: string = 'changelogs'
 })
 export class ChangelogService {
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(readonly firestore: AngularFirestore) {
   }
 
   getEntries() {

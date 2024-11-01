@@ -12,7 +12,7 @@ export class FooterComponent implements OnInit {
   config: any;
   currentYear: number = new Date().getFullYear();
 
-  constructor(private configService: ConfigService) {
+  constructor(readonly configService: ConfigService) {
   }
 
   ngOnInit() {

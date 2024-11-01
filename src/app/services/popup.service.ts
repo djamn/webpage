@@ -16,9 +16,10 @@ import {ProjectPopupComponent} from "../components/popups/create-project-popup/p
 export class PopupService {
 
   constructor(
-    private dialog: MatDialog) {
+    readonly dialog: MatDialog) {
   }
 
+  // TODO private/readonly?
   openPopup(description: string, buttonActionText: string): Observable<boolean> {
     const dialogRef = this.dialog.open(DialogPopupComponent, {
       data: {

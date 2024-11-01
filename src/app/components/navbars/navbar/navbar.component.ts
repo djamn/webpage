@@ -17,9 +17,9 @@ export class Navbar implements OnInit {
   loading = true;
 
   constructor(
-    private authService: AuthService,
+    readonly authService: AuthService,
     public translate: TranslateService,
-    configService: ConfigService,
+    readonly configService: ConfigService,
     protected permissionService: PermissionService
   ) {
     this.config = configService.getConfig();

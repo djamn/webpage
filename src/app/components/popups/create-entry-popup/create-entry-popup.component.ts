@@ -37,10 +37,10 @@ export class CreateEntryPopupComponent {
   constructor(public dialogRef: MatDialogRef<CreateEntryPopupComponent>,
               @Inject(MAT_DIALOG_DATA)
               public data: any,
-              private configService: ConfigService,
-              private guestbookService: GuestbookService,
-              private snackbar: Snackbar,
-              private translate: TranslateService) {
+              readonly configService: ConfigService,
+              readonly guestbookService: GuestbookService,
+              readonly snackbar: Snackbar,
+              readonly translate: TranslateService) {
     this.config = this.configService.getConfig();
 
     this.createEntryForm = new UntypedFormGroup({

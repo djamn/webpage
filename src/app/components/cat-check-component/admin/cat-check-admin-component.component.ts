@@ -31,10 +31,10 @@ export class CatCheckAdminComponent {
   config: any;
 
   constructor(
-    private snackbar: Snackbar,
-    private checker: CheckerService,
-    private configService: ConfigService,
-    private popupService: PopupService
+    readonly snackbar: Snackbar,
+    readonly checker: CheckerService,
+    readonly configService: ConfigService,
+    readonly popupService: PopupService
   ) {
     this.config = this.configService.getConfig();
     this.fetchFeedingSessions();

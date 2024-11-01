@@ -9,7 +9,7 @@ export class ConfigService {
   private configUrl = 'assets/config.json';
   private config: any;
 
-  constructor(private http: HttpClient) {
+  constructor(readonly http: HttpClient) {
   }
 
   loadConfig(): Observable<any> {

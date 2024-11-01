@@ -1,7 +1,6 @@
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Injectable} from "@angular/core";
 import {TranslateService} from "@ngx-translate/core";
-import {AuthService} from "../services/auth.service";
 import {ConfigService} from "../services/config.service";
 
 @Injectable({
@@ -10,7 +9,7 @@ import {ConfigService} from "../services/config.service";
 export class Snackbar {
   config: any;
 
-  constructor(private snackBar: MatSnackBar, private translate: TranslateService, private configService: ConfigService) {
+  constructor(readonly snackBar: MatSnackBar, readonly translate: TranslateService, readonly configService: ConfigService) {
     this.config = this.configService.getConfig();
   }
 

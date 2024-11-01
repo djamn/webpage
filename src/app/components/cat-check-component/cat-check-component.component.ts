@@ -30,7 +30,10 @@ export class CatCheckComponent implements OnInit, OnDestroy {
 
   isLastFeedingSession = false;
 
-  constructor(private snackbar: Snackbar, private checker: CheckerService, private configService: ConfigService) {
+  constructor(
+    readonly snackbar: Snackbar,
+    readonly checker: CheckerService,
+    readonly configService: ConfigService) {
     this.config = this.configService.getConfig();
     this.fetchFeedingSessions();
   }

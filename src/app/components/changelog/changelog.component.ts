@@ -68,11 +68,11 @@ export class ChangelogComponent implements OnInit {
     },
   ];
 
-  constructor(private changelogService: ChangelogService,
-              private popupService: PopupService,
-              private translate: TranslateService,
-              private snackbar: Snackbar,
-              private configService: ConfigService,
+  constructor(readonly changelogService: ChangelogService,
+              readonly popupService: PopupService,
+              readonly translate: TranslateService,
+              readonly snackbar: Snackbar,
+              readonly configService: ConfigService,
               protected permissionService: PermissionService) {
   }
 

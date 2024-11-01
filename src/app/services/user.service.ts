@@ -11,7 +11,7 @@ const userCollectionName: string = 'users'
 })
 export class UserService {
 
-  constructor(private auth: AuthService, private firestore: AngularFirestore) {
+  constructor(readonly auth: AuthService, readonly firestore: AngularFirestore) {
 
 
   }

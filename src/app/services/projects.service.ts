@@ -11,7 +11,7 @@ const projectsCollectionName: string = "projects";
 })
 export class ProjectsService {
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(readonly firestore: AngularFirestore) {
   }
 
   async addProject(title: string, createdAt: number, shortDesc: string, longDesc: string, subPageUrl: string, repoUrl: string, externalUrl: string, isFeatured: boolean, projectYear: number, imageUrl: string) {

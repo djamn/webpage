@@ -11,7 +11,7 @@ const catCheckerCollectionName: string = "cat-checker";
 })
 export class CheckerService {
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(readonly firestore: AngularFirestore) {
   }
 
   async addFeedingSession(timestamp: number) {

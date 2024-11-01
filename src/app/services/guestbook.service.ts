@@ -12,9 +12,9 @@ const guestbookCollectionName: string = 'guestbook-entries'
 })
 export class GuestbookService {
 
-  constructor(private firestore: AngularFirestore,
-              private snackbar: Snackbar,
-              private translate: TranslateService) {
+  constructor(readonly firestore: AngularFirestore,
+              readonly snackbar: Snackbar,
+              readonly translate: TranslateService) {
   }
 
   async addEntry(username: string, timestamp: number, title: string, isVisible: boolean, entryMessage: string) {

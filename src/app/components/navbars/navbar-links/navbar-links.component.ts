@@ -17,8 +17,8 @@ export class NavbarLinksComponent {
 
   hasAccessToServices$;
 
-  constructor(private configService: ConfigService,
-              private eRef: ElementRef,
+  constructor(readonly configService: ConfigService,
+              readonly eRef: ElementRef,
               public translate: TranslateService,
               protected permissionService: PermissionService) {
     this.config = this.configService.getConfig();

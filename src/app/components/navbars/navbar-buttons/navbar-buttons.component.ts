@@ -22,9 +22,9 @@ export class NavbarButtonsComponent {
 
   constructor(
     public translate: TranslateService,
-    private eRef: ElementRef,
-    private authService: AuthService,
-    configService: ConfigService,
+    readonly eRef: ElementRef,
+    readonly authService: AuthService,
+    readonly configService: ConfigService,
     protected permissionService: PermissionService) {
     this.config = configService.getConfig();
 

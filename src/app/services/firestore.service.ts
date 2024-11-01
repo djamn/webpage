@@ -7,7 +7,7 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 })
 export class FirestoreService {
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(readonly firestore: AngularFirestore) {
   }
 
   async incrementNumber(collectionName: string, docId: string, counterValue: number): Promise<void> {

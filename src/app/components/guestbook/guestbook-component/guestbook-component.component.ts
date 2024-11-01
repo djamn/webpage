@@ -50,10 +50,9 @@ export class GuestbookComponent implements OnInit {
 
 
   constructor(
-    private router: Router,
-    private configService: ConfigService,
-    protected permissionService: PermissionService,
-    private guestbookService: GuestbookService) {
+    readonly configService: ConfigService,
+    readonly permissionService: PermissionService,
+    readonly guestbookService: GuestbookService) {
   }
 
   ngOnInit() {

@@ -19,9 +19,7 @@ export class ProjectsComponent {
   projectsChunks: Project[][] = [];
 
   constructor(protected permissionService: PermissionService,
-              private projectService: ProjectsService,
-              private popupService: PopupService,
-              private translate: TranslateService) {
+              readonly projectService: ProjectsService) {
     this.fetchProjects();
   }
 

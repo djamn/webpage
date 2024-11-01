@@ -9,7 +9,7 @@ import {combineLatest, map, Observable, of, shareReplay, switchMap} from "rxjs";
 export class PermissionService {
   private userPermissions$: Observable<string[]>;
 
-  constructor(private firestore: AngularFirestore, private authService: AuthService) {
+  constructor(readonly firestore: AngularFirestore, readonly authService: AuthService) {
     this.userPermissions$ = this.initUserPermissions();
   }
 

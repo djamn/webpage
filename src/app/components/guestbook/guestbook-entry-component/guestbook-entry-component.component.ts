@@ -23,14 +23,13 @@ export class GuestbookEntryComponent implements OnInit {
   config: any;
 
   constructor(
-    private translate: TranslateService,
-    private guestbookService: GuestbookService,
-    private snackbar: Snackbar,
-    private configService: ConfigService,
-    private router: Router,
+    readonly translate: TranslateService,
+    readonly guestbookService: GuestbookService,
+    readonly snackbar: Snackbar,
+    readonly configService: ConfigService,
     protected permissionService: PermissionService,
-    private sanitizer: DomSanitizer,
-    private popupService: PopupService) {
+    readonly sanitizer: DomSanitizer,
+    readonly popupService: PopupService) {
   }
 
   ngOnInit() {

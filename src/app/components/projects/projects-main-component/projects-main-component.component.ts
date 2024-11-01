@@ -70,9 +70,8 @@ export class ProjectsMainComponent {
   ]
 
   constructor(protected permissionService: PermissionService,
-              private projectService: ProjectsService,
-              private popupService: PopupService,
-              private translate: TranslateService) {
+              readonly projectService: ProjectsService,
+              readonly popupService: PopupService) {
     this.fetchData();
   }
 

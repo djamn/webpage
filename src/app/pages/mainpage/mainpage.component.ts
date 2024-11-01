@@ -11,7 +11,7 @@ import {Meta, Title} from "@angular/platform-browser";
   styleUrls: ['mainpage.component.css'],
 })
 export class MainPage {
-  constructor(private title: Title, private meta: Meta) {
+  constructor(readonly title: Title, readonly meta: Meta) {
     this.title.setTitle('Mainpage - Webpage')
     this.meta.addTags([
       {

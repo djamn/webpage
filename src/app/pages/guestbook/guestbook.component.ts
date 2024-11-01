@@ -11,7 +11,7 @@ import {Meta, Title} from "@angular/platform-browser";
   styleUrls: ['guestbook.component.css'],
 })
 export class Guestbook {
-  constructor(private title: Title, private meta: Meta) {
+  constructor(readonly title: Title, readonly meta: Meta) {
     this.title.setTitle('Guestbook - Webpage')
     this.meta.addTags([
       {

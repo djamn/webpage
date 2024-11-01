@@ -38,13 +38,12 @@ export class ProjectTemplateComponent implements OnInit {
   likedProjects: string[] = []
 
   constructor(protected permissionService: PermissionService,
-              private projectService: ProjectsService,
-              private snackbar: Snackbar,
-              private authService: AuthService,
-              private userService: UserService,
-              private configService: ConfigService,
-              private popupService: PopupService,
-              private translate: TranslateService) {
+              readonly projectService: ProjectsService,
+              readonly snackbar: Snackbar,
+              readonly userService: UserService,
+              readonly configService: ConfigService,
+              readonly popupService: PopupService,
+              readonly translate: TranslateService) {
     this.config = configService.getConfig();
   }
 

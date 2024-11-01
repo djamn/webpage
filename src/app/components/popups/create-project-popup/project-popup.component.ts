@@ -23,10 +23,10 @@ export class ProjectPopupComponent {
   constructor(public dialogRef: MatDialogRef<ProjectPopupComponent>,
               @Inject(MAT_DIALOG_DATA)
               public data: any,
-              private configService: ConfigService,
-              private projectService: ProjectsService,
-              private snackbar: Snackbar,
-              private translate: TranslateService) {
+              readonly configService: ConfigService,
+              readonly projectService: ProjectsService,
+              readonly snackbar: Snackbar,
+              readonly translate: TranslateService) {
     this.config = this.configService.getConfig();
 
     this.projectForm = new UntypedFormGroup({

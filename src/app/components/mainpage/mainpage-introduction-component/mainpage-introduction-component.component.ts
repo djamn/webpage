@@ -18,7 +18,10 @@ export class MainPageIntroductionComponent implements OnInit, OnDestroy {
   currentColor: string;
   active: boolean = false;
 
-  constructor(private configService: ConfigService, private cdr: ChangeDetectorRef, private ngZone: NgZone) {
+  constructor(
+    readonly configService: ConfigService,
+    readonly cdr: ChangeDetectorRef,
+    readonly ngZone: NgZone) {
     this.config = this.configService.getConfig();
     this.keywords = this.config.KEYWORDS_LANDING_PAGE;
     this.colors = this.config.KEYWORDS_COLOR_LIST;

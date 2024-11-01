@@ -18,7 +18,7 @@ export class AuthService {
   userRoles$: Observable<string[]>;
   userId: string | undefined = undefined;
 
-  constructor(private firestore: AngularFirestore, private fireAuth: AngularFireAuth, private router: Router, private snackbar: Snackbar) {
+  constructor(readonly firestore: AngularFirestore, readonly fireAuth: AngularFireAuth, readonly router: Router) {
     this.user$ = this.fireAuth.authState.pipe(
       switchMap(user => {
         if (user) {

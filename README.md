@@ -1,3 +1,5 @@
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=djamn_webpage&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=djamn_webpage)[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=djamn_webpage&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=djamn_webpage)
+
 https://medium.com/@christianaxtmn/adding-firebase-to-angular-17-5c5a7cf4aba8
 ng build --configuration development --deploy-url /tests/webpage/
 ODER: npm run build-dev --configuration development --deploy-url /tests/webpage/

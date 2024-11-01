@@ -35,7 +35,7 @@ module.exports = {
       },
       keyframes: {
         blurIn: {
-          '0%': { filter: 'blur(8px)' },
+          '0%': { filter: 'blur(28px)' },
           '100%': { filter: 'blur(0px)' },
         },
         scaleIn: {

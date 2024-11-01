@@ -157,14 +157,21 @@
                 </div>
 
                 <div class="tw-input-label mt-4">{{ 'PROJECTS.IMAGE_TITLE' | translate }}</div>
-                <div class="flex flex-row justify-between space-x-10 h-24">
-                  <div class="w-auto flex flex-col space-y-5 justify-center ">
-                    <button type="button" class="btn-primary btn-green p-1">Upload Image</button>
-                    <button type="button" class="btn-primary btn-red p-1">Delete Image</button>
+                <div class="flex flex-row justify-between space-x-10 h-28">
+                  <div class="w-auto flex flex-col space-y-5 justify-center">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      (change)="onFileSelected($event)"
+                      hidden
+                      #fileInput
+                    />
+                    <button (click)="fileInput.click()" type="button" class="btn-primary btn-green p-1">Upload Image</button>
+                    <button (click)="deleteImage()" type="button" class="btn-primary btn-red p-1">Delete Image</button>
                   </div>
                   <div class="w-[60%]">
-                    <img [attr.src]="'/assets/no-image.svg'" alt="logo"
-                         class="w-full h-full box-border object-cover rounded-lg"/>
+                    <img [attr.src]="imagePreview || '/assets/no-image.svg'" alt=""
+                         class="w-full h-full box-border object-contain rounded-lg"/>
                   </div>
                 </div>
 

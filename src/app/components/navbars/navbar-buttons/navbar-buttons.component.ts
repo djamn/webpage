@@ -7,6 +7,8 @@ import {PermissionService} from "../../../services/permission.service";
 import {getAuth} from "firebase/auth";
 import {AuthService} from "../../../services/auth.service";
 
+type Theme = 'light' | 'dark' | 'system';
+
 @Component({
   selector: 'navbar-buttons',
   templateUrl: './navbar-buttons.component.html',
@@ -14,7 +16,7 @@ import {AuthService} from "../../../services/auth.service";
 })
 export class NavbarButtonsComponent {
   config: any;
-  selectedTheme: 'light' | 'dark' | 'system' = 'light'; // Default theme
+  selectedTheme: Theme = 'light'; // Default theme
   dropdownThemeOpen = false;
   dropdownLanguageOpen = false;
   dropdownAccountOpen = false;
@@ -33,7 +35,7 @@ export class NavbarButtonsComponent {
     });
 
     // Load the saved theme from localStorage or set to system by default
-    const savedTheme = window.localStorage.getItem('SELECTED_THEME') as 'light' | 'dark' | 'system';
+    const savedTheme = window.localStorage.getItem('SELECTED_THEME') as Theme;
     this.selectedTheme = savedTheme ? savedTheme : 'light'; // Select default theme if no theme is selected
 
     // Apply the theme on initial load
@@ -83,7 +85,7 @@ export class NavbarButtonsComponent {
     await this.authService.logout();
   }
 
-  selectTheme(theme: 'light' | 'dark' | 'system') {
+  selectTheme(theme: Theme) {
     this.selectedTheme = theme;
     this.dropdownThemeOpen = false;
 
@@ -92,7 +94,7 @@ export class NavbarButtonsComponent {
     this.applyTheme(theme);
   }
 
-  applyTheme(theme: 'light' | 'dark' | 'system') {
+  applyTheme(theme: Theme) {
     switch (theme) {
       case 'light':
         document.body.classList.remove('dark');

@@ -17,6 +17,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {faHeart, faStar} from "@fortawesome/free-regular-svg-icons";
 import {getAuth} from "@angular/fire/auth";
+import {AuthService} from "../../../services/auth.service";
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'project-template',
@@ -37,6 +39,7 @@ export class ProjectTemplateComponent implements OnInit {
   constructor(protected permissionService: PermissionService,
               private projectService: ProjectsService,
               private snackbar: Snackbar,
+              private userService: UserService,
               private configService: ConfigService,
               private popupService: PopupService,
               private translate: TranslateService) {
@@ -52,6 +55,16 @@ export class ProjectTemplateComponent implements OnInit {
     this.isLiked = this.likedProjects.includes(this.project.id);
 
     if (!this.isLiked) {
+      this.userService.getUserLikedProjects().subscribe({
+        next: (data) => {
+          console.log(data)
+          // this.loading = false;
+        },
+        error: (err) => {
+          console.error('Error fetching changelog entries:', err);
+          // this.loading = false
+        },
+      })
       // TODO make db request
     }
   }

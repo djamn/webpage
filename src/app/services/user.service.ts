@@ -32,7 +32,6 @@ export class UserService {
 
   async updateUserLikedProjects(likedProjectIds: string[]) {
     try {
-      console.log(this.auth.userId)
       await this.firestore.collection(userCollectionName).doc(this.auth.userId).update({
         likedProjectIds: likedProjectIds
       })
